@@ -1,6 +1,7 @@
-> 本章生词卡片 15 个: hum、kindle、adore、bribe、doom、suspect、dignity、scrape、aggravate、discretion、frown、ridicule、crow、thrash、inquiry
+> 本章生词卡片 18 个: hum、clap、kindle、adore、bribe、doom、suspect、dignity、scrape、aggravate、discretion、shame、frown、ridicule、crow、sorrowful、thrash、inquiry
 
 - **hum** · C1 · v. 哼（曲子）；发嗡嗡声　n. 嗡嗡声（Hum! 哼！）
+- **clap** · C1 · v. 拍(手),鼓掌 n. 拍手声;霹雳声
 - **kindle** · C1 · v. 点燃；激起；（眼睛）发亮（kindled 闪光的）
 - **adore** · C1 · v. 爱慕，崇拜；非常喜欢
 - **bribe** · C1 · n. 贿赂　vt. 收买，行贿
@@ -10,8 +11,10 @@
 - **scrape** · B2 · n. 困境，麻烦（be in a scrape）　v. 刮，擦
 - **aggravate** · C1 · v. 使恶化，加重；激怒
 - **discretion** · C1 · n. 谨慎，审慎；判断力
+- **shame** · B2 · n. 羞耻,羞愧;憾事
 - **frown** · B2 · v. 皱眉　n. 皱眉（frown upon 不赞成）
 - **ridicule** · C1 · n. 嘲笑，愚弄　vt. 嘲弄（hold sb up to ridicule）
 - **crow** · C1 · vi. （公鸡）啼叫；（得意地）欢叫　n. 乌鸦
+- **sorrowful** · C1 · a. 悲伤的,忧伤的
 - **thrash** · C1 · n./v. 痛打，鞭打（a thrash 揍一顿）
 - **inquiry** · B2 · n. 询问，打听；调查（make inquiries）

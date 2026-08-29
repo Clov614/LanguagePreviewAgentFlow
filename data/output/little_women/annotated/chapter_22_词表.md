@@ -1,4 +1,4 @@
-> 本章生词卡片 16 个: quench、crown、disgrace、maiden、stalk、utterly、congratulate、prick、verse、overflow、raisin、stiff、pail、industrious、recollect、dismay
+> 本章生词卡片 18 个: quench、crown、disgrace、maiden、stalk、utterly、congratulate、prick、verse、overflow、raisin、stiff、pail、eyebrow、industrious、recollect、faint、dismay
 
 - **quench** · C1 · v. 解（渴）；熄灭（quench one's thirst）
 - **crown** · C1 · v. 使圆满；为…加冕　n. 王冠；顶点（be crowned with 以…告终）
@@ -13,6 +13,8 @@
 - **raisin** · C1 · n. 葡萄干
 - **stiff** · B2 · a. 僵硬的；生硬的；烈性的
 - **pail** · C1 · n. 桶，提桶
+- **eyebrow** · B2 · n. 眉毛
 - **industrious** · C1 · a. 勤勉的，勤奋的
 - **recollect** · C1 · v. 记起，回想（recollect doing）
+- **faint** · B2 · v. 昏倒 n. 昏厥 a. 微弱的,模糊的
 - **dismay** · B2 · n. 惊愕，沮丧（to one's dismay 令…沮丧的是）　vt. 使气馁

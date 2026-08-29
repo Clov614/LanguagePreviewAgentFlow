@@ -1,9 +1,11 @@
-> 本章生词卡片 15 个: creep、wit、dread、hug、exclamation、merry、sparkle、twinkle、heroine、dispose、beam、cast、mysterious、peacock、saint
+> 本章生词卡片 18 个: creep、wit、dread、trust、hug、likewise、exclamation、merry、sparkle、twinkle、heroine、dispose、beam、somewhat、cast、mysterious、peacock、saint
 
 - **creep** · C1 · v. 悄悄走，蹑手蹑脚；爬行（crept 过去式）
 - **wit** · C1 · n. 机智，风趣；妙语（wits 机智，头脑）
 - **dread** · C1 · v. 惧怕，担心　n. 恐惧
+- **trust** · B2 · n. 信任,信赖 v. 相信,委托
 - **hug** · B2 · v. 拥抱　n. 紧抱（give a hug）
+- **likewise** · B2 · adv. 同样地,也
 - **exclamation** · C1 · n. 惊呼，感叹；感叹词
 - **merry** · B2 · a. 快活的，高兴的；（Merry Christmas 圣诞快乐）
 - **sparkle** · C1 · v. 闪烁，闪耀；神采飞扬　n. 闪光
@@ -11,6 +13,7 @@
 - **heroine** · C1 · n. 女主角；女英雄
 - **dispose** · C1 · v. 处理，处置（dispose of）；布置；倾向
 - **beam** · B2 · v. 面露喜色，眉开眼笑　n. 光束；横梁
+- **somewhat** · B2 · adv. 有点,几分
 - **cast** · B2 · n. 演员阵容；投掷；铸件　vt. 投，抛
 - **mysterious** · B2 · a. 神秘的，难以捉摸的
 - **peacock** · C1 · n. 孔雀；爱炫耀的人

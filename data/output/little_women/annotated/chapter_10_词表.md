@@ -1,6 +1,7 @@
-> 本章生词卡片 17 个: spectacle、tumble、graceful、hush、tempt、worthy、clash、blossom、plump、mingle、envy、cherish、beloved、bore、closet、throng、noble
+> 本章生词卡片 18 个: spectacle、tale、tumble、graceful、hush、tempt、worthy、clash、blossom、plump、mingle、envy、cherish、beloved、bore、closet、throng、noble
 
 - **spectacle** · C1 · n. 景象，场面；（spectacles 眼镜）
+- **tale** · B2 · n. 故事,叙述
 - **tumble** · B2 · v. 摔倒，翻滚　n. 跌跤；翻跟斗
 - **graceful** · C1 · a. 优雅的，优美的
 - **hush** · C1 · n. 寂静，肃静　v. 使安静（hush up 压下，遮掩）

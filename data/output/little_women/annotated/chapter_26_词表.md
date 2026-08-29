@@ -1,10 +1,11 @@
-> 本章生词卡片 17 个: cultivate、mortal、enthusiasm、profitable、confer、desirable、youthful、rig、rapidity、pronunciation、machinery、martyr、vulgar、divert、likeness、abrupt、vibrate
+> 本章生词卡片 18 个: cultivate、mortal、enthusiasm、profitable、confer、ruin、desirable、youthful、rig、rapidity、pronunciation、machinery、martyr、vulgar、divert、likeness、abrupt、vibrate
 
 - **cultivate** · C1 · v. 培养，养成；耕作（cultivate manners 修养举止）
 - **mortal** · C1 · n. 凡人（a mere mortal）　a. 必有一死的
 - **enthusiasm** · B2 · n. 热情，热衷（with enthusiasm 满怀热忱）
 - **profitable** · C1 · a. 有益的，有利可图的
 - **confer** · C1 · v. 商议（confer with）；授予（confer on）
+- **ruin** · B2 · n. 废墟;毁灭 v. 毁坏
 - **desirable** · C1 · a. 值得要的，可取的（highly desirable 非常可取）
 - **youthful** · C1 · a. 年轻的，青春的
 - **rig** · C1 · v. 临时搭起（rig up）；装备　n. 装备

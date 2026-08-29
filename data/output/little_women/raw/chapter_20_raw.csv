@@ -1,5 +1,5 @@
 ﻿word,cefr,pos,score,freq_ch,freq_book,phon,trans,tags,bnc,frq,sids,tids,sent,sent_off,cn_mean,cn_sent,ai
-golden,b2,adjective,2.69,1,18,'gәuldn,"a. 金的, 含金的, 金色的, 贵重的, 繁盛的",中高研四六,1821,2240,[29],[49],,-1,,,
+golden,b2,adjective,2.69,1,18,'gәuldn,"a. 金的, 含金的, 金色的, 贵重的, 繁盛的",中高研四六,1821,2240,[29],[49],The golden sunshine streamed in at the window.,-1,a. 金色的;宝贵的,金色的阳光从窗口倾泻进来。,1
 pity,b2,noun,2.68,2,21,'piti,"n. 遗憾, 同情, 怜悯, 憾事, 可惜 / vt. 同情, 怜悯 / vi. 觉得可怜, 有同情心",中高,6927,3803,"[101, 105]","[16, 10]","But buds will be roses, and kittens cats, more's the pity!"" ""What's that about flatirons and cats?"" asked Meg, as she crept into the room with the finished letter in her hand.",53,n. 怜悯，同情；憾事（more's the pity 真可惜）,“可花蕾终要开成玫瑰，小猫终要长成大猫——真是可惜！”,
 conceal,c1,verb,2.6733,1,8,kәn'si:l,"vt. 隐藏, 掩盖, 隐瞒",研四六托雅宝,5148,3994,[14],[27],Jo could not conceal her disappointment when the news came.,-1,v. 隐藏，隐瞒（conceal sth from sb）,听到这个消息，乔掩饰不住自己的失望。,1
 contrary,c1,adjective,2.6467,1,7,'kɒntrәri,"a. 相反的, 矛盾的, 对立的 / n. 相反, 对立面 / adv. 相反地",高研四六托,5495,4761,[19],[2],"""On the contrary, I like it very much, dear,"" looking from the dusty rosary to the well-worn little book, and the lovely picture with its garland of evergreen.",8,a. 相反的　n. 相反（on the contrary 恰恰相反）,“恰恰相反，亲爱的，我非常喜欢。”她的目光从那串蒙尘的念珠移到那本翻旧了的小书上……,
@@ -15,5 +15,5 @@ sincere,b2,adjective,2.52,2,15,sin'siә,"a. 诚实的, 正直的, 真挚的, 纯
 harbor,c1,,2.5133,1,2,'hɑ:bә,"n. 港, 避难所 / v. 庇护, 藏匿, (使)入港停泊",研六托雅宝,5726,26500,[8],[28],"With a blissful sense of burdens lifted off, Meg and Jo closed their weary eyes, and lay at rest, like storm-beaten boats safe at anchor in a quiet harbor.",148,n. 港口；避难所　v. 心怀，怀藏；庇护,带着一种重负卸下的幸福感，梅格和乔合上疲惫的眼睛安然入睡，像历经风暴的……,
 contempt,c1,noun,2.5133,1,2,kәn'tempt,"n. 轻视, 轻蔑",研四六托雅宝,6277,4753,[53],[18],"I don't know anything about love and such nonsense!"" cried Jo, with a funny mixture of interest and contempt.",100,n. 轻蔑，鄙视（with contempt）,“我一点都不懂什么爱情和这类傻话！”乔嚷道，脸上带着一种既好奇又不屑的古怪神情。,
 genuine,b2,adjective,2.51,2,9,'dʒenjuin,"a. 真正的, 真实的, 诚恳的",研四六托雅宝,3747,2524,"[1, 96]","[30, 27]",Her delight at the present was perfectly genuine.,-1,a. 真正的，真诚的，货真价实的,她对这份礼物的欢喜完全是发自内心的。,1
-delay,b2,noun,2.5033,1,11,di'lei,"n. 耽搁, 迟滞 / v. 耽搁, 延迟",高研四六托雅,3105,2530,[4],[51],,-1,,,
-stretch,b2,noun,2.5033,1,11,stretʃ,"n. 伸展, 张开, 连绵, 一段路, 一段时间 / a. 可伸缩的, 弹性的 / vt. 伸展, 张开, 曲解, 使过度伸展 / vi. 伸展, 延伸",研四六托雅宝,1915,1930,[15],[13],,-1,,,
+delay,b2,noun,2.5033,1,11,di'lei,"n. 耽搁, 迟滞 / v. 耽搁, 延迟",高研四六托雅,3105,2530,[4],[51],There must be no delay in sending for the doctor.,-1,"n. 耽搁,延误 v. 推迟",派人请医生的事一刻也不能耽搁。,1
+stretch,b2,noun,2.5033,1,11,stretʃ,"n. 伸展, 张开, 连绵, 一段路, 一段时间 / a. 可伸缩的, 弹性的 / vt. 伸展, 张开, 曲解, 使过度伸展 / vi. 伸展, 延伸",研四六托雅宝,1915,1930,[15],[13],A long stretch of country lay white under the snow.,-1,"n. 一段,连绵的一片 v. 伸展",白雪覆盖的大地在大片地带白茫茫地铺展。,1

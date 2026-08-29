@@ -1,4 +1,4 @@
-> 本章生词卡片 17 个: oar、melody、everlasting、traitor、correspondence、discharge、shorten、aspire、idle、embody、remainder、evident、escort、glow、float、miracle、drag
+> 本章生词卡片 18 个: oar、melody、everlasting、traitor、correspondence、discharge、shorten、aspire、idle、embody、remainder、evident、escort、glow、float、miracle、echo、drag
 
 - **oar** · C1 · n. 桨（decks, oars 甲板与桨）
 - **melody** · C1 · n. 旋律，曲调（immortalize in melody 谱入乐曲传世）
@@ -16,4 +16,5 @@
 - **glow** · B2 · n. 光辉，余晖；容光焕发　vi. 发光；泛起红晕
 - **float** · B2 · v. 漂浮，飘动　n. 漂浮物；彩车
 - **miracle** · B2 · n. 奇迹（work miracles 创造奇迹）
+- **echo** · B2 · v. 附和,重复 n. 回声
 - **drag** · B2 · v. 拖，拽；拖沓（drag sb back 拖回来）　n. 拖累

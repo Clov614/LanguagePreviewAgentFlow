@@ -1,4 +1,4 @@
-> 本章生词卡片 17 个: cricket、racket、reside、lofty、cabbage、backward、yearly、fruitful、vein、edible、defect、embroidery、confine、reap、fist、skip、brighten
+> 本章生词卡片 18 个: cricket、racket、reside、lofty、cabbage、backward、yearly、fruitful、vein、edible、defect、embroidery、confine、reap、fist、skip、brighten、besides
 
 - **cricket** · B2 · n. 蟋蟀；板球
 - **racket** · C1 · n. 喧闹，聒噪（a perpetual racket 无休止的喧闹）；球拍
@@ -17,3 +17,4 @@
 - **fist** · B2 · n. 拳头（shake one's fist 挥拳）
 - **skip** · B2 · v. 蹦跳；跳过，略过　n. 跳跃
 - **brighten** · B2 · v. 使明亮；使快活起来（prospects brighten 前景好转）
+- **besides** · B2 · prep. 除……之外 adv. 此外,而且

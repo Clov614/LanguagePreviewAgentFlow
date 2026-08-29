@@ -1,5 +1,6 @@
-> 本章生词卡片 15 个: pity、conceal、contrary、vent、vex、prosper、cozy、falter、sweetness、consent、reign、sincere、harbor、contempt、genuine
+> 本章生词卡片 18 个: golden、pity、conceal、contrary、vent、vex、prosper、cozy、falter、sweetness、consent、reign、sincere、harbor、contempt、genuine、delay、stretch
 
+- **golden** · B2 · a. 金色的;宝贵的
 - **pity** · B2 · n. 怜悯，同情；憾事（more's the pity 真可惜）
 - **conceal** · C1 · v. 隐藏，隐瞒（conceal sth from sb）
 - **contrary** · C1 · a. 相反的　n. 相反（on the contrary 恰恰相反）
@@ -15,3 +16,5 @@
 - **harbor** · C1 · n. 港口；避难所　v. 心怀，怀藏；庇护
 - **contempt** · C1 · n. 轻蔑，鄙视（with contempt）
 - **genuine** · B2 · a. 真正的，真诚的，货真价实的
+- **delay** · B2 · n. 耽搁,延误 v. 推迟
+- **stretch** · B2 · n. 一段,连绵的一片 v. 伸展

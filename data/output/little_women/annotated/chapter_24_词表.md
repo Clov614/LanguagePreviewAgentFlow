@@ -1,4 +1,4 @@
-> 本章生词卡片 15 个: solemn、frank、preside、refrain、compliment、manly、snowy、wrath、hint、rebuke、bay、mania、bestow、endow、repent
+> 本章生词卡片 18 个: solemn、frank、preside、refrain、compliment、manly、snowy、wrath、hint、rebuke、bay、mania、bestow、somehow、household、master、endow、repent
 
 - **solemn** · C1 · a. 庄重的，严肃的；郑重的
 - **frank** · B2 · a. 坦率的，直白的（to be frank 坦白说）
@@ -13,5 +13,8 @@
 - **bay** · C1 · n. 月桂（bay tree）；海湾（bay leaves 月桂叶）
 - **mania** · C1 · n. 狂热，癖好（a mania for 对…的狂热）
 - **bestow** · C1 · v. 赠予，授予（bestow on/upon）；安置
+- **somehow** · B2 · adv. 不知怎么地,以某种方式
+- **household** · B2 · n. 家庭,家务 a. 家庭的
+- **master** · B2 · n. 主人;大师 vt. 掌握,控制
 - **endow** · C1 · v. 赋予（endow with）；捐赠
 - **repent** · C1 · v. 后悔，悔悟（repent of）

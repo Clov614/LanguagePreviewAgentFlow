@@ -1,5 +1,6 @@
-> 本章生词卡片 15 个: thorn、enlighten、preach、hail、wreath、wink、prejudice、eclipse、bruise、unjust、contribution、circulate、witty、tuck、fuss
+> 本章生词卡片 18 个: vase、thorn、enlighten、preach、hail、wreath、wink、prejudice、eclipse、bruise、unjust、contribution、circulate、witty、disappointment、tuck、fuss、kindly
 
+- **vase** · B2 · n. 花瓶
 - **thorn** · C1 · n. 刺，荆棘；（a thorn in one's side 眼中钉）
 - **enlighten** · C1 · v. 启发，开导（enlighten sb on）
 - **preach** · B2 · v. 讲道，布道；说教（preach to sb）
@@ -13,5 +14,7 @@
 - **contribution** · B2 · n. 贡献；捐助物（make a contribution）
 - **circulate** · C1 · v. 流传，传播；循环（circulate round）
 - **witty** · C1 · a. 机智诙谐的，妙语连珠的
+- **disappointment** · B2 · n. 失望,扫兴
 - **tuck** · B2 · v. 把…塞进；掖好（tuck away 藏起）　n. 褶
 - **fuss** · B2 · n. 大惊小怪；忙乱（make a fuss 唠叨个没完）　v. 小题大做
+- **kindly** · TOE · adv. 和蔼地,善意地 a. 友善的
