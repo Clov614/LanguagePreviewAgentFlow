@@ -35,16 +35,16 @@ def main():
             rows = list(csv.DictReader(f))
         for r in rows:
             p = polish.get(r['word'])
-            if not p:
-                continue
-            # 中文释义/译文里的换行→'；',避免 Excel 里整行竖排撑高
-            r['cn_mean'] = p.get('cn_mean', '').replace('\n', '；')
-            r['cn_sent'] = p.get('cn_sent', '').replace('\n', '；')
+            if p:
+                # 中文释义/译文里的换行→'；',避免 Excel 里整行竖排撑高
+                r['cn_mean'] = p.get('cn_mean', '').replace('\n', '；')
+                r['cn_sent'] = p.get('cn_sent', '').replace('\n', '；')
+                n_all += 1
+            # AI 补句独立于 polish 匹配:缺原句的词即使不在 polish 文件里也能补(仅靠 --ai-en)
             if not r['sent'] and r['word'] in ai_en:
                 r['sent'] = ai_en[r['word']].replace('\n', ' ')
                 r['ai'] = '1'
                 n_ai += 1
-            n_all += 1
         fields = []
         for r in rows:
             for k in r:

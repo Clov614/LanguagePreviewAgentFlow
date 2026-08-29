@@ -27,9 +27,61 @@ CSS = """
 .cefr { color: #2a7de1; font-weight: bold; }
 .mean { font-size: 22px; margin-bottom: 10px; }
 .sent { border-left: 3px solid #2a7de1; padding-left: 10px; color: #333; }
+.sent b.hl { color: #c7254e; font-weight: bold;
+             background: #fdeaea; padding: 0 2px; border-radius: 3px; }
 .sent-cn { color: #888; margin-top: 4px; padding-left: 10px; }
 .src { color: #aaa; font-size: 13px; margin-top: 12px; text-align: right; }
+
+/* 深色主题适配:Anki 深色模式会给卡片容器添加 nightMode 类,
+   #333 等浅色主题文字在深色背景上会看不清,此处逐项覆盖 */
+.card.nightMode { background: #26262a; }
+.nightMode .word { color: #f2f2f2; }
+.nightMode .meta { color: #9c9c9c; }
+.nightMode .cefr { color: #6fb1ff; }
+.nightMode .mean { color: #f2f2f2; }
+.nightMode .sent { color: #e6e6e6; }
+.nightMode .sent b.hl { color: #ff9eb3; font-weight: bold;
+                        background: #4a2230; padding: 0 2px; border-radius: 3px; }
+.nightMode .sent-cn { color: #b0b0b0; }
+.nightMode .src { color: #7a7a7a; }
+.nightMode hr { border-top: 1px solid #4a4a4e; }
 """
+
+def autoplay_script(direction):
+    """自动播放脚本:Anki 桌面端把 [sound:] 渲染成 .replay-button(click() 等价手动点击,
+    播放走 Anki 原生通道);移动端渲染成 <audio> 标签,兜底调 play()。
+    direction=-1 播第一个(正面=单词音);=1 播最后一个(背面=例句音,例句无音时回退单词音)。
+    播放失败静默吞掉,不影响卡片复习。"""
+    return (
+        '<script>\n'
+        '(function () {\n'
+        "  'use strict';\n"
+        '  var DIR = %d;\n'
+        '  function enAutoplay() {\n'
+        '    try {\n'
+        "      var btns = document.querySelectorAll('.replay-button');\n"
+        "      var auds = document.querySelectorAll('audio');\n"
+        '      if (btns.length) {\n'
+        '        (DIR > 0 ? btns[btns.length - 1] : btns[0]).click();\n'
+        '        return;\n'
+        '      }\n'
+        '      if (auds.length) {\n'
+        '        var a = (DIR > 0 ? auds[auds.length - 1] : auds[0]);\n'
+        '        var p = a.play();\n'
+        "        if (p && p.catch) { p.catch(function () {}); }\n"
+        '      }\n'
+        '    } catch (e) {}\n'
+        '  }\n'
+        "  var act = function () { window.setTimeout(enAutoplay, 300); };\n"
+        "  if (document.readyState === 'loading') {\n"
+        "    document.addEventListener('DOMContentLoaded', act);\n"
+        '  } else {\n'
+        '    act();\n'
+        '  }\n'
+        '})();\n'
+        '</script>'
+    ) % direction
+
 
 MODEL = genanki.Model(
     MODEL_ID,
@@ -48,13 +100,15 @@ MODEL = genanki.Model(
         'name': 'EnWords Card',
         'qfmt': ('<div class="word">{{单词}}</div>\n'
                  '<div class="meta">{{音标}} · {{词性}} · '
-                 '<span class="cefr">{{CEFR}}</span></div>'),
+                 '<span class="cefr">{{CEFR}}</span></div>\n'
+                 + autoplay_script(-1)),
         'afmt': ('{{FrontSide}}\n'
                  '<hr id="answer">\n'
                  '<div class="mean">{{中文释义}}</div>\n'
                  '<div class="sent">{{原文例句}}</div>\n'
                  '<div class="sent-cn">{{例句译文}}</div>\n'
-                 '<div class="src">{{来源}}</div>'),
+                 '<div class="src">{{来源}}</div>\n'
+                 + autoplay_script(1)),
     }],
     css=CSS,
 )
@@ -65,7 +119,7 @@ SAMPLE = genanki.Note(
     fields=[
         'decidedly', "di'saididli", '—', '果断地；显然，毫无疑问', 'C1',
         '"I shall get a nice box of Faber\'s drawing pencils; I really '
-        'need them," said Amy decidedly.',
+        'need them," said Amy <b class="hl">decidedly</b>.',
         '“我真的需要它们，”艾米说得斩钉截铁。', 'little_women Ch1',
     ],
 )

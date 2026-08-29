@@ -2,42 +2,27 @@
 → 刷完卡片翻开书,"第一眼识别"的就是背过的词(与视频"看剧识别台词"同构)
 用法: uv run python scripts/annotate.py --book little_women [--chapter N]
 """
-import argparse, csv, glob, os, re, sys
+import argparse, csv, glob, os, sys
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(BASE, 'scripts'))
 try:
     from pipeline import split_chapters, clean_text
+    from wordforms import token_regex
 except ImportError:
     sys.path.insert(0, BASE)
     from scripts.pipeline import split_chapters, clean_text
+    from scripts.wordforms import token_regex
 
 
 def build_marks(rows):
-    """返回 [(regex, word)] 高亮词形(含常见屈折)"""
-    pats = []
-    for r in rows:
-        b = re.escape(r['word'])
-        pats.append(re.compile(rf'\b{b}(?:s|es|ed|ing|d|ies|ied|t)\b', re.I))
-    return pats
+    """整章所有目标词合成一个词边界正则(含屈折形态,见 wordforms),单遍匹配不重叠"""
+    return token_regex([r['word'] for r in rows])
 
 
-def highlight(body, pats):
-    hl = []
-    for p in pats:
-        for m in p.finditer(body):
-            hl.append((m.start(), m.end()))
-    hl.sort()
-    out, prev = [], 0
-    for start, end in hl:
-        if start < prev:
-            continue
-        out.append(body[prev:start])
-        out.append(f'**{body[start:end]}**')
-        prev = end
-    out.append(body[prev:])
-    return ''.join(out)
+def highlight(body, pat):
+    return pat.sub(lambda m: f'**{m.group()}**', body)
 
 
 def main():

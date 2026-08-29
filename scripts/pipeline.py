@@ -2,8 +2,10 @@
 输出:data/output/<book>/raw/chapter_XX_raw.csv(每章候选,供模型润色释义/译文)
      data/output/<book>/meta.json(全书统计)
 用法:uv run python scripts/pipeline.py --book little_women [--limit N] [--per-chapter 18]
+     uv run python scripts/pipeline.py --book little_women --from-chapter 20   # 从第 20 章续跑
+     uv run python scripts/pipeline.py --book little_women --include-exported  # 连已出过卡的词也重选
 """
-import argparse, csv, json, os, re, sqlite3, sys
+import argparse, csv, datetime, json, os, re, sqlite3, sys
 import simplemma
 
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
@@ -179,9 +181,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--book', required=True)
     ap.add_argument('--limit', type=int, default=0, help='只处理前 N 章(0=全部)')
+    ap.add_argument('--from-chapter', type=int, default=0, help='从第 N 章开始处理(断点续跑,0=从头)')
     ap.add_argument('--per-chapter', type=int, default=18)
     ap.add_argument('--b1-quota', type=float, default=0.10)
     ap.add_argument('--toe-quota', type=float, default=0.30)
+    ap.add_argument('--include-exported', action='store_true',
+                    help='连总库中已出过卡的词也重新纳入候选(默认跳过)')
     args = ap.parse_args()
 
     md_path = os.path.join(BASE, 'data', 'books', '_md', f'{args.book}.md')
@@ -195,12 +200,14 @@ def main():
     chapters = split_chapters(md_text)
     if args.limit:
         chapters = chapters[:args.limit]
-    print(f'chapters: {len(chapters)}', flush=True)
+    if args.from_chapter:
+        chapters = [c for c in chapters if c['num'] >= args.from_chapter]
+    print(f'chapters: {len(chapters)} (from {chapters[0]["num"] if chapters else "-"})', flush=True)
 
-    # 全书词频(用于全局加权)
+    # 全书词频(用于全局加权):断点续跑时仍需全部章节的词频统计(只算不重出卡)
     book_freq = {}
     all_chapter_stats = []
-    for ch in chapters:
+    for ch in split_chapters(md_text):
         _, stats, _ = analyze_chapter(ch['body'], oxford, db)
         all_chapter_stats.append(stats)
         for lem, st in stats.items():
@@ -210,8 +217,20 @@ def main():
     toe_max = max(1, round(args.per_chapter * args.toe_quota))
     print(f'quotas: b1<={b1_max} toe<={toe_max} of {args.per_chapter}', flush=True)
 
+    # 跨书去重:总库中已出过卡(card_exported=1)或已掌握的词不再推荐,
+    # 除非 --include-exported 显式要求重选(如调整参数后有意重新出卡)
+    seen = set()   # 章内/书内去重 + 跨书已出卡词
+    if not args.include_exported:
+        wl = os.path.join(BASE, 'vocabulary', 'master_wordlist.csv')
+        if os.path.exists(wl):
+            with open(wl, encoding='utf-8', newline='') as f:
+                for r in csv.DictReader(f):
+                    if r.get('card_exported') == '1' or r.get('status') == 'known':
+                        seen.add(r['word'].strip().lower())
+            print(f'seen: 跳过总库已出卡词 {len(seen)} 个', flush=True)
+
+    date_today = datetime.date.today().isoformat()
     all_selected = {}
-    seen = set()   # 跨章去重:每章优先学新词
     for ci, ch in enumerate(chapters):
         sents, stats, sent_recs = analyze_chapter(ch['body'], oxford, db)
         cands = []
@@ -281,7 +300,8 @@ def main():
             sent = ex[0] if ex else ''
             off = ex[1] if ex else -1
             # replace('\n',' ') 不改变字符数,保证 sent_off 偏移不变
-            rows.append({**c, 'sent': sent.replace('\n', ' '), 'sent_off': off})
+            rows.append({**c, 'sent': sent.replace('\n', ' '), 'sent_off': off,
+                         'chapter': ch['num'], 'date': date_today})
 
         raw_dir = os.path.join(out_dir, 'raw')
         os.makedirs(raw_dir, exist_ok=True)
@@ -290,7 +310,8 @@ def main():
         with open(out_csv, 'w', encoding='utf-8-sig', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()) if rows else
                                     ['word', 'cefr', 'pos', 'score', 'freq_ch', 'freq_book',
-                                     'phon', 'trans', 'tags', 'bnc', 'frq', 'sent', 'sent_off'])
+                                     'phon', 'trans', 'tags', 'bnc', 'frq', 'sent', 'sent_off',
+                                     'chapter', 'date'])
             writer.writeheader()
             writer.writerows(rows)
         for c in picked:
