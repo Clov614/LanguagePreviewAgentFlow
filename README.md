@@ -17,6 +17,8 @@
 - **产物**:每章 Anki TSV · 生词总库(跨书去重)· 阅读标注版 · 免费英音发音(mp3)
 - **成本**:词库本地判定 + edge-tts 免费神经语音 —— 全程零付费、无需 API key
 
+![LangPreviewAgentFlow_anki_exp_01.jpg](/resources/guide_pic/LangPreviewAgentFlow_anki_exp_01.jpg)
+
 ## <a id="quickstart"></a>⚡ 快速开始(3 步上手)
 
 1. **装模板**(只做一次):Anki → File → Import → `resources/anki/anki_template.apkg`
