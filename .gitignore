@@ -8,6 +8,12 @@ resources/ecdict.db
 resources/ecdict-stardict-28.zip
 resources/stardict-ecdict-2.4.2/
 
+# ---- 可再生的 TTS 音频缓存(gen_audio.py 生成后已拷入 Anki collection.media) ----
+data/output/*/anki/audio/
+
+# ---- ide ----
+.idea/
+
 # ---- 系统杂项 ----
 Thumbs.db
 .DS_Store
