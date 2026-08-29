@@ -1,0 +1,13 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+
+# ---- 巨型词表资源(一次性下载,可从外部重新获取,不入仓库) ----
+resources/ecdict.db
+resources/ecdict-stardict-28.zip
+resources/stardict-ecdict-2.4.2/
+
+# ---- 系统杂项 ----
+Thumbs.db
+.DS_Store

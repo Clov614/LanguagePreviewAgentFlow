@@ -1,0 +1,8 @@
+[project]
+name = "language-preview"
+version = "0.1.0"
+description = "Language preview workflow: extract unfamiliar words from EPUB books, maintain a master wordlist, and build Anki cards"
+requires-python = ">=3.10"
+dependencies = [
+    "simplemma>=0.9",
+]
