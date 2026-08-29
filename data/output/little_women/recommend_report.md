@@ -6,14 +6,14 @@
 
 | # | 单词 | 级别 | 书中累计出现 | 卡片来源 | 中文释义 |
 |---|------|------|-------------|---------|---------|
-| 1 | **decidedly** | C1 | 69 | little_women Ch,,,, | “我真的需要它们，”艾米说得斩钉截铁。 |
-| 2 | **slipper** | C1 | 62 | little_women Ch,,,, | 钟敲了六下，贝丝扫完壁炉，把一双拖鞋放上去烤暖。 |
-| 3 | **trifle** | C1 | 45 | little_women Ch,, | 帷幕后面传来一阵窸窸窣窣和窃窃私语，一缕灯烟，还有艾 |
+| 1 | **decidedly** | C1 | 69 | little_women Ch | “我真的需要它们，”艾米说得斩钉截铁。 |
+| 2 | **slipper** | C1 | 62 | little_women Ch | 钟敲了六下，贝丝扫完壁炉，把一双拖鞋放上去烤暖。 |
+| 3 | **trifle** | C1 | 45 | little_women Ch | 帷幕后面传来一阵窸窸窣窣和窃窃私语，一缕灯烟，还有艾 |
 | 4 | **amuse** | C1 | 48 | little_women Ch | 她不能到处闲逛自娱自乐，因为烧坏的那截裙边会露出来， |
-| 5 | **presently** | C1 | 36 | little_women Ch,,,, | 不一会儿铃声响起，帷幕飞开，这部歌剧悲剧开场了。 |
-| 6 | **sigh** | B2 | 120 | little_women Ch, | “穷成这样太糟了！”梅格低头看着旧裙子叹气道。 |
-| 7 | **bundle** | B2 | 49 | little_women Ch,,, | “我们的包袱在哪儿？”艾米问——她是个特别较真的姑娘 |
-| 8 | **rose** | B2 | 98 | little_women Ch,,,, | 生于玫瑰，饮于露水，咒语与灵药你都能酿造？ |
+| 5 | **presently** | C1 | 36 | little_women Ch | 不一会儿铃声响起，帷幕飞开，这部歌剧悲剧开场了。 |
+| 6 | **sigh** | B2 | 120 | little_women Ch | “穷成这样太糟了！”梅格低头看着旧裙子叹气道。 |
+| 7 | **bundle** | B2 | 49 | little_women Ch | “我们的包袱在哪儿？”艾米问——她是个特别较真的姑娘 |
+| 8 | **rose** | B2 | 98 | little_women Ch | 生于玫瑰，饮于露水，咒语与灵药你都能酿造？ |
 | 9 | **delight** | B2 | 45 | little_women Ch | 贝丝不再吃东西，悄悄溜到她阴暗的角落里坐下，心里盘算 |
 | 10 | **tone** | B2 | 81 | little_women Ch | “我知道——整天教我那些烦人的学生，而我巴不得待在家 |
 | 11 | **tire** | B2 | 66 | little_women Ch | 乔，你看上去累坏了。 |
@@ -41,19 +41,23 @@
 | 33 | **charm** | B2 | 62 | little_women Ch | 这幢老宅有一种宁静的魅力，走进来的人都被它打动。 |
 | 34 | **fond** | B2 | 39 | little_women Ch | 正如她所说，她“喜欢奢华”，而她最大的烦恼就是贫穷。 |
 | 35 | **exclaim** | B2 | 39 | little_women Ch | 他还没来得及多说，铃声响了，乔冲上楼来，惊慌地喊道： |
-| 36 | **truly** | B2 | 38 | little_women Ch,, | “太难得了，真是妙极了。” |
+| 36 | **truly** | B2 | 38 | little_women Ch | “太难得了，真是妙极了。” |
 | 37 | **ashamed** | B2 | 38 | little_women Ch | 他从未有过母亲或姐妹，因此对她们带来的种种影响敏感到 |
-| 38 | **queer** | C1 | 32 | little_women Ch,, | 幸好天色还早，他们走的是后街，所以没人看见，谁也没有 |
+| 38 | **queer** | C1 | 32 | little_women Ch | 幸好天色还早，他们走的是后街，所以没人看见，谁也没有 |
 | 39 | **anxious** | B2 | 37 | little_women Ch | 他坐在我身边，我便和他攀谈起来，因为他看上去又穷又累 |
 | 40 | **pride** | B2 | 37 | little_women Ch | 于是她们很快忘了面子上的较劲，相互示好也不再计较谁让 |
 
 ## 二、按章学习路径(建议顺序:先刷卡片,再读对应章节)
 
-刷卡顺序 = 章节顺序。每章卡片见 `data/output/little_women/chapter_XX_anki.tsv`,读前刷该章 15 分钟,读完在 `annotated/` 高亮版中识别。
+刷卡顺序 = 章节顺序。每章卡片见 `data/output/little_women/anki/chapter_XX_anki.tsv`,读前刷该章 15 分钟,读完在 `annotated/` 高亮版中识别。
 
 ## 三、使用说明
 
-- **Anki 导入**: Anki 桌面版 → File → Import → 选择 `chapter_XX_anki.tsv` (UTF-8, Tab 分隔, 首行字段名)
+### 1. 装模板(只做一次)
+Anki 桌面版 → File → Import → 选择 `resources/anki/anki_template.apkg`,装好后在"管理笔记类型"里确认出现 **EnWords** 模板(8 字段)。
+### 2. 导每章卡片
+File → Import → 选择 `anki/chapter_XX_anki.tsv` → **笔记模板必须选 EnWords**(不要用默认的 Basic,否则例句译文/来源两列会被丢掉、排版错乱)→ 牌组选本章子牌组 → 其余默认,导入。
+> 跨章重复词是正常的:导入时"现有笔记"选 **更新现有笔记**,按"单词"匹配,只更新旧卡不新建卡。
 - **卡片字段**: 单词 | 音标 | 词性 | 中文释义 | CEFR | 原文例句 | 例句译文 | 来源
 - **学习节奏**: 每天 1 章 15 分钟刷卡 → 读对应章节(参考标注版)→ 认识后在总库标记 known
 - **总库去重**: 将来读第二本书时,已掌握词不会重复推荐

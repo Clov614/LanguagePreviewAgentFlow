@@ -118,7 +118,7 @@ card_exported          # 是否已导出过卡片（已导出 = 短期内不重�
 
 **导出格式**：
 - 默认：**TSV**（UTF-8，首行字段名）→ Anki 桌面端 File → Import 直接导入，字段自动映射
-- 可选：**.apkg**（genanki 打包，双击即装，含笔记模板与样式）
+- 可选：**.apkg**（genanki 打包，双击即装，含笔记模板与样式）→ `scripts/make_anki_template.py` 生成 `resources/anki/anki_template.apkg`
 
 ---
 
