@@ -1,6 +1,14 @@
 # 语言预习工作流 · 计划书（书籍版）
 
-> **状态: P0 已完成**(2026-08-29)——《Little Women》47 章、696 张卡片、生词总库 704 词、标注版、推荐报告全部交付。详见 README.md。
+> **状态: P0 已完成 + P0.1 修复**(2026-08-29)——《Little Women》47 章、**846 张卡片**(每章 18 词,含 AI 补句卡片)、生词总库 **854 词**、标注版、推荐报告全部交付。详见 README.md。
+>
+> **P0.1 修复**(2026-08-29 代码审查后):
+> 1. 总库 chapters/sources/first_seen/recommended_date 全空 → 已回填(P0 交付时的 704 词)并补强合并逻辑(sources 幂等,`book|chN|freq` 格式)
+> 2. `freq_book` 历史重复累计 → 已从 raw 重建 + 幂等累积(同一书章不重复累加)
+> 3. 150 词缺润色/缺例句缺口 → 已补齐(40 词 AI 补句),新增 `scripts/validate.py` 一键校验,全绿 exit 0
+> 4. polish 中间产物迁移至 `data/output/<book>/work/`
+> 5. pipeline 支持 `--from-chapter` 断点续跑、`--include-exported` 重选;默认跳过总库已出卡词
+> 6. report.py 改 argparse、卡片来源标注"(AI 补句)"、TSV 单元格消毒
 
 > 参考视频《skill+美剧 学英语也太高效了》的方法论，把"追剧学英语"流程迁移到"读原著学英语"。
 > 核心理念（视频原话）：**不要背单词，要识别单词** —— 先提取生词预习、建立短期记忆，再在阅读中识别。
@@ -75,15 +83,18 @@ LanguagePreviewAgentFlow/
 │   ├── ecdict.mini.csv         ← 本地词典（音标/词频/释义，离线）
 │   └── stopwords_en.txt
 └── scripts/
-    ├── config.py               ← 参数：语言、水平基线、每章推荐数、级别偏好…
-    ├── pipeline.py             ← 主流程（①–⑫ 串联，分章断点续跑，state/<book>/）
-    ├── language_adapters/      ← 语言适配层（§7）
-    │   ├── en_adapter.py       ← 英语：simplemma + EFLLex/Oxford + ECDICT
-    │   └── ja_adapter.py       ← 日语：fugashi/MeCab + JLPT 词表 + jMdict（P2）
-    ├── cefr.py                 ← 级别判定（本地词表 + 兜底）
-    ├── cards.py                ← 卡片组装：TSV 导出
-    ├── wordlist.py             ← 生词总库读写/合并/状态流转
-    └── annotate.py             ← 增强：生词标注版章节文本
+    ├── pipeline.py             ← 主流程（①–⑧ 串联；--from-chapter 断点续跑；
+    │                             默认跳过总库已出卡词，--include-exported 重选）
+    ├── apply_polish.py         ← 合并模型润色回 raw CSV（--ai-en 单独补句）
+    ├── cards.py                ← 卡片组装：Anki TSV 导出 + 总库合并（幂等）
+    ├── annotate.py             ← 增强：生词标注版章节文本
+    ├── report.py               ← 推荐报告
+    ├── validate.py             ← 缺口校验：缺润色/缺例句/未出卡一键检查
+    ├── migrate_wordlist.py     ← 一次性的 P0 遗留数据回填（新流程无需运行）
+    ├── build_dict_db.py        ← ECDICT stardict → sqlite
+    └── make_anki_template.py   ← 生成 Anki 模板包（EnWords）
+    # 语言适配层（§7）与 config.py/wordlist.py 为 P2 设计，本轮未落地——
+    #   当前语言差异收敛在 pipeline.py 顶部常量与 simplemma LANG 参数内
 tools/
 └── wenyi/                      ← BigDawnGhost/wenyi（MIT，clone 参考：EPUB 解析/双语/SRT）
 ```
@@ -93,18 +104,18 @@ tools/
 
 ---
 
-## 4. 生词总库 schema（master_wordlist.csv）
+## 4. 生词总库 schema（master_wordlist.csv，P0.1 后实际落地的列）
 
 ```
-word, pos, cefr, zipf, first_seen, status,
-sources,               # 来源清单：book|chapter|freq 组合，如 "The_Hobbit|ch3|2; ..."
-freq_total,            # 跨书累积出现次数
+word, cefr, first_seen, status, book, chapters, freq_book,
+sources,               # 幂等来源清单："book|chN|freq" 分号分隔，如 "little_women|ch1|30; ..."
+                       # 同一 (书, 章) 只累积一次 freq_book（跨书累加各书频次）
 example_en, example_cn,# 最新一条原文例句 + 译文
 recommended_date,      # 最后一次被推荐的日期
-card_exported          # 是否已导出过卡片（已导出 = 短期内不重复推荐）
+card_exported          # 是否已导出过卡片（已导出 = 短期不重复推荐；pipeline 默认跳过）
 ```
 
-**状态流转**：`pending`（待学）→ `active`（已导卡片，刷词中）→ `known`（已掌握）→ `archived`（长期未掌握降权）。总库自动去重合并：同词不同书只留一行，累积频次与来源。
+**状态流转**：`active`（已导卡片，刷词中）→ `known`（已掌握，待实现归档）；`known_words.txt` 的词绝不重复出卡。总库自动去重合并：同词不同书只留一行，累积频次与来源（`sources`）；历史遗留词标注 `sources=legacy`（出处不可考，保留资产）。
 
 ---
 
