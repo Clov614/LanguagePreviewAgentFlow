@@ -61,6 +61,38 @@ uv run python scripts/report.py --book <书名>
 - `tools/wenyi/`: 参考项目(MIT),未来美剧模式复用其 SRT 说明书
 - 语言适配层:日语等新语言只需新增 adapter(见 PLAN.md §7)
 
+---
+
+## 环境准备:词表资源获取
+
+> 大型词表文件(数百 MB)不入仓库,clone 后按下面两步准备,之后全程**离线可用**。
+
+### 1. 本地词典 `resources/ecdict.db`(音标/释义/词频,约 294MB)
+
+管线依赖此 sqlite 词典,由 ECDICT 的 stardict 数据本地构建:
+
+```bash
+# ① 下载 https://github.com/skywind3000/ECDICT/releases 的「ECDICT - 28」版本
+#    → 资产 ecdict-stardict-28.zip(约 70MB,MIT 许可)
+# ② 解压到 resources/stardict-ecdict-2.4.2/(含 .idx / .dict / .ifo 三个文件)
+# ③ 构建词典数据库
+uv run python scripts/build_dict_db.py   # 340 万词条 → resources/ecdict.db
+```
+
+### 2. 已随仓库的资源(无需下载)
+
+| 资源 | 来源 | 说明 |
+|---|---|---|
+| `resources/oxford3000-5000/` | github.com/chunzhng/Oxford-3000-5000 | oxford-5000.csv 含 A1–C1 全部级别(3000 的超集),CEFR 判定主词表 |
+| `resources/ecdict.mini.csv` | ECDICT(skywind3000, MIT) | 精简词表,快速分词/词频辅助 |
+
+### 数据与第三方许可
+
+- 示例书《Little Women》(1868–1869, Louisa May Alcott)**公有领域**,随仓库作为演示数据与例句来源
+- `tools/wenyi/`:BigDawnGhost/wenyi, **MIT**,快照随仓库(含 LICENSE)
+- ECDICT 词表数据:**MIT**(skywind3000/ECDICT)
+- 牛津词表:来源为公开 GitHub 仓库,仅用于个人学习
+
 ### 已知限制
 
 - 级别标注重镜像词表校准过,个别词级别可能有偏差(以 BNC 词频校准)
