@@ -23,23 +23,25 @@ def main():
         ai_en.update({p['word']: p['ai_en'] for p in json.load(open(args.ai_en, encoding='utf-8'))})
 
     out_dir = os.path.join(BASE, 'data', 'output', args.book)
-    files = sorted(f for f in glob.glob(os.path.join(out_dir, 'chapter_*_raw.csv'))
+    files = sorted(f for f in glob.glob(os.path.join(out_dir, 'raw', 'chapter_*_raw.csv'))
                    if f.endswith('_raw.csv'))
     if args.chapter:
         files = [f for f in files if f.endswith(f'chapter_{args.chapter:02d}_raw.csv')]
 
     n_all = n_ai = 0
     for fp in files:
-        with open(fp, encoding='utf-8', newline='') as f:
+        # utf-8-sig 读取:无 BOM 文件照常读,带 BOM 文件剥掉 BOM(防字段名被 ﻿ 污染)
+        with open(fp, encoding='utf-8-sig', newline='') as f:
             rows = list(csv.DictReader(f))
         for r in rows:
             p = polish.get(r['word'])
             if not p:
                 continue
-            r['cn_mean'] = p.get('cn_mean', '')
-            r['cn_sent'] = p.get('cn_sent', '')
+            # 中文释义/译文里的换行→'；',避免 Excel 里整行竖排撑高
+            r['cn_mean'] = p.get('cn_mean', '').replace('\n', '；')
+            r['cn_sent'] = p.get('cn_sent', '').replace('\n', '；')
             if not r['sent'] and r['word'] in ai_en:
-                r['sent'] = ai_en[r['word']]
+                r['sent'] = ai_en[r['word']].replace('\n', ' ')
                 r['ai'] = '1'
                 n_ai += 1
             n_all += 1
@@ -48,7 +50,7 @@ def main():
             for k in r:
                 if k not in fields:
                     fields.append(k)
-        with open(fp, 'w', encoding='utf-8', newline='') as f:
+        with open(fp, 'w', encoding='utf-8-sig', newline='') as f:
             w = csv.DictWriter(f, fieldnames=fields)
             w.writeheader()
             w.writerows(rows)

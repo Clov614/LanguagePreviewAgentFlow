@@ -1,5 +1,5 @@
 """语言预习管线 · 核心(阶段 1-6):MD → 章节切分 → 词形还原 → CEFR 判定 → 打分选词 → 例句抽取
-输出:data/output/<book>/chapter_XX_raw.csv(每章候选,供模型润色释义/译文)
+输出:data/output/<book>/raw/chapter_XX_raw.csv(每章候选,供模型润色释义/译文)
      data/output/<book>/meta.json(全书统计)
 用法:uv run python scripts/pipeline.py --book little_women [--limit N] [--per-chapter 18]
 """
@@ -280,10 +280,14 @@ def main():
             ex = pick_example(c['word'], stats[c['word']], sents, sent_recs)
             sent = ex[0] if ex else ''
             off = ex[1] if ex else -1
-            rows.append({**c, 'sent': sent, 'sent_off': off})
+            # replace('\n',' ') 不改变字符数,保证 sent_off 偏移不变
+            rows.append({**c, 'sent': sent.replace('\n', ' '), 'sent_off': off})
 
-        out_csv = os.path.join(out_dir, f'chapter_{ch["num"]:02d}_raw.csv')
-        with open(out_csv, 'w', encoding='utf-8', newline='') as f:
+        raw_dir = os.path.join(out_dir, 'raw')
+        os.makedirs(raw_dir, exist_ok=True)
+        out_csv = os.path.join(raw_dir, f'chapter_{ch["num"]:02d}_raw.csv')
+        # utf-8-sig:带 BOM,Excel 双击即可正确显示中文(无 BOM 会被当 GBK 解析)
+        with open(out_csv, 'w', encoding='utf-8-sig', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()) if rows else
                                     ['word', 'cefr', 'pos', 'score', 'freq_ch', 'freq_book',
                                      'phon', 'trans', 'tags', 'bnc', 'frq', 'sent', 'sent_off'])

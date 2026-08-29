@@ -52,7 +52,7 @@ def main():
 
     chapters = split_chapters(open(md_path, encoding='utf-8').read())
     files = sorted(glob.glob(os.path.join(
-        BASE, 'data', 'output', args.book, 'chapter_*_raw.csv')))
+        BASE, 'data', 'output', args.book, 'raw', 'chapter_*_raw.csv')))
     if args.chapter:
         files = [f for f in files if f.endswith(f'chapter_{args.chapter:02d}_raw.csv')]
 
@@ -61,7 +61,7 @@ def main():
         ch_meta = next((c for c in chapters if c['num'] == ch), None)
         if not ch_meta:
             continue
-        with open(fp, encoding='utf-8') as f:
+        with open(fp, encoding='utf-8-sig') as f:
             rows = [r for r in csv.DictReader(f) if r.get('cn_mean')]
         body = clean_text(ch_meta['body']).replace('<AB>', '.')
         pats = build_marks(rows)

@@ -106,19 +106,22 @@ def main():
     chapters_dir = os.path.join(BASE, 'data', 'books', '_md')
     md_text = open(os.path.join(chapters_dir, f'{args.book}.md'), encoding='utf-8').read()
 
-    files = sorted(f for f in os.listdir(out_dir) if f.endswith('_raw.csv'))
+    stack = os.path.join(out_dir, 'raw')
+    anki_dir = os.path.join(out_dir, 'anki')
+    os.makedirs(anki_dir, exist_ok=True)
+    files = sorted(f for f in os.listdir(stack) if f.endswith('_raw.csv'))
     if args.chapter:
         files = [f for f in files if f.startswith(f'chapter_{args.chapter:02d}_')]
     total_new = total_exist = total_skip = 0
     for fn in files:
         ch = int(fn.split('_')[1])
-        with open(os.path.join(out_dir, fn), encoding='utf-8', newline='') as f:
+        with open(os.path.join(stack, fn), encoding='utf-8-sig', newline='') as f:
             rows = [r for r in csv.DictReader(f) if r.get('cn_mean')]
         if not rows:
             print(f'[SKIP] {fn}: 无可出卡词(全部缺润色)', flush=True)
             continue
-        # 每章 TSV
-        tsv_path = os.path.join(out_dir, f'chapter_{ch:02d}_anki.tsv')
+        # 每章 TSV(无 BOM 的 UTF-8:Anki 对 BOM 敏感)
+        tsv_path = os.path.join(anki_dir, f'chapter_{ch:02d}_anki.tsv')
         with open(tsv_path, 'w', encoding='utf-8', newline='') as f:
             f.write('单词\t音标\t词性\t中文释义\tCEFR\t原文例句\t例句译文\t来源\n')
             for r in rows:
