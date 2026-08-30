@@ -306,7 +306,8 @@ def main():
     md_path = os.path.join(chapters_dir, f'{args.book}.md')
     if not os.path.exists(md_path):
         sys.exit(f'[STOP] 找不到管线输入 {md_path} —— 先跑 scripts/epub_to_md.py(EPUB 转换)')
-    md_text = open(md_path, encoding='utf-8').read()
+    with open(md_path, encoding='utf-8') as f:
+        md_text = f.read()
 
     diff = Difficulty()   # 超纲词判定资源(oxford5000 + ECDICT),加载一次全程复用
     diff.proper = proper_names.load(args.book)   # 书内专名不标超纲(scripts/proper_names.py)

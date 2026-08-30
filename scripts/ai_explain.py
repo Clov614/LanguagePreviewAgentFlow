@@ -24,8 +24,9 @@
 批处理(--batch-size,默认 6):一次调用批量生成多个词的解析,冷启动/请求开销均摊;
   批内个别词失败时回退单词 prompt 单独重试(最多 MAX_RETRY 次),仍失败记入 failed.json。
 
-多章并发(--workers,默认 4):各章产物文件独立、天然无冲突,可并行;
-  --workers 1 关闭并发;单章(--chapter)时并发自然退化为 1。
+多章并发(--workers,默认 8):并行粒度是"批"而非"章" —— 全书所有待处理批次进同一个
+  线程池,workers 即同时在飞的请求数;总时长 ≈ 批数 × 单批耗时 / workers。
+  各章产物文件独立、天然无冲突;被上游限流产生失败词时,重跑即补漏(断点跳过已生成词)。
 
 产物:
   data/output/<book>/work/ai_explain_<book>_ch<NN>.json
@@ -43,6 +44,8 @@
 """
 import argparse
 import csv
+import datetime
+import glob
 import json
 import os
 import re
@@ -64,8 +67,9 @@ MAX_RETRY = 3               # 每个词/每批最多尝试次数
 DEFAULT_OPENAI_MODEL = 'gpt-4o-mini'
 DEFAULT_ANTHROPIC_MODEL = 'claude-sonnet-5'
 DEFAULT_BATCH_SIZE = 6      # 词/批:调大省调用但单次输出变长(注意 max_tokens 截断)
-DEFAULT_WORKERS = 4         # 并发章数
-TIMEOUT = 300               # 单次请求超时(秒):批量长输出需要更宽裕
+DEFAULT_WORKERS = 8         # 并发批次数(=同时在飞的请求数):批级并行,2026-08-31 由 4 调高
+TIMEOUT = 420               # 单次请求超时(秒):实测批次均耗时 ~4min,300s 会让慢批
+                            # 超时重试 —— 超时前已生成的 token 照样计费,等于双倍烧钱
 
 # 批量版 PROMPT。占位符 __ITEMS__ 由运行时替换(词信息块),不用 .format 以免大括号冲突。
 # 模型只产出结构化 JSON(成分/讲解/整句/文化点),排版由 compose_analysis 本地确定性拼装,
@@ -155,7 +159,10 @@ def build_info(r, hard):
 
 
 class Provider:
-    """三接入点抽象:ask(prompt) -> 文本 或 None(失败)。线程安全(每次调起独立请求)。"""
+    """三接入点抽象:ask(prompt) -> 文本 或 None(失败)。线程安全(每次调起独立请求)。
+    失败时把可读原因写入 self.last_error(--verbose 时随重试日志打印,不再黑盒重试)。"""
+
+    last_error = ''
 
     @classmethod
     def create(cls, name, args):
@@ -184,15 +191,26 @@ class ClaudeCli(Provider):
         try:
             p = subprocess.run([self.cli, '-p'], input=prompt.encode('utf-8'),
                                capture_output=True, timeout=TIMEOUT)
-        except (subprocess.TimeoutExpired, OSError):
+        except (subprocess.TimeoutExpired, OSError) as e:
+            self.last_error = f'claude CLI 调用失败: {e}'
             return None
         raw = p.stdout or b''
+        text = None
         for enc in ('utf-8', 'gbk'):
             try:
-                return raw.decode(enc).strip() or None
+                text = raw.decode(enc).strip() or None
+                break
             except UnicodeDecodeError:
                 continue
-        return raw.decode('utf-8', errors='replace').strip() or None
+        else:
+            text = raw.decode('utf-8', errors='replace').strip() or None
+        # CLI 侧配置错误(中转网关失效/模型无权限等)会以短错误文本吐出,
+        # 别当模型输出送去解析 —— 记入 last_error(--verbose 可见)并判失败
+        head = (text or '').lstrip().lower()
+        if head.startswith(("there's an issue", 'api error', 'error:', 'invalid')):
+            self.last_error = (text or '')[:200]
+            return None
+        return text
 
 
 class Anthropic(Provider):
@@ -202,6 +220,13 @@ class Anthropic(Provider):
         self.key = args.api_key or os.environ.get('ANTHROPIC_API_KEY', '')
         self.model = args.model or os.environ.get('ANTHROPIC_MODEL') \
             or DEFAULT_ANTHROPIC_MODEL
+        # ANTHROPIC_BASE_URL 与官方 SDK 同语义:自建代理网关(one-api 等)也走 Anthropic 协议;
+        # 值不带 /v1 时自动补。OpenAI 兼容网关请用 --provider openai
+        base = (args.base_url or os.environ.get('ANTHROPIC_BASE_URL') or '').rstrip('/')
+        if base:
+            self.url = (base[:-3] if base.endswith('/v1') else base) + '/v1/messages'
+        else:
+            self.url = self.URL
         if not self.key:
             sys.exit('[anthropic] 缺 ANTHROPIC_API_KEY(环境变量或 --api-key)')
 
@@ -210,7 +235,7 @@ class Anthropic(Provider):
             'model': self.model, 'max_tokens': 8192,
             'messages': [{'role': 'user', 'content': prompt}],
         }).encode('utf-8')
-        req = urllib.request.Request(self.URL, data=body, method='POST', headers={
+        req = urllib.request.Request(self.url, data=body, method='POST', headers={
             'x-api-key': self.key, 'anthropic-version': '2023-06-01',
             'Content-Type': 'application/json',
         })
@@ -218,7 +243,12 @@ class Anthropic(Provider):
             with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
                 data = json.loads(resp.read().decode('utf-8'))
             return ''.join(b.get('text', '') for b in data.get('content', [])) or None
-        except (urllib.error.URLError, OSError, json.JSONDecodeError):
+        except urllib.error.HTTPError as e:
+            self.last_error = f'{self.url} -> HTTP {e.code}: ' + \
+                (e.read() or b'')[:200].decode('utf-8', 'replace')
+            return None
+        except (urllib.error.URLError, OSError, json.JSONDecodeError) as e:
+            self.last_error = f'{self.url} -> {e}'
             return None
 
 
@@ -310,9 +340,14 @@ def compose_analysis(items, reading, culture, tag_of):
         lines.append(f'• <b>{_clean(it["seg"])}</b>:{_clean(it["note"])}')
         for wd in it.get('words') or ():
             w_txt = _clean(wd['w'])
-            tag = tag_of(wd['w'])
+            tag = tag_of(w_txt)
+            note = _clean(wd['note'])
+            if tag:   # 身份已由代码标注,讲解开头再念一遍「超纲词/目标词」是冗余
+                stripped = re.sub(rf'^{tag}\s*[。:：,，.;；、\s]*', '', note)
+                if stripped:
+                    note = stripped
             suffix = f'({tag})' if tag else ''
-            lines.append(f'– <b>{w_txt}</b>{suffix}:{_clean(wd["note"])}')
+            lines.append(f'– <b>{w_txt}</b>{suffix}:{note}')
     lines.append('2. 整句解读')
     lines.append(_clean(reading))
     culture = _clean(culture)
@@ -390,9 +425,12 @@ def ask_batch_words(prov, rows, diff, verbose):
     for attempt in range(MAX_RETRY):
         if verbose:
             log(f'  {len(rows)} 词/批 尝试 {attempt + 1}/{MAX_RETRY} ...')
-        parsed = parse_batch(prov.ask(prompt))
+        raw = prov.ask(prompt)
+        parsed = parse_batch(raw)
         if parsed:
             break
+        if verbose:
+            log(f'  批次无有效结果: {(getattr(prov, "last_error", "") or (raw or "")[:120])[:160]}')
 
     by_word = {r['word']: r for r in rows}
     got, fails = {}, []
@@ -410,12 +448,15 @@ def ask_batch_words(prov, rows, diff, verbose):
         for attempt in range(MAX_RETRY):
             if verbose:
                 log(f'  {r["word"]}(回退) 尝试 {attempt + 1}/{MAX_RETRY} ...')
-            for p in parse_batch(prov.ask(single_prompt)):
+            raw_one = prov.ask(single_prompt)
+            for p in parse_batch(raw_one):
                 if p['word'] == r['word']:
                     one = finalize_result(p, r, diff)
                     break
             if one:
                 break
+            if verbose:
+                log(f'  单词无有效结果: {(getattr(prov, "last_error", "") or (raw_one or "")[:120])[:160]}')
         if one:
             got[r['word']] = one
         else:
@@ -423,8 +464,9 @@ def ask_batch_words(prov, rows, diff, verbose):
     return got, fails
 
 
-def process_chapter(ch, rows, prov, args, diff, out_dir, work_dir):
-    """处理单章:返回 (生成数, 失败数, 跳过数)。产物文件按章独立,可被并发调用。"""
+def plan_chapter(ch, rows, args, work_dir):
+    """章内规划:按断点(产物已有词)与失败记录筛出本章待处理词。
+    返回 (todo, n_skip, out_json)。"""
     out_json = os.path.join(work_dir, f'ai_explain_{args.book}_ch{ch:02d}.json')
     failed_json = os.path.join(work_dir, f'ai_explain_{args.book}_failed.json')
 
@@ -442,44 +484,27 @@ def process_chapter(ch, rows, prov, args, diff, out_dir, work_dir):
         todo.append(r)
     if args.limit:
         todo = todo[:args.limit]
-    n_skip = len(rows) - len(todo)
+    return todo, len(rows) - len(todo), out_json
 
-    if args.dry_run:
-        n_batches = (len(todo) + args.batch_size - 1) // args.batch_size if todo else 0
-        log(f'[ch{ch:02d}] dry-run: 待处理 {len(todo)} 词 → {n_batches} 批'
-            f'({args.batch_size} 词/批,每批最多 {MAX_RETRY} 次尝试)')
-        return 0, 0, n_skip
 
-    results, fails = [], []
-    for i in range(0, len(todo), args.batch_size):
-        batch = todo[i:i + args.batch_size]
-        got, bad = ask_batch_words(prov, batch, diff, args.verbose)
-        results += [got[w] for w in got]
-        fails += [{'word': w} for w in bad]
-
-    if results:
-        # 写入前按 word 原子去重:断点+续跑组合下旧文件可能已含部分/全部词,
-        # setdefault 保证同词只保留先出现的一份(旧文件优先),产物始终每章限额内
-        merged = {}
-        if os.path.exists(out_json):
-            for p in json.load(open(out_json, encoding='utf-8')):
-                merged.setdefault(p['word'],
-                                  {'word': p['word'],
-                                   **{k: p[k] for k in ('ai_analysis', 'memo')}})
-        for p in results:
-            merged.setdefault(p['word'], p)
-        # 按 raw csv 词序排布;已在 done 中的词保持原顺序在前
-        order = {r['word']: i for i, r in enumerate(rows)}
-        merged_list = sorted(merged.values(), key=lambda p: order.get(p['word'], 10**9))
-        with open(out_json, 'w', encoding='utf-8') as f:
-            json.dump(merged_list, f, ensure_ascii=False, indent=1)
-        log(f'[ch{ch:02d}] 写入 {len(merged_list)} 词(新生成 {len(results)})')
-
-    if fails:
-        _save_failed(failed_json, [f['word'] for f in fails])
-
-    log(f'[ch{ch:02d}] 生成 {len(results)} 失败 {len(fails)} 跳过 {n_skip}')
-    return len(results), len(fails), n_skip
+def write_chapter(ch, rows, got_new, out_json):
+    """章结果落盘:与既有产物按 word 原子去重合并(旧文件优先,断点+续跑幂等),
+    按 raw csv 词序排布。返回写入总数;无任何(新+旧)产物则不写文件。"""
+    merged = {}
+    if os.path.exists(out_json):
+        for p in json.load(open(out_json, encoding='utf-8')):
+            merged.setdefault(p['word'],
+                              {'word': p['word'],
+                               **{k: p[k] for k in ('ai_analysis', 'memo')}})
+    for p in got_new.values():
+        merged.setdefault(p['word'], p)
+    if not merged:
+        return 0
+    order = {r['word']: i for i, r in enumerate(rows)}
+    merged_list = sorted(merged.values(), key=lambda p: order.get(p['word'], 10**9))
+    with open(out_json, 'w', encoding='utf-8') as f:
+        json.dump(merged_list, f, ensure_ascii=False, indent=1)
+    return len(merged_list)
 
 
 def main():
@@ -493,8 +518,12 @@ def main():
     ap.add_argument('--batch-size', type=int, default=DEFAULT_BATCH_SIZE,
                     help=f'每批词数(默认 {DEFAULT_BATCH_SIZE};调大省调用,注意模型输出长度上限)')
     ap.add_argument('--workers', type=int, default=DEFAULT_WORKERS,
-                    help=f'并发处理章数(默认 {DEFAULT_WORKERS};--workers 1 关闭并发)')
+                    help=f'并发批次数 = 同时在飞的请求数(默认 {DEFAULT_WORKERS};'
+                         f'批级并行,章内批次也并行;被限流就调低或重跑补漏)')
     ap.add_argument('--dry-run', action='store_true', help='只预览批次规划,不调用任何模型')
+    ap.add_argument('--clear', action='store_true',
+                    help='重生成前清场(不调用模型):产物 JSON 备份到 work/_old_format_<日期>/,'
+                         '并清空单词 raw 的 ai_analysis/memo 两列(润色列与表达 raw 不动)')
     ap.add_argument('--model', default='', help='覆盖默认模型(或环境变量 ANTHROPIC_MODEL/OPENAI_MODEL)')
     ap.add_argument('--base-url', default='', help='openai provider: 覆盖 OPENAI_BASE_URL')
     ap.add_argument('--api-key', default='', help='覆盖环境变量 API key(不入盘)')
@@ -510,10 +539,42 @@ def main():
     os.makedirs(work_dir, exist_ok=True)
     raw_dir = os.path.join(out_dir, 'raw')
 
+    if args.clear:
+        backup = os.path.join(work_dir, f'_old_format_{datetime.date.today():%Y%m%d}')
+        os.makedirs(backup, exist_ok=True)
+        n_moved = 0
+        for fp in glob.glob(os.path.join(work_dir, f'ai_explain_{args.book}_*.json')):
+            shutil.move(fp, os.path.join(backup, os.path.basename(fp)))
+            n_moved += 1
+        n_cleared = 0
+        for fp in sorted(glob.glob(os.path.join(out_dir, 'raw', 'chapter_*_raw.csv'))):
+            if fp.endswith('_phrase_raw.csv'):   # 表达解析是 ai_pick_phrases 产物,不在重生成范围
+                continue
+            with open(fp, encoding='utf-8-sig', newline='') as f:
+                rows = list(csv.DictReader(f))
+            if not rows:
+                continue
+            fields = list(rows[0].keys())
+            for r in rows:
+                for k in ('ai_analysis', 'memo'):
+                    if r.get(k):
+                        r[k] = ''
+                        n_cleared += 1
+            with open(fp, 'w', encoding='utf-8-sig', newline='') as f:
+                w = csv.DictWriter(f, fieldnames=fields, lineterminator='\n')
+                w.writeheader()
+                w.writerows(rows)
+        log(f'--clear 完成: {n_moved} 个产物 JSON 移入 {os.path.relpath(backup, BASE)},'
+            f'清空解析列 {n_cleared} 格(润色列不动)。'
+            f'下一步: ai_explain → apply_polish --explain → cards')
+        return
+
     prov = Provider.create(args.provider, args)
     diff = Difficulty()
     diff.proper = proper_names.load(args.book)   # 书内专名不进超纲词列表(scripts/proper_names.py)
-    files = sorted(f for f in os.listdir(raw_dir) if f.endswith('_raw.csv'))
+    # 表达卡 raw(_phrase_raw.csv)是 ai_pick_phrases 的领地,解析风格不同,不在这里重生成
+    files = sorted(f for f in os.listdir(raw_dir)
+                   if f.endswith('_raw.csv') and not f.endswith('_phrase_raw.csv'))
     if args.chapter:
         files = [f for f in files if f.startswith(f'chapter_{args.chapter:02d}_')]
 
@@ -524,37 +585,63 @@ def main():
             rows = [r for r in csv.DictReader(f) if r.get('cn_mean')]
         chapters.append((ch, rows))
 
-    n_workers = min(args.workers, len(chapters)) if chapters else 1
-    total_ok = total_fail = total_skip = 0
-
-    def run_one(item):
-        ch, rows = item
-        return process_chapter(ch, rows, prov, args, diff, out_dir, work_dir)
-
-    if n_workers > 1:
-        with ThreadPoolExecutor(max_workers=n_workers) as ex:
-            futs = {ex.submit(run_one, c): c[0] for c in chapters}
-            for fut in as_completed(futs):
-                ok, fail, skip = fut.result()
-                total_ok += ok
-                total_fail += fail
-                total_skip += skip
-    else:
-        for c in chapters:
-            ok, fail, skip = run_one(c)
-            total_ok += ok
-            total_fail += fail
-            total_skip += skip
-
+    # 规划:全书所有待处理批次进同一个池 —— 并行粒度是"批"而非"章"。
+    # 旧版按章并行时每章 3 批只能串行,同一时刻最多 workers 个请求在飞,是时长瓶颈;
+    # 批级并行把 141 批摊到 workers 个并发请求上,总时长 ≈ 批数 × 单批耗时 / workers
+    jobs, ch_info = [], {}
+    for ch, rows in chapters:
+        todo, n_skip, out_json = plan_chapter(ch, rows, args, work_dir)
+        ch_info[ch] = {'rows': rows, 'skip': n_skip, 'out': out_json, 'got': {}}
+        if args.dry_run:
+            log(f'[ch{ch:02d}] dry-run: 待处理 {len(todo)} 词 → '
+                f'{(len(todo) + args.batch_size - 1) // args.batch_size if todo else 0} 批'
+                f'({args.batch_size} 词/批,每批最多 {MAX_RETRY} 次尝试)')
+        for i in range(0, len(todo), args.batch_size):
+            jobs.append((ch, todo[i:i + args.batch_size]))
     if args.dry_run:
-        print(f'DRY-RUN [provider={args.provider}] 待处理 {len(chapters)} 章'
-              f'(workers={n_workers})', flush=True)
-    else:
-        print(f'DONE [provider={args.provider}] 新生成 {total_ok} 失败 {total_fail}'
-              f' 跳过 {total_skip}', flush=True)
-        print('下一步: uv run python scripts/apply_polish.py --book '
-              f'{args.book} --explain data/output/{args.book}/work/ai_explain_{args.book}_ch01.json',
-              flush=True)
+        print(f'DRY-RUN [provider={args.provider}] 共 {len(ch_info)} 章、'
+              f'{len(jobs)} 批(workers={args.workers} = 并发请求数)', flush=True)
+        return
+
+    failed_json = os.path.join(work_dir, f'ai_explain_{args.book}_failed.json')
+    total = len(jobs)
+    n_workers = max(1, min(args.workers, total)) if total else 1
+    log(f'待处理 {total} 批(每批 ≤{args.batch_size} 词),并发 {n_workers} 个请求')
+
+    def run_job(job):
+        ch, batch = job
+        got, fails = ask_batch_words(prov, batch, diff, args.verbose)
+        return ch, got, fails
+
+    total_fail = 0
+    with ThreadPoolExecutor(max_workers=n_workers) as ex:
+        futs = [ex.submit(run_job, j) for j in jobs]
+        for n_done, fut in enumerate(as_completed(futs), 1):
+            ch, got, fails = fut.result()
+            ch_info[ch]['got'].update(got)
+            total_fail += len(fails)
+            if fails:
+                _save_failed(failed_json, fails)
+            # 每批完成立刻落盘(与既有产物合并,幂等):中断/取消只损失在飞批次,
+            # 已完成批次全部保留,重跑断点续传不重复烧 token
+            write_chapter(ch, ch_info[ch]['rows'], ch_info[ch]['got'], ch_info[ch]['out'])
+            log(f'[进度] 批次 {n_done}/{total} 完成 → ch{ch:02d} 累计 '
+                f'{len(ch_info[ch]["got"])} 词')
+
+    total_ok = total_skip = 0
+    for ch in sorted(ch_info):
+        info = ch_info[ch]
+        n = write_chapter(ch, info['rows'], info['got'], info['out'])
+        if n:
+            log(f'[ch{ch:02d}] 写入 {n} 词(新生成 {len(info["got"])})')
+        total_ok += len(info['got'])
+        total_skip += info['skip']
+
+    print(f'DONE [provider={args.provider}] 新生成 {total_ok} 失败 {total_fail}'
+          f' 跳过 {total_skip}', flush=True)
+    print('下一步: uv run python scripts/apply_polish.py --book '
+          f'{args.book} --explain data/output/{args.book}/work/ai_explain_{args.book}_ch01.json',
+          flush=True)
 
 
 if __name__ == '__main__':

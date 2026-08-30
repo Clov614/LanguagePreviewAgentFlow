@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.join(BASE, 'scripts'))
 
 from ai_explain import Provider, MAX_RETRY, log, _load_failed, _save_failed
 import proper_names
-from pipeline import load_oxford, split_chapters, analyze_chapter
+from pipeline import load_oxford
 
 DEFAULT_BATCH_SIZE = 20     # 疑似词/批:候选总量小(几十),批内给足上下文
 DEFAULT_WORKERS = 2         # 批间并发:总调用次数少,无需大开
@@ -84,22 +84,6 @@ def ask_batch(prov, batch, verbose):
     return got, sorted(wanted - got.keys())
 
 
-def contexts_map(md_text):
-    """lemma → 最多 2 个含词例句(全书一遍;与 suspects 同口径的 analyze 切句)"""
-    out = {}
-    for ch in split_chapters(md_text):
-        sents, _, recs = analyze_chapter(ch['body'])
-        for s, lems in zip(sents, recs):
-            if not (10 <= len(s) <= 200):
-                continue
-            s = s.replace('\n', ' ')
-            for lem in set(lems):
-                buf = out.setdefault(lem, [])
-                if len(buf) < 2:
-                    buf.append(s)
-    return out
-
-
 def main():
     ap = argparse.ArgumentParser(description='AI 裁决疑似专名,写 proper_names/<book>.txt')
     ap.add_argument('--book', required=True)
@@ -127,7 +111,8 @@ def main():
     failed_path = os.path.join(work_dir, f'proper_ai_{args.book}_failed.json')
     cache = {d['word']: d for d in _load_failed(cache_path)}   # 容错读取,同 failed.json
 
-    md_text = open(md_path, encoding='utf-8').read()
+    with open(md_path, encoding='utf-8') as f:
+        md_text = f.read()
     oxford = load_oxford()
     if args.dry_run:
         sus = [s for s in proper_names.suspects(md_text, oxford, exclude=active)]
@@ -137,7 +122,8 @@ def main():
                   + ', '.join(s['word'] for s in sus[i:i + args.batch_size]))
         return
 
-    sus = [s for s in proper_names.suspects(md_text, oxford, exclude=active | set(cache))
+    sus = [s for s in proper_names.suspects(md_text, oxford, exclude=active | set(cache),
+                                            want_contexts=True)
            if s['freq'] >= 2]          # 单次出现的大写词多为噪声,不值得一次模型调用
     if args.limit:
         sus = sus[:args.limit]
@@ -145,9 +131,6 @@ def main():
         print('无待裁决疑似词(全部已裁决/已生效/频次不足)')
         sus = []
     else:
-        ctx = contexts_map(md_text)
-        for s in sus:
-            s['contexts'] = ctx.get(s['word'], [])
         batches = [sus[i:i + args.batch_size] for i in range(0, len(sus), args.batch_size)]
         print(f'待裁决 {len(sus)} 个疑似词,{len(batches)} 批'
               f'({args.batch_size} 词/批,workers={args.workers},provider={args.provider})')
@@ -190,7 +173,10 @@ def main():
         lines.append(f'{mark}{w}  # {v.get("type", "")} · {v.get("reason", "")} · {src}')
     lines += [f'# {a}  # 变体建议(AI,关联上方专名;确认后生效)' for a in sorted(alias_sugs)]
     if lines:
-        existing = open(ppath, encoding='utf-8').read() if os.path.exists(ppath) else ''
+        existing = ''
+        if os.path.exists(ppath):
+            with open(ppath, encoding='utf-8') as f:
+                existing = f.read()
         if existing and not existing.endswith('\n'):
             existing += '\n'
         with open(ppath, 'a', encoding='utf-8', newline='\n') as f:

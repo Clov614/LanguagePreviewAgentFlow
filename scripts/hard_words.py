@@ -50,7 +50,11 @@ def lemma_of(w):
 # (cards.py / ai_explain.py 各自 load(book) 挂到 Difficulty 实例上)
 PROPER_NAMES = frozenset()
 
-STOPWORDS = {
+# 停用词:与 pipeline.STOPWORDS 同源取并集(本模块用于超纲词标注豁免;
+# 分工见两处定义注释 —— 改通用停用词请先改 pipeline,此处只留本模块特有项)
+from pipeline import STOPWORDS as _PIPELINE_STOPWORDS
+
+STOPWORDS = _PIPELINE_STOPWORDS | {
     'oh', 'ah', 'eh', 'ha', 'huh', 'hmm', 'hallo', 'hullo', 'hey', 'ahem',
     "don't", "can't", "won't", "ain't", "it's", "that's", "i'm", "i've",
     "i'll", "i'd", "he's", "she's", "we're", 'tis', 'ye', 'thou', 'thee',

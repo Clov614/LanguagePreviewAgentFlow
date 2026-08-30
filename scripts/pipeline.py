@@ -375,7 +375,8 @@ def main():
     oxford = load_oxford()
     db = Ecdict(os.path.join(RES, 'ecdict.db'))
 
-    md_text = open(md_path, encoding='utf-8').read()
+    with open(md_path, encoding='utf-8') as f:
+        md_text = f.read()
     chapters = split_chapters(md_text)
     if args.limit:
         chapters = chapters[:args.limit]

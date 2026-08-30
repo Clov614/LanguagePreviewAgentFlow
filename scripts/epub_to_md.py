@@ -71,20 +71,24 @@ def parse_units(md_text):
 
 
 def group_subs(subs, pre_paras, target, maxt):
-    """碎节(书信等)按累计词数聚章:达到 target 封章,超过 maxt 提前封章"""
+    """碎节(书信等)按累计词数聚章:达到 target 封章,超过 maxt 提前封章。
+    cur_toks 为滚动累计(含各节标题词),避免每步重切整章文本的 O(n²)"""
     out = []
+    cur_toks = 0
     for sub in subs:
         add = tokens(sub['title'] + ' ' + ' '.join(sub['paras']))
         cur = out[-1] if out else None
         if cur is None:
             out.append({'title': sub['title'], 'paras': list(sub['paras']), 'units': 1})
-        elif tokens(' '.join(cur['paras'])) >= target or \
-                tokens(' '.join(cur['paras'])) + add > maxt:
+            cur_toks = add
+        elif cur_toks >= target or cur_toks + add > maxt:
             out.append({'title': sub['title'],
                         'paras': [sub['title']] + list(sub['paras']), 'units': 1})
+            cur_toks = add
         else:
             cur['paras'] += [sub['title']] + list(sub['paras'])
             cur['units'] += 1
+            cur_toks += add
     if out and pre_paras:
         out[0]['paras'] = list(pre_paras) + out[0]['paras']
     return out
@@ -135,7 +139,8 @@ def main():
     ap.add_argument('--target-tokens', type=int, default=3500,
                     help='碎节聚章目标词数(默认 3500,≈little_women 每章体量)')
     ap.add_argument('--max-tokens', type=int, default=4500, help='碎节聚章词数上限')
-    ap.add_argument('--force', action='store_true', help='重跑 markitdown 并覆盖产物')
+    ap.add_argument('--reconvert', action='store_true', help='重跑 markitdown(默认复用 <book>_raw.md 缓存)')
+    ap.add_argument('--force', action='store_true', help='覆盖输出 MD(不重跑 markitdown)')
     args = ap.parse_args()
 
     epub = args.epub if os.path.isabs(args.epub) else os.path.join(BASE, args.epub)
@@ -145,9 +150,9 @@ def main():
     if not os.path.exists(epub):
         sys.exit(f'[STOP] 找不到 {epub}')
     if os.path.exists(out_md) and not args.force:
-        sys.exit(f'[STOP] {out_md} 已存在,确认重转请加 --force')
+        sys.exit(f'[STOP] {out_md} 已存在,确认重转请加 --force(--reconvert 连 markitdown 一起重跑)')
 
-    if args.force or not os.path.exists(raw_md):
+    if args.reconvert or not os.path.exists(raw_md):
         print(f'[1/2] markitdown 转换 {os.path.basename(epub)} …', flush=True)
         text = run_markitdown(epub)
         os.makedirs(md_dir, exist_ok=True)
@@ -155,20 +160,29 @@ def main():
             f.write(text)
     else:
         print(f'[1/2] 复用已有缓存 {raw_md}', flush=True)
-        text = open(raw_md, encoding='utf-8').read()
+        with open(raw_md, encoding='utf-8') as f:
+            text = f.read()
 
     mtitle = re.search(r'^\*\*Title:\*\*\s+(.+)$', text, re.M)
     tops = parse_units(text)
     ci = next((i for i, u in enumerate(tops)
                if u['title'].strip().lower() == 'contents'), None)
+    book_title = (mtitle.group(1).strip() if mtitle else '')
     if ci is not None:
         tops = tops[ci + 1:]          # 扉页/版权/目录:全部丢弃
+    else:
+        # 无 Contents 节的兜底:丢弃书名节(其版权文字随节丢弃)与无正文的引导节
+        bt = book_title.strip().lower()
+        while tops and ((not tops[0]['paras'] and not tops[0]['subs'])
+                        or (bt and tops[0]['title'].strip().lower() == bt)):
+            print(f'[INFO] 丢弃扉页节: {tops[0]["title"] or "(无标题)"}', flush=True)
+            tops.pop(0)
     if not tops:
         sys.exit('[STOP] 未找到正文章节,检查 EPUB 结构')
     chapters = build_chapters(tops, args.target_tokens, args.max_tokens)
 
-    book_title = (mtitle.group(1).strip() if mtitle
-                  else tops[0]['title'] or args.book)
+    if not book_title:
+        book_title = tops[0]['title'] or args.book
     lines = [f'# {book_title}', '']
     for i, ch in enumerate(chapters, 1):
         title = re.sub(r'\s+', ' ', re.sub(r'[*\\\n]', ' ', ch['title'])).strip()

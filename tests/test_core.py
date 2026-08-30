@@ -177,7 +177,7 @@ class TestAiExplainSchema(unittest.TestCase):
               '"items": ['
               '{"seg": "Beth ate no more", "note": "谓语部分,写下她停下进食。", '
               ' "words": [{"w": "ate", "note": "eat 的过去式。"},'
-              '           {"w": "crept away", "note": "悄悄溜走。"}]},'
+              '           {"w": "crept away", "note": "超纲词。悄悄溜走。"}]},'
               '{"seg": "the delight to come", "note": "名词短语作宾语。"}], '
               '"reading": "整句刻画了贝丝的神态。", '
               '"culture": "出自《小妇人》。", '
@@ -193,6 +193,41 @@ class TestAiExplainSchema(unittest.TestCase):
         self.assertEqual(p['items'][0]['words'][1]['w'], 'crept away')
         self.assertEqual(p['reading'], '整句刻画了贝丝的神态。')
         self.assertEqual(p['memo'], '心里捂着一颗快化掉的糖。')
+
+    def test_ask_batch_words_end_to_end(self):
+        # 离线全链路:假 provider 返回结构化 JSON → ask_batch_words 拼装定型(零词典依赖)
+        from ai_explain import ask_batch_words
+
+        class FakeProv:
+            last_error = ''
+
+            def __init__(self, payload):
+                self.payload = payload
+
+            def ask(self, prompt):
+                return self.payload
+
+        payload = ('{"results": [{"word": "delight", "items": ['
+                   '{"seg": "Beth ate no more", "note": "停下进食。",'
+                   ' "words": [{"w": "ate", "note": "eat 的过去式。"}]}],'
+                   '"reading": "整句解读段落。", "culture": "", "memo": "钩子。"}]}')
+        rows = [{'word': 'delight', 'phon': '', 'pos': '', 'cefr': '',
+                 'cn_mean': 'n. 快乐', 'sent': 'Beth ate no more.',
+                 'cn_sent': '贝丝不再吃。'}]
+        got, fails = ask_batch_words(FakeProv(payload), rows, None, False)
+        self.assertEqual(fails, [])
+        a = got['delight']['ai_analysis']
+        self.assertTrue(a.startswith('1. 逐项解析\n'))
+        self.assertIn('• <b>Beth ate no more</b>:停下进食。', a)
+        self.assertIn('– <b>ate</b>:eat 的过去式。', a)   # diff=None → 不标身份
+        self.assertIn('\n2. 整句解读\n整句解读段落。', a)
+        self.assertNotIn('文化点', a)                     # culture 空 → 整段省略
+        self.assertEqual(got['delight']['memo'], '钩子。')
+        # 网关错误文本 → 重试耗尽后记失败,不产出垃圾解析
+        bad = FakeProv("There's an issue with the selected model (x).")
+        got2, fails2 = ask_batch_words(bad, rows, None, False)
+        self.assertEqual(got2, {})
+        self.assertEqual(fails2, ['delight'])
 
     def test_parse_batch_rejects_old_free_text(self):
         # 模型回退旧格式(自由文本 ai_analysis、无 items)→ 判不合格,触发重试
@@ -579,8 +614,8 @@ class TestEpubToMd(unittest.TestCase):
             {'level': 3, 'title': 'L2', 'paras': ['three four'], 'subs': []},
             {'level': 3, 'title': 'L3', 'paras': ['five six'], 'subs': []},
         ]}]
-        chs = build_chapters(tops, target=3, maxt=5)
-        # L2 并入 L1(2+3=5 未超 maxt),L3 时累计词数 ≥ target 封章
+        chs = build_chapters(tops, target=4, maxt=9)
+        # 滚动计数(含各节标题词):L1 计 3,L2 并入(3+3=6 未超 maxt),L3 时 6≥target 封章
         self.assertEqual([c['title'] for c in chs], ['L1', 'L3'])
         self.assertIn('L2', ' '.join(chs[0]['paras']))
 

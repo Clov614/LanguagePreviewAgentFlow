@@ -36,6 +36,9 @@ CSS = """
 .ai { margin-top: 10px; font-size: 15px; color: #444;
       background: #f2f7fc; padding: 8px 10px; border-radius: 6px; }
 .ai-title { color: #2a7de1; font-weight: bold; margin-bottom: 4px; }
+/* AI 解析内身份标记:(目标词)=例句高亮红,(超纲词)=超纲绿(cards.py ai_cell_html 生成) */
+.ai b.hl { color: #c7254e; }
+.ai b.hard { color: #1e8449; }
 .memo { margin-top: 8px; font-size: 16px; color: #8a6d3b; font-style: italic; }
 .src { color: #aaa; font-size: 13px; margin-top: 12px; text-align: right; }
 
@@ -53,6 +56,8 @@ CSS = """
 .nightMode .sent-cn { color: #b0b0b0; }
 .nightMode .ai { color: #cfcfcf; background: #31313a; }
 .nightMode .ai-title { color: #6fb1ff; }
+.nightMode .ai b.hl { color: #ff9eb3; }
+.nightMode .ai b.hard { color: #7fd8a4; }
 .nightMode .memo { color: #d9b96a; }
 .nightMode .src { color: #7a7a7a; }
 .nightMode hr { border-top: 1px solid #4a4a4e; }
@@ -137,7 +142,9 @@ SAMPLE = genanki.Note(
         '"I shall get a nice box of Faber\'s drawing pencils; I really '
         'need them," said Amy <b class="hl">decidedly</b>.',
         '“我真的需要它们，”艾米说得斩钉截铁。', 'little_women Ch1',
-        '“逐项解析”示例：<br>1. …<br>2. …<br>“整句解读”…<br>“文化点”…',
+        '“逐项解析”示例：<br>1. 逐项解析<br>• <b>“I shall get”</b>:主句主干,'
+        '19 世纪第一人称表将来习惯用 “shall”,宣告式语气。<br>2. 整句解读<br>…<br>'
+        '3. 文化点<br>…',
         'decidedly = 斩钉截铁 —— 她说这句时下巴一扬，没有商量余地。',
     ],
 )

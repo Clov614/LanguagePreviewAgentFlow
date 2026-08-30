@@ -82,10 +82,15 @@ def resolve_media_dir(args) -> Path | None:
         return None
     if os.name == "nt" and os.environ.get("APPDATA"):
         base = Path(os.environ["APPDATA"]) / "Anki2"
-    else:
+    elif os.name == "nt":
+        base = Path.home() / "AppData" / "Roaming" / "Anki2"
+    elif sys.platform == "darwin":
         base = Path.home() / "Library" / "Application Support" / "Anki2"
+    else:                                   # Linux / *BSD
+        base = Path(os.environ.get("XDG_DATA_HOME",
+                                   Path.home() / ".local" / "share")) / "Anki2"
     if not base.exists():
-        print("[warn] 未找到 Anki 2 目录,跳过拷贝(--media-dir 可手动指定)", flush=True)
+        print("[WARN] 未找到 Anki 2 目录,跳过拷贝(--media-dir 可手动指定)", flush=True)
         return None
     profiles = [p for p in base.iterdir() if (p / "collection.anki2").exists()]
     if len(profiles) == 1:
@@ -94,7 +99,7 @@ def resolve_media_dir(args) -> Path | None:
         return media
     if len(profiles) > 1:
         names = ", ".join(p.name for p in profiles)
-        print(f"[warn] 发现多个 Anki 配置({names}),请用 --media-dir 指定后拷贝", flush=True)
+        print(f"[WARN] 发现多个 Anki 配置({names}),请用 --media-dir 指定后拷贝", flush=True)
     return None
 
 
@@ -122,17 +127,17 @@ def main():
         known = {v["ShortName"] for v in asyncio.run(edge_tts.list_voices())}
         if args.voice not in known:
             alts = sorted(v for v in known if v.startswith("en-GB"))
-            print(f"[error] 语音 {args.voice} 不存在。可用英音: {', '.join(alts[:12])}", flush=True)
+            print(f"[FAIL] 语音 {args.voice} 不存在。可用英音: {', '.join(alts[:12])}", flush=True)
             sys.exit(1)
     except Exception as exc:
-        print(f"[warn] 语音列表获取失败(忽略,继续生成): {exc}", flush=True)
+        print(f"[WARN] 语音列表获取失败(忽略,继续生成): {exc}", flush=True)
 
     audio_dir = audio_dir_for_book(BASE, args.book)
     audio_dir.mkdir(parents=True, exist_ok=True)
 
     rows = load_rows(args.book, args.chapter)
     if not rows:
-        print("[error] 没有可用的 raw 行(先跑 pipeline + apply_polish?)", flush=True)
+        print("[FAIL] 没有可用的 raw 行(先跑 pipeline + apply_polish?)", flush=True)
         sys.exit(1)
 
     # 单词音频跨章去重;例句音频按(章, 词)。
@@ -150,7 +155,7 @@ def main():
         if sent:
             sent_jobs.append((sent, audio_dir / sent_audio_name(ch, word)))
 
-    print(f"[info] 单词音频 {len(word_jobs)} | 例句音频 {len(sent_jobs)} | 语音 {args.voice} {args.rate}",
+    print(f"[OK] 单词音频 {len(word_jobs)} | 例句音频 {len(sent_jobs)} | 语音 {args.voice} {args.rate}",
           flush=True)
     results = asyncio.run(run_generation(word_jobs + sent_jobs, args.voice, args.rate, args.force))
 
@@ -160,7 +165,7 @@ def main():
         counts[res if res in counts else "fail"] += 1
         if res.startswith("fail"):
             fails.append(f"{path.name} <- {text[:60]!r}: {res[5:]}")
-    print(f"[done] 生成 {counts['ok']} | 跳过缓存 {counts['skip']} | 失败 {counts['fail']}", flush=True)
+    print(f"[OK] 生成 {counts['ok']} | 跳过缓存 {counts['skip']} | 失败 {counts['fail']}", flush=True)
     for f in fails[:20]:
         print(f"  ✗ {f}", flush=True)
     if len(fails) > 20:
@@ -173,9 +178,9 @@ def main():
             if path.exists():
                 shutil.copy2(path, media / path.name)
                 copied += 1
-        print(f"[copy] 已拷贝 {copied} 个 mp3 -> {media}", flush=True)
+        print(f"[OK] 已拷贝 {copied} 个 mp3 -> {media}", flush=True)
     else:
-        print("[skip] 未拷贝(音频在 data/output/<book>/anki/audio/ 下,可手动处理)", flush=True)
+        print("[SKIP] 未拷贝(音频在 data/output/<book>/anki/audio/ 下,可手动处理)", flush=True)
 
     if counts["fail"]:
         sys.exit(1)

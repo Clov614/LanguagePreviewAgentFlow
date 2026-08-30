@@ -44,23 +44,31 @@ def load(book):
     return _cache[book]
 
 
-def suspects(md_text, oxford, exclude=frozenset()):
-    """全书疑似专名扫描,返回 [{word, freq, cap, nu, score}](score 降序)。
+def suspects(md_text, oxford, exclude=frozenset(), want_contexts=False):
+    """全书疑似专名扫描,返回 [{word, freq, cap, nu, score[, contexts]}](score 降序)。
     md_text: 管线输入 MD 全文;oxford: load_oxford() 产物(词表内不判);
-    exclude: 已确认专名(不重复报)。统计口径与 pipeline.analyze_chapter 一致。"""
+    exclude: 已确认专名(不重复报);want_contexts: 顺带每词至多 2 个含词例句
+    (ai_pick_proper 用,同一次分析不重复 lemmatize)。统计口径与 pipeline 一致。"""
     import simplemma
     from pipeline import split_chapters, analyze_chapter
-    freq, nu, cap = {}, {}, {}
+    freq, nu, cap, ctx = {}, {}, {}, {}
     for ch in split_chapters(md_text):
         sents, stats, _ = analyze_chapter(ch['body'])
         for lem, st in stats.items():
             freq[lem] = freq.get(lem, 0) + st['freq']
             nu[lem] = nu.get(lem, 0) + st['nonfirst_upper']
         for s in sents:
+            clean = None
             for raw in WORD_RE.findall(s):
                 if raw[0].isupper():
                     lem = simplemma.lemmatize(raw.lower(), lang='en').lower()
                     cap[lem] = cap.get(lem, 0) + 1
+                    if want_contexts:
+                        buf = ctx.setdefault(lem, [])
+                        if len(buf) < 2:
+                            if clean is None:
+                                clean = s.replace('\n', ' ').strip()
+                            buf.append(clean)
     out = []
     for lem, f in freq.items():
         if lem in oxford or lem in exclude:
@@ -71,7 +79,10 @@ def suspects(md_text, oxford, exclude=frozenset()):
         cr, nr = c / f, n / f
         if ((cr >= 0.5 and f >= 3) or (n >= 2 and nr >= 0.35)
                 or (f <= 6 and n >= 1)):
-            out.append({'word': lem, 'freq': f, 'cap': c, 'nu': n,
-                        'score': round(cr * 2 + nr + min(f, 30) / 30, 3)})
+            item = {'word': lem, 'freq': f, 'cap': c, 'nu': n,
+                    'score': round(cr * 2 + nr + min(f, 30) / 30, 3)}
+            if want_contexts:
+                item['contexts'] = ctx.get(lem, [])
+            out.append(item)
     out.sort(key=lambda x: -x['score'])
     return out
