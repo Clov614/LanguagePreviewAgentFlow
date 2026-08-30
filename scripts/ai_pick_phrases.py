@@ -210,7 +210,10 @@ def main():
         chapters = [c for c in chapters if c[0] == args.chapter]
     chapters = [(ch, cs) for ch, cs in chapters if cs]
     if not chapters:
-        sys.exit('无候选章可处理(先跑 --phrases 生成候选,或检查 --chapter)')
+        # 候选文件在但该章候选为空(书里没有 ≥2 次的稳定表达)= 正常无事可做:
+        # 跳过且不算失败("宁缺毋滥"的正确结果不应打断管线阶段)
+        print('无候选章可处理(该章候选为空或均已完成)—— 跳过,不算失败', flush=True)
+        sys.exit(0)
 
     prov = Provider.create(args.provider, args)
     n_workers = min(args.workers, len(chapters)) if len(chapters) else 1

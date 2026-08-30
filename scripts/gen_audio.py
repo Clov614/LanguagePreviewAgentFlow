@@ -75,11 +75,14 @@ async def run_generation(text_path_pairs, voice, rate, force):
     return await asyncio.gather(*[worker(p) for p in text_path_pairs])
 
 
-def resolve_media_dir(args) -> Path | None:
+def resolve_media_dirs(args) -> list[Path]:
+    """返回要拷贝的 collection.media 列表。
+    多 Anki 配置(实测存在「账户 1」+「anki官方」)时全拷:媒体按文件名索引,
+    多拷无害;唯一配置/手动 --media-dir 行为不变。"""
     if args.media_dir:
-        return Path(args.media_dir)
+        return [Path(args.media_dir)]
     if args.no_copy:
-        return None
+        return []
     if os.name == "nt" and os.environ.get("APPDATA"):
         base = Path(os.environ["APPDATA"]) / "Anki2"
     elif os.name == "nt":
@@ -91,16 +94,20 @@ def resolve_media_dir(args) -> Path | None:
                                    Path.home() / ".local" / "share")) / "Anki2"
     if not base.exists():
         print("[WARN] 未找到 Anki 2 目录,跳过拷贝(--media-dir 可手动指定)", flush=True)
-        return None
-    profiles = [p for p in base.iterdir() if (p / "collection.anki2").exists()]
-    if len(profiles) == 1:
-        media = profiles[0] / "collection.media"
-        media.mkdir(exist_ok=True)
-        return media
-    if len(profiles) > 1:
-        names = ", ".join(p.name for p in profiles)
-        print(f"[WARN] 发现多个 Anki 配置({names}),请用 --media-dir 指定后拷贝", flush=True)
-    return None
+        return []
+    medias = []
+    for p in sorted(base.iterdir()):
+        if (p / "collection.anki2").exists():
+            media = p / "collection.media"
+            media.mkdir(exist_ok=True)
+            medias.append(media)
+    if len(medias) > 1:
+        print(f"[INFO] 发现 {len(medias)} 个 Anki 配置,拷贝到全部: "
+              f"{', '.join(m.parent.name for m in medias)}", flush=True)
+    if not medias:
+        print("[WARN] 未找到含 collection.anki2 的 Anki 配置,跳过拷贝"
+              "(--media-dir 可手动指定)", flush=True)
+    return medias
 
 
 def main():
@@ -171,14 +178,15 @@ def main():
     if len(fails) > 20:
         print(f"  … 其余 {len(fails) - 20} 条失败略", flush=True)
 
-    media = resolve_media_dir(args)
-    if media is not None:
+    medias = resolve_media_dirs(args)
+    if medias:
         copied = 0
         for _, path in word_jobs + sent_jobs:
             if path.exists():
-                shutil.copy2(path, media / path.name)
+                for media in medias:
+                    shutil.copy2(path, media / path.name)
                 copied += 1
-        print(f"[OK] 已拷贝 {copied} 个 mp3 -> {media}", flush=True)
+        print(f"[OK] 已拷贝 {copied} 个 mp3 -> {len(medias)} 个 Anki 配置", flush=True)
     else:
         print("[SKIP] 未拷贝(音频在 data/output/<book>/anki/audio/ 下,可手动处理)", flush=True)
 

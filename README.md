@@ -13,9 +13,11 @@
 把每章**最值得先认识**的生词(按 CEFR 级别与词频挑选,每章 15–20 个)**连同书中原句**做成 Anki 卡片,
 先花 15 分钟刷出短期记忆,再回原文阅读时"认出"它 —— **不要背单词,要识别单词**。
 
-- **输入**:一本英语 EPUB(示例已跑通:《Little Women》47 章 / 846 张卡 / 854 词总库)
+- **输入**:一本英语 EPUB(《Little Women》与《Daddy-Long-Legs》两本已跑通,
+  当前各完成前 5 章试点:198 张卡 / 总库 205 词,随时可续跑全书)
 - **产物**:每章 Anki TSV · 生词总库(跨书去重)· 阅读标注版 · 免费英音发音(mp3)
-- **成本**:词库本地判定 + edge-tts 免费神经语音 —— 全程零付费、无需 API key
+- **成本**:词库判定与发音(edge-tts)本地免费;AI 润色/解析走本机 Claude Code
+  (或任意自有通道),断点安全、重复跑不重复花钱
 
 ![LangPreviewAgentFlow_anki_exp_01.jpg](/resources/guide_pic/LangPreviewAgentFlow_anki_exp_01.jpg)
 
@@ -26,12 +28,13 @@
 3. **开刷**:正面认词(发音自动播)→ 翻面看释义 + 书中原句 → 读对应章节(配 `annotated/` 高亮版)→ 掌握了的词追加到 `vocabulary/known_words.txt`,同词永不再推
 
 想自己跑一本新书?三步:① `epub_to_md.py` 把 EPUB 转成管线输入(需本机 markitdown)
-→ ② `scan_proper.py` 扫描确认书内专名表 → ③ 一个命令跑全流程(细节见「🔄 管线」):
+→ ② `scan_proper.py` 扫描确认书内专名表 → ③ **一个命令跑全流程**(细节见「🔄 管线」):
 
 ```bash
 uv run --with markitdown python scripts/epub_to_md.py --epub "data/books/<书>.epub" --book <书名>
 uv run python scripts/scan_proper.py --book <书名> --write   # 确认 data/books/proper_names/<书名>.txt
-uv run python scripts/run.py --book <书名> --polish <润色json> --audio
+uv run python scripts/run.py --book <书名> --audio           # AI 润色/补句/解析/出卡一条龙
+uv run python scripts/run.py --book <书名> --chapters 1-5     # 或先只跑前五章试试
 ```
 
 ---
@@ -51,14 +54,13 @@ uv run python scripts/run.py --book <书名> --polish <润色json> --audio
 | 产物 | 位置 | 说明 |
 |---|---|---|
 | **Anki 模板包**(导入一次即可) | `resources/anki/anki_template.apkg` | EnWords 笔记类型 + 卡片样式 + 示例卡 + **自动播放脚本**(正面自动播单词音、翻面自动播例句音),File → Import 直接装 |
-| **Anki 卡片 ×47 章,846 张** | `data/output/little_women/anki/chapter_XX_anki.tsv` | 每章 18 词一个 TSV,配上面模板导入 |
-| **单词/例句英音发音**(可选) | `data/output/little_women/anki/audio/` | edge-tts 免费神经语音预生成 mp3,已自动拷入 collection.media,导入即带发音 |
-| **生词 CSV**(Excel 直接打开) | `data/output/little_women/raw/chapter_XX_raw.csv` | 每章候选词全量数据,UTF-8 带 BOM |
-| **生词标注版** | `data/output/little_women/annotated/chapter_XX.md` | 刷完卡,读书时**识别**高亮词 |
-| **章节词表速查** | `annotated/chapter_XX_词表.md` | 每章生词 + 释义一览 |
-| **推荐报告** | `data/output/little_women/recommend_report.md` | TOP 40 + 使用说明 |
-| **生词总库** | `vocabulary/master_wordlist.csv` | 854 词,跨书累积、去重、状态流转 |
-| **润色工作单** | `data/output/little_women/work/` | polish_*.json 等,已应用的记录留存 |
+| **Anki 卡片**(两书各 5 章试点) | `data/output/<书名>/anki/chapter_XX_anki.tsv` | 每章 18 词 + 表达卡一个 TSV;《Little Women》103 张、《Daddy-Long-Legs》95 张 |
+| **单词/例句英音发音**(可选) | `data/output/<书名>/anki/audio/` | edge-tts 免费神经语音预生成 mp3,自动拷入 collection.media(多 Anki 配置全拷),导入即带发音 |
+| **生词 CSV**(Excel 直接打开) | `data/output/<书名>/raw/chapter_XX_raw.csv` | 每章候选词全量数据,UTF-8 带 BOM |
+| **生词标注版** | `data/output/<书名>/annotated/chapter_XX.md` | 刷完卡,读书时**识别**高亮词 |
+| **推荐报告** | `data/output/<书名>/recommend_report.md` | TOP 40 + 使用说明 |
+| **生词总库** | `vocabulary/master_wordlist.csv` | 205 词(两书前五章),跨书累积、去重、状态流转 |
+| **AI 产物(可手改)** | `data/output/<书名>/work/*.json` | 润色/补句、AI 解析、表达精选,改完重跑管线即生效 |
 
 ---
 
@@ -68,13 +70,15 @@ uv run python scripts/run.py --book <书名> --polish <润色json> --audio
 单词 │ 音标 │ 词性 │ 中文释义 │ CEFR │ 原文例句 │ 例句译文 │ 来源 │ AI解析 │ 词义概述
 ```
 
-- **例句全部取自书中原句**(含目标词上下文),配人工润色译文 —— 与"看剧识别台词"同构
+- **例句优先取自书中原句**(含目标词上下文),配模型润色译文;无原句的词由模型
+  生成贴合原著风格的例句(「来源」标 **"(AI 补句)")** —— **出卡词例句 100% 齐全**
 - 无原句的词由模型补充,例句贴近文风,「来源」列标注 **"(AI 补句)"**
 - **级别**:B2/C1 为主(考研英语二基线:排除 A1–A2,B1 少量配额,用 BNC 词频过滤常见词)
-- **AI解析**:**三段式整句解析**(逐项拆解 → 整句解读 → 文化点),排版统一:段首行加粗、
-  条目 `• `、行首成分加粗、词级拆解 `– `、`(目标词)` 红色 / `(超纲词)` 绿色标注;
-  例句中比目标词更难的**超纲词**已用绿色高亮标注(每句 ≤2);**词义概述**:一句"画面感"
-  记忆钩子。两列可选,由 `scripts/ai_explain.py` 批量生成(见"AI 例句解析"一节)
+- **AI解析**:**三段式整句解析**(逐项拆解 → 整句解读 → 文化点)。生成端为**结构化
+  schema**(模型只填 JSON 字段,排版由代码确定性拼装,格式源头统一);卡片排版统一:
+  段首行加粗、条目 `• `、行首成分加粗、词级拆解 `– `、`(目标词)` 红色 / `(超纲词)` 绿色
+  标注;例句中比目标词更难的**超纲词**已用绿色高亮标注(每句 ≤2);**词义概述**:一句
+  "画面感"记忆钩子。两列可选,由 `scripts/ai_explain.py` 批量生成(见"AI 例句解析"一节)
 - **发音**:可选,见下节
 
 ---
@@ -150,10 +154,10 @@ uv run python scripts/run.py --book little_women --audio
 **推荐:统一入口 `scripts/run.py`** —— 一个命令跑全流程,失败即停:
 
 ```bash
-# ① EPUB 放入 data/books/,模型润色好 work/ 下工作单后,一键全流程:
-uv run python scripts/run.py --book <书名> --polish <润色json>
-#    加 --audio 顺带批量生成发音(需联网,免费):
-uv run python scripts/run.py --book <书名> --polish <润色json> --audio
+# ① EPUB 放入 data/books/ 并完成前置两步后,一条命令全流程(AI 润色/解析自动跑):
+uv run python scripts/run.py --book <书名> --audio
+#    只跑前五章试试 / 分批推进:
+uv run python scripts/run.py --book <书名> --chapters 1-5 --audio
 #    断点续跑 pipeline(只重跑第 20 章起):
 uv run python scripts/run.py --book <书名> --from-chapter 20
 #    只跑某阶段 / 只看校验:
@@ -166,11 +170,15 @@ uv run python scripts/run.py --book <书名> --stage validate --verbose
 
 → `scan_proper`(新书第 0.5 步:扫描人名地名,确认 `proper_names/<书名>.txt` 排除表)
 
-→ `pipeline`(分词 / CEFR / 选词 / 例句)
+→ `pipeline`(分词 / CEFR / 选词 / 例句;重跑自动继承既有润色资产)
 
-→ 模型润色(work/ 工作单)
+→ `polish`(AI 补齐中文释义/译文;无原句的词自动生成例句 —— **例句齐全的保证**)
 
-→ `apply`(合并润色)
+→ `phrases`(表达候选 + AI 精选,只挑有润色数据的章)
+
+→ `explain`(AI 三段式例句解析)
+
+→ `apply`(合并全部模型产物)
 
 → `audio`(发音,可选)
 
@@ -193,9 +201,10 @@ uv run python scripts/cards.py --book <书名>                   # 只出 TSV + 
 
 ## <a id="ai_explain"></a>🤖 AI 例句解析(可选,填卡背两列)
 
-**不填也能出卡**;想要更深入的自学体验再跑。给每章选词批量生成
-「AI解析」(四段式整句解析)+「词义概述」(画面感记忆钩子),产物在
-`data/output/<书名>/work/ai_explain_*.json`,可手改后合并进卡片。
+**不填也能出卡**(run.py 全流程已自动包含 explain 阶段);想要更深入的自学体验。
+给每章选词批量生成「AI解析」(**三段式**整句解析,结构化 schema 生成、排版源头统一)
++「词义概述」(画面感记忆钩子),产物在 `data/output/<书名>/work/ai_explain_*.json`,
+可手改后重跑管线即生效。
 
 ```bash
 # ① 批量生成(ch 可省略;可断点续跑,已生成词自动跳过)

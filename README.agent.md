@@ -66,6 +66,8 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
 6. **音频**:mp3 只由 `gen_audio.py` 生成(幂等:已有文件跳过,`--force` 重生成),输出 `anki/audio/`
    并自动拷入 Anki `collection.media`;该目录不入 git。
 7. **git**:不主动提交,除非用户明确要求。
+8. **例句齐全**:要出卡的词(有润色)最终 TSV 的「原文例句」必须非空——管线由
+   `ai_polish.py` 阶段保证(无原句的词由模型生成例句);`validate` 对违反者非零退出。
 
 ## 发音模块约定(gen_audio.py / cards.py / tts_paths.py)
 
@@ -77,7 +79,8 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
 - **自动播放由模板 JS 实现**(make_anki_template.py 的 autoplay_script):qfmt 播第一个 sound(单词),
   afmt 播最后一个(例句,例句无音时回退单词);桌面端点 `.replay-button`、移动端兜底 `audio.play()`,
   失败静默。重导模板 apkg 即对所有卡生效(**无需重导卡片**);要关掉就删模板里两段 `<script>`
-- collection.media 自动定位:单 Anki 配置直接拷;多配置需 `--media-dir`;`--no-copy` 只生成
+- collection.media 自动定位:多 Anki 配置时**全部拷贝**(媒体按文件名索引,多拷无害;
+  2026-08-31 修复多配置下音频静默不拷的坑);`--media-dir` 手动指定;`--no-copy` 只生成
 - 用 `--list-voices`(或 `uv run python -c "import asyncio,edge_tts;print(sorted(x['ShortName'] for x in asyncio.run(edge_tts.list_voices()) if x['ShortName'].startswith('en-GB')))"`)查看可用英音
 - 语音速查(edge-tts 免费神经语音,当前默认 `en-GB-SoniaNeural` 英音女声):
   - 英音:`en-GB-SoniaNeural`(女·默认)、`en-GB-LibbyNeural`(女·活泼)、`en-GB-MaisieNeural`(少女)、`en-GB-RyanNeural`(男)、`en-GB-ThomasNeural`(男·低沉)
@@ -85,37 +88,58 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
 - 换发音人:文件名不含 voice,`--force` 覆盖同名 mp3 即为整库换音,卡片 [sound:] 无需重导
 - 全量语音约 322 个(含日/德/西等),未来日语书可复用(`ja-JP-NanamiNeural` 等)
 
+## AI 润色模块(ai_polish.py,一键管线的 polish 阶段)
+
+- 扫描 raw 中**缺 cn_mean 或缺 sent** 的词批量调模型:有原句→生成中文翻译;无原句→
+  生成贴合时代的英文例句(ai_en)+翻译。产物 `work/polish_ai_<书>_ch<NN>.json`
+  (与手工润色 JSON 同构,apply --polish/--ai-en 直接消费)
+- 断点安全:已补齐的词跳过;失败记 `polish_ai_<书>_failed.json`。`run.py` 的 polish
+  阶段自动调用它 —— 这是「例句齐全」不变式的源头保证
+- provider/并发/重试约定与 ai_explain.py 完全一致(直接复用其 Provider)
+
 ## AI 解析模块(ai_explain.py,可选旁路)
 
 - 对 raw CSV 中已润色词批量生成 `ai_analysis`(三段式整句解析:逐项列表 → 整句解读 → 文化点)
   与 `memo`(画面感词义钩子);**缺 key/不想用时管线照跑不出解析,不阻塞**
+- **生成端结构化(2026-08-31 起)**:模型只产出 JSON 字段
+  `items[{seg,note,words[{w,note}]}] / reading / culture / memo`(纯内容、零排版),
+  排版文本由 `compose_analysis` 本地确定性拼装,词身份标注(目标词/超纲词)由本地
+  lemma 规则(`hard_words.lemma_of` + `hard_words_in`)判定 —— 格式在源头即唯一;
+  结构不合法(缺字段/回退自由文本)的词直接判失败走重试,不信任任何自由排版。
+  cards.py 的渲染归一器保留,仅作手改 JSON / 历史数据兜底
 - 三接入点(`--provider`):`claude-cli`(**默认**,本机 Claude Code `claude -p` headless,零配置零 key)/
-  `anthropic`(`ANTHROPIC_API_KEY`)/ `openai`(任意 OpenAI 兼容端点,`OPENAI_BASE_URL`+`OPENAI_API_KEY`)
+  `anthropic`(`ANTHROPIC_API_KEY`;支持 `ANTHROPIC_BASE_URL`/`--base-url` 中转网关,自建代理
+  走 Anthropic 协议)/ `openai`(任意 OpenAI 兼容端点,`OPENAI_BASE_URL`+`OPENAI_API_KEY`)
 - **批处理 `--batch-size`(默认 6 词/批)**:一次调用解析多个词,冷启动/请求开销均摊;
   批内个别词失败自动回退单词 prompt 重试;**多章并发 `--workers`(默认 4)**:各章产物文件
   独立、天然无冲突,可并行跑;`--workers 1` 关闭并发
 - 环境变量(全可选;key 只读环境变量不落盘,`--api-key/--base-url/--model` 可覆盖):
-  - `ANTHROPIC_API_KEY` / `ANTHROPIC_MODEL`(anthropic provider)
+  - `ANTHROPIC_API_KEY` / `ANTHROPIC_BASE_URL` / `ANTHROPIC_MODEL`(anthropic provider)
   - `OPENAI_API_KEY` / `OPENAI_BASE_URL` / `OPENAI_MODEL`(openai;模型示例 gpt-4o-mini /
     deepseek-chat / qwen3)
   - BASE_URL 模板:DeepSeek `https://api.deepseek.com/v1` /
     Gemini `https://generativelanguage.googleapis.com/v1beta/openai/`(key=GEMINI_API_KEY)/
     Ollama `http://localhost:11434/v1`(本地免 key,留空即可)/ LM Studio `http://localhost:1234/v1`
+- `--clear` 重生成前清场(不调用模型):产物 JSON 备份到 `work/_old_format_<日期>/`,
+  并清空单词 raw 的 ai_analysis/memo 两列(润色列与表达 raw 不动)→ 随后正常跑生成即全量重生成
 - `--dry-run` 只预览批次规划不调用任何模型;`--limit N` 每章限 N 词试跑;失败词自动重试
-  (≤3 次)后记入 `ai_explain_<book>_failed.json`(`--verbose` 强制重试)
+  (≤3 次)后记入 `ai_explain_<book>_failed.json`(`--verbose` 强制重试并打印失败原因:
+  网关 401/500、模型无权限等不再黑盒);表达卡 raw(`_phrase_raw.csv`)不在扫描范围
+  (解析风格归 `ai_pick_phrases`)
 - 产物 `work/ai_explain_<book>_ch<NN>.json`(**可手改**,改完重跑 apply 即生效)/
   `ai_explain_<book>_failed.json`;断点:已生成词自动跳过
 - **Markdown 加粗转换**:模型输出里的 `**x**`(Anki 不渲染 Markdown,星号裸露)由
-  ai_explain/apply_polish 统一转 `<b>x</b>`,cards.py 转义后仅白名单还原该标签为真加粗,
+  ai_explain(_clean)/apply_polish 统一转 `<b>x</b>`,cards.py 转义后仅白名单还原该标签为真加粗,
   其余 HTML 一律转义(防注入);手改 JSON 时直接写 `<b>` 或 `**` 均可
-- **解析排版约定**(prompt 硬约束 + cards.py 渲染强收敛双保险):ai_analysis 段首行固定
-  `1. 逐项解析 / 2. 整句解读 / 3. 文化点`(逐字、独立成行);逐项解析条目行首
-  `N. **成分**:讲解`,**条目内拆词讲解另起一行、行首 `- `**,被讲解词统一标注身份——
-  词名后括号 `(目标词)` 或 `(超纲词)`,普通词不标。cards.py 渲染时把模型的各种自由发挥
-  全部收敛为统一版式(2026-08-31 起历史格式也兜住):段首行容忍 `1、/一、/#/【】/**` 修饰、
-  行内 `# 段名#` 拼接自动拆段、段首行缺失自动补、段名按固定顺序重编号;条目
-  `N./N.M/①/(1)/圆点` → `• `(区内有编号条目时圆点行即词级 `– `);行首成分自动加粗、
-  `——` 分隔归一为 `:`;身份标记上色(`(目标词)` 红 / `(超纲词)` 绿,需重导 2026-08-31
+- **解析排版约定**(源头结构化拼装 + cards.py 渲染收敛兜底):ai_analysis 段首行固定
+  `1. 逐项解析 / 2. 整句解读 / 3. 文化点`;逐项解析条目行首
+  `• **成分**:讲解`,**条目内拆词讲解另起一行、行首 `– `**,被讲解词统一标注身份——
+  词名后括号 `(目标词)` 或 `(超纲词)`,普通词不标。cards.py 渲染时仍把自由发挥
+  全部收敛为统一版式(2026-08-31 起历史格式也兜住):段首行容忍 `1、/一、/#/【】/「」/**`
+  修饰与 `(注释)` 后缀、行内 `# 段名#` 拼接自动拆段、段首行缺失自动补、段名按固定顺序
+  重编号;条目 `N./N.M/①/(1)/圆点` → `• `(区内有编号条目时圆点行即词级 `– `);行首成分
+  自动加粗、`——` 分隔归一为 `:`;单行分号连排条目按 `；+英文词` 拆分;整句解读/文化点内的
+  `①②` 枚举段转圆点;身份标记上色(`(目标词)` 红 / `(超纲词)` 绿,需重导 2026-08-31
   后的模板 apkg);换行 → `<br>`。纯文本(memo/表达卡讲解)直通不加工。
   手改 JSON 按上述格式写最省心,写歪了渲染也会兜住
 - 接入管线:`uv run python scripts/ai_explain.py --book <b> --workers 4 --batch-size 6` →
@@ -150,8 +174,8 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
   → 生成/重写 `raw/chapter_XX_phrase_raw.csv`(与单词 raw 同 20 列表头;word=表达短语,
   pos=`phrase`,**音标留空**,CEFR=pipeline 算的**块内最高级**,例证句/频次从候选补)→
   `uv run python scripts/cards.py --book <b>`(表达卡排同章 TSV 最前)
-  统一入口: `uv run python scripts/run.py --book <b> --phrases`(只出候选)/ 
-  `--phrases --phrase-picked 'work/phrases_picked_*.json'`(候选→合并→cards→annotate→report→validate)
+  统一入口(2026-08-31 起): `uv run python scripts/run.py --book <b> --stage phrases`(候选+AI 精选,
+  只挑有润色数据的章)/ `run.py --book <b> --chapters 1-5` 一键全流程已含表达链路
 - **表达卡渲染约定**:多词短语**无词级音频**;例句整短语高亮 `<b class="hl">`(按候选
   表面形逐词展开规则屈折匹配,见 wordforms.phrase_regex —— 例证句即原句,表面形即可命中,
   不做跨词换形如 made→making);不标超纲词 hard;句级音频照常查缓存
@@ -191,8 +215,11 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
 |---|---|
 | 新书转换(EPUB→MD) | `uv run --with markitdown python scripts/epub_to_md.py --epub "data/books/<书>.epub" --book <书名>` |
 | 新书专名扫描 | `uv run python scripts/scan_proper.py --book <书名> --write`(确认后去注释;或 `ai_pick_proper.py` AI 裁决) |
-| 新书全流程(已润色) | `uv run python scripts/run.py --book <书名> --polish <json> --audio` |
+| **一键全流程(推荐)** | `uv run python scripts/run.py --book <书名> --audio` —— pipeline→AI润色补句→表达精选→例句解析→合并→发音→卡片→标注→报告→校验 |
+| 部分章跑(测试/分批) | `uv run python scripts/run.py --book <书名> --chapters 1-5 --audio`(模型阶段断点安全,重复跑不重复花钱) |
+| 旧·全流程(手动润色文件) | `uv run python scripts/run.py --book <书名> --polish <json> --audio`(给了 --polish 就跳过 AI 润色阶段) |
 | 批量生成 AI 例句解析 | `uv run python scripts/ai_explain.py --book <书名> --workers 4 --batch-size 6` → `uv run python scripts/apply_polish.py --book <书名> --explain work/ai_explain_<书名>_ch01.json` → `uv run python scripts/cards.py --book <书名>` |
+| 全量重生成 AI 解析(结构化新格式) | 先 `ai_explain.py --book <书名> --clear`(清场,不花钱)→ 再按上一行全流程跑 |
 | 补全书发音(已出卡的书) | `uv run python scripts/gen_audio.py --book <书名>` → `uv run python scripts/cards.py --book <书名>` |
 | 只重做某章卡片 | `uv run python scripts/cards.py --book <书名> --chapter 1` |
 | 换发音人 | `uv run python scripts/gen_audio.py --book <书名> --voice en-GB-RyanNeural --force` → 重跑 cards |

@@ -524,19 +524,41 @@ def main():
         raw_dir = os.path.join(out_dir, 'raw')
         os.makedirs(raw_dir, exist_ok=True)
         out_csv = os.path.join(raw_dir, f'chapter_{ch["num"]:02d}_raw.csv')
+        # 润色资产保留:重跑 pipeline 重写 raw 时,按 word 继承旧文件的
+        # cn_mean/cn_sent/ai/ai_analysis/memo(润色/补句/AI 解析是花钱生成的资产,
+        # 词选重算不清账;新词照常留空等 polish 阶段填充)
+        carried = {}
+        if os.path.exists(out_csv):
+            with open(out_csv, encoding='utf-8-sig', newline='') as f:
+                for old in csv.DictReader(f):
+                    kept = {k: old[k] for k in ('cn_mean', 'cn_sent', 'ai',
+                                                'ai_analysis', 'memo')
+                            if old.get(k)}
+                    if kept:
+                        carried[old['word']] = kept
+        for row in rows:
+            row.update(carried.get(row['word'], {}))
+        # 字段序恒定含润色 5 列(DictWriter 对缺键写空值),有新键再追加,防多键报错
+        fieldnames = ['word', 'cefr', 'pos', 'score', 'freq_ch', 'freq_book',
+                      'phon', 'trans', 'tags', 'bnc', 'frq', 'sent', 'sent_off',
+                      'chapter', 'date', 'ai', 'cn_mean', 'cn_sent',
+                      'ai_analysis', 'memo']
+        if rows:
+            for row in rows:
+                for k in row:
+                    if k not in fieldnames:
+                        fieldnames.append(k)
         # utf-8-sig:带 BOM,Excel 双击即可正确显示中文(无 BOM 会被当 GBK 解析)
         with open(out_csv, 'w', encoding='utf-8-sig', newline='') as f:
-            writer = csv.DictWriter(f, fieldnames=list(rows[0].keys()) if rows else
-                                    ['word', 'cefr', 'pos', 'score', 'freq_ch', 'freq_book',
-                                     'phon', 'trans', 'tags', 'bnc', 'frq', 'sent', 'sent_off',
-                                     'chapter', 'date'],
-                                    lineterminator='\n')
+            writer = csv.DictWriter(f, fieldnames=fieldnames, lineterminator='\n')
             writer.writeheader()
             writer.writerows(rows)
+        n_kept = sum(1 for row in rows if row.get('cn_mean'))
         for c in picked:
             all_selected[c['word']] = all_selected.get(c['word'], 0) + 1
         print(f'ch {ch["num"]}: {len(cands)} cands -> {len(picked)} picked '
-              f'(b1={n_b1} toe={n_toe})', flush=True)
+              f'(b1={n_b1} toe={n_toe})'
+              + (f',继承润色 {n_kept}' if n_kept else ''), flush=True)
 
     with open(os.path.join(out_dir, 'meta.json'), 'w', encoding='utf-8') as f:
         json.dump({

@@ -24,3 +24,8 @@ data/books/_md/*_raw.md
 
 # ---- AI 裁决中间缓存(ai_pick_proper.py 断点,可重跑恢复) ----
 data/output/*/work/proper_ai_*.json
+
+# ---- 重建期备份(旧产物快照,确认后可删) ----
+data/output/_backup_*/
+# ---- 手工打包的产物压缩包 ----
+data/output.zip

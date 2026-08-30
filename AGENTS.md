@@ -13,7 +13,11 @@
 4. AI 补句必须标注;发音 mp3 由 gen_audio.py 生成(缓存不入 git)。
 5. 不主动提交 git。
 6. 统一入口:`uv run python scripts/run.py --book <书名> [--audio] [--stage ...]`,单脚本可独立直调。
-7. 脚本默认零模型调用;`ai_explain.py` 是**可选旁路**(provider/key 见 README.agent.md),缺 key 管线照跑。
+7. 脚本默认零模型调用;`ai_polish.py`/`ai_explain.py`/`ai_pick_phrases.py` 是模型阶段
+   (run.py 一键管线自动调用,断点安全、失败词记 failed.json),缺 key 管线照跑。
 8. 书内专名按书外置 `data/books/proper_names/<book>.txt`(pipeline/hard_words/validate 共用);
    缺文件=不排除专名。新书 EPUB 先经 `epub_to_md.py` 转换、`scan_proper.py` 扫描确认专名表,
    再跑 pipeline(2026-08-31 起,不再改 pipeline.py 里的人物表)。
+9. **例句齐全**:要出卡的词(有润色)最终 TSV 的「原文例句」必须非空——由 run.py 的
+   polish 阶段(ai_polish.py,无原句时模型生成例句)保证;validate 对违反者非零退出。
+   pipeline 重生成 raw 时必须继承旧文件的润色/解析列(2026-08-31 起内置)。

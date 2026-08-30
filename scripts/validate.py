@@ -38,12 +38,25 @@ def _card_expected(rows, known):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--book', required=True)
+    ap.add_argument('--chapters', default='',
+                    help='只校验指定章(如 "1-5" / "1,3-5";默认全部)—— 分批/测试跑时圈定范围')
     ap.add_argument('--verbose', action='store_true', help='列出每个缺口词/孤儿词明细')
     ap.add_argument('--prune-orphans', action='store_true',
                     help='删除孤儿词(--yes 确认才真正删除;legacy 历史词不删)')
     ap.add_argument('--yes', action='store_true',
                     help='配合 --prune-orphans:跳过交互确认直接删除')
     args = ap.parse_args()
+
+    scope = set()
+    for part in (args.chapters or '').replace('，', ',').split(','):
+        part = part.strip()
+        if not part:
+            continue
+        if '-' in part:
+            a, b = part.split('-', 1)
+            scope.update(range(int(a), int(b) + 1))
+        else:
+            scope.add(int(part))
 
     out_dir = os.path.join(BASE, 'data', 'output', args.book)
     raw_dir = os.path.join(out_dir, 'raw')
@@ -65,6 +78,8 @@ def main():
             continue
         is_phrase = fn.endswith('_phrase_raw.csv')
         ch = int(fn.split('_')[1])
+        if scope and ch not in scope:
+            continue
         with open(os.path.join(raw_dir, fn), 'rb') as f:
             if not f.read(3).startswith(BOM):
                 problems.append(f'ch{ch}: {fn} raw CSV 缺 BOM(不变式 1)')
@@ -79,7 +94,9 @@ def main():
         n_polished = _card_expected(rows, known)
         polished_ch[ch] = n_polished
         no_mean = [r['word'] for r in rows if not r.get('cn_mean')]
-        no_sent = [r['word'] for r in rows if not r.get('sent')]
+        # 例句齐全门禁(不变式 8):要出卡的词(已润色)例句必须补齐;
+        # 纯未润色章的缺例句不算缺口(还没轮到它,由 polish 阶段负责)
+        no_sent = [r['word'] for r in rows if r.get('cn_mean') and not r.get('sent')]
         flag = ''
         if len(rows) < 15:
             problems.append(f'ch{ch}: 选词仅 {len(rows)} 个(<15)')
@@ -123,7 +140,9 @@ def main():
                   + (' ...' if len(leak) > 8 else ''), flush=True)
 
     # --- 2. anki TSV 检查:按章号并集(单词 raw ∪ 表达 raw)驱动,不会漏纯表达章 ---
-    for ch in sorted(set(raw_words_ch) | phrase_chs):
+    for ch in sorted((set(raw_words_ch) | phrase_chs)):
+        if scope and ch not in scope:
+            continue
         tsv = os.path.join(anki_dir, f'chapter_{ch:02d}_anki.tsv')
         n_phrase = 0
         pfn = os.path.join(raw_dir, f'chapter_{ch:02d}_phrase_raw.csv')
