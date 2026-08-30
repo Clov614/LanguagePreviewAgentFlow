@@ -1,19 +1,176 @@
-﻿word,cefr,pos,score,freq_ch,freq_book,phon,trans,tags,bnc,frq,sids,tids,sent,sent_off,cn_mean,cn_sent,ai
-beggar,c1,,2.5733,2,2,'begә,"n. 乞丐 / vt. 使贫穷, 使成乞丐",四六,11674,9846,"[59, 61]","[1, 14]","I must say, I like to serve a decayed gentleman better than a blarnerying beggar.",74,n. 乞丐　vt. 使沦为乞丐（beggar description 无法形容）,“我得说，我宁愿服侍一位破落的绅士，也不愿伺候一个爱吹牛的乞丐。”,
-malicious,c1,,2.5133,1,2,mә'liʃәs,"a. 怀恶意的, 恶毒的",六托宝,13112,11330,[30],[18],""" Amy caught herself up short as the words escaped her, and looked at her husband, who replied, with malicious gravity . . .",101,a. 恶意的，恶毒的（with malicious glee 不怀好意地）,艾米话一出口便赶紧收住，看了看丈夫，而他带着一脸恶作剧般的坏笑答道……,
-zeal,c1,,2.5133,1,2,zi:l,"n. 热心, 热衷, 热诚",研四六托,10184,11139,[70],[51],He went at the work with a zeal that surprised everyone.,-1,n. 热忱，热情（with zeal 满腔热忱）,他干起活来那股热劲儿让所有人都惊讶。,1
-philanthropic,c1,,2.4867,1,1,fi'lænθrәpic,"a. 慈善(事业)的, 博爱的, 乐善好施的",六宝,15267,20252,[70],[50],A philanthropic old lady endowed the little school.,-1,a. 慈善的，乐善好施的,一位乐善好施的老太太资助了这所小学。,1
-accumulate,c1,verb,2.4867,1,1,ә'kju:mjuleit,"v. 积聚, 堆积",高研四六托雅宝,5083,4997,[71],[15],"""Rich people have no right to sit down and enjoy themselves, or let their money accumulate for others to waste.",80,v. 积累，积聚（let money accumulate 让钱堆着）,“有钱人没有权利坐着享清福，也没有权利让钱白白堆着，留给别人去糟蹋。”,
-safely,b2,,2.45,1,9,'seifli,"adv. 安全地, 确实地",四六,4266,3916,[24],[22],"""Yes, and I think it will last,"" added Mrs. March, with the restful expression of a pilot who has brought a ship safely into port.",113,"adv. 安全地,安然地","“会的,而且我想它会持久,”马奇太太补了一句,脸上带着把船安然驶进港口的领航员那种如释重负的神情。",
-steady,b2,adjective,2.4233,1,8,'stedi,"a. 稳定的, 不动摇的, 沉着的, 稳固的, 坚定的, 经常的 / vt. 使稳定, 使坚定 / vi. 变为沉着, 稳固",高研四六托雅,2914,2922,[17],[9],I need something of the sort to keep me steady.,40,a. 稳定的；稳重的（keep me steady 让我沉住气）,“我需要点这类东西，好让自己稳住心神。”,
-shock,b2,noun,2.4233,1,8,ʃɒk,"n. 震动, 冲突, 震惊, 冲击, 突击, 禾束堆, 休克, 长毛狗 / vt. 使震动, 使休克, 使受电击, 震惊得 / vi. 震动, 吓人 / a. 蓬乱浓密的",高研四六托雅,2298,1998,[22],[5],The news came as a great shock to the whole family.,-1,n. 震惊；冲击（a shock to）　v. 使震惊,这个消息让全家都大为震惊。,1
-literary,b2,adjective,2.4233,1,8,'litәrәri,"a. 文学的, 文艺的, 精通文学的",高研四六托,2700,2512,[54],[8],"She won't think so when she has a literary husband, and a dozen little professors and professorins to support.",34,a. 文学的，文人的（a literary husband 文人丈夫）,“等她有了个文人的丈夫，还有一小群要养的小教授们，她就不会这么想了。”,
-debt,b2,noun,2.4233,1,8,det,"n. 债务, 罪过",高研四六托雅,1871,1320,[56],[17],"I owe Jo for a part of my education, and she believes in people's paying their honest debts, so I'll get round her in that way."" ""How delightful it is to be able to help others, isn't it?",86,"n. 债务,人情债","我的教育有乔的一份功劳,而她又相信人要还清正当的欠账,所以我就要这样打动她。” “能帮助别人多让人高兴啊,不是吗?",
-admiration,b2,,2.4067,1,13,.ædmә'reiʃәn,"n. 赞赏, 钦佩, 引人赞赏的对象",六托,6964,5612,[62],[26],"I suppose it's wrong, but I do, though it is harder."" ""Because it takes a gentleman to do it,"" added the other member of the domestic admiration society.",134,n. 钦佩，赞赏（in admiration 赞叹地）,“我觉得这样不对，可我就是佩服他，虽然更难。”“因为那要一个正人君子才做得到。”另一位也附和道。,
-fare,b2,noun,2.3967,1,7,fєә,"n. 费用, 旅客, 食物 / vi. 进展, 进步, 经营, 过活",高研四六雅,4776,4481,[59],[10],"Out-and-out beggars get taken care of, but poor gentle folks fare badly, because they won't ask, and people don't dare to offer charity.",61,v. 过日子，进展（fare badly 境遇不好）　n. 票价；饮食,彻头彻尾的乞丐倒有人照应，可怜的体面人却境遇凄惨，因为他们不肯开口求人，而人们又不会主动……,
-occasional,b2,adjective,2.37,1,6,ә'keiʒәnl,"a. 偶然的, 临时的",研四六托,3511,2924,[7],[15],"""Exactly, for Amy keeps me pointing due west most of the time, with only an occasional whiffle round to the south, and I haven't had an easterly spell since I was married.",76,a. 偶尔的，间或的（an occasional 偶尔一次的）,“正是如此，艾米总让我朝正西走，只是偶尔打个转儿，偏到南边去……”,
-mansion,b2,,2.3433,1,5,'mænʃәn,"n. 大厦, 宅邸",六托雅宝,4761,6435,[19],[21],The great mansion stood empty at the end of the avenue.,-1,n. 大厦，宅邸（the great mansion 大宅）,大道尽头，那座大宅空置着。,1
-gravity,b2,noun,2.3433,1,5,'græviti,"n. 地心引力, 重力",高研四六托雅宝,3956,4956,[30],[19],""" Amy caught herself up short as the words escaped her, and looked at her husband, who replied, with malicious gravity . . .",111,n. 严肃，庄重（with gravity 一本正经地）；重力,艾米话一出口便赶紧收住，看了看丈夫，而他一本正经地坏笑着答道……,
-proof,b2,noun,2.3433,1,5,pru:f,"n. 证据, 证明, 试验, 检验, 考验 / a. 不能透入的, 证明用的, 防...的, 耐...的 / vt. 检验, 试验, 校对, 使不被穿透",研四六托,2865,2743,[35],[40],Her blushes were proof enough of her happiness.,-1,"n. 证据,证明","她脸上的红晕,便是她幸福的明证。",1
-interfere,b2,verb,2.3433,1,5,.intә'fiә,"vi. 妨碍, 冲突, 干涉, 抵触",研四六托,4424,3769,[55],[2],"We won't interfere now, but watch our chance, and do them a good turn in spite of themselves.",9,v. 干涉，干预（interfere with 妨碍）,“我们现在不插手，只留意机会，到时候帮他们一把，哪怕他们自己不领情。”,
-cloak,b2,,2.3267,1,10,klәuk,"n. 斗蓬, 大氅, 掩护 / vt. 遮掩, 隐匿, 使披斗蓬",研四六,8441,6563,[13],[16],"""What are you going to do with yourselves after you get settled?"" asked Jo, buttoning Amy's cloak as she used to button her pinafores.",92,n. 斗篷，外套　v. 掩盖，掩饰（under the cloak of）,“安顿下来以后，你们打算做些什么？”乔问道，一边照旧替艾米扣好斗篷……,
+﻿word,cefr,pos,score,freq_ch,freq_book,phon,trans,tags,bnc,frq,sids,tids,sent,sent_off,cn_mean,cn_sent,ai,ai_analysis,memo
+beggar,c1,,2.5733,2,2,'begә,"n. 乞丐 / vt. 使贫穷, 使成乞丐",四六,11674,9846,"[59, 61]","[1, 14]","I must say, I like to serve a decayed gentleman better than a blarnerying beggar.",74,n. 乞丐　vt. 使沦为乞丐（beggar description 无法形容）,“我得说，我宁愿服侍一位破落的绅士，也不愿伺候一个爱吹牛的乞丐。”,,"1. 逐项解析：
+1. “I must say”——独立插入语，意为“我得说／说句实在话”，用来引出说话人的主观态度，起强调与铺垫作用，口语感强。
+2. “I like to serve a decayed gentleman”——主句主谓宾结构：I（主语）＋ like to serve（谓语，like 加不定式表“喜欢做某事”）＋ a decayed gentleman（宾语）。serve 此处意为“服侍、伺候”，而非“服务”；decayed 是 decay 的过去分词作定语，本义“腐烂的”，引申为“破落的、家道中落的”，指曾经显赫、如今衰败的绅士。
+3. “better than”——比较结构，like A better than B 意为“比起 B 更喜欢 A”，than 后接与 A 平行的名词短语。
+4. “a blarnerying beggar”——blarnerying 是 blarney 的现在分词形式，blarney 意为“花言巧语、吹牛拍马”，源自爱尔兰传说中能使人巧舌如簧的布拉尼石，在句中作定语形容 beggar，故译文作“爱吹牛的”；beggar 即“乞丐”。它与前文的“破落绅士”形成鲜明的对照。
+2. 整句解读：
+整句是说话人表明自己的喜好立场：比起伺候一位破落绅士，更不愿伺候一个爱吹牛的乞丐。字面上在比较两类“服务对象”，实则传达出某种价值观——宁可善待落难的体面人，也不愿奉承夸夸其谈的人。语气带着戏谑与鄙夷，“I must say”让这句话像聊天时脱口而出的真心话；译成“我得说，我宁愿……也不愿……”既保留了这种直白，又带着几分揶揄的口吻。
+3. 文化点：
+本句出自《小妇人》，19 世纪英美社会阶层分明，gentleman 与 beggar 分属社会两极；说话人故意将二者并置对比，暗含当时人对体面与气度的看重。句中 serve 一词也点出仆人—主人的时代关系背景。",想象他蹲在街角，破碗里搁着几枚铜板，见人便堆起热络的笑——可笑脸再殷勤，也藏不住乞讨的卑微。
+malicious,c1,,2.5133,1,2,mә'liʃәs,"a. 怀恶意的, 恶毒的",六托宝,13112,11330,[30],[18],""" Amy caught herself up short as the words escaped her, and looked at her husband, who replied, with malicious gravity . . .",101,a. 恶意的，恶毒的（with malicious glee 不怀好意地）,艾米话一出口便赶紧收住，看了看丈夫，而他带着一脸恶作剧般的坏笑答道……,,"1. 逐项解析：
+1. “caught herself up short”——固定搭配 catch oneself up short，意为“猛然打住、急急收住”，short 作副词表“突然地”，即话一出口她连忙刹住。
+2. “as the words escaped her”——as 引导时间状语从句，意为“当……的时候”；escape 本义“逃离”，此处 the words escaped her 意为“话从她嘴里溜了出来”，生动刻画了失言的那一刻。
+3. “looked at her husband”——look at 意为“看着”，与前文 caught herself up 构成连续动作。
+4. “who replied”——who 引导非限制性定语从句，补充说明丈夫的反应，修饰 her husband。
+5. “with malicious gravity”——with 加名词短语作伴随状语，表说话时的神态；malicious 意为“恶意的、恶作剧般的”，gravity 意为“严肃、庄重”，二者并置构成反差——用一脸正经掩住满心促狭，故译文作“一脸恶作剧般的坏笑”。
+2. 整句解读：
+艾米脱口而出说了不该说的话，刚出口就赶紧收住，随即看向丈夫，而丈夫偏偏摆出一副“严肃中带恶意”的神情作答。全句写的是夫妻间一个微妙的回合：妻子失言窘迫、丈夫却借机捉弄。从句层层嵌套，把神态与动作交织在一起，而 malicious gravity 才是全句的戏眼；译文用“话一出口便赶紧收住”“带着一脸……坏笑”还原了这一冷与热、正与谐的反差。
+3. 文化点：
+这是 19 世纪社交礼貌小说中常见的场景——在那个极重言辞得体的年代，失言是令人脸红的社交事故；丈夫以恶意调侃回应，既显出夫妇间的亲密，也带出一种轻薄的捉弄意味。",想象丈夫西装笔挺、一本正经地端着茶杯，可杯沿后面那双眼睛却闪着促狭的光——一本正经面孔下的坏笑。
+zeal,c1,,2.5133,1,2,zi:l,"n. 热心, 热衷, 热诚",研四六托,10184,11139,[70],[51],He went at the work with a zeal that surprised everyone.,-1,n. 热忱，热情（with zeal 满腔热忱）,他干起活来那股热劲儿让所有人都惊讶。,1,"1. 逐项解析：
+1. “He went at the work”——go at 是动词短语，意为“扑上去干、全力以赴地投入”，比 work on 多了一层全身心扑向目标的动作画面。
+2. “with a zeal”——with 加名词作方式状语，意为“带着一股热忱”；zeal 指“热忱、热情”，是那种为某事燃烧般的热心。
+3. “that surprised everyone”——that 引导定语从句修饰 zeal，补充说明这股热情大到让所有人惊讶的程度，起强调与收束作用。
+2. 整句解读：
+句意是：他干起活来那股热劲儿，让所有人都吃了一惊。结构呈“扑上去干＋带热忱＋热忱之大连大家也意外”的三段递进，go at 与 with a zeal 叠用把“埋头苦干”写得可感可触，surprised everyone 又把这份热情推到极致。译文“干起活来那股热劲儿让所有人都惊讶”中的“热劲儿”传神地体现了 zeal 的炽烈。
+3. 文化点：
+在 19 世纪“勤勉即美德”的语境下，zeal 本是褒义，指认真投入的美德；但这个词也常带一丝“投入过甚、近乎狂热”的余味。此处搭配 surprised everyone，更偏向“热情高得出乎意料”，而非贬义的狂热。",想象他袖子卷到肘弯、额角发亮，一头扎进活计里，周围人面面相觑：哪来这么大的劲头？
+philanthropic,c1,,2.4867,1,1,fi'lænθrәpic,"a. 慈善(事业)的, 博爱的, 乐善好施的",六宝,15267,20252,[70],[50],A philanthropic old lady endowed the little school.,-1,a. 慈善的，乐善好施的,一位乐善好施的老太太资助了这所小学。,1,"1. 逐项解析：
+1. “A philanthropic old lady”——名词短语：A（冠词）＋ philanthropic（定语，表“慈善的、乐善好施的”）＋ old（定语）＋ lady（中心词）。philanthropic 由 phil-（爱）与 anthrop-（人类）构成，字面即“爱人类、乐善好施”。
+2. “endowed”——endow 的过去式，意为“捐赠、资助”，尤指出资办学、设立基金这类长期性资助，也可引申为“赋予（天分、才能）”；注意其重音落在第二音节。
+3. “the little school”——little 不仅指规模小，还带有亲切、怜爱的语气，指的是一所规模不大的小学校。
+2. 整句解读：
+句意为：一位乐善好施的老太太资助了那所小学校。全句无从句，是典型的“定语＋主语＋谓语＋宾语”结构，却靠 philanthropic、endow、little 三个词各自的色彩，勾勒出慷慨仁厚的长者与一所被善意托举的小校。译文以“资助”译 endow，准确而自然。
+3. 文化点：
+19 世纪英美一带私立办学普遍，乡村小学校常依靠乡绅或富户捐赠维持，慈善（philanthropy）亦是当时“体面人”标榜的美德；用 old lady 而非简单的 lady，意在凸显年长者的资历与德高望重。",想象银发老太太在村口学堂边签下支票，孩子们踮脚凑在窗沿往里瞧，阳光正好洒在她慈和的脸上。
+accumulate,c1,verb,2.4867,1,1,ә'kju:mjuleit,"v. 积聚, 堆积",高研四六托雅宝,5083,4997,[71],[15],"""Rich people have no right to sit down and enjoy themselves, or let their money accumulate for others to waste.",80,v. 积累，积聚（let money accumulate 让钱堆着）,“有钱人没有权利坐着享清福，也没有权利让钱白白堆着，留给别人去糟蹋。”,,"1. 逐项解析：
+1. “Rich people have no right to sit down”——主语 Rich people（有钱人）＋ 谓语 have no right to（没有权利去做某事）＋sit down 本义“坐下来”，此处喻指“安享清福、无所事事”。
+2. “and enjoy themselves”——enjoy oneself 为固定搭配，意为“过得快活、自得其乐”，与 sit down 并列，同指有钱人安享逸乐。
+3. “or let their money accumulate”——or 连接另一并列项，意为“或者”；let 加宾语加动词原形为使役结构，意为“任由、让……处于某种状态”；money accumulate 即“让钱一直堆着、积压不动”。
+4. “for others to waste”——for 加宾语加不定式结构作目的状语，意为“留给别人去浪费、糟蹋”。
+2. 整句解读：
+这是说话人的金钱观宣言：有钱人既没资格坐享其成，也没资格把钱闲置起来，最终留给后人挥霍。全句由两个“have no right to”平行推进，先论“不该享乐”，再论“更不该守财不用”，层层递进；译文以“没有权利……，也没有权利……”成对呈现，铿锵有力，透着告诫意味。
+3. 文化点：
+这类议论带有 19 世纪新教伦理的影子——挣来的钱要用在正道上，坐吃山空与囤积守财都遭人诟病；同时也在批评富人身后纵容子孙坐享其成、挥霍家产的世相。",想象一间地窖里金币堆成小山，落了厚厚一层灰——主人也不来动，仿佛在等别人替他挥霍。
+safely,b2,,2.45,1,9,'seifli,"adv. 安全地, 确实地",四六,4266,3916,[24],[22],"""Yes, and I think it will last,"" added Mrs. March, with the restful expression of a pilot who has brought a ship safely into port.",113,"adv. 安全地,安然地","“会的,而且我想它会持久,”马奇太太补了一句,脸上带着把船安然驶进港口的领航员那种如释重负的神情。",,"1. 逐项解析：
+1. “Yes, and I think it will last” added Mrs. March——句首 yes 表赞同；think 后接宾语从句 it will last，it 指代上文所说的事物（如感情、家庭等），last 意为“持续、长久”；added 意为“补充说道”，主语是 Mrs. March。
+2. “with the restful expression”——with 加名词短语作伴随状语，形容说话时的神态；restful 为本句超纲词，意为“安详的、宁静的、令人放松的”，与 expression（神情）连用，指一种舒展安然的面容。
+3. “of a pilot”——介词 of 表所属，限定前面的 expression，即“一位领航员的那种神情”。
+4. “who has brought a ship safely into port”——who 引导定语从句修饰 pilot；bring 加宾语加 into port 意为“把船驶入港口”；safely 是副词，修饰 brought，意为“安然无恙地”，全句正是靠它点出“历经风浪后平安靠岸”的分量，是整句的落点。
+2. 整句解读：
+马奇太太赞同地说“是的，我想它会持久”，脸上带着的神情，恰如一位刚把船平安领进港口的领航员。比喻是全句的枢纽：把“让一件事安稳长存”比作“将船安全驶入港湾”，restful（安详）与 safely（安然）前后呼应，共同渲染出大功告成后的如释重负与平静满足。译文用“如释重负”与“安然驶进”准确还原了这层意味，语气温和而笃定。
+3. 文化点：
+在英语文学中，领航员／船长把船带进港口是常见的“圆满归航”意象，象征使命完成、平安归来；此句也贴合 19 世纪家庭叙事中母亲身为家庭“舵手”的形象，语带温情。",想象领航员把船稳稳靠上码头，摘下帽子，长长舒出一口气——那口气里全是“安然到家”的味道。
+steady,b2,adjective,2.4233,1,8,'stedi,"a. 稳定的, 不动摇的, 沉着的, 稳固的, 坚定的, 经常的 / vt. 使稳定, 使坚定 / vi. 变为沉着, 稳固",高研四六托雅,2914,2922,[17],[9],I need something of the sort to keep me steady.,40,a. 稳定的；稳重的（keep me steady 让我沉住气）,“我需要点这类东西，好让自己稳住心神。”,,"1. I 是主语代词，指说话人自己。
+2. need 是及物动词，意为「需要」，后接宾语 something of the sort。
+3. something of the sort 是固定搭配，意为「这类东西、诸如此类的东西」，the sort 指「那一种类」，整块作后置定语修饰 something，语境中指代前文提到的某样东西。
+4. to keep me steady 是不定式短语作目的状语，表示「好让我……」。keep 在这里构成 keep + 宾语 + 形容词补足语的使役结构，意为「使……保持在……状态」。
+5. steady 是形容词，本义「稳定的、平稳的」，此处引申为「（心绪）稳住、沉住气」。keep me steady 直译「让我保持稳定」，引申为「让我稳住心神」。
+
+整句解读：全句意为「我需要点这类东西，好让自己稳住心神」。说话人渴望借某样外在的东西支撑自己的情绪或意志，something of the sort 带着一种急需又随意的口吻，仿佛在说只要眼下这类东西就都行。译文把 steady 落实为「稳住心神」，既保留了稳定的本义，又贴合中文表达精神状态的习惯，读来自然口语。
+
+文化点：这句出自 19 世纪小说，当时中上层讲究情感克制与举止得体，人物常在情绪起伏时借助物件或仪式来「稳住自己」。因此 keep me steady 不只指身体站稳，更多是情绪与体面的把持。",想象自己端着一杯热茶，深吸一口气，双手不再发抖——那杯茶就是让你 steady 的那点东西。
+shock,b2,noun,2.4233,1,8,ʃɒk,"n. 震动, 冲突, 震惊, 冲击, 突击, 禾束堆, 休克, 长毛狗 / vt. 使震动, 使休克, 使受电击, 震惊得 / vi. 震动, 吓人 / a. 蓬乱浓密的",高研四六托雅,2298,1998,[22],[5],The news came as a great shock to the whole family.,-1,n. 震惊；冲击（a shock to）　v. 使震惊,这个消息让全家都大为震惊。,1,"1. The news 是名词短语作主语，指前文提到的某个消息。
+2. came 是动词，本义「到来」，此处与 as 连用构成固定句型 come as…，意为「以……的形式到来、令人感到是……」。
+3. as a great shock to the whole family 整体表示「作为一个对全家人的巨大震惊」。a great shock 是核心名词短语，great 加强程度；to the whole family 是介宾短语，表示「对全家人而言」。
+4. shock 是名词，意为「震惊、冲击、打击」，come as a shock to sb. 是常用表达，强调消息带来的冲击感与意外感。它的动词形式 shock 意为「使震惊」，作形容词 shocked 意为「震惊的」。
+
+整句解读：直译为「这个消息作为一次巨大的震惊降临到全家人身上」，通顺的说法就是「这个消息让全家都大为震惊」。come as a shock to sb. 这个句型特别常用，突出消息的冲击力和接收者的意外。译文没有保留「到来」的形态，而是转成「让……震惊」的使动说法，更符合中文的语言习惯；「大为」对应 great 的程度强调，读来笃定而有力。
+
+文化点：在 19 世纪小说里，消息多靠书信或口耳相传送达，传递很慢，一则消息引起的震动因此被格外放大；shock 自带「猛然一击」的生理感，常被用来渲染情节转折处人物强烈的反应。",想象听到消息的一瞬间，手里的茶杯「当」地摔碎在地——那一下猛然一震，就是 shock。
+literary,b2,adjective,2.4233,1,8,'litәrәri,"a. 文学的, 文艺的, 精通文学的",高研四六托,2700,2512,[54],[8],"She won't think so when she has a literary husband, and a dozen little professors and professorins to support.",34,a. 文学的，文人的（a literary husband 文人丈夫）,“等她有了个文人的丈夫，还有一小群要养的小教授们，她就不会这么想了。”,,"1. She won't think so 是主句，so 指代前文里某人「嫁给文人会很美」式的想法，整句意为「她就不会再这么想了」。
+2. when she has a literary husband 是时间状语从句，意为「当她有个文人丈夫时」。
+3. literary 是形容词，源自 literature（文学），意为「文学的、文人的」。a literary husband 指「文人丈夫」，呼应前文语境里对文人丈夫的憧憬。
+4. and a dozen little professors and professorins to support 与前文并列。a dozen 本义「一打、十二个」，口语里常虚指「一小群、好几个」；professors 是「教授们」；professorins（超纲词）是作者用阴性后缀 -in 自造的戏谑词，指「女教授们」，带揶揄色彩；to support 是不定式作后置定语，表示「要供养的」。
+
+整句解读：全句是说「等她真有了个文人丈夫，还要供养一小群小教授们，她就不会想得那么美了」。这是在调侃「嫁给文人的浪漫想象」与「要撑起一家子的现实」之间的落差，语气里带着过来人等着瞧的揶揄。译文把 professors and professorins 打包成「小教授们」，又用「要养」点出经济压力，「就不会这么想了」译得口语化，保留了原句逗趣的口吻。
+
+文化点：19 世纪小说里常有自造词制造俏皮效果。professorins 借类似法语、德语里的阴性后缀 -in 戏仿「女学者」，顺手调侃当时学界男性占主导的圈子；而「文人丈夫 + 一窝小教授」的图景，也暗讽文人家计清贫、书生麻烦多的时代印象。",想象那位文人丈夫长袍上沾着书页香，身后一串戴着小眼镜的「教授们」排着队等他养——这一幕就是 literary 的丈夫和家。
+debt,b2,noun,2.4233,1,8,det,"n. 债务, 罪过",高研四六托雅,1871,1320,[56],[17],"I owe Jo for a part of my education, and she believes in people's paying their honest debts, so I'll get round her in that way."" ""How delightful it is to be able to help others, isn't it?",86,"n. 债务,人情债","我的教育有乔的一份功劳,而她又相信人要还清正当的欠账,所以我就要这样打动她。” “能帮助别人多让人高兴啊,不是吗?",,"1. I owe Jo for a part of my education 是主句，owe sb. for sth. 意为「为某事亏欠某人」。I owe Jo 直译「我欠乔」，for a part of my education 说明欠在何处——我受教育的部分功劳归乔，此处是人情债而非金钱债。
+2. and she believes in people's paying their honest debts 是并列句，believe in… 意为「信奉……」，后接动名词复合结构 people's paying their honest debts，即「人们还清自己正当的欠账」。honest 修饰 debts，指「正当的、光明正大的账」。
+3. so I'll get round her in that way 是结果分句，get round sb. 是地道口语搭配，意为「打动、说服（绕个弯子让某人回心转意）」；in that way 指明手段——利用她也讲「该还就还」这一点。
+4. debt 是名词，本义「债务、欠账」，既可指钱财也可指人情；honest debts 即「该还该清的正账」。
+
+整句解读：说话人盘算着小聪明——我受教育的份儿上有亏于乔，而乔信奉「人要还清正当的欠账」，那我正好借这条原则打动她，让她应承下来。译文把 I owe Jo for a part of my education 化译为「我的教育有乔的一份功劳」，把抽象的人情账说成中文里顺耳的说法；后半句「能帮助别人多让人高兴啊」（其中 delightful 是超纲词，意为「令人愉快的」）由另一人脱口而出，一精明一纯真，形成小小的性格反差。
+
+文化点：19 世纪小说里 debt 常兼指金钱债务与道德责任，「诚实还债」被当作一种美德；用「人情账」去打动人，是那个年代讲礼数又各怀心思的相处方式，句中尤其带着姐妹间心机与温情并存的意味。",想象一张写着「人情」二字的借条，亲手还清的那一刻，心头的石头才真正落地——这就是 honest debts。
+admiration,b2,,2.4067,1,13,.ædmә'reiʃәn,"n. 赞赏, 钦佩, 引人赞赏的对象",六托,6964,5612,[62],[26],"I suppose it's wrong, but I do, though it is harder."" ""Because it takes a gentleman to do it,"" added the other member of the domestic admiration society.",134,n. 钦佩，赞赏（in admiration 赞叹地）,“我觉得这样不对，可我就是佩服他，虽然更难。”“因为那要一个正人君子才做得到。”另一位也附和道。,,"1. I suppose it's wrong, but I do 一句里，do 是代动词，代替前文「敬佩某人」的动作，避免重复；though it is harder 是让步状语，意为「虽然那样更难」。
+2. Because it takes a gentleman to do it 里，it takes sb. to do sth. 是固定句型，意为「做某事需要（具备条件的）某人」；a gentleman 在此译为「正人君子」，do it 回指「做那样难的事」。
+3. added the other member of the domestic admiration society 是叙述插入语，added 意为「（补充地）说」。domestic 意为「家庭的」，admiration 是名词「钦佩、赞赏」，society 意为「社团、协会」；the domestic admiration society 是把「一家人互相敬佩」戏称为「家庭钦慕会」，用煞有介事的官样名词制造幽默。
+
+整句解读：两人一唱一和评说某人：一个说「我承认这样不对，可我就是佩服他，虽然更难」，另一个接话「因为那得有个正人君子才做得到」。译文把 though it is harder 放在末尾，语气口语化，显出人物斟酌的样子；gentleman 译为「正人君子」，贴切传达其中的道德分量。叙述者最后抛出的 the domestic admiration society，是家人自嘲式地把互相抬举封成「社团」，风趣地点出这个小家庭彼此欣赏的暖意。
+
+文化点：society（协会、社团）在 19 世纪是正经的组织用语，家人却把它套在「互相钦慕」这种小事上，是典型的时代幽默——把家常事说得一本正经，反差即笑点；而 domestic（家庭的）与公开社交相对，让这个「钦慕会」更显自家人的亲密。",想象餐桌上你夸我一句、我谢你一句，活像结成了一个「家庭钦慕会」——那互相投去的赞叹目光，就是 admiration。
+fare,b2,noun,2.3967,1,7,fєә,"n. 费用, 旅客, 食物 / vi. 进展, 进步, 经营, 过活",高研四六雅,4776,4481,[59],[10],"Out-and-out beggars get taken care of, but poor gentle folks fare badly, because they won't ask, and people don't dare to offer charity.",61,v. 过日子，进展（fare badly 境遇不好）　n. 票价；饮食,彻头彻尾的乞丐倒有人照应，可怜的体面人却境遇凄惨，因为他们不肯开口求人，而人们又不会主动……,,"1. Out-and-out beggars 是主语，out-and-out 意为「彻头彻尾的、十足的」；beggars 是名词「乞丐」（超纲词），指以乞讨为生的人。
+2. get taken care of 是被动结构，get + 过去分词表示「被……」，take care of 意为「照料」，合起来即「有人照应、得到照顾」。
+3. but 表转折，引出对比对象 poor gentle folks：gentle folks 指「体面人家、有教养的人」，gentle 在此带门第与教养的意味；加上 poor 即「落魄的体面人」。
+4. fare badly 是理解关键：fare 是不及物动词，意为「过日子、进展、境遇如何」，fare badly 即「境遇不好、日子过得差」。fare 也可作名词，意为「票价；饮食」，但此处是动词用法。
+5. because they won't ask, and people don't dare to offer charity 是两个原因从句，说明体面人为何更惨——不肯开口求助，别人又怕失礼而不敢主动施舍；charity 意为「施舍、慈善」。
+
+整句解读：整句是精妙的对比与反讽：彻头彻尾的乞丐反而有人照应，拉不下脸的落魄体面人却境遇凄惨——前者不怕开口，后者羞于启齿，旁人又不敢贸然施舍。译文以「倒有人照应」对「境遇凄惨」，把 fare badly 落实为「境遇凄惨」，语言简练而辛酸，讽刺意味尽在其中。
+
+文化点：19 世纪社会中，「体面人（gentle folks）」宁肯受穷也不乞讨，被视为荣誉与自尊的体现；而 charity 在当时是带着道德审慎的行为，人们怕「施舍」冒犯对方的尊严。于是越要面子越得不到救济，这一矛盾是当时小说反复描写的现实困境。",想象街角两个穷人，一个坦然伸手讨到钱，另一个把腰挺得笔直硬是不肯开口——那越挺越直的腰杆，就是 fare badly。
+occasional,b2,adjective,2.37,1,6,ә'keiʒәnl,"a. 偶然的, 临时的",研四六托,3511,2924,[7],[15],"""Exactly, for Amy keeps me pointing due west most of the time, with only an occasional whiffle round to the south, and I haven't had an easterly spell since I was married.",76,a. 偶尔的，间或的（an occasional 偶尔一次的）,“正是如此，艾米总让我朝正西走，只是偶尔打个转儿，偏到南边去……”,,"1. 逐项解析：
+① exactly：副词，口语中用来完全赞同对方，相当于「正是如此」「一点没错」。
+② for：连词，表原因，相当于「因为」，引出下面的解释。
+③ keeps me pointing due west：keep + 宾语 + doing 的复合结构，意为「一直让我朝着正西方向走」；due 作副词，表示「正（向着）」，due west 即「正西」。
+④ most of the time：固定短语，「大多数时候」。
+⑤ with only an occasional whiffle round to the south：with + 名词短语作伴随状语；an occasional + 名词表示「偶尔一次的」，occasional 意为「偶尔的、间或的」，强调不经常、隔一段时间才发生一次；whiffle 是超纲词，口语里常指「风向的小摆动、转来转去」，这里借航海的说法比喻人生路线偶尔偏一下；round to the south 即「转到南边去」。
+⑥ I haven't had an easterly spell：haven't had 是现在完成时，表「（至今）没有……」；easterly 是超纲词，由 east + -erly 构成，意为「东向的、从东边来的」；spell 作名词指「（一段）时间」，an easterly spell 即「一阵东风」。
+
+2. 整句解读：
+说话人借航海和风向打比方讲婚后生活：艾米像掌舵的人，让他大部分时间规规矩矩地朝正西走（正轨），只是偶尔打个转儿偏去南边（小小的任性或偏离），而且自结婚以来再没遇上过「东风」（暗指以前那种更随意自在的日子）。语气轻松俏皮，带着宠溺的调侃——表面像抱怨，其实是乐意被管着。中文译文把 whiffle 译成「打个转儿」，把船转向的画面感传了出来。
+
+3. 文化点：
+这句话出自《小妇人》(Little Women)，是劳里（Laurie）婚后谈论妻子艾米（Amy）的话。用风向、航向比喻人生方向，是西方（尤其英伦航海文化）的常见说法，steer、bearing、weather 一类词常被借来形容婚姻与人生；19 世纪小说里这种「以海喻婚」的玩笑很合绅士口吻。",想象一条径直向西的大路上，只有某个下午你临时起意转个弯往南多走了几步——那个「偶尔一次」的转弯，就是 occasional。
+mansion,b2,,2.3433,1,5,'mænʃәn,"n. 大厦, 宅邸",六托雅宝,4761,6435,[19],[21],The great mansion stood empty at the end of the avenue.,-1,n. 大厦，宅邸（the great mansion 大宅）,大道尽头，那座大宅空置着。,1,"1. 逐项解析：
+① the great mansion：mansion 是名词「大厦、宅邸」，指气派的豪华大宅；great 此处强调「巨大的、气派的」，the great mansion 即「那座大宅」。
+② stood：stand 的过去式，这里作系动词，后接形容词 empty，stood empty 意为「空置着、空空地立着」，比 was empty 多一分「矗立、伫立」的画面感。
+③ empty：形容词，「空的、无人居住的」。
+④ at the end of the avenue：at the end of 是固定搭配，「在……尽头」；the avenue 是「林荫大道、林间马路」，常通向宅邸正门。
+
+2. 整句解读：
+整句一句成画：一条林荫大道，走到尽头，一座大宅空荡荡地立在那里。stood 给了建筑「站立」的拟人感，empty 又立刻把这丝生气收走，读来既隆重又寂寥。译文把地点状语提前译成「大道尽头」，再把主谓译成「那座大宅空置着」，语序自然贴切。
+
+3. 文化点：
+在 19 世纪英美小说里，林荫大道尽头的宅邸常是贵族或富裕人家的象征；房子空置（stood empty）往往暗示家道中落、人去楼空，或某种即将被打破的寂静，常见于小说开篇营造氛围。mansion 对应的中式印象可以联想起「深宅大院」。",大道尽头立着一栋灰扑扑的宽大房子，像位不说话的绅士，连窗帘都不动一下——那就是 mansion。
+gravity,b2,noun,2.3433,1,5,'græviti,"n. 地心引力, 重力",高研四六托雅宝,3956,4956,[30],[19],""" Amy caught herself up short as the words escaped her, and looked at her husband, who replied, with malicious gravity . . .",111,n. 严肃，庄重（with gravity 一本正经地）；重力,艾米话一出口便赶紧收住，看了看丈夫，而他一本正经地坏笑着答道……,,"1. 逐项解析：
+① Amy：人名，艾米。
+② caught herself up short：catch oneself up 意为「急忙收住话头」；short 作副词表「突然地」，整组意为「猛地打住」。
+③ as the words escaped her：as 引导时间状语从句，表「当……时」；escape 在这里不是「逃跑」，而是「（话语）不由自主地溜出口」，the words escaped her 即「话不自觉地说了出来」。
+④ looked at her husband：看着她的丈夫。
+⑤ who：关系代词，先行词是 husband。
+⑥ replied：回答、答道。
+⑦ with malicious gravity：with + 名词作方式状语，「带着某种神情做……」；malicious 是超纲词，意为「恶意的、带点坏心思的」；gravity 此处取「严肃、庄重」一义（不是「重力」），with gravity 即「一本正经地」「郑重其事地」。
+
+2. 整句解读：
+艾米失口说出的话一出口就赶紧收住，转头去看丈夫；丈夫呢，竟端着一副十二分严肃的表情来回答，可修饰语 malicious 出卖了他——那副正经底下藏着捉弄人的坏心思。译文「一本正经地坏笑着答道」把「端着正经外表、心里使坏」的反差感传得很准，语气又庄重又促狭。
+
+3. 文化点：
+《小妇人》中艾米与劳里婚后常这样斗嘴取乐；19 世纪小说里 with gravity 一类表达专用来描写人物「故作庄重」的神态，与 malicious 这类词放在一起便立刻产生幽默的反讽效果。",有人明明想笑，却把嘴角绷成一条笔直的线，那副故意端起来的严肃劲儿——就是 gravity。
+proof,b2,noun,2.3433,1,5,pru:f,"n. 证据, 证明, 试验, 检验, 考验 / a. 不能透入的, 证明用的, 防...的, 耐...的 / vt. 检验, 试验, 校对, 使不被穿透",研四六托,2865,2743,[35],[40],Her blushes were proof enough of her happiness.,-1,"n. 证据,证明","她脸上的红晕,便是她幸福的明证。",1,"1. 逐项解析：
+① her blushes：超纲词，blush 作动词是「脸红」，blushes 是其名词复数，泛指「她一次又一次泛起的红晕」。
+② were：系动词，连接主语与表语。
+③ proof enough：proof 是名词「证据、证明」；enough 表「足够的」，放在名词后是后置修饰，proof enough 即「足够（说明问题）的证据」，译文取「明证」二字很贴切。
+④ of her happiness：介词短语，说明证明的对象——「她的幸福」。
+
+2. 整句解读：
+正常语序是 Her blushes were enough proof of her happiness，作者把 enough 后置到 proof 之后，读起来更顺口，也更有强调意味。全句意思：她不必说一个字，脸上泛起的红晕本身就足以证明她有多幸福。译文「她脸上的红晕，便是她幸福的明证」用一个「明」字把「不言自明」的意味点了出来。
+
+3. 文化点：
+在 19 世纪小说里，脸红（blush）是含蓄时代里最直白的告白信号，是小说家们屡试不爽的幸福与爱意证据；proof 一词在当时也常用于「验证、经得住考验」的语境，与今天的「法律／科学证据」义一脉相通。",女孩一句话没说，脸却腾地红到了耳根——那层红晕不用任何解释，本身就是幸福的 proof。
+interfere,b2,verb,2.3433,1,5,.intә'fiә,"vi. 妨碍, 冲突, 干涉, 抵触",研四六托,4424,3769,[55],[2],"We won't interfere now, but watch our chance, and do them a good turn in spite of themselves.",9,v. 干涉，干预（interfere with 妨碍）,“我们现在不插手，只留意机会，到时候帮他们一把，哪怕他们自己不领情。”,,"1. 逐项解析：
+① We won't interfere now：interfere 是不及物动词，「干涉、插手、干预」；won't = will not，「不会」。
+② but：转折连词，「而是、而」。
+③ watch our chance：watch 在这里不是「看」，而是「留意、等候」，watch our chance 即「留意（我们的）机会、伺机而动」。
+④ do them a good turn：固定搭配 do somebody a good turn，「帮某人一个忙、拉一把」；a good turn 是名词短语，「一桩好事」。
+⑤ in spite of themselves：in spite of 是固定介词短语「尽管、不顾」，themselves 是反身代词（超纲词里也列了）；in spite of themselves 直译「不顾他们自己」，引申为「即使他们自己不愿意、不领情」。
+
+2. 整句解读：
+说话人的态度很明白：现在我们不出手干涉，但会一直盯着时机，等机会合适就暗地里帮他们一把——哪怕那两个人自己并不情愿领这份情。语气从容、笃定，透着长辈式的包容和自信，仿佛早已把局面看透。译文「我们现在不插手，只留意机会，到时候帮他们一把，哪怕他们自己不领情」把这层「悄悄使力」的意思译得完整。
+
+3. 文化点：
+do someone a good turn 与 in spite of oneself 都是地道英语习语；本句出自《小妇人》，是故事中长辈暗中关照晚辈的典型桥段，也体现了 19 世纪小说里那种温厚、通达的处世智慧。",孩子自己系鞋带，大人的手已经伸出去，又轻轻缩了回来——那一下忍住不碰，就是 interfere。
+cloak,b2,,2.3267,1,10,klәuk,"n. 斗蓬, 大氅, 掩护 / vt. 遮掩, 隐匿, 使披斗蓬",研四六,8441,6563,[13],[16],"""What are you going to do with yourselves after you get settled?"" asked Jo, buttoning Amy's cloak as she used to button her pinafores.",92,n. 斗篷，外套　v. 掩盖，掩饰（under the cloak of）,“安顿下来以后，你们打算做些什么？”乔问道，一边照旧替艾米扣好斗篷……,,"1. 逐项解析：
+① What are you going to do with yourselves：be going to 表「打算、将要」；yourselves 是超纲词，反身代词「你们自己」，do with yourselves 是口语说法，「让自己做什么、怎么打发自己」。
+② after you get settled：after 引导时间状语从句；get settled 是「get + 过去分词」的系表结构，意为「安顿下来、定居下来」。
+③ asked Jo：乔问道；Jo 是乔瑟芬（Josephine）的昵称。
+④ buttoning Amy's cloak：button 本是名词「纽扣」，此处活用为动词「扣纽扣」；现在分词 buttoning 作伴随状语，表「一边扣着……」；cloak 是本文目标词，名词「斗篷、外套」，一种无袖长外披，常连帽。
+⑤ as she used to button her pinafores：as 表「像……一样、照旧」；used to + 动词原形表「过去常常做」；pinafore 是超纲词，「围裙、小罩衣」，是当时小孩穿的挡脏衣物。
+
+2. 整句解读：
+全句把人物对话和动作描写交叠在一起：乔一边像从前一样替妹妹艾米扣斗篷纽扣，一边问她安顿下来之后打算做什么。艾米早已是大人，乔却还保留着当年给妹妹扣小围裙的习惯动作，一个 as she used to 就把少女时代的亲情时光叠到了当下，温情而细腻。译文用「照旧」点出了这层习惯动作的余韵。
+
+3. 文化点：
+cloak（斗篷）是 19 世纪男女皆穿的常见外衣；pinafore（围兜、小罩衣）是当时女童居家常穿的挡脏衣物。乔少年时替妹妹扣 pinafore，如今艾米出嫁仍然受她这般照料，正是《小妇人》姐妹情深的细节写照。",一件连帽的厚斗篷披上肩，像把整夜的风都挡在帘子外——乔正绕过艾米的肩，替她扣上最后一颗纽扣，那就是 cloak。

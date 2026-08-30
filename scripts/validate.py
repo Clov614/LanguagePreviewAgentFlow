@@ -1,7 +1,7 @@
 """管线缺口校验(阶段间健康检查):一键发现"缺什么"
 检查项:
   1. raw CSV:每章选词数、缺润色(cn_mean)的词、缺例句(sent)的词
-  2. anki TSV:有无出卡、行数是否与润色词数一致、8 列结构是否完整
+  2. anki TSV:有无出卡、行数是否与润色词数一致、10 列结构是否完整
   3. 生词总库:chapters 为空 / card_exported 非 1 / sources 为空的异常行
   4. 卡片与总库一致性:总库词是否都出自某章 raw(反向追溯)
 用法:  uv run python scripts/validate.py --book little_women [--verbose]
@@ -70,11 +70,16 @@ def main():
         with open(tsv, encoding='utf-8') as f:
             lines = [ln for ln in f if ln.strip()]
         n_cols = len(lines[0].split('\t'))
-        if n_cols != 8:
-            problems.append(f'ch{ch}: TSV 表头 {n_cols} 列(应为 8)')
+        if n_cols != 10:
+            problems.append(f'ch{ch}: TSV 表头 {n_cols} 列(应为 10)')
         if len(lines) - 1 != polished:
             problems.append(f'ch{ch}: TSV {len(lines)-1} 行 vs 润色词 {polished} 行不一致')
-        print(f'[anki]  ch{ch}: {len(lines)-1} 张卡片(表头 {n_cols} 列)', flush=True)
+        # AI 解析/词义概述为可选内容:缺解析不阻塞,信息性提示
+        body = lines[1:] if len(lines) > 1 else []
+        n_explain = sum(1 for ln in body if (ln.split('\t') + ['', ''])[8])
+        n_memo = sum(1 for ln in body if (ln.split('\t') + ['', ''])[9])
+        print(f'[anki]  ch{ch}: {len(lines)-1} 张卡片(表头 {n_cols} 列'
+              f' | AI解析 {n_explain} 词义概述 {n_memo})', flush=True)
 
     # --- 3. 总库检查 ---
     if os.path.exists(WORDLIST):

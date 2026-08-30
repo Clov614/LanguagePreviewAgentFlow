@@ -15,12 +15,12 @@
 data/books/<book>.epub           用户放入的原著
 data/books/_md/<book>.md         转换缓存(pipeline 的输入)
 data/output/<book>/
-  raw/chapter_XX_raw.csv         候选词全量数据(UTF-8 带 BOM,18 列,Excel 可开)
-  anki/chapter_XX_anki.tsv       导入卡(UTF-8 无 BOM,8 列,每章 18 词)
+  raw/chapter_XX_raw.csv         候选词全量数据(UTF-8 带 BOM,Excel 可开)
+  anki/chapter_XX_anki.tsv       导入卡(UTF-8 无 BOM,10 列,每章 18 词)
   anki/audio/                    发音 mp3 缓存(可再生成,**不入 git**)
   annotated/chapter_XX.md        生词高亮标注版(读书用)
   annotated/chapter_XX_词表.md   章节词表速查
-  work/                          polish_*.json 润色工作单(模型产出,应用后留存)
+  work/                          polish_*.json 润色工作单、ai_explain_*.json AI 解析产物
   meta.json / recommend_report.md
 vocabulary/
   master_wordlist.csv            生词总库:跨书去重、幂等累积(12 列,无 BOM)
@@ -44,10 +44,13 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
 ## 硬性不变式(违反前必须停下问用户)
 
 1. **编码**:anki TSV = UTF-8 **无 BOM**;raw CSV = UTF-8 **带 BOM**;总库 = UTF-8 无 BOM。
-2. **TSV 严格 8 列**:`单词|音标|词性|中文释义|CEFR|原文例句|例句译文|来源`。`validate.py` 硬校验;
+2. **TSV 严格 10 列**(2026-08-30 用户确认由 8 列扩列):
+   `单词|音标|词性|中文释义|CEFR|原文例句|例句译文|来源|AI解析|词义概述`。`validate.py` 硬校验;
    发音以 `[sound:]` **内嵌在「单词」/「原文例句」格里**,不得加列;
-   「原文例句」格里目标词包裹 `<b class="hl">…</b>` 高亮(HTML 转义后包裹,
-   含屈折形态,见 `scripts/wordforms.py`),仍属 6 列内容不变式;Anki 导入需勾选"允许 HTML"。
+   「原文例句」格里目标词包裹 `<b class="hl">…</b>` 高亮,比目标词更难的「超纲词」包裹
+   `<b class="hard">…</b>`(每句 ≤2,本地规则,见 `scripts/hard_words.py`;HTML 转义后包裹,
+   含屈折形态,见 `scripts/wordforms.py`);「AI解析」格换行以 `<br>` 表示(TSV 单行保持);
+   AI解析/词义概述为**可选内容**(可空,模板条件渲染);Anki 导入需勾选"允许 HTML"。
 3. **总库合并幂等**:同 (书, 章) 重复跑不重复累加 sources/freq_book;`known_words.txt` 的词不推荐不出卡。
 4. **不静默覆盖**:pipeline 输出与总库/历史数据矛盾时,停下向用户说明再处理。
 5. **质量优先**:例句/释义宁少勿滥;AI 补句的词必须在「来源」标注 `(AI 补句)`(raw csv `ai=1` 列)。
@@ -73,11 +76,35 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
 - 换发音人:文件名不含 voice,`--force` 覆盖同名 mp3 即为整库换音,卡片 [sound:] 无需重导
 - 全量语音约 322 个(含日/德/西等),未来日语书可复用(`ja-JP-NanamiNeural` 等)
 
+## AI 解析模块(ai_explain.py,可选旁路)
+
+- 对 raw CSV 中已润色词批量生成 `ai_analysis`(四段式整句解析:逐项列表 → 整句解读 → 文化点)
+  与 `memo`(画面感词义钩子);**缺 key/不想用时管线照跑不出解析,不阻塞**
+- 三接入点(`--provider`):`claude-cli`(**默认**,本机 Claude Code `claude -p` headless,零配置零 key)/
+  `anthropic`(`ANTHROPIC_API_KEY`)/ `openai`(任意 OpenAI 兼容端点,`OPENAI_BASE_URL`+`OPENAI_API_KEY`)
+- **批处理 `--batch-size`(默认 6 词/批)**:一次调用解析多个词,冷启动/请求开销均摊;
+  批内个别词失败自动回退单词 prompt 重试;**多章并发 `--workers`(默认 4)**:各章产物文件
+  独立、天然无冲突,可并行跑;`--workers 1` 关闭并发
+- 环境变量(全可选;key 只读环境变量不落盘,`--api-key/--base-url/--model` 可覆盖):
+  - `ANTHROPIC_API_KEY` / `ANTHROPIC_MODEL`(anthropic provider)
+  - `OPENAI_API_KEY` / `OPENAI_BASE_URL` / `OPENAI_MODEL`(openai;模型示例 gpt-4o-mini /
+    deepseek-chat / qwen3)
+  - BASE_URL 模板:DeepSeek `https://api.deepseek.com/v1` /
+    Gemini `https://generativelanguage.googleapis.com/v1beta/openai/`(key=GEMINI_API_KEY)/
+    Ollama `http://localhost:11434/v1`(本地免 key,留空即可)/ LM Studio `http://localhost:1234/v1`
+- `--dry-run` 只预览批次规划不调用任何模型;`--limit N` 每章限 N 词试跑;失败词自动重试
+  (≤3 次)后记入 `ai_explain_<book>_failed.json`(`--verbose` 强制重试)
+- 产物 `work/ai_explain_<book>_ch<NN>.json`(**可手改**,改完重跑 apply 即生效)/
+  `ai_explain_<book>_failed.json`;断点:已生成词自动跳过
+- 接入管线:`uv run python scripts/ai_explain.py --book <b> --workers 4 --batch-size 6` →
+  `uv run python scripts/apply_polish.py --book <b> --explain <产物 json>` → `cards.py`(10 列出卡)
+
 ## 常见任务速查
 
 | 任务 | 命令 |
 |---|---|
 | 新书全流程(已润色) | `uv run python scripts/run.py --book <书名> --polish <json> --audio` |
+| 批量生成 AI 例句解析 | `uv run python scripts/ai_explain.py --book <书名> --workers 4 --batch-size 6` → `uv run python scripts/apply_polish.py --book <书名> --explain work/ai_explain_<书名>_ch01.json` → `uv run python scripts/cards.py --book <书名>` |
 | 补全书发音(已出卡的书) | `uv run python scripts/gen_audio.py --book <书名>` → `uv run python scripts/cards.py --book <书名>` |
 | 只重做某章卡片 | `uv run python scripts/cards.py --book <书名> --chapter 1` |
 | 换发音人 | `uv run python scripts/gen_audio.py --book <书名> --voice en-GB-RyanNeural --force` → 重跑 cards |

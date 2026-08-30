@@ -1,19 +1,126 @@
-﻿word,cefr,pos,score,freq_ch,freq_book,phon,trans,tags,bnc,frq,sids,tids,sent,sent_off,cn_mean,cn_sent,ai
-lid,b2,,2.6033,4,8,lid,"n. 盖子, 限制, 眼睑 / vt. 给...盖盖子",高研四六,4658,4537,"[145, 146, 151, 154]","[6, 4, 9, 3]","Meg on the first lid, smooth and fair.",17,n. 盖子（on the lid）；眼睑,梅格躺在那口小箱的第一格里，安详而美丽。,
-paddle,c1,,2.54,1,3,'pædl,"n. 桨, 划桨, 明轮翼 / vi. 划桨, 戏水, 涉水 / vt. 用桨划, 划船运送, 搅, 拌",高研托雅,9187,10365,[39],[74],The ducks paddled about the sunny pond.,-1,v. 划桨；戏水　n. 桨,鸭子在阳光下的池塘里游来游去。,1
-remains,c1,noun,2.54,1,3,ri'meins,"n. 剩余物, 废墟, 残余",研四六宝,5315,4358,[77],[16],"""I am bold to say it in spite of the rain, because so short a time remains to me."" ""Yes, sir,"" and Jo nearly crushed the small flowerpot with the sudden squeeze she gave it.",67,n. 剩余；遗迹（so short a time remains 时光无多）,“纵使下着雨，我也要冒昧说出这句话，因为留给我的时间已经不多了。”“是的，先生。”乔差点……,
-precipitate,c1,,2.5133,1,2,pri'sipiteit,"n. 沉淀物, 凝结物, 结果 / vt. 猛抛, 使陷入, 促成, 使沉淀 / vi. 猛地落下 / a. 突然的, 猛地落下的, 轻率的",六托雅宝,10236,8706,[34],[21],His precipitate departure left them all surprised.,-1,a. 仓促的，突如其来的　v. 促成；使陷入,他仓促的离去让大家都吃了一惊。,1
-deed,c1,noun,2.5133,1,2,di:d,"n. 行为, 实行, 契约 / vt. 立契转让",高研四六宝,5766,4742,[158],[20],Her kind deeds were remembered long after she left.,-1,n. 行为，事迹（a good deed 善举）；契约,她离开很久之后，人们仍记得她的善举。,1
-baffle,c1,,2.4867,1,1,'bæfl,"vt. 困惑, 为难, 使挫折 / vi. 徒作挣扎 / n. 迷惑, 挡板",六雅宝,11775,11102,[26],[11],A drop of rain on her cheek recalled her thoughts from baffled hopes to ruined ribbons.,55,v. 使困惑，难住（baffling 令人费解的）,一滴雨落在她脸上，把她从希望的落空拉回到被毁的缎带上。,
-stationary,c1,,2.4867,1,1,'steiʃ(ә)nәri,"a. 不动的, 静止的, 不变的, 固定的, 停留的",研六托雅宝,10049,9667,[36],[9],"The fact that a somewhat dilapidated blue one remained stationary above the unprotected bonnet attracted her attention, and looking up, she saw Mr. Bhaer looking down.",55,a. 静止不动的，固定不动的,一把有点破旧的蓝伞恒定地停在那顶毫无遮护的软帽上方，这引起了她的注意……,
-contradiction,c1,noun,2.4867,1,1,.kɒntrә'dikʃәn,"n. 反驳, 矛盾",研四六雅,5451,4353,[55],[16],There was no contradiction in anything she said.,-1,n. 矛盾；反驳（in contradiction with）,她说的话里没有任何自相矛盾之处。,1
-succession,c1,noun,2.4867,1,1,sәk'seʃәn,"n. 连续, 继承权, 继位, 演替, 地层次序",研四六雅,6389,3702,[55],[28],"In quick succession, three visitors arrived at the door.",-1,n. 一连串（in quick succession 接二连三）；继承,一连来了三位客人，一个接一个。,1
-distort,c1,verb,2.4867,1,1,dis'tɒ:t,"vt. 扭曲, 歪曲",研六托雅宝,6622,5932,[74],[1],"Then distorting his pockets with knobby bundles, and giving her the flowers to hold, he put up the old umbrella, and they traveled on again.",5,v. 使变形；歪曲，曲解（distort the truth）,随后他把口袋里塞满鼓鼓囊囊的纸包，把花交给她拿着，撑起那把旧伞……,
-magical,c1,adjective,2.4867,1,1,'mædʒikәl,"a. 魔术的, 有魔力的, 不可思议的",托,5584,6055,[112],[22],The garden had a magical quality in the moonlight.,-1,a. 魔术般的，迷人的，奇妙的,月光下的花园有一种迷人的魔力。,1
-reclaim,c1,,2.4867,1,1,ri'kleim,"vt. 开垦, 改造, 感化, 纠正, 回收 / vi. 喊叫, 抗议",研六托雅宝,7452,8480,[177],[17],"Make up your mind to that, or I'll never go,"" she added resolutely, as he tried to reclaim his load.",83,v. 要回，取回；改造（reclaim a load 把一堆东西要回来）,“你得先想明白这点，否则我绝不走。”她决然地说，这时他正想把那一堆东西要回去。,
-sparrow,c1,,2.4867,1,1,'spærәu,n. 麻雀,高四六托,14123,14590,[188],[14],A little sparrow hopped fearlessly on the window sill.,-1,n. 麻雀,一只小麻雀毫无惧色地在窗台上跳来跳去。,1
-rubber,b2,adjective,2.4767,1,10,'rʌbә,"n. 橡皮, 橡胶, 做摩擦动作的人, 按摩师, 决胜盘 / vt. 用橡胶制造, 涂橡胶于",中高研四六雅,4791,5262,[109],[31],She erased the line with a stroke of the rubber.,-1,n. 橡皮;橡胶,她用橡皮擦掉了那行字。,1
-prime,b2,adjective,2.4633,3,5,praim,"n. 最佳部分, 初期, 全盛期 / a. 主要的, 最初的, 根本的 / v. 加油启动, 灌注, 填装",研四六托雅宝,1667,838,"[143, 156, 172]","[38, 27, 25]","Four little chests all in a row, Dim with dust, and worn by time, Four women, taught by weal and woe To love and labor in their prime.",128,n. 鼎盛时期（in one's prime）；精华　a. 首要的,“四只小木箱排成一行，蒙着灰尘，被岁月磨旧；四个女人经风历雨，学会去爱与……,
-teddy,toe,,2.46,1,63,'tedi,n. 连衫衬裤；泰迪玩具熊,10599/10084),10599,10084,[133],[0],"Teddy was only a boy, and soon got over his little fancy,"" said Jo, anxious to correct the Professor's mistake.",0,n. 泰迪(劳里的昵称);泰迪熊,"“泰迪只是个孩子,很快就忘掉了他那点小念头,”乔说,急于纠正教授的误会。",
-latter,b2,adjective,2.4567,2,7,'lætә,"a. 后者的, 较后的, 近来的",高研四六托,2725,1251,"[69, 90]","[8, 52]","""What will we buy?"" asked Jo, ignoring the latter part of his speech, and sniffing the mingled odors with an affectation of delight as they went in.",43,"a. 后者的,后半部分的","“我们买什么?”乔问道,不理会他后半截话,进门时故作欣喜地嗅着混合的香气。",
-load,b2,noun,2.43,2,6,lәud,"n. 负荷, 担子, 重担, 装载量, 负载, 工作量, 加载 / vt. 装载, 装填, 使担负 / vi. 装货, 上客, 装料",高研四六托,2901,2212,"[93, 177]","[10, 19]","Make up your mind to that, or I'll never go,"" she added resolutely, as he tried to reclaim his load.",95,"n. 负担,重担;装载 v. 装载","“你下定决心吧,不然我绝不去。”他要把她那堆东西夺回去时,她坚定地补了一句。",
+﻿word,cefr,pos,score,freq_ch,freq_book,phon,trans,tags,bnc,frq,sids,tids,sent,sent_off,cn_mean,cn_sent,ai,ai_analysis,memo
+lid,b2,,2.6033,4,8,lid,"n. 盖子, 限制, 眼睑 / vt. 给...盖盖子",高研四六,4658,4537,"[145, 146, 151, 154]","[6, 4, 9, 3]","Meg on the first lid, smooth and fair.",17,n. 盖子（on the lid）；眼睑,梅格躺在那口小箱的第一格里，安详而美丽。,,"1. 逐项解析
+Meg 是主语,后接介词短语 on the first lid 作表语,句子省略了系动词 was,补全应为 Meg was on the first lid,这是静态描写里常见的省略句式。the first lid 中的 lid 本义是“盖子、盖板”,这里指那口大木箱第一格的盖板——四个女孩睡在改装成床的木箱里,梅格就躺在第一块盖板上。smooth and fair 是两个形容词作补足成分,进一步说明梅格:smooth 指皮肤光滑细嫩,fair 指面容白皙清丽,是英语里形容女子貌美的雅词。
+2. 整句解读
+这句话像一幅定格画面:木箱大床上,梅格躺在第一块盖板上,肤质光滑、容貌清丽,睡态安详。smooth and fair 既写外貌,也透出一种安稳恬静的气息,所以中文译成“安详而美丽”,把 fair 的“美丽”与画面里安静的氛围揉在一起,读者仿佛能看到这位少女安睡的模样。整句只保留场景成分而省去动词,画面感反而更强,是文学里典型的速写笔法。
+3. 文化点
+在 19 世纪的美国清贫人家,孩子睡在大号打包木箱里、把箱盖当床板的情形并不少见,这一细节也透出马奇一家当时家境的拮据,以及孩子们苦中作乐、安于简朴的性情。","眼皮像小箱的盖板,轻轻一合,黑暗就来了——梅格就那样躺在盖板上,安静又好看。"
+paddle,c1,,2.54,1,3,'pædl,"n. 桨, 划桨, 明轮翼 / vi. 划桨, 戏水, 涉水 / vt. 用桨划, 划船运送, 搅, 拌",高研托雅,9187,10365,[39],[74],The ducks paddled about the sunny pond.,-1,v. 划桨；戏水　n. 桨,鸭子在阳光下的池塘里游来游去。,1,"1. 逐项解析
+The ducks 是主语,泛指池塘上的那群鸭子;paddled 是 paddle 的过去式,作谓语动词,paddle 本义是“用短桨划水”,引申为鸭子用脚蹼像桨一样拨水游动,即“戏水、划水”;about 在此是副词,表示“四处、到处”,相当于 around 或 in and around;the sunny pond 是介词 about 的宾语,paddle about the pond 意为“在池塘里游来游去”。整句是一个标准的“主谓+副词+介词短语”结构。
+2. 整句解读
+画面明亮轻快:阳光洒满池塘,鸭子们用脚蹼一下一下拨着水,在波光粼粼的水面上闲适地转来转去。paddle 自带“一下一下拨水”的动作感,比 swim 更传神、更有画面;译文把 paddle about 译成“游来游去”,准确又有闲情。整句节奏舒缓,像一幅阳光下的田园小景。
+3. 文化点
+在英文童书和自然文学里,鸭子戏水最常用的动词就是 paddle 而不是 swim,这是小鸭子最典型的可爱动作;另一个常用说法是 paddle in the water(在水里扑腾),婴儿在浅水里戏耍也用 paddle。它同形的名词“短桨”与动词义同源,可一起记忆。","鸭子的脚蹼像两支小桨,在太阳底下一下一下拨水,水面上荡开圆圆的涟漪。"
+remains,c1,noun,2.54,1,3,ri'meins,"n. 剩余物, 废墟, 残余",研四六宝,5315,4358,[77],[16],"""I am bold to say it in spite of the rain, because so short a time remains to me."" ""Yes, sir,"" and Jo nearly crushed the small flowerpot with the sudden squeeze she gave it.",67,n. 剩余；遗迹（so short a time remains 时光无多）,“纵使下着雨，我也要冒昧说出这句话，因为留给我的时间已经不多了。”“是的，先生。”乔差点……,,"1. 逐项解析
+第一句主干:I am bold to say it,be bold to do sth 意为“冒昧地做某事、大胆说某事”,am bold 是主系表结构。in spite of the rain 是让步状语,in spite of 相当于 despite,意为“尽管、不顾”。because 引导原因状语从句 so short a time remains to me:so short a time 是“so+形容词+a(n)+名词”的强调结构,意为“如此短暂的一段时间”;remains 是动词 remain 的第三人称单数,作谓语,意为“剩下、留存”,to me 表示“对我来说”,合起来就是“留给我的时间已经不多”。注意:此句中 remains 是动词,与本词条名词义“剩余物、遗迹”同根,都落在“留下、剩下”这个核心义上。第二句的重点:Jo nearly crushed the small flowerpot,flowerpot 是超纲词,由 flower(花)+pot(罐、盆)合成,意为“花盆”;nearly 意为“差点”;crushed 是 crush 的过去式,意为“捏碎、压碎”;with the sudden squeeze she gave it 是原因状语,其中 she gave it 是省略关系代词的定语从句修饰 squeeze,给某物 a squeeze 即“捏了一下某物”,整句就是“因为她猛地一捏,差点把小花盆捏碎”。
+2. 整句解读
+这是《小妇人》里的对话片段:说话者冒着雨赶来,郑重又带点急切地说出心里话,因为能留下的时间不多了;乔抢着回答“是的,先生”,因为过度紧张激动,下意识死死捏住手里的小花盆,差点把它捏碎。两句之间,郑重与慌张形成了巧妙对比——嘴上干脆利落,手上却发着紧,少女的心事全藏在那“一捏”里。译文用“冒昧”“时光无多”还原了那种文雅又含蓄的口吻;同时要记住,本句中 remains 作动词“剩下”,与词条的名词义是一词多性的关系,可一并记牢。
+3. 文化点
+《小妇人》是 19 世纪美国作家路易莎·梅·奥尔科特的作品,背景朴素温馨。乔(Jo)是个假小子式的活泼姑娘,情绪一激动就容易有小动作,这里“差点捏碎花盆”正是典型的奥尔科特式细节白描——用一个小动作,把人物剧烈的心绪放大给读者看。","沙漏只剩最后几粒沙,薄薄一层留在瓶底——时光无多,剩下来的都金贵。"
+precipitate,c1,,2.5133,1,2,pri'sipiteit,"n. 沉淀物, 凝结物, 结果 / vt. 猛抛, 使陷入, 促成, 使沉淀 / vi. 猛地落下 / a. 突然的, 猛地落下的, 轻率的",六托雅宝,10236,8706,[34],[21],His precipitate departure left them all surprised.,-1,a. 仓促的，突如其来的　v. 促成；使陷入,他仓促的离去让大家都吃了一惊。,1,"1. 逐项解析
+His precipitate departure 是句子的主语:his 是物主代词“他的”,precipitate 是形容词“仓促的、突如其来的”,departure 是名词“离开、离去”,三词合起来是“他仓促的离去”。left 是谓语动词,此处为使役用法:leave sb/sth + 形容词或分词,表示“使某人陷入某种状态”,宾语是 them all(即 all of them,所有人),补语是 surprised(惊讶的)。补全之后逻辑为:他的仓促离开,使所有人陷入惊讶之中。
+2. 整句解读
+意思很直白:他突然、仓促地走了,把大家吓了一惊。全句分量最重的词是 precipitate,它比 sudden 更正式、更带“未经深思熟虑、说走就走”的责备意味,常见于书面语和新闻、外交等正式场合;译文译成“仓促的”,正好扣住这层评价。句式“某行为+leave sb+状态”在英语里很常用,比如 The news left me speechless(这个消息让我哑口无言),可以放在一起学。
+3. 文化点
+precipitate 兼作动词时读 priˈsipiteit,意为“促成、使突然陷入”,化学里还指“沉淀”;作形容词时读 priˈsipitet。一词多性多义,记忆时抓住“突然、迅猛”这个语义核心即可,读音随词性变化是这类词的普遍规律。","话还没说完人已经冲出门口,门砰地甩上,留下一屋子错愕——仓促得像被按了快进键。"
+deed,c1,noun,2.5133,1,2,di:d,"n. 行为, 实行, 契约 / vt. 立契转让",高研四六宝,5766,4742,[158],[20],Her kind deeds were remembered long after she left.,-1,n. 行为，事迹（a good deed 善举）；契约,她离开很久之后，人们仍记得她的善举。,1,"1. 逐项解析
+Her kind deeds 是句子主语:kind 是形容词“善良的”,deed 是名词“行为、事迹”,复数 deeds 与 kind 连用即“善行、善举”,同源的常见搭配还有 a good deed(一件好事)。were remembered 是一般过去时的被动语态,结构为 be+过去分词,意为“被记住、被铭记”,英语用被动语态让“善行”占据主语位置。long after she left 是时间状语部分:long after 意为“在……之后很久”,she left 指“她离开”。整句的语义顺序是:她的善举,在她离开很久之后,仍被人记着。
+2. 整句解读
+中文的习惯说法是“人们在她离开很久之后仍记得她的善举”,而英语用被动语态 were remembered,把“善举”放回主语的位置,读起来庄重而有余韵,像一句写在时光里的定论。deed 比 action 更正式,多用在善举、功绩、字据等严肃场合,如 good deed、deed of land(地契);译文取“善举”二字,典雅贴切。
+3. 文化点
+“善行长存人心”这一主题贯穿《小妇人》全书,马奇太太推崇“行动胜于空谈”,西方谚语也说 deeds speak louder than words(行动胜于言辞),因此 deed 这个词天然带着道德与责任感的分量。","老人颤巍巍过马路,有人伸手扶了一把,多少年后老人还念叨着——善行像刻在石头上的字,风吹不去。"
+baffle,c1,,2.4867,1,1,'bæfl,"vt. 困惑, 为难, 使挫折 / vi. 徒作挣扎 / n. 迷惑, 挡板",六雅宝,11775,11102,[26],[11],A drop of rain on her cheek recalled her thoughts from baffled hopes to ruined ribbons.,55,v. 使困惑，难住（baffling 令人费解的）,一滴雨落在她脸上，把她从希望的落空拉回到被毁的缎带上。,,"1. 逐项解析
+A drop of rain on her cheek 是主语:drop 是名词“一滴”,a drop of rain 即“一滴雨”;on her cheek 是介词短语作后置定语,修饰 drop,指明落在她脸颊上的那滴雨。recalled 是谓语动词 recall 的过去式,意为“唤回、使想起”。her thoughts 是宾语,意为“她的思绪”。from baffled hopes to ruined ribbons 是 from...to... 结构:baffled 是 baffle 的过去分词转作形容词,意为“受挫的、落空的”,即本词条“使困惑、难住”的引申义;ruined 同样是过去分词形容词,意为“毁了的、淋坏了的”;ribbons 即“缎带”。整句可拆为:一滴雨把她的思绪从“落空的希望”拉回到“淋坏的缎带”。
+2. 整句解读
+这是一句精致的小说心理描写:女孩正神游天外,想着那些落了空的心愿,忽然一滴雨落在脸上,冰凉的触感把她拉回眼前——这才发现缎带已被雨淋坏。recall...from...to... 把抽象的思绪写成一根可以被轻轻拉扯的线,从一处拽到另一处;落空的希望与淋坏的缎带,一虚一实,把少年人的沮丧与天真写得淋漓尽致。译文“从希望的落空拉回到被毁的缎带”忠实又传神。
+3. 文化点
+这句话出自《小妇人》。在 19 世纪,缎带是少女精心珍视的发饰,一条心爱的缎带被雨淋坏,在小姑娘心里的分量不亚于“计划泡汤”;奥尔科特正是用这种小物件托出女孩真实细腻的心思,也侧面写出那个时代衣饰得来不易。","一团解不开的毛线越扯越紧,眉头也跟着皱成一团——心思被牢牢难住,怎么也捋不顺。"
+stationary,c1,,2.4867,1,1,'steiʃ(ә)nәri,"a. 不动的, 静止的, 不变的, 固定的, 停留的",研六托雅宝,10049,9667,[36],[9],"The fact that a somewhat dilapidated blue one remained stationary above the unprotected bonnet attracted her attention, and looking up, she saw Mr. Bhaer looking down.",55,a. 静止不动的，固定不动的,一把有点破旧的蓝伞恒定地停在那顶毫无遮护的软帽上方，这引起了她的注意……,,"1. 逐项解析:
+1. The fact that…:主语是“the fact”，后面跟 that 引导的同位语从句，具体说明“事实”的内容——这把伞停在帽子上方这件事。
+2. a somewhat dilapidated blue one:one 是代词，指代前文提到的那把雨伞(umbrella)；somewhat 是副词，意为“有点儿、稍微”；dilapidated 是形容词“破旧的、年久失修的”；blue 作定语修饰 one，即“一把有点破旧的蓝伞”。
+3. remained stationary:remained 是系动词 remain“保持、仍旧”，后接形容词 stationary 作表语，“保持静止不动的”。stationary 的词根是 station(站立、停驻)，-ary 是形容词后缀，字面就是“停在原地的”。注意区分 stationary(静止的)与 stationery(文具)，同音易混。
+4. above the unprotected bonnet:above 是介词“在…上方”；unprotected 由 un-(不)+protected(受保护的)构成，指“没有遮挡的”；bonnet 是本句的超纲词，指维多利亚时代女性戴的软帽、无边女帽。
+5. attracted her attention:固定搭配 attract one's attention“吸引某人的注意”，attract 是动词“吸引”。
+6. and looking up:and 连接并列动作，looking up 是现在分词表伴随，“（她）抬起头来”。
+7. she saw Mr. Bhaer looking down:see sb doing sth“看见某人正在做某事”，looking down 与前面 looking up 上下呼应，一仰一俯。
+2. 整句解读:全句的主干是“The fact…attracted her attention, and looking up, she saw Mr. Bhaer looking down.”，即“这件事吸引了她的注意，抬头一看，发现 Bhaer 先生正低头看她”。句子用了一个很长的 that 从句作主语，把“破旧蓝伞恒定地停在无遮护的软帽上方”这个略显反常、滑稽的画面铺满整个主语位置，再轻轻用 attracted 收束，形成“细节堆叠—轻巧收笔”的节奏。翻译把介词短语 above the unprotected bonnet 提前为定语，用“恒定地”传达 stationary 那种纹丝不动的静止感，“毫无遮护”读来还带着一点心疼的口吻。前后两个 looking 是文章的巧思，视觉上形成一上一下的对照。
+3. 文化点:这是 19 世纪小说《小妇人》式的场景：绅士为女士撑伞遮阳是当时的礼貌举止，而 bonnet(软帽、无边帽)是那个时代女性出行的标配头饰，所以“伞悬在帽子上方”正是绅士为帽下的女士挡日光的画面。",破伞像被施了定身术，悬在帽子上方纹丝不动，画面瞬间定格。
+contradiction,c1,noun,2.4867,1,1,.kɒntrә'dikʃәn,"n. 反驳, 矛盾",研四六雅,5451,4353,[55],[16],There was no contradiction in anything she said.,-1,n. 矛盾；反驳（in contradiction with）,她说的话里没有任何自相矛盾之处。,1,"1. 逐项解析:
+1. There was no…:there be 句型，表示“没有…”，全句的核心是否定意义。
+2. contradiction:名词“矛盾、自相矛盾”。这个词由前缀 contra-(相反、相对) + 词根 dict(说) + 名词后缀 -ion 构成，字面是“对着说”“说反话”。同根词还有 contradict(反驳、相矛盾)、dictionary(字典，即“记载说法的书”)。
+3. in anything she said:in 介词短语表示范围，限定在“她所说的一切话里”；anything 是不定代词；she said 是省略了关系代词 that 的定语从句，修饰 anything，即“她所说的任何(话)”。
+2. 整句解读:这是一句结构很清爽的 there be 句：先给否定容器“不存在矛盾”，再用 in anything she said 把范围收窄到“她说的每句话里”，合起来就是“她所说的话里没有任何自相矛盾之处”。译文把英语的 there be 句式转成汉语的“…里没有任何…”，语序更加自然。语气上这是一个肯定的、令人安心的判断——说话的人前后一致、言行统一，值得信赖。记住它的构词“对着说”就能一眼记住含义：同一个人说的话彼此“对着干”，就是矛盾。
+3. 文化点:本句语境强调人物的言行一致，这正是 19 世纪文学里对女性美德的常见称许——可靠、表里如一。",一个人说的两只手，没有一只去打另一只，便无 contradiction。
+succession,c1,noun,2.4867,1,1,sәk'seʃәn,"n. 连续, 继承权, 继位, 演替, 地层次序",研四六雅,6389,3702,[55],[28],"In quick succession, three visitors arrived at the door.",-1,n. 一连串（in quick succession 接二连三）；继承,一连来了三位客人，一个接一个。,1,"1. 逐项解析:
+1. In quick succession:固定短语，意为“接二连三、一个接一个”。in + 形容词 + succession 表示“以…的连续方式”。succession 由前缀 suc-(＝sub-，在下面、紧跟着) + 词根 cess(走) + 名词后缀 -ion 构成，字面“紧跟着走”，即“连续、一系列”；它的动词是 succeed(接着发生、继承)，形容词是 successive(连续的)。
+2. three visitors:主语，“三位访客”。
+3. arrived at the door:arrive 是不及物动词“到达”，到达小地点用 arrive at；the door 是“门口”。
+2. 整句解读:句子把介词短语 In quick succession 放在句首作状语，先铺陈“接连不断”的方式，再点出主语 three visitors 和动作 arrived，信息重心从“怎么来的”落到“谁来了”。翻译用“一连”对应 quick succession 紧凑的节奏，“一个接一个”又把字面意思摊开讲明。即便把该短语拿掉，主干“three visitors arrived at the door”依然成立，可见它是附加的修饰成分。注意 succession 还有“继承”义(如 the succession to the throne 王位继承)，与“一连串”是同一根源上衍生出的两个意思。
+3. 文化点:本句是叙述性台词，19 世纪小说家常以 in quick succession 营造宾客轮番登门的忙碌气氛。",三位客人像多米诺骨牌，一个推倒一个，接连滚进门来。
+distort,c1,verb,2.4867,1,1,dis'tɒ:t,"vt. 扭曲, 歪曲",研六托雅宝,6622,5932,[74],[1],"Then distorting his pockets with knobby bundles, and giving her the flowers to hold, he put up the old umbrella, and they traveled on again.",5,v. 使变形；歪曲，曲解（distort the truth）,随后他把口袋里塞满鼓鼓囊囊的纸包，把花交给她拿着，撑起那把旧伞……,,"1. 逐项解析:
+1. Then:副词“然后”，承接上文的动作。
+2. distorting his pockets with knobby bundles:现在分词短语作伴随状语。distort 本义“使变形、使扭曲”，此处取其变形义：pockets“衣袋”被东西撑得变了形；with 表示“用…、因…而”，knobby 是形容词“多疙瘩的、鼓鼓囊囊的”，bundle 是“一捆、一包”。注意 distort 的常见搭配 distort the truth“歪曲真相”用的是引申义，本句用的是字面义。
+3. giving her the flowers to hold:另一个现在分词短语，give sb sth to do 即“把某物交给某人去拿”，flowers“花束”。
+4. he put up the old umbrella:主句主干，put up 在此是“撑起、支起(伞)”。
+5. and they traveled on again:travel on“继续赶路”，again“再次、又”。
+2. 整句解读:全句先甩出两个分词短语(distorting…塞口袋、giving…递花)铺开一系列忙乱的双手动作，再落回主句“撑起那把旧伞”，最后以 they traveled on again 收束成“继续赶路”。分词结构让一连串动作漂流成一个连续镜头，画面感很强。distort 在此不能译成“歪曲”，而是“把口袋塞得都变了形”，译文用“鼓鼓囊囊”把 knobby bundles 撑出的鼓胀感写得十分形象。整句读来是动作爽利又充满生活气息的一幕。
+3. 文化点:这是《小妇人》式的场景：19 世纪的绅士会为女士撑伞、代为捧花，把东西抢过来往自己身上塞，正体现 Mr. Bhaer 的殷勤与体贴。",口袋被纸包撑得鼓成两个大包，像塞满坚果的松鼠颊囊。
+magical,c1,adjective,2.4867,1,1,'mædʒikәl,"a. 魔术的, 有魔力的, 不可思议的",托,5584,6055,[112],[22],The garden had a magical quality in the moonlight.,-1,a. 魔术般的，迷人的，奇妙的,月光下的花园有一种迷人的魔力。,1,"1. 逐项解析:
+1. The garden:主语“花园”。
+2. had:动词 have“具有”，无生命的事物作主语时表“呈现出…的特征、带有一丝…”。
+3. a magical quality:quality 是名词“特质、品质、韵味”，magical 是形容词作定语“有魔力的、迷人的”。magical 由名词 magic(魔术、魔力) + 形容词后缀 -al 构成。magic 与 magical 都可作形容词，但 magical 更强调“奇妙的、梦幻般的”这种主观感受。
+4. in the moonlight:介词短语作状语“在月光下”。moonlight 是本句超纲词，由 moon(月亮) + light(光)合成，指“月光”。
+2. 整句解读:主干是“The garden had a magical quality”，花园“带有一股魔力般的特质”；in the moonlight 点明这种氛围的来源与场合——月光笼罩之下。整句是说月光下的花园仿佛被施了什么法术，变得迷人而不真实。翻译把 a magical quality 直译成“一种迷人的魔力”，把 quality 处理成“魔力”，与 magical 的词义互相呼应，读起来圆融自然。magical 的核心不是字面上的“变魔术”，而是一种让人产生奇妙好感、恍如置身梦境的氛围感。
+3. 文化点:月光下的花园、梦幻氛围是 19 世纪小说中常见的浪漫意象，与《小妇人》四个女孩晚间的秘密与憧憬一脉相承。",月光像银色薄纱罩住花园，每一片叶子都被镀上了魔法。
+reclaim,c1,,2.4867,1,1,ri'kleim,"vt. 开垦, 改造, 感化, 纠正, 回收 / vi. 喊叫, 抗议",研六托雅宝,7452,8480,[177],[17],"Make up your mind to that, or I'll never go,"" she added resolutely, as he tried to reclaim his load.",83,v. 要回，取回；改造（reclaim a load 把一堆东西要回来）,“你得先想明白这点，否则我绝不走。”她决然地说，这时他正想把那一堆东西要回去。,,"1. 逐项解析:
+1. Make up your mind to that:祈使句，make up one's mind“下定决心”是固定搭配，to that 指To 前文提到的那件事“那一点、那件事”，整句是“你要对那件事下定决心”。
+2. or I'll never go:or 表示“否则”，I'll never go“我绝不走”，表坚决寸步不让。
+3. she added resolutely:add“补充说”，引出引语；resolutely 是本句超纲词，副词“坚决地、毅然地”，由 resolve(决心、坚定)派生而来，词根 solu(解开)加上 re-，最初意为“再解开、下决心”。
+4. as he tried to reclaim his load:as 引导时间状语从句“正当…的时候”；try to do“试图去做”；reclaim 由 re-(回) + claim(要求、索取)构成，本义“要回来”，此处即“把她不肯让他拿的那堆东西要回去”；load“负荷、一堆东西”。
+2. 整句解读:引语部分是斩钉截铁的祈使句加转折——“你先对那点下了决心，否则我绝不走”，简短的两个分句把人物的倔强态度立了起来；she added resolutely 用“决然地说”点明语气。后半句 as 从句交代事件背景：男方正想把她手里的那堆东西要回去，为这场“塞东西—拒收”的拉锯战作注脚。reclaim 用其“要回、取回”的字面义，与 claim(索要)同源，可拆成“再(Re)要回(claim)”，画面就是他把东西一兜一兜抱回来。
+3. 文化点:这是《小妇人》的典型桥段——女孩坚持自己拿东西、拒绝绅士代劳，透着书中女主角那种独立、不愿被迁就的倔劲儿。",那人伸手想把一怀纸包一把夺回自己怀里，像抢回松果的松鼠。
+sparrow,c1,,2.4867,1,1,'spærәu,n. 麻雀,高四六托,14123,14590,[188],[14],A little sparrow hopped fearlessly on the window sill.,-1,n. 麻雀,一只小麻雀毫无惧色地在窗台上跳来跳去。,1,"1. 逐项解析：
+- A little sparrow：主语中心词 sparrow(一种麻雀的统称,此处是单数个体名词),little 作定语表示「小、小巧可爱」,带着怜爱的语气;冠词 a 表示「一只」。
+- hopped：谓语动词,hop 的过去式。hop 专指麻雀这类小鸟「双脚一蹦一蹦地跳」,不是走也不是飞,自带轻快、灵活的画面感。
+- fearlessly：副词修饰 hopped,由 fearless(无所畏惧的)+ 副词后缀 -ly 构成,fear 为词根,-less 表示「没有」,故意为「毫无惧色地」。
+- on the window sill：介词短语作地点状语,on 表「在……的表面上」;sill 指窗台那条横向的承重沿,window sill 是固定搭配「窗台」。
+2. 整句解读：句子主干是「一只小麻雀蹦跳」,fearlessly 把重心从「跳」拉向「跳得那样无畏」,再加地点在窗台上——与人一窗之隔——构成一幅生机勃勃、带点童趣的画面。中文译作「毫无惧色地在窗台上跳来跳去」,用叠词「跳来跳去」还原了 hop 反复蹦跳的动态,「毫无惧色」呼应 fearlessly 的拟人语气,仿佛这只麻雀像大胆的孩子在探头探脑。
+3. 文化点：在西方文学与说法中,麻雀常象征平凡、活泼和不被驯服的市井生命力,与「窗台」这一室内与室外之间的观察位置搭配,常用来衬托安静或略带孤寂的心境。19 世纪小说里这类小生灵意象很常见,不必过度解读。","一只灰扑扑的小麻雀天天蹲在窗台上东张西望,谁都不怕,像个偷看屋里的小孩。"
+rubber,b2,adjective,2.4767,1,10,'rʌbә,"n. 橡皮, 橡胶, 做摩擦动作的人, 按摩师, 决胜盘 / vt. 用橡胶制造, 涂橡胶于",中高研四六雅,4791,5262,[109],[31],She erased the line with a stroke of the rubber.,-1,n. 橡皮;橡胶,她用橡皮擦掉了那行字。,1,"1. 逐项解析：
+- She：人称代词主格作主语,回指前文正在画画/写字的那位女性。
+- erased：谓语动词,erase(擦掉、抹去)的过去式;er- 前缀有「去除、移开」之意(与 ex- 同源),本句因叙述的是过去发生的事而用过去式。
+- the line：宾语,line 在这里指铅笔或钢笔画出的「一条线」,即要清除的痕迹。
+- with a stroke of the rubber：方式状语。with 表「用……工具」;stroke 本义「一击、一笔、一挥」,a stroke of 即「轻轻划过一下」;rubber 在本句作名词,指「橡皮擦」。
+2. 整句解读：主干是「她擦掉了那条线」,with a stroke of the rubber 补充方式——只要用橡皮「一抹」就成了。stroke 用得很妙,把擦除写得既轻巧又干脆,仿佛手腕轻轻一拂,痕迹便不复存在。中文译作「用橡皮擦掉了那行字」,省略了 a stroke of 的轻快感,因为中文的「擦掉了」本身已足够传神——这正是英汉表达密度不同的地方。
+3. 文化点：rubber 在英式英语中指「橡皮擦」(美式更常用 eraser)。在英式课堂里说 rubber 不会有歧义,但换个语境 rubber 也可能指「橡胶」甚至别的含义,所以听到这个词要看场合。本句语境清楚,是文具橡皮。","铅笔被橡皮「啵」地一抹就消失不见,像擦掉一块小黑斑。"
+prime,b2,adjective,2.4633,3,5,praim,"n. 最佳部分, 初期, 全盛期 / a. 主要的, 最初的, 根本的 / v. 加油启动, 灌注, 填装",研四六托雅宝,1667,838,"[143, 156, 172]","[38, 27, 25]","Four little chests all in a row, Dim with dust, and worn by time, Four women, taught by weal and woe To love and labor in their prime.",128,n. 鼎盛时期（in one's prime）；精华　a. 首要的,“四只小木箱排成一行，蒙着灰尘，被岁月磨旧；四个女人经风历雨，学会去爱与……,,"1. 逐项解析：
+- 这是四行诗,语序并非普通陈述句。第一行 Four little chests all in a row：chests 指「木箱、柜子」,four little chests 是四只小箱,all in a row 意为「排成一行」(row 是「一排」)。
+- 第二行 Dim with dust, and worn by time：dim 是形容词「昏暗的、失去光泽的」,with dust 说明「因落满灰尘而灰暗」;worn 是 wear(磨损)的过去分词,worn by time 即「被岁月磨旧」。两行都是分词/形容词短语作后置修饰,形容那四只箱子。
+- 第三行 Four women, taught by weal and woe：women 与第一行的 chests 形成对照——箱子与女人并置;taught 是 teach 的过去分词,表「被教导」;weal 是古雅词「幸福、福祉」,woe 是「悲痛、苦难」,weal and woe 是「顺境与逆境」的并置固定说法。
+- 第四行 To love and labor in their prime：不定式 to love and labor 承接 taught,意为「学会去爱、去劳作」;labor 是「辛勤劳作」;in their prime 中 prime 意为「鼎盛时期、风华正茂」,in one's prime 是固定搭配「处于人生最盛的年纪」。
+2. 整句解读：这四行先写「四只落满灰尘、被岁月磨旧的箱子」,笔锋一转写「四个女人,经风历雨,学会在盛年去爱与劳作」。箱子被磨旧,对应女人被岁月历练,意象层层对照:灰尘、时光、顺境逆境,最后落到「爱与劳作」这个积极的主题。prime 承担着「年华正盛」的光彩,与旧箱子「被时间磨损」的苍凉形成张力。中文译文把 weal and woe 意译为「经风历雨」,是照顾诗句节奏与意境的译法。
+3. 文化点：此句出自《小妇人》章首的诗句,以「四只木箱」暗喻四姐妹的成长。19 世纪小说常用这种「物象—人象」并列的写法,让寻常家庭物件成为岁月的见证。weal and woe 属典雅文学用语,现代口语中已不多见。","四只蒙灰的老木箱,像四个女人最闪光的年华——箱里的宝贝不旧,人正当年。"
+teddy,toe,,2.46,1,63,'tedi,n. 连衫衬裤；泰迪玩具熊,10599/10084),10599,10084,[133],[0],"Teddy was only a boy, and soon got over his little fancy,"" said Jo, anxious to correct the Professor's mistake.",0,n. 泰迪(劳里的昵称);泰迪熊,"“泰迪只是个孩子,很快就忘掉了他那点小念头,”乔说,急于纠正教授的误会。",,"1. 逐项解析：
+- Teddy：劳里(Laurie)的昵称。泰迪熊(teddy bear)一词正是由这昵称而来(源出美国第 26 任总统西奥多·罗斯福的小名 Teddie),但这里的 Teddy 指人,是说话者对劳里的亲热爱称。
+- was only a boy：was 是系动词,only a boy 作表语,only 用来弱化语气,强调「不过是/只是个小男孩」。
+- and soon got over his little fancy：got over 是固定短语,「从……中恢复过来、不再放在心上」;fancy 此处是名词「一时的兴致、转瞬的念头」,little fancy 即「那点小念头」。
+- said Jo：插入句式,主语 Jo(乔)放在动词 said 之后,是小说引语中常见的倒装写法。
+- anxious to correct the Professor's mistake：形容词短语作状语,补充乔说话时的心理——急于(anxious to)纠正教授的误会;the Professor 指巴尔教授,his mistake 指教授把「泰迪」这个称呼理解错了。
+2. 整句解读：这是《小妇人》里一处关键而俏皮的场面——教授误解了「泰迪」这个爱称,乔连忙澄清:「泰迪只是个孩子,他很快就把那小念头忘了。」整句语速快而直率,soon got over 传达出「小孩忘性大、不记仇」的轻松,anxious to correct 显出乔护着劳里、急着辩解的神情。中文把 little fancy 译成「那点小念头」,轻巧可爱,贴合原句的俏皮口吻。
+3. 文化点：泰迪熊(teddy bear)得名与美国总统西奥多·罗斯福的一桩猎熊轶事有关,而与这里的人名昵称无关。在《小妇人》的 19 世纪背景下,给男孩起这种宠物式的亲昵叫法,体现亲友间的疼爱,也暗示劳里在乔心里很特别。","一喊「泰迪」,怀里就像抱了只软乎乎的泰迪熊——亲昵得不用多想。"
+latter,b2,adjective,2.4567,2,7,'lætә,"a. 后者的, 较后的, 近来的",高研四六托,2725,1251,"[69, 90]","[8, 52]","""What will we buy?"" asked Jo, ignoring the latter part of his speech, and sniffing the mingled odors with an affectation of delight as they went in.",43,"a. 后者的,后半部分的","“我们买什么?”乔问道,不理会他后半截话,进门时故作欣喜地嗅着混合的香气。",,"1. 逐项解析：
+- 「What will we buy?」：直接引语,是乔的问话。
+- asked Jo：引语后的倒装插入语,主语 Jo 置于动词后。
+- ignoring the latter part of his speech：现在分词短语作伴随状语,ignore 意为「不理、忽略」;latter 作定语「后者的、靠后的」,the latter part of his speech 指「他话语里靠后的那部分」。latter 常与 former(前者)配对使用,构成 the former...the latter「前者……后者……」的对照。
+- and sniffing the mingled odors：与 ignoring 并列的第二个伴随动作,sniff 是「嗅、闻」;mingled 是 mingle(混合)的过去分词作定语,odors 意为「气味们」,mingled odors 即「混合在一起的种种香气」。
+- with an affectation of delight：介词短语作方式状语,affectation 是「做作、装出来的样子」,整块意为「带着一副装出来的欣喜」。
+- as they went in：时间状语从句,「当他们走进去时」,go in 指走进店门。
+2. 整句解读：这是圣诞节前夕姐妹们去店里买礼物的场景。乔惦记着买东西,根本没耐心理会对方话语的「后半截」,一边迈步进门,一边故意夸张地嗅着店里混合的香气。两个并列的分词短语(ignoring.../sniffing...)把乔率真急性、故作欢喜的神态勾勒出来。latter 在此作形容词,重在「那后半截话」与前文的对照;中文译作「后半截话」,口语而贴切。
+3. 文化点：《小妇人》里姐妹们上街采购圣诞礼物,是 19 世纪美国城镇生活的日常图景;店里混合的香气大约指糖果、香料与干货的味道。affectation of delight 更透出乔不擅做作、反而格外可爱的性格。","人说话像分前后两截,后半截总拖在末尾——latter 就像一截甩不掉的小尾巴。"
+load,b2,noun,2.43,2,6,lәud,"n. 负荷, 担子, 重担, 装载量, 负载, 工作量, 加载 / vt. 装载, 装填, 使担负 / vi. 装货, 上客, 装料",高研四六托,2901,2212,"[93, 177]","[10, 19]","Make up your mind to that, or I'll never go,"" she added resolutely, as he tried to reclaim his load.",95,"n. 负担,重担;装载 v. 装载","“你下定决心吧,不然我绝不去。”他要把她那堆东西夺回去时,她坚定地补了一句。",,"1. 逐项解析：
+- Make up your mind to that：make up one's mind 是固定搭配「下定决心」,to that 指「对那件事」;全句为祈使句,带命令或坚决要求的口吻。
+- or I'll never go：or 表「否则」,I'll 是 I will 的缩写,never go 是「绝不会去」,整句构成带赌气的条件句,意为「不然我绝不去」。
+- she added resolutely：插入语,add 是「补充说」,resolutely(坚定地、果断地)是 resolve 的副词形式,加重了说话人咬定不松口的气势。
+- as he tried to reclaim his load：as 引导时间/原因状语,「当、因为」;tried to reclaim 中 reclaim 意为「要回、夺回」;his load 指说话人手里那堆东西,load 本义「装载物、负荷」,此处口语化地指「抱在手上的一堆物件」。
+2. 整句解读：《小妇人》里一则倔强又有趣的斗嘴场面:一方伸手想把对方那堆东西「夺」回去,另一方却赌气不放手,撂下一句「你先把那件事定下来,不然我绝不去!」。resolutely 让这句话更掷地有声,reclaim his load 把「抢回来」的动作写得活灵活现。load 在这里从「重担」的抽象义落到具体的「一堆东西」,中文译为「她那堆东西」,准确还原了语境。
+3. 文化点：19 世纪对女性的言行举止讲究含蓄,而主角乔(Jo)恰恰以直率、倔强著称,这类你来我往的斗嘴正是她性格的写照。load 在此时是地道的日常口语用法,并不沉重。","旅行袋塞得鼓鼓囊囊背在背上,压得人弯下腰——那就是一坨亲密的 load。"

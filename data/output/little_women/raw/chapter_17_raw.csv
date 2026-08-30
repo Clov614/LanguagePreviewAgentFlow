@@ -1,19 +1,157 @@
-﻿word,cefr,pos,score,freq_ch,freq_book,phon,trans,tags,bnc,frq,sids,tids,sent,sent_off,cn_mean,cn_sent,ai
-fever,b2,noun,3.0567,8,16,'fi:vә,"n. 发烧, 发热, 热病",中高研四六雅,4372,5338,"[32, 44, 47, 59, 68, 79, 80, 106]","[4, 1, 39, 27, 12, 22, 13, 9]","'Scarlet fever, ma'am.",9,"n. 发烧,发热","“猩红热,夫人。”",
-scarlet,b2,,2.6667,4,16,'skɑ:lit,"n. 猩红色, 绯红色, 红衣 / a. 绯红色的, 鲜红色的",六托,10320,7155,"[32, 44, 59, 80]","[3, 0, 26, 12]","'Scarlet fever, ma'am.",1,a. 猩红的，鲜红的　n. 猩红色（scarlet fever 猩红热）,“猩红热，夫人。”,
-trot,c1,,2.6467,1,7,trɒt,"n. 快步 / vi. 快步走, 小跑 / vt. 使小跑, 策马小跑",六托,8347,8837,[82],[30],A neat little pony trotted briskly past the gate.,-1,v. 小跑，快步走　n. 快步,贝丝在客厅和厨房之间来回小跑，安安静静地忙个不停，而艾米端坐着，双手叠起，指挥着每个人干活。,1
-gan,toe,,2.64,4,79,ɡæn,v. [古语]开始；着手（gin的过去式）,,0,0,"[9, 37, 39, 92]","[29, 4, 14, 12]","I saw in a minute it was sicker, but Lottchen said her mother had gone for a doctor, so I took Baby and let Lotty rest.",66,gin 的过去式(古语):开始,"我一眼就看出它病得更重了,但洛琴说她母亲去请大夫了,于是我把娃娃接过来,让洛蒂歇一歇。",
-immense,c1,adjective,2.62,1,6,i'mens,"a. 极广大的, 无边的, 非常好的",研四六托雅宝,5645,4545,[51],[17],"""If Mother was only at home!"" exclaimed Jo, seizing the book, and feeling that Washington was an immense way off.",97,a. 巨大的，广大的；（口）极好的,“要是妈妈在家就好了！”乔嚷道，抓起那本书，觉得华盛顿是个无比遥远的地方。,
-stir,b2,verb,2.61,1,15,stә:,"n. 骚动, 轰动, 搅动, 监狱 / vt. 移动, 摇动, 激起, 惹起, 搅拌 / vi. 走动, 传播, 搅拌",研四六托宝,1899,3008,[41],[15],"I tried to warm its feet, and Lotty gave it some milk, but it didn't stir, and I knew it was dead."" ""Don't cry, dear!",69,v. 动弹；搅动；激起　n. 轰动,我试着给它焐脚，洛蒂给它喂了些奶，可它动也不动，我知道它死了。”“别哭，亲爱的！”,
-harm,b2,noun,2.61,1,15,hɑ:m,"n. 伤害, 害处 / vt. 伤害, 损害",高研四六托,3651,3189,[61],[16],No harm shall come to you while we are here.,-1,"n. 伤害,损害 v. 伤害","我们在这儿,不会让你受到任何伤害。",1
-pat,b2,,2.5833,1,14,pæt,"n. 轻拍 / v. 轻拍 / adv. 适时, 正好, 恰好, 毫不迟疑, 熟记地 / a. 恰好的, 合适的, 熟练的, 坚定的, 人为的",研四六,4539,3881,[84],[13],"Call Meg, and tell her you'll give in,"" said Laurie, with an approving pat, which annoyed Amy more than the 'giving in'.",71,v. 轻拍 n. 轻拍,"“把梅格叫来,告诉她你让步了,”劳里说着赞许地拍了拍她——这比“让步”更叫艾米恼火。",
-dull,b2,adjective,2.5733,2,17,dʌl,"a. 钝的, 无趣的, 呆滞的, 阴暗的 / vt. 使迟钝, 使阴暗, 缓和 / vi. 变迟钝, 减少",高研四六托雅宝,5094,3799,"[80, 81]","[20, 3]","""It won't be dull with me popping in every day to tell you how Beth is, and take you out gallivanting.",13,"a. 乏味的,沉闷的;迟钝的","“不会乏味的,我每天都来看你,告诉你贝丝的情况,再带你出去兜风。”",
-shear,c1,,2.5667,1,4,ʃiә,"n. 修剪, 剪下的东西, 大剪刀, 切变, 剪切机, 切 / vt. 修剪, 割, 剥夺, 横越, 削剪 / vi. 剪, 修剪, 剪羊毛, 切断",研四六托雅宝,9594,10041,[4],[10],"Jo caught a bad cold through neglect to cover the shorn head enough, and was ordered to stay at home till she was better, for Aunt March didn't like to hear people read with colds in their heads.",50,v. 剪（羊毛、头发）（shorn 过去分词）　n. 大剪刀,乔因为没好好护住剪短的头，着了凉，得了重感冒，被勒令在家休养直到好转。,
-assure,b2,verb,2.5567,1,13,ә'ʃuә,"vt. 保证, 使确信, 弄清楚, 担保",研四六托雅宝,2571,2640,[59],[15],The doctor assured them that Beth would soon be well again.,-1,v. 向…保证；使确信（assure sb that）,医生向他们保证，贝丝很快会好起来。,1
-bounce,b2,verb,2.5567,1,13,bauns,"n. 跳, 跳跃, 弹力, 撞击 / vi. 反跳, 弹跳 / vt. 使跳回, 撞击",高研四六托雅,3792,4778,[125],[15],""" ""Hold your tongue, you disrespectful old bird!"" cried Polly, tumbling off the chair with a bounce, and running to peck the 'rattlepated' boy, who was shaking with laughter at the last speech.",93,n. 弹跳；一蹦　v. 蹦跳；使弹起（with a bounce 蹦的一下）,“住嘴，你这个没规矩的老东西！”波莉嚷道，从椅子上叭地蹦下来，跑过去啄……,
-stormy,c1,,2.54,1,3,'stɒ:mi,"a. 暴风雨的, 粗暴的, 激烈的",四六,11643,9490,[18],[1],"It had been a stormy morning, but by noon the sky cleared.",-1,a. 暴风雨的；激烈的,那是个暴风骤雨的上午，但到中午天便放晴了。,1
-ward,c1,noun,2.54,1,3,wɒ:d,"n. 病房, 守卫, 保卫, 保护, 监护, 牢房, 行政区, 锁孔内的榫舌 / vt. 使入病房, 守护, 保卫",高研六托雅,5065,2949,[107],[11],"Amy was ordered off at once, and provided with something to ward off danger, she departed in great state, with Jo and Laurie as escort.",60,v. 挡开（ward off 避开，防范）　n. 病房；受监护的儿童,艾米被立刻打发走，还配了挡灾之物以防万一，随后她便风风光光地出发了，乔和劳里相陪……,
-claw,c1,,2.54,1,3,klɒ:,"n. 爪, 螯, 抓伤 / v. 用爪抓, 挖, 搜刮",高研四六托,6934,8058,[121],[17],"Never say die, take a pinch of snuff, goodbye, goodbye!"" squalled Polly, dancing on her perch, and clawing at the old lady's cap as Laurie tweaked him in the rear.",99,n. 爪子　v. 用爪抓，抓挠,“永不言败，来撮鼻烟吧，再见，再见！”波莉尖叫着，在栖木上跳来跳去，伸爪去抓那位老先生的……,
-slight,b2,adjective,2.53,1,12,slait,"n. 轻蔑, 怠慢 / a. 轻微的, 纤细的, 脆弱的, 苗条的 / vt. 轻视, 忽略, 怠慢",高研四六托雅宝,2982,2237,[8],[5],"Beth kept on, with only slight relapses into idleness or grieving.",24,a. 轻微的；纤细的　n. 轻视，怠慢,贝丝坚持了下去，只是偶尔小有反复，懒散或伤心一下。,
-sitting,toe,,2.52,2,42,'sitiŋ,"n. 入席, 就坐, 开庭, 孵卵 / a. 坐着的, 就座的, 在职的, 在孵卵中的, 易被击中的",7512/5951),7512,5951,"[29, 109]","[16, 15]","""What do you want now?"" she asked, looking sharply over her spectacles, while the parrot, sitting on the back of her chair, called out . . .",90,sit 的现在分词:坐着,"“你现在要什么?”她隔着眼镜严厉地问道,而鹦鹉坐在椅背上大声叫着……",
-pendulum,c1,,2.5133,1,2,'pendʒәlәm,"n. 钟摆, 摇锤, 摇摆不定的事态(或局面)",研六托雅宝,12582,14260,[9],[27],"All the little duties were faithfully done each day, and many of her sisters' also, for they were forgetful, and the house seemed like a clock whose pendulum was gone a-visiting.",149,n. 钟摆；摇摆不定的事态,每天所有的小事务都认真完成，许多原属姐姐们的活计她也一并做了，因为她们常常丢三落四，而那座老钟的钟摆……,
+﻿word,cefr,pos,score,freq_ch,freq_book,phon,trans,tags,bnc,frq,sids,tids,sent,sent_off,cn_mean,cn_sent,ai,ai_analysis,memo
+fever,b2,noun,3.0567,8,16,'fi:vә,"n. 发烧, 发热, 热病",中高研四六雅,4372,5338,"[32, 44, 47, 59, 68, 79, 80, 106]","[4, 1, 39, 27, 12, 22, 13, 9]","'Scarlet fever, ma'am.",9,"n. 发烧,发热","“猩红热,夫人。”",,"1. 逐项解析：
+1) 这是一句省略句。完整形式应是 It is scarlet fever, ma'am. 或 She has scarlet fever, ma'am.,口语诊断场景里把主谓一并省去,只留下最要紧的病名。
+2) scarlet fever：固定搭配的医学术语,猩红热。其中 scarlet 本可作名词“猩红色”,也可作定语形容词“猩红的”；fever 是名词,词义为“发热、发烧”。二者合成 scarlet fever 后,fever 落回“热症、传染病”的义项,专指猩红热这种疾病,不能拆开直译成“鲜红的发烧”。
+3) fever：名词,发烧。词源与拉丁语及古英语的“热度”义相关;既可用作可数(A fever 一次发烧),也可作不可数。与其相对的常见词是 chill(寒战、打冷战),二者常成对出现。
+4) 句末的 ma'am：madam 的口语缩略,“夫人、女士”,是对女性(尤其已婚、年长或地位较高者)的尊称,医生或仆从称呼主家女性时常用。
+5) 句首的撇号是重音标记,提示 scarlet 的重音落在第一音节(读作 /ˈskɑːlɪt/)。
+2. 整句解读：
+整句话短到没有谓语,信息却完整:说话人是在回答询问或宣布病情——“猩红热。”宣布病名时语气往往极简短,因为病名本身已足够沉重;末尾一声 ma'am 又保持了对听话人的恭敬与距离。中文译成“猩红热,夫人。”同样干脆利落,保留了原文的克制与分寸感。
+3. 文化点：
+19 世纪,猩红热是儿童最常见的急症之一,也是家庭文学反复使用的情节——美国作家奥尔科特的《小妇人》里,贝丝正是染上猩红热而病危。在那个没有抗生素的年代,医生的一句 Scarlet fever 常常意味着一场家庭煎熬甚至生离死别,放在原文语境里,这句话因此格外有分量。","深夜,手背贴上孩子滚烫的额头,烫得像刚烧开的水壶——这就是 fever 的温度。"
+scarlet,b2,,2.6667,4,16,'skɑ:lit,"n. 猩红色, 绯红色, 红衣 / a. 绯红色的, 鲜红色的",六托,10320,7155,"[32, 44, 59, 80]","[3, 0, 26, 12]","'Scarlet fever, ma'am.",1,a. 猩红的，鲜红的　n. 猩红色（scarlet fever 猩红热）,“猩红热，夫人。”,,"1. 逐项解析：
+1) 整句同 fever 一条,仍是省略句(完整:It is / She has scarlet fever, ma'am.),对话体中的高度口语化表达。
+2) scarlet：本句里作形容词修饰 fever,意为“猩红的、鲜红的”。它本又是一名词“猩红色”,所指的红色比 red 更艳、更深、更带光泽,像鲜血或新染的红绸。与之相关的还有 crimson(深红),二者同为颜色名词,scarlet 偏艳丽猩红,crimson 偏浓郁深红。作定语时它没有比较级变化。
+3) scarlet fever：固定医学术语“猩红热”。病名美,病却险——患者发热、咽喉剧痛,随后皮肤浮起一片细密的红疹,如同蒙上一层猩红色,病名正是由此而来。
+4) ma'am：madam 的口语缩略,夫人,对女性的尊称;句首撇号同 fever 一条,为重音标记。
+2. 整句解读：
+整句只有四个词,却把病名、称呼、语气一次交代完毕。scarlet 在这里不是装饰性形容词,而是与 fever 组成医学专名的成分;翻译成“猩红热”时,scarlet 的“红色”义已随病名融合进去,所以绝不能拆开直译成“鲜红的发烧”。中文“猩红热,夫人。”与原文同样简短克制。
+3. 文化点：
+猩红热的英文名直接来自它的症状——一片细密红疹浮上皮肤,像被猩红的布盖过,故名 scarlet fever。19 世纪它是儿童杀手级的常见病,也是《小妇人》等小说催泪情节的常客。有趣的是,scarlet 一词的词源可以追溯到中古时期经阿拉伯语从波斯语传入欧洲的“一种鲜红布料”之名,先指布料、后指颜色。","想象一大匹猩红的绸缎“哗”地铺开,红得刺眼又贵气——这就是 scarlet。"
+trot,c1,,2.6467,1,7,trɒt,"n. 快步 / vi. 快步走, 小跑 / vt. 使小跑, 策马小跑",六托,8347,8837,[82],[30],A neat little pony trotted briskly past the gate.,-1,v. 小跑，快步走　n. 快步,贝丝在客厅和厨房之间来回小跑，安安静静地忙个不停，而艾米端坐着，双手叠起，指挥着每个人干活。,1,"1. 逐项解析：
+1) A neat little pony：句子主语。neat 整洁的、好看的;little 小的;pony 小马(超纲词),指矮小的马种,多为孩童所骑或拉小车。三者叠加,画面是一只玲珑漂亮的小马。
+2) trotted：目标词 trot 的过去式。trot 意为小跑,是一种介于走与跑之间、两拍步态的轻快步法——前肢与对侧后肢成对落地,马背随之上下颠动,节奏分明。作全句谓语动词。
+3) briskly：副词(超纲词),轻快地、利落地;由 brisk(轻快、麻利)加后缀 -ly 构成,给整个动作添上干脆的底色。
+4) past the gate：介词短语作方向状语。past 从……旁边经过;the gate 大门、院门。整句结构即:主语(A neat little pony)+ 谓语(trotted)+ 方式状语(briskly)+ 方向状语(past the gate)。
+2. 整句解读：
+画面感很强:一只整洁的小马踩着轻快的碎步,嗒嗒地从大门前跑过。trot 译成“小跑”非常传神——不快不慢、节奏分明,配合 briskly 的“麻利”,整个画面轻快而灵动。需要说明:题面给出的例句译文(关于贝丝在客厅和厨房间来回小跑、艾米指挥干活的那句)与这句英文并不对应,应是另一句的译文误配,以下按英文原句解读。
+3. 文化点：
+19 世纪仍是马匹与马车的时代,小跑、快步、慢步是日常出行术语,pony 更是儿童和赶车族常见的小马。trot 由专指马的步态引申到泛指人或动物的“小跑”,在 19 世纪小说里是极常见的动态词。","一匹雪白小马嗒嗒嗒地从老街大门前跑过,四蹄踩出轻快的鼓点,背脊一颠一颠——这就是 trot。"
+gan,toe,,2.64,4,79,ɡæn,v. [古语]开始；着手（gin的过去式）,,0,0,"[9, 37, 39, 92]","[29, 4, 14, 12]","I saw in a minute it was sicker, but Lottchen said her mother had gone for a doctor, so I took Baby and let Lotty rest.",66,gin 的过去式(古语):开始,"我一眼就看出它病得更重了,但洛琴说她母亲去请大夫了,于是我把娃娃接过来,让洛蒂歇一歇。",,"1. 逐项解析：
+1) 先说目标词 gan：古语动词 gin 的过去式,意思是“开始”,相当于现代英语的 began。16–17 世纪的文学里,gan 常作助动词用,后接带 to 的不定式,如 He gan to sing.意为“他唱了起来/他开始唱”。这类用法如今只在仿古或诗性文本中出现。需要说明:本例句中其实并未出现 gan 一词(原文没有这个拼写形式),推测此卡片与例句配对有误;以下仍把例句完整讲透,便于整体理解语境。
+2) I saw in a minute it was sicker：in a minute 在此不是字面的“一分钟之内”,而是习语“立刻、转眼间”;saw 是 see 的过去式;it 指病中的婴孩(英文里对不强调性别的婴幼儿常用 it 指代);sicker 是 sick 的比较级,病得更重。
+3) but Lottchen said her mother had gone for a doctor：Lottchen 洛琴,德语人物昵称;had gone 是 go 的过去完成时,先交代背景;go for a doctor 是习语,去请医生。
+4) so I took Baby and let Lotty rest：so 所以;took 是 take 的过去式,接过、抱起;Baby 此处作名词,指婴儿;let sb. do sth. 让某人做某事;Lotty 是 Lottchen 的昵称,即同一人;rest 休息。
+2. 整句解读：
+说话人在回忆一个瞬间:她一眼就看出那孩子病得更重了,可孩子的母亲已经去请大夫,于是她把婴儿接过来,让已疲惫的洛蒂(Lotty,即洛琴)歇一歇。句子的时间线很清楚——先用过去完成时(had gone)交代背景,再用一连串过去式写当下的动作,语气紧张而平静。中文译文“我一眼就看出它病得更重了,但洛琴说她母亲去请大夫了,于是我把娃娃接过来,让洛蒂歇一歇”正是按这个层次翻的。至于目标词 gan,若回到它本应出现的古语文本,它应被读作“开始”义,与 began 等同。
+3. 文化点：
+这段出自《小妇人》中乔照看贫苦德裔移民家庭病婴的段落。19 世纪城市贫民区卫生与医疗条件极差,婴儿夭折率高,儿童疾病是当时现实主义小说常见的催泪题材;句中出现的德语人名 Lottchen/Lotty,也暗示了这个家庭的移民背景。","中世纪城堡的炉火边,吟游诗人深吸一口气,gan to sing——他开口的刹那,一段故事就此开始。"
+immense,c1,adjective,2.62,1,6,i'mens,"a. 极广大的, 无边的, 非常好的",研四六托雅宝,5645,4545,[51],[17],"""If Mother was only at home!"" exclaimed Jo, seizing the book, and feeling that Washington was an immense way off.",97,a. 巨大的，广大的；（口）极好的,“要是妈妈在家就好了！”乔嚷道，抓起那本书，觉得华盛顿是个无比遥远的地方。,,"1. 逐项解析：
+1) “If Mother was only at home!”：如果妈妈在家就好了。这是虚拟愿望句型 If only …! 的省略写法,表达强烈的期盼与遗憾;小说家用手法把正式语法里的 were 写成了口语化的 was。感叹号让整句灌注了急切的情绪。
+2) exclaimed Jo：exclaimed 是 exclaim 的过去式,呼喊、激动地说;Jo 乔,《小妇人》中的二女儿。
+3) seizing the book, and feeling that Washington was an immense way off：两个现在分词短语并列,作伴随状语。seizing 一把抓住(seize 本义“抓住”,此处带急切感,译作“抓起”贴切);feeling 感觉、觉得;that 引导宾语从句;Washington 华盛顿,南北战争时期马奇父亲从军之处;an immense way off 距离极其遥远。
+4) immense：形容词,巨大的、无边无际的。构词上由 im-(不)加 mense(源于拉丁语 metiri/mensura,意为“度量”)组成,本义是“无法度量的”,引申为“大得没法衡量”,语义强度高于 big、huge,常与 way、distance、ocean 等搭配,渲染遥不可及之感。
+2. 整句解读：
+乔情急之下喊出“要是妈妈在家就好了!”,同时一把抓起书,心里觉得华盛顿简直是天涯海角。exclaimed 的激动、seizing 的急切、immense way off 的空间感三层递进,把一个小姑娘在危急时刻想念母亲的焦灼刻画得立体而传神。中文把 immense way off 译成“无比遥远”,既保留了大与远双重意味,又比“极其遥远”更多一层口语化的哀愁,处理得当。
+3. 文化点：
+《小妇人》的故事背景是 19 世纪 60 年代的美国内战,马奇家的父亲正在华盛顿服役,孩子们与父亲相隔千里。那时没有电话电邮,从新英格兰到华盛顿的旅途以天计算,immense way off 既是地理距离,更是整个时代的通信鸿沟。","站在山脚下抬眼望,雪山顶缩成针尖大的一点,整堵山壁大得根本没法用尺子量——无边无际,immense。"
+stir,b2,verb,2.61,1,15,stә:,"n. 骚动, 轰动, 搅动, 监狱 / vt. 移动, 摇动, 激起, 惹起, 搅拌 / vi. 走动, 传播, 搅拌",研四六托宝,1899,3008,[41],[15],"I tried to warm its feet, and Lotty gave it some milk, but it didn't stir, and I knew it was dead."" ""Don't cry, dear!",69,v. 动弹；搅动；激起　n. 轰动,我试着给它焐脚，洛蒂给它喂了些奶，可它动也不动，我知道它死了。”“别哭，亲爱的！”,,"1. 逐项解析：
+1) I tried to warm its feet：try to do sth. 试图做某事;warm 此处作动词,使……暖和、焐热;its 它的(英文里对不强调性别的婴幼儿常用 it 指代);feet 脚(复数)。
+2) and Lotty gave it some milk：give sb. sth. 双宾结构,给它一些牛奶;milk 是不可数名词。
+3) but it didn't stir：but 转折;didn't stir 是 stir 的否定过去式。stir 本义是“搅动、翻动”,此处引申为“动一动、动弹、发出活人的动静”;否定式 didn't stir 即“一动不动”,是全句最沉重的一拍。
+4) and I knew it was dead：knew 是 know 的过去式;it was dead 是系表结构,它死了(dead 形容词,表状态)。
+5) “Don't cry, dear!”：Don't 是 do not 的缩略,构成否定祈使句“别哭”;dear 此处用作称呼,亲爱的人。
+2. 整句解读：
+说话人回忆垂危的婴儿:又是焐脚又是喂奶,用尽温柔,可那小身体始终“不动”——didn't stir 三个词落下,死亡的实感随即袭来。stir 在这里是“活着的人总会有动静”的朴素见证,一个否定式把悲伤钉死在画面上。中文“可它动也不动,我知道它死了”与英文语序一致,把最重的结论放在句尾,保持了原文沉重而克制的节奏;“别哭,亲爱的!”是同伴的安慰,也为这段回忆划上温暖的句号。
+3. 文化点：
+场景出自《小妇人》:乔去照顾贫苦移民胡梅尔家病得快死的婴儿,最终孩子还是没保住。19 世纪城市贫民区卫生与医疗条件极糟,婴儿夭折是底层家庭常见的悲剧,也是当时现实主义小说用力描写的题材;这一段让乔初次尝到死亡与无力,是她成长的重要转折之一。","热可可里,勺子画着圈,水面旋出小涡、奶沫轻轻打转——那一下一下的翻动,就是 stir。"
+harm,b2,noun,2.61,1,15,hɑ:m,"n. 伤害, 害处 / vt. 伤害, 损害",高研四六托,3651,3189,[61],[16],No harm shall come to you while we are here.,-1,"n. 伤害,损害 v. 伤害","我们在这儿,不会让你受到任何伤害。",1,"1. 逐项解析:
+1.1 No harm:名词短语作主语。harm 在此是不可数名词,意为“伤害、损害”,No 否定主语,表示“没有任何伤害”。
+1.2 shall come to you:shall 与第三人称主语连用时不表单纯将来,而表示说话人的保证与承诺,即“我保证伤害不会降临”;come to you 指“落到你身上、发生在你身上”。
+1.3 while we are here:while 引导时间状语从句,意为“当我们在的这段时候”,划定了受保护的时间范围。
+1.4 主干结构:No harm shall come to you(主语+谓语+介词短语)+ while 从句作时间状语。
+2. 整句解读:整句是一句郑重而温柔的承诺。英语用 shall 把“伤害不会来”这一客观描述变成说话人当场立下的保证,语气笃定;中文译文转换视角,从“伤害不会降临到你身上”翻成“不会让你受到任何伤害”,把受保护的你放到句中最显眼的位置,读起来更自然、更像一句贴心的安慰。
+3. 文化点:此句是《小妇人》这类 19 世纪家庭小说里常见的安抚话——长辈或同伴在陌生环境里保护孩子/同伴。维多利亚时代的人习惯用 shall 这种郑重语体表达承诺,语气里自带一种“保护者—被保护者”的温情伦理;现代口语则更常说 I promise / won't let anything happen。","想象一把大伞在头顶稳稳撑开,雨点噼里啪啦打在伞面上——伞外的一切都近不了身,那句“有我在”就是这把伞。"
+pat,b2,,2.5833,1,14,pæt,"n. 轻拍 / v. 轻拍 / adv. 适时, 正好, 恰好, 毫不迟疑, 熟记地 / a. 恰好的, 合适的, 熟练的, 坚定的, 人为的",研四六,4539,3881,[84],[13],"Call Meg, and tell her you'll give in,"" said Laurie, with an approving pat, which annoyed Amy more than the 'giving in'.",71,v. 轻拍 n. 轻拍,"“把梅格叫来,告诉她你让步了,”劳里说着赞许地拍了拍她——这比“让步”更叫艾米恼火。",,"1. 逐项解析:
+1.1 with an approving pat:with 介词短语作伴随状语,说明说话时的动作。approving 是形容词“赞许的”,pat 是名词,指“表示亲昵或鼓励的轻拍”。
+1.2 which annoyed Amy more than the 'giving in':which 引导非限制性定语从句,指代前面“赞许地拍了拍她”这整个动作;annoy 意为“使恼火”;more than the 'giving in' 是比较结构,意为“比‘让步’这件事本身更让她恼火”。'giving in' 是把动词短语 give in(让步)加引号名词化,指艾米向梅格低头道歉这件事。
+1.3 Call Meg, and tell her you'll give in:两个祈使句连用,是劳里对艾米的指令——把梅格叫来、告诉她你让步了。
+1.4 said Laurie:插入语,点明说话人。
+2. 整句解读:劳里给了艾米“去道歉”的指示,还附带一个“赞许的拍打”,仿佛在说“做得对”。可艾米本就为退让憋着气,这一拍在她看来是居高临下的表扬,比让她当众承认“让步”更刺人。which 从句轻轻一转,把镜头从外部动作摇进艾米内心——真正让她炸毛的不是认错本身,而是劳里那副“你终于乖了”的神态。
+3. 文化点:维多利亚时代,拍(friendly pat)是一种带着亲昵又略微居高意味的肢体语言,常用来嘉许孩子或地位较低的一方。《小妇人》中的艾米脾气倔、自尊心强,对这种“哄小孩式表扬”格外敏感,这一拍正是情节里细腻的心理刻画。","想象一只大手轻轻拍在肩头,掌心的温度里写着“乖”——艾米气鼓鼓的,恼的正是这一拍里那股俯视的得意。"
+dull,b2,adjective,2.5733,2,17,dʌl,"a. 钝的, 无趣的, 呆滞的, 阴暗的 / vt. 使迟钝, 使阴暗, 缓和 / vi. 变迟钝, 减少",高研四六托雅宝,5094,3799,"[80, 81]","[20, 3]","""It won't be dull with me popping in every day to tell you how Beth is, and take you out gallivanting.",13,"a. 乏味的,沉闷的;迟钝的","“不会乏味的,我每天都来看你,告诉你贝丝的情况,再带你出去兜风。”",,"1. 逐项解析:
+1.1 It won't be dull:it 指代“待在家里的时光”,dull 是形容词“乏味的、无聊的”,won't be dull 即“不会无聊”。
+1.2 with me popping in every day:with+宾语 me+现在分词 popping,构成 with 复合结构,作伴随状语,相当于“有我每天溜达过来”;pop in 是口语惯用短语,意为“突然/顺路来访、串门”。
+1.3 to tell you how Beth is:不定式表目的;how Beth is 是间接疑问式的宾语从句,即“贝丝的身体怎么样”。
+1.4 and take you out gallivanting:take sb out doing sth 表示“带某人出去做某事”;gallivanting 是 gallivant 的现在分词,口语词,意为“四处游逛、逍遥快活地跑出去玩”,是句中难度高于目标词的超纲词,需靠语境猜出“出去玩、找乐子”之意。
+2. 整句解读:说话人正在安抚对方:别担心待着会无聊,因为我每天都会溜来串门,一边告诉你贝丝的最新情况,一边带你出去撒欢玩耍。句子语感轻快俏皮——pop in、gallivanting 都是活泼的口语词,把“陪伴”说得既热闹又安心;译文把 gallivanting 处理成“兜风”,抓住了“出门游逛、图个乐”的核心意思。
+3. 文化点:维多利亚时代,带小姐或同伴“出去兜风游玩”是受人欢迎的殷勤与消遣,故事里常用“带你出去散心”这样的许诺化解病榻或家中的沉闷;gallivant 这种词也折射出当时人对“轻快外出寻乐”行为的半调侃态度。","想象一扇门被人咚咚敲开,探进一张笑嘻嘻的脸:“走啊,带你兜风去!”——那声招呼一响,屋里的无聊就全被吹跑了。"
+shear,c1,,2.5667,1,4,ʃiә,"n. 修剪, 剪下的东西, 大剪刀, 切变, 剪切机, 切 / vt. 修剪, 割, 剥夺, 横越, 削剪 / vi. 剪, 修剪, 剪羊毛, 切断",研四六托雅宝,9594,10041,[4],[10],"Jo caught a bad cold through neglect to cover the shorn head enough, and was ordered to stay at home till she was better, for Aunt March didn't like to hear people read with colds in their heads.",50,v. 剪（羊毛、头发）（shorn 过去分词）　n. 大剪刀,乔因为没好好护住剪短的头，着了凉，得了重感冒，被勒令在家休养直到好转。,,"1. 逐项解析:
+1.1 caught a bad cold:catch a cold 是固定搭配“感冒”,bad 加强程度,意为“得了重感冒”。
+1.2 through neglect to cover the shorn head enough:through 表原因,意为“由于、因为”;neglect to do sth 是固定结构“疏忽了做某事”;shorn 是 shear 的过去分词,意为“被剪过的”,the shorn head 即“剪短了的头发”;enough 说明盖护得不够充分。
+1.3 and was ordered to stay at home:be ordered 是被动语态“被命令”,to stay at home 是不定式补语。
+1.4 till she was better:till/until 引导时间状语从句,“直到(身体)好转”。
+1.5 for Aunt March didn't like to hear people read with colds in their heads:for 在此作连词,引出原因;hear people read 是 hear sb do sth 结构;with colds in their heads 是 with 复合结构,字面是“脑袋里带着感冒”,实际指“感冒着、带鼻音地读书”。
+2. 整句解读:整句是层层因果的长句:乔没把剪短的头好好护住 → 着凉得了重感冒 → 被命令待在家里 → 而究其原因,是马奇姑妈不爱听人感冒时读书。译文把 through neglect 的点明为“没好好护住”,用“被勒令”承接被动语态,再自然接上 for 引出的理由,读来因果分明;结尾“不爱听人带着感冒读书”还带一点叙述的冷幽默——为这种小事也能成为禁足理由。
+3. 文化点:《小妇人》中乔为给母亲凑钱剪掉并卖掉了自己的头发,shorn head 正是这段情节的余波。19 世纪的人普遍相信受凉会引发感冒,所以“剪短头发不戴帽保暖”被看作生病的直接原因,读者对此毫无异议。","想象大剪刀咔嚓一声,整片头发轻飘飘落进掌心,头顶猛地一凉——凉风一灌,连打了三个喷嚏:剪完头真的容易着凉。"
+assure,b2,verb,2.5567,1,13,ә'ʃuә,"vt. 保证, 使确信, 弄清楚, 担保",研四六托雅宝,2571,2640,[59],[15],The doctor assured them that Beth would soon be well again.,-1,v. 向…保证；使确信（assure sb that）,医生向他们保证，贝丝很快会好起来。,1,"1. 逐项解析:
+1.1 The doctor:主语“医生”。
+1.2 assured them:assured 是 assure“向……保证、使……确信”的过去式,及物动词,them 作间接宾语“向他们”。
+1.3 that Beth would soon be well again:that 引导宾语从句,即保证的具体内容;would soon be well again 是过去将来时,指“当时判断贝丝很快会好起来”。
+2. 整句解读:医生给一家人吃了一颗定心丸:他向他们保证,贝丝很快就会痊愈。assure sb that 是固定搭配,语气重在“消除疑虑、让人安心”,与 promise(许下责任)不同;译文“向他们保证”准确传达了这层安抚之意。全句平实而短,语义重心落在宾语从句上,读来有一种“医生说完,屋里的人齐齐松了一口气”的踏实感。
+3. 文化点:19 世纪医生上门出诊后要向家属交代病情与预后,这句话出自《小妇人》贝丝生病的情节。在抗生素尚未出现的年代,医生一句“会好起来”是全家人心情由忧转安的节点,重要性非同小可。","想象医生收起听诊器,朝床边一家人的眼睛郑重点头:“放心,会好的。”——那只点头的力度,就是 assure。"
+bounce,b2,verb,2.5567,1,13,bauns,"n. 跳, 跳跃, 弹力, 撞击 / vi. 反跳, 弹跳 / vt. 使跳回, 撞击",高研四六托雅,3792,4778,[125],[15],""" ""Hold your tongue, you disrespectful old bird!"" cried Polly, tumbling off the chair with a bounce, and running to peck the 'rattlepated' boy, who was shaking with laughter at the last speech.",93,n. 弹跳；一蹦　v. 蹦跳；使弹起（with a bounce 蹦的一下）,“住嘴，你这个没规矩的老东西！”波莉嚷道，从椅子上叭地蹦下来，跑过去啄……,,"1. 逐项解析:
+1.1 with a bounce:bounce 是名词“弹跳、蹦的一下”,with a bounce 表落地的动作带着弹性和响动,像“叭”的一下弹落在地上——正对应现有释义中的搭配 with a bounce。
+1.2 tumbling off the chair:tumble 意为“翻滚着、跌跌撞撞地落下”,现在分词短语表伴随,与 with a bounce 连用,描摹波莉从椅子上笨拙又带劲地蹦下来的样子。
+1.3 and running to peck the 'rattlepated' boy:run to do sth 表目的;peck 是超纲词,指“(鸟)用喙啄”;'rattlepated' 是口语形容词,意为“头脑不清醒的、冒冒失失的”,这里是在骂那个正笑得直抖的男孩。
+1.4 who was shaking with laughter:who 引导定语从句修饰 the boy,shaking with laughter 是“笑得浑身发抖”。
+1.5 “Hold your tongue, you disrespectful old bird!”:Hold your tongue 是俚语式祈使句,意为“住嘴、少说两句”;disrespectful 是超纲词,意为“不敬的、没规矩的”;cried Polly 即“波莉嚷道”。
+2. 整句解读:这活脱脱是一幅滑稽闹剧:被骂作“没规矩老东西”的波莉(一只鹦鹉)怒不可遏,一边喊着“住嘴”,一边带着响动从椅子上弹蹦下来,冲过去啄那个被它骂成“冒失鬼”、正笑得浑身发抖的男孩。bounce、tumble、peck 三个动词连用,把鹦鹉扑腾发飙的笨拙与喜感写活了;译文用“叭地蹦下来”的拟声词还原了 with a bounce 的弹性与响动,让画面仿佛就在眼前。
+3. 文化点:《小妇人》中波莉(Polly)是马奇家的宠物鹦鹉,会学人说话、颇有灵性。维多利亚时代家庭养鹦鹉十分普遍,鹦鹉学舌、耍性子、闹脾气是当时家庭故事里讨喜的插科打诨桥段——作者用一只鸟给读者送来一场轻松的闹剧。","想象一只圆滚滚的鹦鹉从椅背气鼓鼓地往下跳,身子在座垫上“哐”地弹了一下才落地——那一弹一起,就是 bounce。"
+stormy,c1,,2.54,1,3,'stɒ:mi,"a. 暴风雨的, 粗暴的, 激烈的",四六,11643,9490,[18],[1],"It had been a stormy morning, but by noon the sky cleared.",-1,a. 暴风雨的；激烈的,那是个暴风骤雨的上午，但到中午天便放晴了。,1,"1. 逐项解析
+1. It had been…:开头的 It 不是实指某物,而是英语里谈天气、时间、环境时惯用的「虚位主语」,纯粹站住主语的位置,本身没有具体指代。had been 是过去完成时,表示「在叙述时间点之前,这个上午一直是这样的天气」,把坏天气设成故事开场时的背景。
+2. a stormy morning:目标词出现处。stormy 是形容词,由名词 storm(暴风雨)加形容词后缀 -y(意思是「充满……的、有……特征的」)构成,本义即「暴风雨的」。它还能由天气义延伸出比喻义:形容局面或人际关系时指「激烈的、多风波的、剑拔弩张的」,如 a stormy meeting(气氛紧张的会议)、a stormy relationship(争吵不断的关系)。morning 是「上午」,a stormy morning 即「一个暴风骤雨的上午」。
+3. but:转折连词「但是」,把前半句的坏天气与后半句的好天气接成对照。
+4. by noon:介词短语作时间状语,by 表「不迟于、到……时为止」,noon 是「正午」,合起来是「到中午」,标明情况变化发生的时间截止点。
+5. the sky cleared:the sky 是「天空」;cleared 是动词 clear 的过去式,此处作不及物动词,指天气「放晴、转晴」(阴云散开),the sky cleared 即「天空放晴了」。注意时态层次:前半句 had been 是过去完成时(更早、作为背景),后半句 cleared 是一般过去时(随后发生),一先一后把「坏→好」的顺序交代得清清楚楚。
+2. 整句解读
+整句是一组干净的转折:先说那是个暴风骤雨的上午——用过去完成时把坏天气垫成背景,再用 but 一笔转到「到中午天便放晴了」。一坏一好之间,转折干脆利落,读来有一种「熬过一段阴沉、终于豁然开朗」的舒服劲儿。中文译文「那是个暴风骤雨的上午,但到中午天便放晴了」几乎逐词对位:stormy 译成「暴风骤雨」满有画面,「便」字尤其传神,带出「时间一到就放晴」的痛快,把 but＋by noon＋cleared 的「转折加时限」全盘端出。全句语气是平静的叙述,不慌张、不夸张,像说书人翻开一个有阴有晴的故事开头。
+3. 文化点
+这句出自 19 世纪美国小说《小妇人》。19 世纪文学惯用天气写情:一个 stormy 的早晨到正午放晴,常暗喻心境的由阴转晴,或家境的先难后顺。再者新英格兰地区天气多变,「上午风雨交加、午后云开日出」本就是当地真实的日常,写实与象征在这里叠在了一起。","乌云把整条街压得黑沉沉,雨点砸在窗玻璃上啪啪作响——天空那张发怒的脸,就是 stormy;等午后云开,它才重又露出亮青的天。"
+ward,c1,noun,2.54,1,3,wɒ:d,"n. 病房, 守卫, 保卫, 保护, 监护, 牢房, 行政区, 锁孔内的榫舌 / vt. 使入病房, 守护, 保卫",高研六托雅,5065,2949,[107],[11],"Amy was ordered off at once, and provided with something to ward off danger, she departed in great state, with Jo and Laurie as escort.",60,v. 挡开（ward off 避开，防范）　n. 病房；受监护的儿童,艾米被立刻打发走，还配了挡灾之物以防万一，随后她便风风光光地出发了，乔和劳里相陪……,,"1. 逐项解析
+1. Amy was ordered off at once:主句之一。Amy(艾米,马奇家最小的女儿)是主语;was ordered off 是被动语态一般过去时,order sb. off 是「打发某人离开、命某人走」的固定说法,此即「被(大人)打发走」;at once 是「立刻」,整块意为「艾米被立刻打发走」。
+2. and provided with something to ward off danger:过去分词短语,前承 was 并列,即 …and(was)provided with…,补充她走前的装备:be provided with sth. 是「被配给了某物」;something 是「某样东西」;to ward off danger 是不定式作目的状语,修饰 something,即「用来躲避危险的」。这正是目标词 ward 的动词用法:ward off 是固定搭配,「挡开、避开、防范」;ward 独自作名词时则指「病房」或「受监护(被看护)的孩子」。danger 是「危险」,ward off danger 即「把危险挡在外面」。
+3. she departed in great state:she 指艾米;departed 是 depart(启程、动身)的过去式;in great state 是带古趣的短语,state 这里不作「州、状态」讲,而作「气派、排场、体面」,in great state 意为「大讲排场、风风光光地」。
+4. with Jo and Laurie as escort:with 引导的复合结构作伴随状语。Jo(乔,二姐)和 Laurie(劳里,邻家少年)是 escort(护送者、随从),as escort 即「作为护送者」,补充说明出发时的阵仗。
+2. 整句解读
+整句讲一个小女孩被大人火速「遣送」去别处避难:一句「被立刻打发走」,一道「挡灾护身」的物件,再加上「风风光光」「有人相陪」,一个慌里慌张的场面竟全套上了隆重话。语气妙就妙在比对——明明是逃难般的狼狈,却用 ordered off、in great state、with escort 这些「大词」一本正经地写,越正经越滑稽,把孩子的天真和大人小题大作的郑重揉在一起。中文译文把 in great state 处理成「风风光光」,把 escort 点成「乔和劳里相陪」,「相陪」二字闲闲一搁,整句喜剧感立现;至于 ward off danger 译成「配了挡灾之物以防万一」,「以防万一」把动词词组摊开成缘由,贴心又清楚。
+3. 文化点
+出自《小妇人》。19 世纪新英格兰,家长把孩子暂时打发到亲戚邻家小住,是应对家中风波、病人或不便的寻常办法;ward off 借的意象很古老,本像「挥动手臂把袭来的东西格挡开」,小说里艾米揣着「挡灾」的物什出门,既像孩子气的护身符习俗,也透着那个年代对「避邪」之物的亲切想象。","想象医院走廊尽头那间摆着监护床的病房(ward),门口护士抬掌把涌来的探病者挡在门外——同一个 ward,门里是病房,门把手一拧就是动词「挡开、避开」。"
+claw,c1,,2.54,1,3,klɒ:,"n. 爪, 螯, 抓伤 / v. 用爪抓, 挖, 搜刮",高研四六托,6934,8058,[121],[17],"Never say die, take a pinch of snuff, goodbye, goodbye!"" squalled Polly, dancing on her perch, and clawing at the old lady's cap as Laurie tweaked him in the rear.",99,n. 爪子　v. 用爪抓，抓挠,“永不言败，来撮鼻烟吧，再见，再见！”波莉尖叫着，在栖木上跳来跳去，伸爪去抓那位老先生的……,,"1. 逐项解析
+1. 「Never say die, take a pinch of snuff, goodbye, goodbye!」:鹦鹉波莉学舌的一串台词。Never say die 是固定习语,字面「永不说死」,意为「永不认输、绝不放弃」;take a pinch of snuff 中 snuff 是超纲词「鼻烟」,pinch 指「一撮」,整句是旧时绅士见面的寒暄客套——来撮鼻烟吧;goodbye 是「再见」,连喊两声是学人说话的复读腔。
+2. squalled:超纲词。squall 本指狂风骤雨般短促猛烈的风暴,作动词引申为「尖声喊叫、扯嗓门嚷」,过去式作本句的引语动词,表示这句台词是被鹦鹉尖声「吼」出来的,比平铺直叙的 said 刺耳得多。
+3. Polly:鹦鹉的名字。英语里「鹦鹉」的名字传统上就叫 Polly,自带熟悉、逗趣的联想。
+4. dancing on her perch:现在分词短语作伴随状语。dance 是「跳、蹦」;perch 是鸟儿立足的「栖木、横杆」。Polly 一边在栖木上蹦跳一边说话。
+5. and clawing at the old lady's cap:目标词所在处。claw 这里作动词,「用爪抓、伸爪挠」;claw at sth. 表示「反复去挠、拼命想抓牢某物」,介词 at 透出「还没抓实、正使劲探」的动态;cap 是(老太太戴的)软帽,old lady 是那位老夫人。整块:还伸着爪子去抓老夫人的帽子。
+6. as Laurie tweaked him in the rear:as 引时间状语「正当……时」;Laurie(劳里)是故事里的少年;tweaked 是 tweak 的过去式「拧、捏、轻扯」;him 指代鹦鹉;in the rear 指身体「后部、屁股上」,即劳里正好在它屁股上拧了一把。
+2. 整句解读
+整句是浓墨重彩的一段动物闹剧:老太太正训着话,椅背上的鹦鹉一边尖声学着「永不言败、来撮鼻烟」那些大人腔,一边在栖木上蹦脚,还伸爪去抓老太太的帽子,起因是旁边的劳里偷偷拧它的尾巴。squalled、dancing、clawing 三个进行时的动词一组,尖叫、蹦跳、抓挠三路齐发,节奏热火朝天;claw at 最出戏:爪子张开、往前探、够不着也照样挠,一幅「死抠不撒手」的画面钉在眼前。中文译文把这三个动作理成「尖叫着、在栖木上跳来跳去、伸爪去抓」的连动,顺序顺着中文语感;「抓」字配上「伸爪」,动作的前奏与落点都有了,闹剧的劲儿一点没丢。
+3. 文化点
+出自《小妇人》。19 世纪家庭的宠物里,会学人话的鹦鹉是稀罕又招笑的一宝,模仿大人腔的鹦鹉尤为可乐;「鼻烟」恰是维多利亚时代绅士的社交习惯,一只绿毛畜生正色喊着「来撮鼻烟」,等于把那个年代「大人的体面」学了个底朝天。家庭小说里写宠物捣乱、抢戏,是当时很受欢迎的生活彩蛋。","一只绿鹦鹉在鸟架上扑腾,弯钩似的爪子死死扣进旧软帽的帽沿里,拉都拉不下来——那几根能张能收、勾住粗布的指爪,就是 claw。"
+slight,b2,adjective,2.53,1,12,slait,"n. 轻蔑, 怠慢 / a. 轻微的, 纤细的, 脆弱的, 苗条的 / vt. 轻视, 忽略, 怠慢",高研四六托雅宝,2982,2237,[8],[5],"Beth kept on, with only slight relapses into idleness or grieving.",24,a. 轻微的；纤细的　n. 轻视，怠慢,贝丝坚持了下去，只是偶尔小有反复，懒散或伤心一下。,,"1. 逐项解析
+1. Beth kept on:目标句主干。Beth 是马奇家老三贝丝(羞怯、安静、善弹琴);kept on 是固定短语 keep on 的过去式,「继续、坚持(做下去)」,暗含着没有停顿、没有撂挑子的劲头。
+2. with only slight relapses into idleness or grieving:介词 with 短语作伴随状语,给「坚持」补底色。only 是「只是、仅仅」;slight 是目标词,形容词,「轻微的、细微的」,也指人「纤细的、瘦小的」,此处修饰 relapses,强调反复的程度很轻、不碍大局;relapses 是超纲词,relapse 的复数,本义「(病情)复发」,引申为「故态复萌、重新滑入坏状态」;into 表「陷入、滑向……」;idleness 是超纲词,由形容词 idle(闲散)加名词后缀 -ness 构成,意为「懒散、无所事事」;grieving 是 grieve(悲伤、哀恸)的动名词,「悲伤、难过」;or 连接两个并列项。整块:只是偶尔轻微地滑向懒散或悲伤。
+3. 语气设计:转折被压得很小。keep on 立「坚持」,only＋slight 把「反复」轻描淡写,双重压制之下,读者得到的印象是「大体上稳稳扛住了」。
+2. 整句解读
+整句写贝丝的坚持:她把事情一天天做下去(kept on),顶多只是「小有反复」——偶尔懒散一晌、偶尔掉几滴眼泪,仅此而已。中文译文把 only slight relapses 译成「偶尔小有反复」,「偶尔」对应 only、「小」对应 slight,英文那层「不值一提」的轻描淡写被原样保下;relapses into idleness or grieving 译成「懒散或伤心一下」,一个「一下」堪称点睛,把「复发」的量感压到最轻,与原文「这不算大事」的口吻严丝合缝。全句语气克制而温柔,像一位疼爱她的人在轻声替她申辩:她没放弃,只是偶尔歇口气、掉两滴泪罢了。
+3. 文化点
+出自《小妇人》。贝丝是全书最柔弱的妹妹,后期病体缠绵、与死亡越走越近;把「坚持做事」与「偶尔懒散、偶尔伤怀」并排来写,是作者以轻笔写沉重的高明处。用 kept on 这种近乎「当家人持家」的口吻来写一个抱病的女孩,正是 19 世纪家庭小说「从日常小动作见人」的路数。","想象手指捻起一根缝衣的细银针,轻得几乎没有分量——slight 就是那种「只剩一丝」的轻:一阵微风、一丝笑意、一点点小小的反复。"
+sitting,toe,,2.52,2,42,'sitiŋ,"n. 入席, 就坐, 开庭, 孵卵 / a. 坐着的, 就座的, 在职的, 在孵卵中的, 易被击中的",7512/5951),7512,5951,"[29, 109]","[16, 15]","""What do you want now?"" she asked, looking sharply over her spectacles, while the parrot, sitting on the back of her chair, called out . . .",90,sit 的现在分词:坐着,"“你现在要什么?”她隔着眼镜严厉地问道,而鹦鹉坐在椅背上大声叫着……",,"1. 逐项解析
+1. 「What do you want now?」:直接引语。「你现在要什么?」——what 是疑问代词,do you want 是助动词 do 助起来的一般疑问现在时;now 是「现在」。
+2. she asked, looking sharply over her spectacles:直接引语之后的引语动词。asked 是 ask(问)的过去式;现在分词短语 looking sharply over her spectacles 作伴随状语:look over one's spectacles 是固定画面——不完全用镜片、从镜框上方望向来人,是老派长者审视、较真的招牌动作;sharply 是副词「严厉地、锐利地」。
+3. while the parrot, sitting on the back of her chair, called out…:while 引时间/对照从句,「与此同时」,把老太太的一本正经和鹦鹉的接话摆成一个对照;中间被逗号隔开的 sitting on the back of her chair 正是目标词所在:sitting 是动词 sit(坐)的现在分词,此处构成分词短语作后置定语,修饰 the parrot,即「坐在她椅背上的那只鹦鹉」;sit on 是「坐在……上」。
+4. called out:call out 的过去式,「喊出、大声叫」,说明是鹦鹉在扯嗓子;句末的省略号(…)表示话被打断、说不完。
+5. 目标词形态:sit 是不规则动词(sit–sat–sat),现在分词双写 t 加 -ing 得 sitting。此处一个分词身兼二任:既带「正坐着」的持续意味,又当定语框出鹦鹉的位置。
+2. 整句解读
+镜头是这样:老太太隔着眼镜严厉发问「你现在要什么?」,可应声的从来不是人——蹲在她椅背上的鹦鹉正扯开嗓子喊叫。一份严肃、一份聒噪,一板一眼和学舌乱喊撞在一起,喜剧冲撞感极强。sitting 把「稳稳蹲着」的鹦鹉定在椅背上,再让它出声,静与闹的落差刚好被这个分词垫出来。中文译文把分词短语挪成顺口的连动句「鹦鹉坐在椅背上大声叫着」,「坐着……叫着」一气呵成;looking sharply over her spectacles 被妙译成「隔着眼镜严厉地」,既含「隔着镜片」的视线,又带出审视的神气,两个难点都化得自然。
+3. 文化点
+出自《小妇人》。19 世纪人家客厅常有会学话的鹦鹉,老太太爱让它立在椅背上凑热闹;「隔着眼镜从镜框上方看人」是维多利亚时代严苛长者的招牌神态,小说里一出现这个动作,读者便知来了位规矩多、不好糊弄的长辈。","一个漫长的下午,那只鹦鹉就那样一动不动地蹲在椅背上,尾巴垂着、眼睛半闭,把「坐」这个姿势一直坐到天黑——sitting 就是这位「正坐着」的定格瞬间。"
+pendulum,c1,,2.5133,1,2,'pendʒәlәm,"n. 钟摆, 摇锤, 摇摆不定的事态(或局面)",研六托雅宝,12582,14260,[9],[27],"All the little duties were faithfully done each day, and many of her sisters' also, for they were forgetful, and the house seemed like a clock whose pendulum was gone a-visiting.",149,n. 钟摆；摇摆不定的事态,每天所有的小事务都认真完成，许多原属姐姐们的活计她也一并做了，因为她们常常丢三落四，而那座老钟的钟摆……,,"1. 逐项解析
+1. All the little duties were faithfully done each day:第一分句。all the little duties 是「全部那些小小的家务杂事」;were done 是被动语态一般过去时「被完成」;faithfully 是超纲词,副词,「忠实地、一丝不苟地」,暗含像尽责的仆人般勤恳;each day 是「每天」。句意:每天所有那些小事都被做得认认真真。
+2. and many of her sisters' also:承上并列。many of her sisters'(duties)意即「姐姐们那一份的许多(活计)」,sisters' 是复数所有格,duties 承前省略;also 是「也」。句意:姐姐们那些活她也一并包了。
+3. for they were forgetful:for 在这里不是「为了」,而是连词「因为」,引出原因;they 指几位姐姐;forgetful 是「健忘的、丢三落四的」,由 forget(忘记)加后缀 -ful(「容易……的」)构成。
+4. and the house seemed like a clock whose pendulum was gone a-visiting:全句最俏的比喻。the house 是「这座房子」;seemed like 是「看起来好像」;a clock 是「一座钟」;whose pendulum was gone a-visiting 是定语从句——whose 表「这座钟的」,pendulum 是目标词「钟摆」;was gone 是「不见了、到别处去了」;a-visiting 是英语里古雅的说法,相当于 going visiting「出去串门去了」,把钟摆写得像贪玩的客人。整句:而这座房子就像一座钟摆出去串门了的钟。
+2. 整句解读
+整句在替贝丝记账(顺承上文):家里每件小家务她都勤勤恳恳完成,姐姐们丢三落四留下的活也全归了她;for 引出的「她们健忘」先补清缘由,再把最重的一笔甩出来——这座家就像一座钟摆出去串门的钟。钟摆不在,钟本该停摆,可它还在走,只因有人顶上了钟摆的位置,替整座「家钟」续命。这个比喻俏皮又温暖:拿机械零件的缺席,反衬人填补空缺的可靠与合拍。中文译文把比喻收成「而那座老钟的钟摆……」,用省略号把没有译出的「串门去了」留给读者脑补,「老钟」二字更平添了整个家的亲切感,与英文那句轻巧的幽默相映成趣。
+3. 文化点
+出自《小妇人》。19 世纪的美国客厅里,台钟或落地钟是家里的大件家什,钟摆日夜不停地摆动,本身就是「居家稳妥、时间流动」的象征;把钟摆说成 goes a-visiting,是当时英语中地道又风趣的拟人说法,让庄重的器物有了贪玩的性情。用一座钟摆缺席却仍走动的钟,来写「一人顶全家」的贝丝,正是奥尔科特式的家常比喻:件件器物,皆有温情。","冬夜客厅的落地钟,玻璃门后那枚黄铜钟摆不慌不忙地左一下、右一下,整座家都跟着它的节拍呼吸;要是它真去串门,钟就剩个空壳——pendulum,是让时间心跳的那一下摆动。"

@@ -1,19 +1,154 @@
-﻿word,cefr,pos,score,freq_ch,freq_book,phon,trans,tags,bnc,frq,sids,tids,sent,sent_off,cn_mean,cn_sent,ai
-pilgrim,c1,,2.8067,1,13,'pilgrim,"n. 旅行者, 朝圣者, 香客 / vi. 朝圣",研六雅宝,9037,8758,[63],[5],"But, Amy was a young pilgrim, and just now her burden seemed very heavy.",21,n. 朝圣者，香客,可是，艾米是个年轻的朝圣者，此刻她的担子似乎格外沉重。,
-seal,b2,noun,2.7167,5,10,si:l,"n. 印章, 封条, 海豹, 海豹皮, 火漆, 封蜡, 玺, 保证, 批准, 象征, 标志 / vt. 封闭, 盖印, 盖章 / vi. 猎海豹",高研四六托雅,4021,4259,"[92, 103, 106, 108, 112]","[10, 10, 19, 22, 10]",To this will and testiment I set my hand and seal on this 20th day of Nov.,45,n. 印章，封印　vt. 盖印；封口（sealed 密封的）,“兹立此遗嘱，于本年十一月二十日签字盖章。”,
-necklace,c1,,2.6867,3,4,'neklis,n. 项链,高研四六,6583,10178,"[30, 30, 32]","[9, 16, 8]","""I, too, covet that, but not as a necklace.",34,n. 项链,“我也想要那件东西，但不是把它当项链戴。”,
-sympathize,c1,,2.6733,1,8,'simpәθaiz,"vi. 同情, 怜悯, 同意, 体谅",研四六托,11121,14925,[4],[15],She sympathized with Amy in all her little troubles.,-1,v. 同情，体谅（sympathize with）,艾米那些小小的烦恼，她都感同身受。,1
-treasure,b2,noun,2.6633,1,17,'treʒә,"n. 宝物, 财富 / vt. 珍爱, 重视, 秘藏",中高研四六托,4074,4538,[66],[13],It cost her a pang even to think of giving up the little treasures which in her eyes were as precious as the old lady's jewels.,57,n. 宝物，珍品　vt. 珍爱，珍视,光是想到要舍弃那些小宝贝，她就心痛——在她眼里，它们珍贵得如同老太太的……,
-lame,c1,,2.62,1,6,leim,"a. 跛足的, 僵痛的, 不完全的, 金属薄板, 不知内情的人 / vi. 变跛 / vt. 使成残废, 使无用",高研四六雅,9982,11787,[11],[29],"Then Polly had to be fed, the lap dog combed, and a dozen trips upstairs and down to get things or deliver orders, for the old lady was very lame and seldom left her big chair.",141,"a. 瘸的,跛的","然后要喂波莉,给哈巴狗梳毛,再上下楼跑十几趟取东西、传话——老太太腿脚不便,很少离开她的大椅子。",
-roam,c1,,2.62,1,6,rәum,"v. 漫游, 闲逛, 徜徉 / n. 漫步, 漫游",六托雅,6175,8584,[26],[5],"She also allowed her to roam about the great house, and examine the curious and pretty things stored away in the big wardrobes and the ancient chests, for Aunt March hoarded like a magpie.",24,v. 漫步，漫游，闲逛,她还允许她在宅子里随意走动，观赏那些收藏在大柜子里的新奇漂亮的玩意儿。,
-deeply,b2,adverb,2.61,1,15,'di:pli,"adv. 深刻地, 在深处, 深沉地",高,2122,2327,[1],[4],"She felt her exile deeply, and for the first time in her life, realized how much she was beloved and petted at home.",19,"adv. 深深地,深刻地","她深切地感受着流放之苦,有生以来第一次意识到,自己在家中是多么被疼爱、被娇惯。",
-wrinkle,c1,,2.5933,1,5,'riŋkl,"n. 皱纹, 妙计, 方法, 技巧 / vi. 起皱 / vt. 使起皱纹",高研六托雅宝,7819,14095,[4],[10],A deep wrinkle appeared between her brows as she thought.,-1,n. 皱纹　v. 起皱（wrinkle up 皱起）,她思索时，眉间现出一道深深的皱纹。,1
-rainy,c1,,2.5933,1,5,'reini,"a. 下雨的, 多雨的",中高四六,7477,13732,[68],[4],"As it was a rainy day, she went upstairs to amuse herself in one of the large chambers, and took Polly with her for company.",12,"a. 下雨的,多雨的","那天是个雨天,她便上楼到一间大房间里自娱自乐,带波莉作伴。",
-torment,c1,,2.5933,1,5,'tɒ:ment,"n. 使人痛苦的东西, 折磨者, 苦痛 / vt. 使苦恼, 纠缠, 歪曲, 拷问",研六托雅宝,12020,12113,[86],[10],The teasing was a torment to the little girl.,-1,n. 折磨，痛苦　vt. 折磨，纠缠,那些戏弄对小姑娘来说是一种折磨。,1
-artistic,b2,adjective,2.5567,1,13,ɑ:'tistik,"a. 艺术的, 艺术家的, 富有艺术性的",研四六雅,3249,4141,[96],[16],"Also in return for his great kindness in the hour of affliction any one of my artistic works he likes, Noter Dame is the best.",78,a. 艺术的；富有艺术性的,“为了报答他在我们遭难时的极大善心，我喜欢的任何一件艺术作品，如《巴黎圣母院》……都可以送给他。”,
-comb,c1,,2.54,1,3,kәum,"n. 头梳, 鸡冠 / vt. 梳头发, 梳毛 / vi. (浪)涌起",高研四六,7329,9845,[11],[9],"Then Polly had to be fed, the lap dog combed, and a dozen trips upstairs and down to get things or deliver orders, for the old lady was very lame and seldom left her big chair.",38,v. 梳理 n. 梳子,"然后要喂波莉,给哈巴狗梳毛──原文如此,再上下楼跑十几趟取东西、传话。",
-doze,c1,,2.54,1,3,dәuz,"vi. 打瞌睡, 假寐 / vt. 打瞌睡度过 / n. 瞌睡",研托雅宝,11330,12444,[20],[33],The old gentleman dozed over his paper by the fire.,-1,v. 打瞌睡，假寐　n. 小睡（doze off）,老先生在炉火边看着报纸打起盹来。,1
-bridle,c1,,2.54,1,3,'braidl,"n. 马勒, 约束",六宝,19059,12851,[71],[36],Amy looked at the pony's new bridle with envious eyes.,-1,n. 缰绳，辔头；（喻）束缚　vt. 控制,艾米眼馋地看着小马驹崭新的辔头。,1
-yawn,c1,,2.54,1,3,jɒ:n,"n. 哈欠 / vi. 打哈欠, 裂开 / vt. 打着哈欠说",高研四六托雅宝,10649,10509,[81],[57],Amy tried to hide a yawn behind her hand.,-1,v. 打哈欠　n. 哈欠,艾米想用手掩住一个哈欠。,1
-fate,b2,noun,2.53,1,12,feit,"n. 命运, 运气 / vt. 注定",研四六,2919,3179,[17],[38],Amy could not guess what fate awaited her at Aunt March's.,-1,"n. 命运,结局",艾米猜不透在马奇姑妈家等待着她的会是怎样的命运。,1
-lace,b2,,2.52,2,15,leis,"n. 饰带, 花边, 缎带, 鞋带 / vt. 结带子, 饰以花边 / vi. 系带子",研四六托雅宝,6642,4847,"[25, 91]","[29, 28]","She took a fancy to Mademoiselle, and amused her very much with odd stories of her life in France, when Amy sat with her while she got up Madame's laces.",147,n. 花边，蕾丝；鞋带　v. 系带子,她对玛德莫瓦塞尔小姐一见如故，给她讲了在法国的许多离奇故事，艾米坐在一旁听得入迷。,
+﻿word,cefr,pos,score,freq_ch,freq_book,phon,trans,tags,bnc,frq,sids,tids,sent,sent_off,cn_mean,cn_sent,ai,ai_analysis,memo
+pilgrim,c1,,2.8067,1,13,'pilgrim,"n. 旅行者, 朝圣者, 香客 / vi. 朝圣",研六雅宝,9037,8758,[63],[5],"But, Amy was a young pilgrim, and just now her burden seemed very heavy.",21,n. 朝圣者，香客,可是，艾米是个年轻的朝圣者，此刻她的担子似乎格外沉重。,,"1. But：转折连词，表示对上文的轻轻一转，相当于“可是、然而”。
+2. Amy：人名，艾米，本书的小主人公之一。
+3. was a young pilgrim：系表结构。was 是 be 动词的过去式；young 是形容词作定语，修饰 pilgrim；pilgrim 是名词，意为“朝圣者、香客”，此处取的是比喻义。
+4. just now：时间状语，表示“此刻、刚刚”，这里强调是眼下这个特定的时刻。
+5. her burden seemed very heavy：her burden 她的担子、重负（burden 既可指实物负荷，也指精神上的负担）；seemed 是感官系动词 seem 的过去式，后面接形容词作表语，意为“显得、似乎”；very heavy 非常沉重。整个核心结构是“主语+系动词+表语”的静态描写。
+
+整句解读：这句话出现在《小妇人》叙述艾米的段落。作者把年纪尚小的艾米比作“年轻的朝圣者”，把她在生活里遇到的委屈和难处比作旅人背上的重担；just now 点出时间上的当下感——此时此刻，这个孩子正因为某件事闷闷不乐。全句没有激烈的情绪，却带着一股疼惜的旁观目光，仿佛在说“孩子，路还长，担子总会轻的”。中文译文把 seemed 的委婉语气落实为“似乎格外沉重”，翻译得很稳。
+
+文化点：17 世纪英国作家班扬的长篇寓言《天路历程》（The Pilgrim's Progress）在 19 世纪英美家庭几乎是必读书，书中的主角就是一位背负重担、走向天城的“朝圣者”，人生即朝圣之旅的观念因此深入人心。作者用 pilgrim 形容小女孩艾米，正是借这部人人皆知的寓言，把日常琐事提升到人生修养的高度，透出《小妇人》一贯的温情与教谕气息。",山间小道上，一个单薄的身影背着鼓鼓的包袱，一步步朝山顶的亮处走，石子硌脚也不肯停。
+seal,b2,noun,2.7167,5,10,si:l,"n. 印章, 封条, 海豹, 海豹皮, 火漆, 封蜡, 玺, 保证, 批准, 象征, 标志 / vt. 封闭, 盖印, 盖章 / vi. 猎海豹",高研四六托雅,4021,4259,"[92, 103, 106, 108, 112]","[10, 10, 19, 22, 10]",To this will and testiment I set my hand and seal on this 20th day of Nov.,45,n. 印章，封印　vt. 盖印；封口（sealed 密封的）,“兹立此遗嘱，于本年十一月二十日签字盖章。”,,"1. To this will and testament：句首的介词短语 to 前置，起强调与庄重的作用，可理解为“对于这份遗嘱”。will 意为“遗嘱”；testament 的古义也为“遗嘱、遗言”，二者连用 will and testament 是法律文书中的固定搭配（原文拼作 testiment，属于误拼或古代的异体拼写）。
+2. I set my hand and seal：正式法律用语。set 是“放置、按上”之意；set one's hand 即“签名、画押”；seal 此处作名词，指“印章、封印”。set one's hand and seal 合起来就是“签字盖章”，是订立文书的固定套语。
+3. on this 20th day of Nov.：正式日期格式，“于十一月二十日”；Nov. 是 November（十一月）的缩写；日期用序数词 20th 表达。
+
+整句解读：这是一句典型的英文遗嘱开头套语，语气郑重、古雅，换成现代口语几乎不会这样讲。介词 to 提到句首制造出文书的规整感。中文译文处理得很地道：把 I set my hand and seal 意译为“签字盖章”，把冗长的日期表达压缩成“于本年十一月二十日”，再用“兹立此遗嘱”四字开头呼应原文公文式的口吻，既保留了法律文件的庄重，又不拗口。
+
+文化点：在近现代的英美法律传统里，单有签名还不够，必须盖上自己的印章（seal）文书才算正式生效，因此 seal 也引申出“郑重承诺、担保”的含义。这类“兹订立遗嘱……”的仪式化行文至今仍保存在英美法律文书中，属于典型的程式化语言。",一滴红蜡落在纸角还闪着软光，戴着戒指的手轻轻一按，蜡面上立刻留下一枚清晰的印记。
+necklace,c1,,2.6867,3,4,'neklis,n. 项链,高研四六,6583,10178,"[30, 30, 32]","[9, 16, 8]","""I, too, covet that, but not as a necklace.",34,n. 项链,“我也想要那件东西，但不是把它当项链戴。”,,"1. I, too, covet that：I 是主语；too 作插入语，表示“我也一样”；covet 是及物动词，意为“觊觎、渴望得到”，语气比 want 强烈得多、带占有欲，是高于目标词的超纲词；that 作宾语，指代前文提到的那件东西。
+2. but not as a necklace：but 表转折；as a necklace 是方式状语，“作为一条项链”；not as a necklace 即“不是以项链的方式去对待它”。necklace 是名词“项链”，由 neck（脖子）与 lace（带子）组合而成。
+
+整句解读：说话的人坦率承认自己也想要那个物件，但紧接着划清界线——想要的并不是把它当作戴在颈间的饰物。句子的精妙全在 not as a necklace 这半截转折上：既承认了自己的渴望，又暗示自己看重的是另一层意义（比如物件背后的情感、来路或工艺）。语气带着一点俏皮与真诚，是口语化的直白表达。译文按“我也想要那件东西，但不是把它当项链戴”处理，把 as 的“作为”义落实成“当……戴”，既准又顺。
+
+文化点：在 19 世纪的小说世界里，项链常是女性身份、家世与情意的象征，更多作为礼物出现在婚娶和纪念的场合。这里把某件珍宝同“项链”并列比较，凸显的是它作为贴身信物的特殊分量；而“偏偏不要把它当项链戴”，则表现出说话人看重的是物件本身而非外在的装扮价值。",一串珍珠静静搭在木盒的绒布上，斜斜的光落进来，每颗珠子都圆得能照出人影。
+sympathize,c1,,2.6733,1,8,'simpәθaiz,"vi. 同情, 怜悯, 同意, 体谅",研四六托,11121,14925,[4],[15],She sympathized with Amy in all her little troubles.,-1,v. 同情，体谅（sympathize with）,艾米那些小小的烦恼，她都感同身受。,1,"1. She sympathized with Amy：主谓宾状结构。She 指前文中善于体谅他人的那位人物；sympathize 是动词，意为“同情、体谅”，过去式为 sympathized；它与介词 with 搭配，sympathize with sb. 表示“对某人感同身受、体谅某人”。
+2. in all her little troubles：in 表示“在……方面”；all her little troubles 指她所有的小小的烦恼，trouble 此处作可数名词，意为“烦心事”；little 既说事情小，也带出亲昵怜爱的口吻。
+
+整句解读：句意为“她处处体谅艾米的小烦恼”。关键落在 sympathize with 这个搭配上——它不只是站在一旁心生怜悯，而是“钻进对方的处境里去体会”，所以中文译成“感同身受”比“同情”更传神。译文还把英文里作宾语的名字提前作话题：“艾米那些小小的烦恼，她都感同身受”，完全符合中文把已知信息前置的习惯，读起来自然流畅；句末 all her little troubles 更衬托出一份母亲般的耐心与温柔。
+
+文化点：《小妇人》围绕四姐妹的相处展开，姐妹之间如何体谅彼此、克制任性是全书反复出现的主题。这样一句“感同身受”式的描写，正是 19 世纪小说里推崇家庭温情与道德教化的缩影。",小巷尽头，一个小人儿蹲在地上抹眼泪，你也跟着蹲下，默默把伞往她那边斜了斜。
+treasure,b2,noun,2.6633,1,17,'treʒә,"n. 宝物, 财富 / vt. 珍爱, 重视, 秘藏",中高研四六托,4074,4538,[66],[13],It cost her a pang even to think of giving up the little treasures which in her eyes were as precious as the old lady's jewels.,57,n. 宝物，珍品　vt. 珍爱，珍视,光是想到要舍弃那些小宝贝，她就心痛——在她眼里，它们珍贵得如同老太太的……,,"1. It cost her a pang：it 是形式主语，真正的主语是后面的 to think of …；cost sb. something 本意为“使某人付出……代价”，在这里引申为“让某人内心一阵刺痛”；pang 是超纲词，意为“一阵突如其来的剧痛”（多指精神上的痛）。
+2. even to think of giving up the little treasures：even 强调“哪怕只是、仅仅是”；to think of 意为“想到”；giving up 是 give up 的动名词形式，意为“放弃”；the little treasures 指那些小小的宝贝，treasure 是可数名词“宝物、珍品”，这里用复数并加 little，特指小女孩心爱的小玩意儿。
+3. which in her eyes were as precious as the old lady's jewels：which 引导定语从句修饰 treasures；in her eyes 在她眼里、以她的眼光看；be as precious as 表示“与……一样珍贵”（as…as 同级比较）；the old lady's jewels 老太太的珠宝，jewels 是 jewel 的复数。
+
+整句解读：句子的骨架是“It cost her a pang even to think of (...)”，即“哪怕只是想想要舍弃它们，她也会心头一痛”。长长的 which 从句接着解释为什么这么心疼：这些不起眼的小东西，在她眼里珍贵得几乎可同老太太的珠宝等值。译文拆成两句，用破折号衔接，先讲“心痛”，再补说“视之如珍宝”，节奏舒缓，与原文一咏三叹的语气相合；“as precious as the old lady's jewels”恰用类比把小孩子的珍爱活画出来。
+
+文化点：19 世纪小女孩的“财产”无非是贝壳、布偶、旧书一类的小东西，但在她们的世界里意义非凡。作者拿“老太太的珠宝”作比，正是把小孩子的视角无限放大——用悬殊的对比反衬真情的分量，这是《小妇人》写儿童心理的常用笔法。",手心里躺着几颗贝壳和一枚褪色的小纽扣，她一颗颗摆正，像在安放天底下最亮的宝石。
+lame,c1,,2.62,1,6,leim,"a. 跛足的, 僵痛的, 不完全的, 金属薄板, 不知内情的人 / vi. 变跛 / vt. 使成残废, 使无用",高研四六雅,9982,11787,[11],[29],"Then Polly had to be fed, the lap dog combed, and a dozen trips upstairs and down to get things or deliver orders, for the old lady was very lame and seldom left her big chair.",141,"a. 瘸的,跛的","然后要喂波莉,给哈巴狗梳毛,再上下楼跑十几趟取东西、传话——老太太腿脚不便,很少离开她的大椅子。",,"1. Polly had to be fed：Polly 是鹦鹉名（常见给鸟类起的名字）；had to 表示“不得不”；be fed 是被动语态（feed“喂食”），整句意为“波莉得让人喂”。
+2. the lap dog combed：这是省略句，完整形式是 the lap dog had to be combed，与上一句并列；lap dog 指“哈巴狗”（专供人抱在膝上的小型犬）；comb 作动词，意为“给……梳毛”。
+3. a dozen trips upstairs and down：a dozen 本义“一打、十二个”，此处是夸张用法，表示“好多趟”；trips 是 trip（往返一趟）的复数；upstairs and down 意为“上楼下楼、上上下下”。
+4. to get things or deliver orders：不定式表目的，即“取东西（get things）或传话（deliver orders）”。
+5. for the old lady was very lame：for 是表原因的连词，相当于 because；lame 是形容词，“瘸的、腿脚不便的”；very 修饰 lame，加深程度。
+6. and seldom left her big chair：seldom 是频率副词，意为“很少”；left 是 leave 的过去式，“离开”；her big chair 她那张大椅子。
+
+整句解读：前半句一口气列出喂鸟、梳狗毛、跑上跑下取东西传话等好几样杂活，节奏急促、满满当当，把忙前忙后的身影推到读者眼前；后半句用 for 交代缘由——因为老太太腿脚不便，几乎寸步不离她的大椅子，这些活只好由旁人代劳。译文用“再上下楼跑十几趟”承接琐事，再以破折号引出原因，一气呵成，忙碌与体恤两种语气兼而有之。
+
+文化点：这是《小妇人》里照顾姑祖母（Aunt March）一节的场景。19 世纪，上了年纪的女士常因风湿一类病痛走动艰难，lame 当时是描述腿脚不便的常用词。如今若直译成“瘸的”略显生硬，译文处理成“腿脚不便”更贴合现代中文里委婉的表达习惯。",她把手轻轻搭在椅扶手上，站起身时膝盖微微一响，每迈一步都很慢，像怕惊醒了什么。
+roam,c1,,2.62,1,6,rәum,"v. 漫游, 闲逛, 徜徉 / n. 漫步, 漫游",六托雅,6175,8584,[26],[5],"She also allowed her to roam about the great house, and examine the curious and pretty things stored away in the big wardrobes and the ancient chests, for Aunt March hoarded like a magpie.",24,v. 漫步，漫游，闲逛,她还允许她在宅子里随意走动，观赏那些收藏在大柜子里的新奇漂亮的玩意儿。,,"1. 逐项解析:
+She also allowed her to roam about——主语是 She(马奇姑妈),also 副词「还、也」;allow sb. to do sth. 是固定搭配,「允许某人做某事」,her 代指小姑娘艾米;to roam 是不定式,roam 即本目标词,动词「漫步、随意走动」,about 介词「在……各处」,roam about 连用,描出「四处闲逛、没有固定目的地」的悠闲画面。
+examine the curious and pretty things——examine 与 roam 并列,同为 to 后面的不定式,「仔细端详、查看」;curious 这里不是「好奇的」,而是旧式用法「奇特的、稀奇古怪的」(≈strange);pretty 是「漂亮的、精巧的」。
+stored away in the big wardrobes and the ancient chests——stored away 是过去分词短语作定语,修饰 things,away 强调「收起来放好」,即「收藏、妥帖存放」;in the big wardrobes「在大衣柜里」;in the ancient chests「在古老的大木箱里」,chest 指「箱子」,ancient 意为「古老的」。
+for Aunt March hoarded like a magpie——for 连词「因为」,引出原因;hoard 是超纲词,动词「囤积、储藏」;magpie 也是超纲词,名词「喜鹊」,like a magpie「像喜鹊一样」,借西方谚语里喜鹊爱把亮晶晶的小东西衔回窝的习性,形容马奇姑妈的收藏癖,生动又带点幽默。
+2. 整句解读:
+整句讲的是:马奇姑妈还允许小姑娘在大宅子里随意走动,去端详那些收藏在大衣柜与古老木箱里的新奇漂亮的小玩意儿——因为她像喜鹊一样爱囤东西。句子主干是 she allowed her to roam and examine,先后两个不定式动作承接;for 引导的从句在最后解释「为什么有这么多宝贝」。语气闲适,带着带孩子「寻宝」般的宠溺;中文译文把大柜子、木箱的细节压成「宅子里」,把 curious、pretty 归并为「新奇漂亮」,把 magpie 比喻隐入「收藏」二字,是标准的意译,读来简洁、留白、有画面。
+3. 文化点:
+这句出自 19 世纪美国小说《小妇人》(Little Women)马奇姑妈家一节。当时中产家庭的宅子里,大衣柜、古木箱里往往囤满旧衣物和稀罕玩意儿,是孩子眼里的「宝库」。英语里 magpie 除泛指喜鹊外,也常比喻「爱收集、爱囤东西的人」(a collector),沿用至今,和中文调侃的「囤物癖」异曲同工。","想象自己钻进马奇姑妈那座大宅,没有人拦你,门一扇接一扇推开——想去哪儿就去哪儿地闲逛,就是 roam。"
+deeply,b2,adverb,2.61,1,15,'di:pli,"adv. 深刻地, 在深处, 深沉地",高,2122,2327,[1],[4],"She felt her exile deeply, and for the first time in her life, realized how much she was beloved and petted at home.",19,"adv. 深深地,深刻地","她深切地感受着流放之苦,有生以来第一次意识到,自己在家中是多么被疼爱、被娇惯。",,"1. 逐项解析:
+She felt her exile deeply——主语 She,谓语 felt(feel 的过去式)「感受到」;宾语 her exile,exile 是超纲词,名词「流放、背井离乡」,这里夸张地指「离开家、被『发配』到姑妈家」的日子;deeply 即本目标词,副词「深深地、深切地」,修饰 felt,强调这份感受扎得很深、压在心窝里。
+and for the first time in her life——and 连接前后两层内容;for the first time「第一次」,in her life「在(她)一生中」,作插入语,强调「有生以来头一回」。
+realized how much she was beloved and petted at home——realize「意识到、明白」,后接 how much 引导的宾语从句,how much 意为「多么地」;she was beloved and petted 是被动态,beloved 是超纲词,「被深爱的」;pet 作动词「宠爱、娇惯」(像把宠物捧在手心一样);at home「在家的时候」。两个并列被动连用,强调「既被爱又被宠」。
+2. 整句解读:
+她说:她深切地感受着「流放」之苦,并且有生以来第一次明白,自己在家时是多么被疼爱、被娇惯。句子由 and 连起两个动作——前一层写「痛」,后一层写「醒悟」,因果藏在对比里:正因为在外面受了委屈,才头一回掂量出家里的好。deeply 是全句的感情重心,等于 felt to the bottom of one's heart;中文把 felt her exile 意译为「感受着流放之苦」,以「深切」对译 deeply,「被疼爱、被娇惯」对译 beloved and petted,孩子气的委屈与醒悟都出来了。
+3. 文化点:
+《小妇人》里艾米曾因闯祸被大人送去马奇姑妈家「寄住数日」,这在中产家庭里是一种温和的惩戒。19 世纪家教语境里,pet 作动词常形容孩子被家人宠着;用 exile(流放)这么大的词来形容离家几天,是典型的儿童视角夸张,反而更见童真与家庭的温暖。","想象一块石头沉进深潭,水纹一圈圈荡开,影子一直压到底——那份心情沉在潭底,是 deeply。"
+wrinkle,c1,,2.5933,1,5,'riŋkl,"n. 皱纹, 妙计, 方法, 技巧 / vi. 起皱 / vt. 使起皱纹",高研六托雅宝,7819,14095,[4],[10],A deep wrinkle appeared between her brows as she thought.,-1,n. 皱纹　v. 起皱（wrinkle up 皱起）,她思索时，眉间现出一道深深的皱纹。,1,"1. 逐项解析:
+A deep wrinkle appeared——主语 a deep wrinkle「一道深深的皱纹」,deep 修饰 wrinkle,意为「深显、明显的」;appeared 是 appear 的过去式「出现」,作者用「皱纹自己出现了」的说法,比「她皱眉」多一层画面感。
+between her brows——在两道眉毛之间,即「眉心、眉间」;brow 常用复数 brows 指「眉毛、眉骨一带」。
+as she thought——as 引导时间状语从句「当她思考的时候」,点明皱纹出现的时刻,「一想事,眉间就起纹」。
+2. 整句解读:
+当她思索时,眉间现出一道深深的皱纹。全句就是「主语+谓语+方位+时间」的特写镜头:wrinkle 是主角,appeared 自动出场,思考只是背景。中文译文「思索时,眉间现出一道深深的皱纹」几乎逐词对应,把 between her brows 凝成「眉间」,简洁而有画面。
+3. 文化点:
+wrinkle 名词「皱纹」,动词「起皱」,常见搭配 wrinkle up,如 wrinkle up one's nose「皱起鼻子(表示嫌弃)」、wrinkle up one's forehead「蹙额」。文学里写人物「眉间一道皱纹」,常用以暗示专注、忧思或年岁,是刻画神态的经典笔法。","想象揉皱的纸团再展开,纸上留着合不拢的折痕——眉间那道 wrinkle,就是心事揉出来的折痕。"
+rainy,c1,,2.5933,1,5,'reini,"a. 下雨的, 多雨的",中高四六,7477,13732,[68],[4],"As it was a rainy day, she went upstairs to amuse herself in one of the large chambers, and took Polly with her for company.",12,"a. 下雨的,多雨的","那天是个雨天,她便上楼到一间大房间里自娱自乐,带波莉作伴。",,"1. 逐项解析:
+As it was a rainy day——as 连词「因为」,引导原因状语从句;it was a rainy day 是典型的天气句型(it 代指天气),rainy 即本目标词,形容词「下雨的、多雨的」,与动词 rain(下雨)、名词 rain(雨水)同根。
+she went upstairs to amuse herself in one of the large chambers——主语 she,went upstairs「上楼去」;to amuse herself 不定式表目的,amuse oneself 是固定搭配「自娱自乐、给自己找乐子」;in one of the large chambers「在其中一间大房间里」,chamber 是较文雅、有古意的词,相当于 room,复数 chambers 更显宅子之大。
+and took Polly with her for company——and 连第二个动作;took Polly with her「把波莉带在身边」,Polly 是驯养的鹦鹉的名字;for company「作伴、做伴儿」,company 这里是抽象名词「陪伴」。
+2. 整句解读:
+因为那是个雨天,她便上楼去,在一间大房间里自娱自乐,还带上波莉作伴。句子的因果链很清楚:下雨 → 不便出门 → 上楼找乐子 → 带鹦鹉陪自己;中文「那天是个雨天」把 as 的因果味道揉进语序里,「一间大房间」「作伴」等译法自然上口。读来像一幅阴雨天的室内小景:窗外下雨,屋里有个孩子和一只鹦鹉。
+3. 文化点:
+在《小妇人》的时代与故事里,雨天意味着孩子们「被困在屋里」,也因此催生出各种室内游戏。19 世纪中产家庭养鹦鹉当宠物兼逗趣玩伴并不稀奇。另有一个相关成语:save (money) for a rainy day「存钱以备不时之需」,这里的 rainy day 并非当真指下雨,而是借喻「艰难的时候」。","想象雨点敲着窗玻璃,屋里点着灯,手边还有只鹦鹉学人说话——rainy 是那个窝在家里、哪儿也不用去的下午。"
+torment,c1,,2.5933,1,5,'tɒ:ment,"n. 使人痛苦的东西, 折磨者, 苦痛 / vt. 使苦恼, 纠缠, 歪曲, 拷问",研六托雅宝,12020,12113,[86],[10],The teasing was a torment to the little girl.,-1,n. 折磨，痛苦　vt. 折磨，纠缠,那些戏弄对小姑娘来说是一种折磨。,1,"1. 逐项解析:
+The teasing was a torment——主语 the teasing「那些戏弄、逗弄」,teasing 由动词 tease(取笑、逗弄)加 -ing 而来,此处用作名词,带 the 特指「此前那些『逗弄』」;was a torment 是系表结构,torment 即本目标词,名词「折磨、痛苦」,与 pain 相比更强调「被纠缠、不得安宁」的持续难受,不定冠词 a 表示「堪称一种折磨」。
+to the little girl——to 引出感受的对象「对这个小姑娘来说」。
+2. 整句解读:
+那些戏弄,对这个小姑娘而言就是一种折磨。句子是极简的主系表判断句,没有多余修饰,把「戏弄」与「折磨」之间干脆画上等号;一个 a 让语气带上夸张与委屈——在大人眼里是玩笑,在孩子心里却沉甸甸的。中文「那些戏弄对小姑娘来说是一种折磨」保留了原文的句式与分量。
+3. 文化点:
+torment 兼有名、动两性:名词时读「tor-ment(重音在前)」「折磨」;动词时读「tor-ment(重音在后)」「折磨、纠缠」,重音前移/后移是英语里名词、动词双形词的通则(类似 record、present)。本句用名词义。《小妇人》里艾米常被姐姐们戏弄,「大人口中的玩笑、孩子心里的 torment」正是作品里常被人记住的温情桥段。","想象一根细刺扎在指头里,白天夜里都隐隐作痛,怎么甩都甩不脱——teasing 是那根刺,torment 是它的疼。"
+artistic,b2,adjective,2.5567,1,13,ɑ:'tistik,"a. 艺术的, 艺术家的, 富有艺术性的",研四六雅,3249,4141,[96],[16],"Also in return for his great kindness in the hour of affliction any one of my artistic works he likes, Noter Dame is the best.",78,a. 艺术的；富有艺术性的,“为了报答他在我们遭难时的极大善心，我喜欢的任何一件艺术作品，如《巴黎圣母院》……都可以送给他。”,,"1. 逐项解析:
+Also——副词「此外、还有」,起递进补充的作用,表示这是承诺之外再补上的一句。
+in return for his great kindness in the hour of affliction——in return for 是固定短语「作为……的回报、为了报答……」;his great kindness「他那极大的善心」,great 表程度「大的」;in the hour of affliction「在遭难之际」,in the hour of「在……的时刻」,affliction 是超纲词,名词「苦难、痛苦、不幸」,比 trouble 更书面郑重。整段是「为了报答他在我们遭难时的极大善心」。
+any one of my artistic works he likes——any one of「……中的任意一个」;artistic 即本目标词,形容词「艺术的、富有艺术性的」,my artistic works「我的艺术作品」;he likes 是省略关系代词 that/which 的定语从句,修饰 works,即「他喜欢的(作品)」。整句意思:我任何一件他喜欢的艺术作品(都愿意相赠)。
+Noter Dame is the best——Notre Dame(原文误拼作 Noter Dame)「巴黎圣母院」,is the best「是最好的、最出色的一件」,the best 后省略了 one,意为「其中最好的」。
+2. 整句解读:
+全句是一句许诺:此外,为了报答他在我们遭难时的极大善心,(我愿意把我)任何一件他喜欢的艺术作品(送给他),《巴黎圣母院》就是其中最好的。原句把「any one of my artistic works he likes」这个宾语放在状语之后、补充句之前,头尾相接,带有口语随口承诺的跳跃感;中文译文把它理顺成「……我喜欢的任何一件艺术作品……都可以送给他」,并点出《巴黎圣母院》是最好的一件,把报恩的诚意与自豪都补全了。
+3. 文化点:
+19 世纪欧美人对巴黎圣母院(Notre Dame)怀有特殊的文化敬意,雨果的长篇小说《巴黎圣母院》(1831)更让它成为文学与艺术象征;此处的 artistic works 应指以圣母院等为题材的画作或工艺品,说话人愿意把视为珍宝、自我得意的一件送出,正是维多利亚时代「以珍物报恩」的礼节。另需留意,原句 Noter Dame 疑为 Notre Dame 的笔误。","想象翻开一本画册,每一页都是自己的得意之作,还郑重签了名——那份值得炫耀的手艺,是 artistic。"
+comb,c1,,2.54,1,3,kәum,"n. 头梳, 鸡冠 / vt. 梳头发, 梳毛 / vi. (浪)涌起",高研四六,7329,9845,[11],[9],"Then Polly had to be fed, the lap dog combed, and a dozen trips upstairs and down to get things or deliver orders, for the old lady was very lame and seldom left her big chair.",38,v. 梳理 n. 梳子,"然后要喂波莉,给哈巴狗梳毛──原文如此,再上下楼跑十几趟取东西、传话。",,"1. 逐项解析
+1) Then——副词,表「随后、接下来」,承接上文一连串家务,引出新的一件事。
+2) Polly——人名,结合语境是一只需要喂食的宠物(鸟或猫),不是人。
+3) had to be fed——had to 是 have to 的过去式,表「不得不」;be fed 是 feed(喂)的被动语态,过去分词 fed,连起来「得喂它」。
+4) the lap dog combed——与前面并列的省略结构,完整是 and the lap dog had to be combed;lap dog 义为「膝上犬、哈巴狗」(lap 指人坐着时的大腿部位);comb 在此转作动词「用梳子梳理」,combed 是过去分词,表被动「给……梳毛」。
+5) a dozen trips upstairs and down——a dozen 是「一打」,引申「十来趟、十几趟」;trips 是 trip 的复数「跑腿、往返」;upstairs and down 是「上楼又下楼」,点明来回奔波。
+6) to get things or deliver orders——不定式表目的,「取东西或传话送口信」;deliver 是「递送、传达」,orders 这里指「吩咐、口信」。
+7) for the old lady was very lame——for 在此引导原因从句,相当于 because,「因为这位老太太腿脚很不便」;lame 是「跛的、行动不便的」,与后文 seldom left her big chair 呼应。
+8) seldom left her big chair——seldom 是否定副词「很少」,left 是 leave 的过去式「离开」,big chair 指「大扶手椅」,整句「很少离开她的大椅子」。
+2. 整句解读
+整句出自《小妇人》,写主人公日常服侍一位老太太的琐事:先喂宠物波莉,再给哈巴狗梳毛,然后上下楼跑十来趟取东西、传话——绕这么一大圈,只因老太太腿脚不灵便,几乎从不离开她的大椅子。句子以含被动省略的并列短句一口气推下来,节奏密而快,读起来正是「忙得脚不沾地」的流水账画面;中文把原文并列的被动结构还原成「喂波莉、给哈巴狗梳毛」并加破折号停顿,既保住口语的连贯,又给读者一个换气的节点。
+3. 文化点
+这是 19 世纪小说(如《小妇人》)常见的家庭图景:富户人家养宠物、由下人照料起居,跑腿传话是当时没有电话时最普遍的交际方式;lap dog 这类养在膝上的玩赏犬,是维多利亚时代中上层家庭的常见点缀,也侧面写出老太太生活讲究却行动不便的暮年处境。","给哈巴狗「梳」(comb)毛时,梳齿划过蓬松绒毛,一缕缕服帖下去,像给小狗理了个小发型。"
+doze,c1,,2.54,1,3,dәuz,"vi. 打瞌睡, 假寐 / vt. 打瞌睡度过 / n. 瞌睡",研托雅宝,11330,12444,[20],[33],The old gentleman dozed over his paper by the fire.,-1,v. 打瞌睡，假寐　n. 小睡（doze off）,老先生在炉火边看着报纸打起盹来。,1,"1. 逐项解析
+1) The old gentleman——「这位老先生」,gentleman 指「绅士、先生」,old 修饰年纪大。
+2) dozed——目标词 doze 的一般过去式(原形 doze,过去式直接加 -ed),指「打瞌睡、假寐」,介于清醒与沉睡之间的浅眠状态。
+3) over his paper——介词 over 此处表「俯身对着、伏在」,his paper 是「他的报纸」;doze over one's paper 的意思是「看报看着看着就打起盹来」,报纸还摊在面前。
+4) by the fire——by 表「在……旁边」,the fire 指「炉火」;by the fire 是常见搭配「在炉火旁」。
+2. 整句解读
+整句是冬日炉火旁的速写:老先生坐在壁炉边,报纸摊在面前,头一点一点地打起盹来。妙处在 over 这个介词:既交代报纸摆放的位置,又点出瞌睡是从「俯身看报」的状态里悄悄滑出去的,一个词就把看报与打盹的关系织在一起。中文「看着报纸打起盹来」把 over 的伴随关系译成动态短语,画面顺滑又自然。
+3. 文化点
+壁炉旁取暖、读报、打盹,是 19 世纪英美家庭最具代表性的闲暇场景;在那个报纸仍是家庭主要新闻来源的年代,炉火加铅字几乎成了悬在老人身上的催眠咒,这类意象在老派文学中反复出现。","炉火一烘,眼皮越来越沉,头往摊开的报纸上一磕一磕——doze 就是这股挡不住的小盹。"
+bridle,c1,,2.54,1,3,'braidl,"n. 马勒, 约束",六宝,19059,12851,[71],[36],Amy looked at the pony's new bridle with envious eyes.,-1,n. 缰绳，辔头；（喻）束缚　vt. 控制,艾米眼馋地看着小马驹崭新的辔头。,1,"1. 逐项解析
+1) Amy——人名「艾米」,《小妇人》马奇家四姐妹之一,年幼、爱美、容易眼馋。
+2) looked at——固定搭配「看着」,look at 的一般过去时。
+3) the pony's——名词所有格,pony 是「小马、矮种马」,'s 表所属「小马的」;pony 的拼写与读音都比利好目标词更绕,故列为超纲词。
+4) new bridle——bridle 是目标词,名词「缰绳、辔头」,指套在马头上、用于驾驭的整套皮具;new 是「崭新的」,新旧对照格外扎眼。
+5) with envious eyes——with + 名词短语作方式状语,envious 是「眼馋的、嫉妒的」,eyes 是「眼睛」,整支「用一种眼馋的目光」,译成中文便是「眼巴巴地看着」。
+2. 整句解读
+整句写艾米被小马驹的新辔头勾住目光:同样是看,looked at 配 with envious eyes,就把普通的「看」升级成渴望已久的「盯」。bridle 在这里是具体物件,一套崭新的马具在孩子眼里就是一件亮闪闪的宝物,一眼望过去全是羡慕。中文「眼馋地」把 envious 的神态译得极传神,动作加分寸,画面一下就活了。
+3. 文化点
+19 世纪马匹仍是重要的代步与享乐工具,一匹小马配上崭新的辔头,是孩子梦寐以求的「大件」;《小妇人》里 Amy 常因家贫而羡慕别人家的精致物件,这份「眼馋」正透着那个年代物品稀罕、体面要紧的社会风气。","阳光下那副崭新辔头皮面油亮,艾米的目光像粘在上面拔不下来——bridle 是那套亮闪闪的马头行头。"
+yawn,c1,,2.54,1,3,jɒ:n,"n. 哈欠 / vi. 打哈欠, 裂开 / vt. 打着哈欠说",高研四六托雅宝,10649,10509,[81],[57],Amy tried to hide a yawn behind her hand.,-1,v. 打哈欠　n. 哈欠,艾米想用手掩住一个哈欠。,1,"1. 逐项解析
+1) Amy——人名「艾米」。
+2) tried to hide——try to do sth. 表示「试图做某事」,hide 是「藏起、遮掩」,不定式作宾语,合起来是「想掩盖住」。
+3) a yawn——目标词 yawn 此处作可数名词,指「一次打哈欠的动作」;yawn 也常作动词,意为「打哈欠」。
+4) behind her hand——behind 表「在……后面」,her hand 是「她的手」,即「把手挡在嘴前」遮掩。
+2. 整句解读
+整句是一个动作特写:困意上来,艾米下意识把手挡在嘴前,把那个刚冒头的哈欠按回去。a yawn 把「哈欠」当成一个可数的瞬间,画面定格在「嘴刚张开又被手捂住」的克制一刻,读得出礼貌与困意之间的拉扯。中文「用手掩住一个哈欠」把 behind her hand 化译为动词「掩住」,比直译「在手后面」更顺、更有动作感。
+3. 文化点
+当众打哈欠在任何时代都属失礼,用手遮挡是跨文化的本能反应;19 世纪上流社会格外讲究仪态,《小妇人》里 Amy 自小被教导举止文雅,这一「掩」正是教养刻进身体动作的细节。","困意上来,手掌飞快捂住嘴,憋得眼泪都挤出来——yawn 就是这个捂也捂不住的小哈欠。"
+fate,b2,noun,2.53,1,12,feit,"n. 命运, 运气 / vt. 注定",研四六,2919,3179,[17],[38],Amy could not guess what fate awaited her at Aunt March's.,-1,"n. 命运,结局",艾米猜不透在马奇姑妈家等待着她的会是怎样的命运。,1,"1. 逐项解析
+1) Amy could not guess——could 是 can 的过去式,could not 表「无法」,guess 是「猜测」,整个谓语「猜不出、猜不透」。
+2) what fate awaited her——what 引导的宾语从句;fate 是目标词,名词「命运、结局」;awaited 是 await 的过去式「等候、等待着」,比 wait for 更书面正式,在这里把「命运」拟人化;her 指艾米。整支意思是「怎样的命运在等着她」,故列为超纲词。
+3) at Aunt March's——at 表「在……处」,后接人名所有格(省略 house),指「在马奇姑妈的家」;Aunt March 是艾米的姑妈。
+2. 整句解读
+整句写艾米站在姑妈家门口时心里七上八下:她怎么也猜不到,门里等着她的究竟是怎样的命运。fate 一词把「以后会怎样」说得郑重而带宿命感,配上 could not guess,把小姑娘的忐忑、好奇与不安一并烘托出来。中文「猜不透……会是怎样的命运」把宾语从句顺成疑问式,语气贴住原文的悬念。
+3. 文化点
+《小妇人》里 Amy 时常被送到挑剔古板的马奇姑妈家暂住,对小姑娘来说那是离开自家、前途未卜的「命运」小冒险;19 世纪文学中,姑妈这类长辈的家常是主人公品格磨炼的舞台,fate 一词给这趟拜访镀上一层郑重色彩。","推开门的那一刻,不知道门后是糖果还是训诫——fate 就是门后那只看不见的手。"
+lace,b2,,2.52,2,15,leis,"n. 饰带, 花边, 缎带, 鞋带 / vt. 结带子, 饰以花边 / vi. 系带子",研四六托雅宝,6642,4847,"[25, 91]","[29, 28]","She took a fancy to Mademoiselle, and amused her very much with odd stories of her life in France, when Amy sat with her while she got up Madame's laces.",147,n. 花边，蕾丝；鞋带　v. 系带子,她对玛德莫瓦塞尔小姐一见如故，给她讲了在法国的许多离奇故事，艾米坐在一旁听得入迷。,,"1. 逐项解析
+1) She took a fancy to Mademoiselle——took a fancy to 是固定搭配「产生好感、喜欢上」,Mademoiselle 是法语「小姐」,指一位法国女性。
+2) and amused her very much——amused 是 amuse 的过去式「逗乐、使开心」,难度高于目标词,故列为超纲词;her 指 Mademoiselle;very much 表程度「非常」。
+3) with odd stories of her life in France——with 表「用……来(逗乐)」;odd 是「离奇古怪的」;stories 是「故事」;her life in France 是「她在法国的生活」。
+4) when Amy sat with her——when 引导时间补足,意为「当艾米陪坐在她身边时」,her 指 Mademoiselle。
+5) while she got up Madame's laces——while 表「在……期间」;she 指 Mademoiselle;got up 在此不是「起床」,而是「整理、收拾」;laces 是目标词 lace 的复数形态,作衣饰面料可数化,指「蕾丝饰物、系带衣物」;Madame 是法语「夫人」。合起来是「她边收拾夫人的蕾丝饰物」。
+2. 整句解读
+这是一句结构叠套的长句:主干是「她喜欢上这位法国小姐,并用离奇的往事把她逗得极开心」;后面的 when、while 两个从句一起交代场景——艾米陪坐一旁,这位小姐正边归整夫人的蕾丝衣物,边讲自己在法国的奇闻。lace 在这里是具体衣饰,精致小巧,成了闲谈时柔软的布景。中文把 took a fancy to 译成「一见如故」、把 amused 化入「听得入迷」,长句拆成两短句,读来轻快不累。
+3. 文化点
+19 世纪,蕾丝(lace)是昂贵娇贵的衣料,大量用于夫人、小姐的领口袖口,通常由女仆精心打理;法国蕾丝工艺为上品,恰好与故事里这位法国女仆的身份呼应。《小妇人》此节写艾米在姑妈家结识异国女仆、听她讲法国见闻,也折射出当时显贵家庭雇请法籍仆从的风气。","指尖抚过细密的蕾丝网眼,灯光从小孔里一格一格透出来——lace 就是那圈精致的镂空花纹。"

@@ -10,6 +10,7 @@ sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 from tts_paths import audio_dir_for_book, sent_audio_name, word_audio_name
 from wordforms import token_regex
+from hard_words import Difficulty, mark_sentence
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VOCAB = os.path.join(BASE, 'vocabulary')
@@ -100,15 +101,22 @@ def tsv_cell(v):
     """TSV 单元格消毒:制表符/换行会破坏 8 列结构"""
     return str(v or '').replace('\t', ' ').replace('\r', ' ').replace('\n', ' ')
 
-def hl_sentence(sent, word):
-    """例句中高亮目标词:HTML 转义后把目标词(含屈折形态,见 wordforms)裹成 <b class="hl">。
-    转义不影响单词字符;导入 Anki 时「允许在字段中使用 HTML」需勾选,
-    显示效果由模板 CSS 的 .sent b.hl 控制。"""
-    if not sent:
-        return sent
-    esc = html.escape(sent)
+def hl_sentence(esc_sent, word):
+    """已转义例句上把目标词(含屈折形态,见 wordforms)裹成 <b class="hl">。
+    调用前例句需已 html.escape(由 mark_sentence 完成),此处不再转义,防双重转义。
+    导入 Anki 时「允许在字段中使用 HTML」需勾选,效果由模板 CSS 的 .sent b.hl 控制。"""
+    if not esc_sent:
+        return esc_sent
     pat = token_regex([word])
-    return pat.sub(lambda m: f'<b class="hl">{m.group()}</b>', esc)
+    return pat.sub(lambda m: f'<b class="hl">{m.group()}</b>', esc_sent)
+
+
+def ai_cell_html(v):
+    """AI 解析 / 词义概述格:转义 + 换行→<br>。
+    TSV 单元格保持单行(不破坏 10 列),Anki 内渲染为多行段落。"""
+    if not v:
+        return ''
+    return html.escape(str(v)).replace('\n', '<br>')
 
 def main():
     ap = argparse.ArgumentParser()
@@ -120,6 +128,7 @@ def main():
     chapters_dir = os.path.join(BASE, 'data', 'books', '_md')
     md_text = open(os.path.join(chapters_dir, f'{args.book}.md'), encoding='utf-8').read()
 
+    diff = Difficulty()   # 超纲词判定资源(oxford5000 + ECDICT),加载一次全程复用
     stack = os.path.join(out_dir, 'raw')
     anki_dir = os.path.join(out_dir, 'anki')
     os.makedirs(anki_dir, exist_ok=True)
@@ -139,24 +148,28 @@ def main():
         # 每章 TSV(无 BOM 的 UTF-8:Anki 对 BOM 敏感)
         tsv_path = os.path.join(anki_dir, f'chapter_{ch:02d}_anki.tsv')
         with open(tsv_path, 'w', encoding='utf-8', newline='') as f:
-            f.write('单词\t音标\t词性\t中文释义\tCEFR\t原文例句\t例句译文\t来源\n')
+            f.write('单词\t音标\t词性\t中文释义\tCEFR\t原文例句\t例句译文\t来源\tAI解析\t词义概述\n')
             for r in rows:
                 src = f'{args.book} Ch{ch}'
                 if r.get('ai') == '1':
                     src += '(AI 补句)'
                 word = r['word']
                 sent = r['sent'] or ''
+                cefr = (r['cefr'] or '').upper()
                 w_name = word_audio_name(word)
                 s_name = sent_audio_name(ch, word) if sent else None
                 word_cell = word + (f' [sound:{w_name}]'
                                     if (audio_dir / w_name).exists() else '')
-                sent_cell = (hl_sentence(sent, word) +
+                esc_sent, _ = mark_sentence(sent, word, cefr, diff)  # 转义 + 包超纲词 hard
+                sent_cell = (hl_sentence(esc_sent, word) +
                              (f' [sound:{s_name}]'
                               if s_name and (audio_dir / s_name).exists() else ''))
                 f.write('\t'.join([
                     tsv_cell(word_cell), tsv_cell(r['phon']), tsv_cell(r['pos'] or '—'),
-                    tsv_cell(r['cn_mean']), tsv_cell(r['cefr'].upper()), tsv_cell(sent_cell),
+                    tsv_cell(r['cn_mean']), tsv_cell(cefr), tsv_cell(sent_cell),
                     tsv_cell(r.get('cn_sent', '')), tsv_cell(src),
+                    tsv_cell(ai_cell_html(r.get('ai_analysis'))),
+                    tsv_cell(ai_cell_html(r.get('memo'))),
                 ]) + '\n')
         n, e, s = merge_wordlist(rows, args.book, ch)
         total_new += n; total_exist += e; total_skip += s

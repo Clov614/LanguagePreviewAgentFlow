@@ -38,8 +38,8 @@ uv run python scripts/run.py --book <书名> --polish <润色json> --audio
 | | |
 |---|---|
 | [🚀 项目简介](#intro) · [⚡ 快速开始](#quickstart) | [📦 交付物](#deliverables) · [🔊 发音(可选)](#audio) |
-| [🎴 卡片内容(8 列)](#cards) · [📥 Anki 导入方法](#import) | [🔄 管线与用法](#pipeline) · [🧱 资源与结构](#structure) |
-| [⚙️ 环境准备](#setup) · [📜 许可与已知限制](#limits) | |
+| [🎴 卡片内容(10 列)](#cards) · [📥 Anki 导入方法](#import) | [🤖 AI 例句解析](#ai_explain) · [🔄 管线与用法](#pipeline) |
+| [🧱 资源与结构](#structure) · [⚙️ 环境准备](#setup) | [📜 许可与已知限制](#limits) |
 
 ---
 
@@ -59,22 +59,25 @@ uv run python scripts/run.py --book <书名> --polish <润色json> --audio
 
 ---
 
-## <a id="cards"></a>🎴 卡片内容(TSV 8 列)
+## <a id="cards"></a>🎴 卡片内容(TSV 10 列)
 
 ```
-单词 │ 音标 │ 词性 │ 中文释义 │ CEFR │ 原文例句 │ 例句译文 │ 来源
+单词 │ 音标 │ 词性 │ 中文释义 │ CEFR │ 原文例句 │ 例句译文 │ 来源 │ AI解析 │ 词义概述
 ```
 
 - **例句全部取自书中原句**(含目标词上下文),配人工润色译文 —— 与"看剧识别台词"同构
 - 无原句的词由模型补充,例句贴近文风,「来源」列标注 **"(AI 补句)"**
 - **级别**:B2/C1 为主(考研英语二基线:排除 A1–A2,B1 少量配额,用 BNC 词频过滤常见词)
+- **AI解析**:**四段式整句解析**(逐项拆解 → 整句解读 → 文化点),例句中比目标词更难的
+  **超纲词**已用橙色高亮标注(每句 ≤2);**词义概述**:一句"画面感"记忆钩子。两列可选,
+  由 `scripts/ai_explain.py` 批量生成(见"AI 例句解析"一节)
 - **发音**:可选,见下节
 
 ---
 
 ## <a id="audio"></a>🔊 发音(可选):免费英音神经语音
 
-**原理**:用 edge-tts(微软 Edge 浏览器同款**神经网络语音**)预生成 mp3,免费、无需注册、无需 API key。生成后 `[sound:]` 内嵌进卡片对应字段,TSV 仍保持 8 列,导入即听,同步后手机端(AnkiDroid / AnkiMobile)也能播。
+**原理**:用 edge-tts(微软 Edge 浏览器同款**神经网络语音**)预生成 mp3,免费、无需注册、无需 API key。生成后 `[sound:]` 内嵌进卡片对应字段,TSV 仍保持 10 列,导入即听,同步后手机端(AnkiDroid / AnkiMobile)也能播。
 
 **生成命令**(在出卡前跑;已出卡的书随时可补):
 
@@ -177,6 +180,56 @@ uv run python scripts/run.py --book <书名> --stage validate --verbose
 uv run python scripts/gen_audio.py --book <书名> --chapter 1   # 只做第 1 章发音
 uv run python scripts/cards.py --book <书名>                   # 只出 TSV + 更新总库
 ```
+
+---
+
+## <a id="ai_explain"></a>🤖 AI 例句解析(可选,填卡背两列)
+
+**不填也能出卡**;想要更深入的自学体验再跑。给每章选词批量生成
+「AI解析」(四段式整句解析)+「词义概述」(画面感记忆钩子),产物在
+`data/output/<书名>/work/ai_explain_*.json`,可手改后合并进卡片。
+
+```bash
+# ① 批量生成(ch 可省略;可断点续跑,已生成词自动跳过)
+uv run python scripts/ai_explain.py --book <书名> --workers 4 --batch-size 6
+#    试跑一章 6 词看效果:加 --chapter 1 --limit 6
+#    只预览不调用:加 --dry-run
+
+# ② 合并进 raw CSV → ③ 重新出卡
+uv run python scripts/apply_polish.py --book <书名> --explain work/ai_explain_<书名>_ch01.json
+uv run python scripts/cards.py --book <书名>
+```
+
+**接入点三选**(`--provider`):
+
+| 接入点 | 说明 |
+|---|---|
+| `claude-cli`(默认) | 本机 Claude Code,零配置零 key |
+| `anthropic` | 官方 API,环境变量 `ANTHROPIC_API_KEY` |
+| `openai` | 任意 OpenAI 兼容端点:GPT / **DeepSeek** / **Gemini** / **Ollama**(本地免费)… |
+
+**环境变量配置**(key 只读环境变量,不落盘;也可 `--api-key/--base-url/--model` 覆盖):
+
+```bash
+# DeepSeek 示例:
+set OPENAI_API_KEY=sk-xxx
+set OPENAI_BASE_URL=https://api.deepseek.com/v1
+set OPENAI_MODEL=deepseek-chat
+uv run python scripts/ai_explain.py --book <书名> --provider openai
+
+# Ollama 本地示例(无需 key,模型名如 qwen3):
+set OPENAI_BASE_URL=http://localhost:11434/v1
+set OPENAI_MODEL=qwen3
+uv run python scripts/ai_explain.py --book <书名> --provider openai
+
+# Gemini 示例(key 用 GEMINI_API_KEY 的值):
+set OPENAI_API_KEY=<GEMINI_API_KEY>
+set OPENAI_BASE_URL=https://generativelanguage.googleapis.com/v1beta/openai/
+set OPENAI_MODEL=gemini-2.5-flash
+uv run python scripts/ai_explain.py --book <书名> --provider openai
+```
+
+**提速参数**:`--workers 4` 多章并发(默认开)、`--batch-size 6` 一批解析 6 词(默认),实测比逐词快约 4.6 倍,claude-cli 下 47 章约 1 小时内;`--limit N` 试跑、`--verbose` 重试失败词。
 
 ---
 

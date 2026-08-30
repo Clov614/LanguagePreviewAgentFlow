@@ -225,3 +225,58 @@ class LanguageAdapter:
 | 语言优先级 | **英语先行（P0 必交付），日语第二（P2）**；按语言适配层设计 |
 | 美剧模式 | 延后实现，暂不投入；后期复用 wenyi 的 SRT 字幕管线 |
 | wenyi 结合 | 借鉴设计（实时术语表/状态续跑）+ 增强输出（生词标注版、双语对照） |
+
+---
+
+## 12. P1 新功能方案（2026-08-30 用户四问拍板）
+
+### 12.1 例句深度解析（三件套）
+
+1. **超纲词标注**（纯本地规则，零 AI）：
+   - 判定在 `cards.py` 新函数：对例句逐 token 词形还原 → 查 oxford5000 + ECDICT(bnc/frq)
+   - 规则：CEFR **高于目标词**（目标 B2 → 例句中 C1 / 未分级低频；目标 C1 → 未分级且低频）；排除专名、停用词、超短词、目标词自身；**每句 ≤2 个**
+   - 渲染：例句格内 `<b class="hard">…</b>`（与目标词 `hl` 不同色），模板 CSS 加样式
+2. **AI 解析 + 词义概述**（独立模块 `scripts/ai_explain.py`，2026-08-30 追加拍板）：
+   - **接入点三选**（`--provider`）：
+     - `claude-cli`（**默认**）：本机 Claude Code `claude -p` headless 模式，零配置零 key，走已有登录
+     - `anthropic`：Anthropic 官方 API，`ANTHROPIC_API_KEY` 环境变量（可 `--api-key` 覆盖）
+     - `openai`：任意 OpenAI 兼容端点（GPT / Gemini / DeepSeek / Ollama / LM Studio …），`OPENAI_BASE_URL` + `OPENAI_API_KEY`；BASE_URL 模板：DeepSeek `https://api.deepseek.com/v1` / Gemini `https://generativelanguage.googleapis.com/v1beta/openai/` / Ollama `http://localhost:11434/v1`（本地免 key）
+   - **提速设计（2026-08-30 追加）**：批处理 `--batch-size`（默认 6 词/批，一次调用多词、请求开销均摊，实测比逐词快 ~4.6 倍）+ 多章并发 `--workers`（默认 4，各章产物文件独立可并行）+ `--dry-run` 预览批次；openai 缺 key 不退出（本地端点免密钥）
+   - **密钥管理**：只读环境变量，key 不落盘、不入 git
+   - **产物落地**：批量按章生成 → `work/ai_explain_*.json` → `apply_polish.py --explain` 合并；保持"AI 产物可审可改"惯例，不满意可手改 JSON
+   - **字段**：`ai_analysis` = **四段式结构**（参考米拉 AI 解析的条理化风格，**不吝啬字数**）：
+  1. **逐项解析**（编号列表）：例句中各成分/词语/语法点逐条解释（含超纲词、屈折词形、固定搭配）
+  2. **整句解读**（连贯段落）：把各成分串起来，整句怎么理解、语感语气、为什么这么译
+  3. **文化点**（酌情）：文化背景/语用习惯/时代背景（如 19 世纪小说背景），无则省略该节
+  4. `memo`（目标词 **imagine 印象**，独立字段）：一句能在脑海里"看到/感觉到"的画面钩子，留白不展开
+  - 两字段可选；prompt 里写死"四段式结构 / 不吝啬字数 / memo 画面感"三条约束
+   - prompt 输入：word + 音标 + 词性 + CEFR + 现有释义 + 原句 + 译文 + **超纲词列表**；断点续跑（已生成词跳过）
+   - **可选旁路**：缺 key / 不想用 AI 时管线照跑不出解析，不破坏"无 AI 也出卡"
+   - 卡片背面呈现顺序：例句（目标词 hl + 超纲词 hard 标注）→ 例句译文 → AI 解析 → 词义概述
+   - `apply_polish.py` 支持 `--explain <json>` 独立增量合并（老书不必重写 846 条释义，只补新列）
+3. **TSV 8 → 10 列**（用户确认打破不变式 #2）：
+   `单词|音标|词性|中文释义|CEFR|原文例句|例句译文|来源|AI解析|词义概述`
+   - raw CSV 同步 +2 列（ai_analysis / memo）；总库 schema 不动
+
+### 12.2 表达收录（固定搭配 / 俚语 / Native 表达）
+
+1. **候选提取**（pipeline 扩展）：句子按停用词切语块 → 统计 2–4 词组合频次 → 过滤全基础词组合 / 含专名 / 仅 1 次 → 输出 `work/phrase_cands.json`（每章 top N）
+2. **挑选**：AI/人从候选挑出有学习价值者 → polish 类 JSON（`word=短语原文, pos=phrase|idiom|slang`）→ apply 合并 → cards 出卡；支持"用户直接点名收录"并列通道
+3. **卡片形态**：单词列放短语、音标 `—`、CEFR `—`、短语整体高亮（`token_regex` 扩展短语级匹配）、发音只依赖例句音频
+4. **配额**：每章 18 词中表达 3–4 条（单词为主）
+
+### 12.3 连带改动清单（扩列决定的下游）
+
+- `ai_explain.py`（**新脚本**：三 provider + 环境变量密钥 + 批量/并发/断点/字段校验；`hard_words.py` 的 sqlite 连接放开跨线程只读）
+- `cards.py`（表头 10 列 + 输出两新列 + 超纲词函数）
+- `validate.py`（8→10 列校验）
+- `apply_polish.py`（`--explain` 合并）
+- `make_anki_template.py`（字段 8→10 + `.sent b.hard` 样式）→ 重导 apkg
+- `README.agent.md`（不变式 #2 同步改为 10 列；补充 ai_explain 模块约定与"脚本零模型调用"注记：ai_explain 为可选旁路）
+- **little_women 重导**：Anki 模板重装 + 全部卡片重导（更新现有笔记，音标/释义等保留）
+- 无关项零改动：总库 schema、发音命名、annotate、report
+
+### 12.4 实施顺序
+
+- **Phase 1（先做）**：12.1 全链路 → little_women 小试 1 章 → 增量解析 → 全量重导 → validate 全绿
+- **Phase 2（后做）**：12.2 候选提取 + 挑选通道 → 新书试跑 → validate 全绿

@@ -1,6 +1,7 @@
 """生成 Anki 笔记类型模板包(.apkg),一次导入后即可直接导入各章 TSV:
-- 笔记类型: EnWords(8 字段,顺序与 chapter_XX_anki.tsv 的 8 列一致)
-- 卡片模板: 正面 = 单词+音标+词性+CEFR; 背面 = 中文释义+原文例句+例句译文+来源
+- 笔记类型: EnWords(10 字段,顺序与 chapter_XX_anki.tsv 的 10 列一致)
+- 卡片模板: 正面 = 单词+音标+词性+CEFR;
+            背面 = 中文释义+原文例句(目标词 hl/超纲词 hard)+例句译文+来源+AI解析+词义概述
 - 牌组: EnglishBooksWords::LittleWomen(含 1 张示例卡,导入后可删)
 
 用法:  uv run --with genanki python scripts/make_anki_template.py
@@ -29,7 +30,13 @@ CSS = """
 .sent { border-left: 3px solid #2a7de1; padding-left: 10px; color: #333; }
 .sent b.hl { color: #c7254e; font-weight: bold;
              background: #fdeaea; padding: 0 2px; border-radius: 3px; }
+.sent b.hard { color: #1e8449; font-weight: bold;
+               border-bottom: 1px dashed #1e8449; }
 .sent-cn { color: #888; margin-top: 4px; padding-left: 10px; }
+.ai { margin-top: 10px; font-size: 15px; color: #444;
+      background: #f2f7fc; padding: 8px 10px; border-radius: 6px; }
+.ai-title { color: #2a7de1; font-weight: bold; margin-bottom: 4px; }
+.memo { margin-top: 8px; font-size: 16px; color: #8a6d3b; font-style: italic; }
 .src { color: #aaa; font-size: 13px; margin-top: 12px; text-align: right; }
 
 /* 深色主题适配:Anki 深色模式会给卡片容器添加 nightMode 类,
@@ -42,7 +49,11 @@ CSS = """
 .nightMode .sent { color: #e6e6e6; }
 .nightMode .sent b.hl { color: #ff9eb3; font-weight: bold;
                         background: #4a2230; padding: 0 2px; border-radius: 3px; }
+.nightMode .sent b.hard { color: #7fd8a4; border-bottom: 1px dashed #7fd8a4; }
 .nightMode .sent-cn { color: #b0b0b0; }
+.nightMode .ai { color: #cfcfcf; background: #31313a; }
+.nightMode .ai-title { color: #6fb1ff; }
+.nightMode .memo { color: #d9b96a; }
 .nightMode .src { color: #7a7a7a; }
 .nightMode hr { border-top: 1px solid #4a4a4e; }
 """
@@ -95,6 +106,8 @@ MODEL = genanki.Model(
         {'name': '原文例句'},
         {'name': '例句译文'},
         {'name': '来源'},
+        {'name': 'AI解析'},
+        {'name': '词义概述'},
     ],
     templates=[{
         'name': 'EnWords Card',
@@ -107,6 +120,9 @@ MODEL = genanki.Model(
                  '<div class="mean">{{中文释义}}</div>\n'
                  '<div class="sent">{{原文例句}}</div>\n'
                  '<div class="sent-cn">{{例句译文}}</div>\n'
+                 '{{#AI解析}}<div class="ai"><div class="ai-title">🤖 例句解析</div>'
+                 '{{AI解析}}</div>{{/AI解析}}\n'
+                 '{{#词义概述}}<div class="memo">💡 {{词义概述}}</div>{{/词义概述}}\n'
                  '<div class="src">{{来源}}</div>\n'
                  + autoplay_script(1)),
     }],
@@ -121,6 +137,8 @@ SAMPLE = genanki.Note(
         '"I shall get a nice box of Faber\'s drawing pencils; I really '
         'need them," said Amy <b class="hl">decidedly</b>.',
         '“我真的需要它们，”艾米说得斩钉截铁。', 'little_women Ch1',
+        '“逐项解析”示例：<br>1. …<br>2. …<br>“整句解读”…<br>“文化点”…',
+        'decidedly = 斩钉截铁 —— 她说这句时下巴一扬，没有商量余地。',
     ],
 )
 
