@@ -158,3 +158,29 @@ daddy  # 称谓(全书信件收件人昵称 Daddy;普通词义由其他书覆盖
 ps  # 缩略(信末 PS.)
 thanksgiving  # 节日(感恩节,必知)
 cinderella  # 童话人物(必知)
+latin  # 语言名(拉丁语课语境; french 同理未入候选)
+christmas  # 节日(必知,防大写出卡)
+french  # 语言名
+leonora  # 人名(Leonora Fenton)
+worcester  # 地名(伍斯特)
+roman  # 专指古罗马语境
+tommy  # 人名
+matthew  # 人名(马修)
+lesbia  # 宠物猫名
+hamlet  # 作品(《哈姆雷特》语境)
+amasai  # 马名
+hannibal  # 人名(汉尼拔)
+vi  # 罗马数字(Henry VI 等引用残片)
+vii  # 罗马数字残片
+viii  # 罗马数字残片
+ii  # 罗马数字残片
+iii  # 罗马数字残片
+iv  # 罗马数字残片
+rhode  # 地名成分(Rhode Island)
+mcb  # 缩写残片(McB.)
+magnolia  # 宅名/庄园名(存疑,保守排除)
+griggs  # 人名(秘书 Griggs)
+cher  # 法语残片(cher ami)
+de  # 法语/西语残片
+tres  # 法语残片(très)
+vous  # 法语残片

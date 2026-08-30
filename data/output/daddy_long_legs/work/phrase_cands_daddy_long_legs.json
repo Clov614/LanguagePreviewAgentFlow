@@ -1,0 +1,169 @@
+{
+ "book": "daddy_long_legs",
+ "per_chapter_top": 40,
+ "note": "表达候选(AI/人挑选后写 phrases_picked JSON,apply_polish.py --phrases 合并出卡)",
+ "chapters": {
+  "1": [],
+  "2": [
+   {
+    "phrase": "lights out",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Lights out."
+   }
+  ],
+  "3": [
+   {
+    "phrase": "filled up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "The\ncorridors are so filled up that you can hardly get through, and\neverybody is so bubbling over with excitement that studying is getting\nleft out."
+   },
+   {
+    "phrase": "free from conditions",
+    "freq_ch": 2,
+    "freq_book": 2,
+    "score": 1.9,
+    "cefr_max": "toe",
+    "example": "I passed them\nboth and am now free from conditions."
+   },
+   {
+    "phrase": "eleven pages",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Eleven pages—poor Daddy, you must be tired!"
+   },
+   {
+    "phrase": "much easier",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "So much\neasier and more accurate than trying to keep it in your head."
+   },
+   {
+    "phrase": "thousand times",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Thank\nyou, Daddy, a thousand times."
+   },
+   {
+    "phrase": "everything is",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "In the spring when\neverything is so beautiful and green and budding, I feel like turning\nmy back on lessons, and running away to play with the weather."
+   },
+   {
+    "phrase": "doubt about it",
+    "freq_ch": 1,
+    "freq_book": 4,
+    "score": 0.7,
+    "cefr_max": "b1",
+    "example": "I might, very usefully, put some time on Latin tonight but, there's no\ndoubt about it, I'm a very languid Latin scholar."
+   }
+  ],
+  "4": [
+   {
+    "phrase": "go back",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "I'd rather die than go back."
+   },
+   {
+    "phrase": "fall down",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "It's big and square and empty, with adorable\nold-fashioned furniture and windows that have to be propped up on\nsticks and green shades trimmed with gold that fall down if you touch\nthem."
+   }
+  ],
+  "5": [
+   {
+    "phrase": "staying behind",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Packing your trunk and going away is more\nfun than staying behind."
+   },
+   {
+    "phrase": "go off",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "When you put a hungry little nine-year\ngirl in the pantry scouring knives, with the cookie jar at her elbow,\nand go off and leave her alone; and then suddenly pop in again,\nwouldn't you expect to find her a bit crumby?"
+   }
+  ],
+  "6": [
+   {
+    "phrase": "floating off",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Our class had crimson balloons—very\nfetching, especially as they were always getting loose and floating\noff—and the Freshmen wore green tissue-paper hats with long streamers."
+   }
+  ],
+  "7": [],
+  "8": [
+   {
+    "phrase": "worn out",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.7,
+    "cefr_max": "b1",
+    "example": "They are trying to reach some goal far away on\nthe horizon, and in the heat of the going they get so breathless and\npanting that they lose all sight of the beautiful, tranquil country\nthey are passing through; and then the first thing they know, they are\nold and worn out, and it doesn't make any difference whether they've\nreached the goal or not."
+   },
+   {
+    "phrase": "come up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "And filling in every crevice, there is always such a\nlot of nonsense—just silly jokes about the little things that come up\nbut very satisfying."
+   }
+  ],
+  "9": [
+   {
+    "phrase": "woke up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "But\njust as I was turning to the end to read the inscription on my\ntombstone, I woke up."
+   },
+   {
+    "phrase": "pay up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Maybe the World\ndoes—in any case, it seems to acknowledge the debt and pay up."
+   },
+   {
+    "phrase": "sleep about",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Life is monotonous enough at best; you have to eat and sleep about so\noften."
+   }
+  ],
+  "10": [],
+  "11": []
+ }
+}
