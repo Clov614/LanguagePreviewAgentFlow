@@ -142,9 +142,9 @@ SAMPLE = genanki.Note(
         '"I shall get a nice box of Faber\'s drawing pencils; I really '
         'need them," said Amy <b class="hl">decidedly</b>.',
         '“我真的需要它们，”艾米说得斩钉截铁。', 'little_women Ch1',
-        '“逐项解析”示例：<br>1. 逐项解析<br>• <b>“I shall get”</b>:主句主干,'
-        '19 世纪第一人称表将来习惯用 “shall”,宣告式语气。<br>2. 整句解读<br>…<br>'
-        '3. 文化点<br>…',
+        '1. 逐项解析<br>• <b>“I shall get”</b>:主句主干。19 世纪英语里第一人称表将来'
+        '习惯用 “shall”,宣告式语气。<br>– <b>shall</b>(超纲词):情态动词,“将、该”,'
+        '比 will 更郑重。<br>2. 整句解读<br>…<br>3. 文化点<br>…',
         'decidedly = 斩钉截铁 —— 她说这句时下巴一扬，没有商量余地。',
     ],
 )
