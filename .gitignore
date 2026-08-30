@@ -14,6 +14,8 @@ data/output/*/anki/audio/
 # ---- ide ----
 .idea/
 
+.zcode/
+
 # ---- 系统杂项 ----
 Thumbs.db
 .DS_Store
