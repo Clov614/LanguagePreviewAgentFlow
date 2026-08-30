@@ -75,9 +75,24 @@ BATCH_PROMPT = """你是英语学习卡的"例句解析"助手,为生词卡片�
 
 一次必须返回 results 数组里【全部】请求的词,一个都不能少,词序与输入一致。
 
-【ai_analysis 要求】(全部中文,不吝啬字数,讲透为止。换行用 \\n,编号用 "1. " 形式):
-1. 逐项解析:编号列表,把例句拆成各成分/词语逐条解释(词性、屈折形态、固定搭配、难点词——包括列出的超纲词)。
-2. 整句解读:一个连贯段落,把各成分串起来,讲整句怎么理解、语气语感、为什么中文译文这么翻。
+【ai_analysis 要求】(全部中文,不吝啬字数,讲透为止。换行用 \\n):
+固定三段,段首编号 "1. 逐项解析" / "2. 整句解读" / "3. 文化点",段间空行。
+
+1. 逐项解析:把例句拆成成分逐条解释。每个成分条目独占一行,行首 "N. " 编号(N 从 1 起连续递增)。
+   条目内需要再逐个讲解词/短语时,每个词另起一行、行首用 "- " 列表符(短横+空格);
+   严禁把多个词挤在条目的同一行里(不用分号/逗号拼接),更禁止 "1.1" "1.2" 这类两级编号。
+   被讲解的词必须标注身份,格式统一为「词名(身份):解析」,身份只有两种:
+   - 本卡要学的目标词 → (目标词)
+   - 例句中比目标词更难的超纲词 → (超纲词)
+   其余普通词/短语不标身份,直接写解析。
+   示例(条目 3 内拆出 3 个词,各占一行):
+   3. a rosy, smooth-haired, bright-eyed girl of thirteen——表语的核心名词短语:
+   - rosy(超纲词):形容词,玫瑰色的、红润的,注意它由 rose 派生而来。
+   - smooth-haired:复合形容词,由 smooth + hair + -ed 构成,意思是"头发顺滑的"。
+   - of thirteen:表示年龄,相当于 thirteen years old,"十三岁的"。
+   (该成分若整块讲解即可、无须拆词,则不出现 "- " 行。)
+2. 整句解读:一个连贯段落(不编号、不拆行),把各成分串起来,讲整句怎么理解、语气语感、
+   为什么中文译文这么翻。
 3. 文化点:酌情补充文化/语用/时代背景(如 19 世纪小说背景),没有就省略这一节。
 
 【引号铁律】:文本中任何引号一律用中文引号 "" 或「」,严禁英文双引号 " (它会被当成 JSON 定界符,导致整段解析报废)。
@@ -90,11 +105,37 @@ __ITEMS__
 请输出 JSON:"""
 
 PRINT_LOCK = Lock()
+FAILED_LOCK = Lock()   # failed.json 全书共享:多章并发必须同步读改写
 
 
 def log(*a):
     with PRINT_LOCK:
         print(*a, flush=True)
+
+
+def _load_failed(path):
+    """容错读取共享失败记录:并发写期间读到的是完整旧/新文件(原子替换);
+    损坏/半截文件(历史遗留)丢弃重建,不抛异常、不崩进程。"""
+    try:
+        with open(path, encoding='utf-8') as f:
+            return json.load(f)
+    except (OSError, json.JSONDecodeError):
+        return []
+
+
+def _save_failed(path, fails):
+    """failed.json 读改写一体:加锁防多章线程互踩;按 word 去重合并(失败条目
+    重复跑不再无限累加);临时文件 + os.replace 原子替换,读者不见半截 JSON。"""
+    with FAILED_LOCK:
+        merged = {}
+        for p in _load_failed(path):
+            merged.setdefault(p.get('word'), p)
+        for w in fails:
+            merged.setdefault(w, {'word': w})
+        tmp = path + '.tmp'
+        with open(tmp, 'w', encoding='utf-8') as f:
+            json.dump(list(merged.values()), f, ensure_ascii=False, indent=1)
+        os.replace(tmp, path)
 
 
 def build_info(r, hard):
@@ -209,7 +250,9 @@ class OpenAI(Provider):
 
 def _lenient_load(s):
     """容错 JSON:模型常把英文双引号裸写在字符串里("它是被当成 JSON 定界符")。
-    策略:json.loads 失败时,把报错位置的裸 '"' 换成中文引号后重试,最多修 3 处。"""
+    策略:json.loads 失败时,把报错位置的裸 '"' 换成中文引号后重试,最多修 3 处。
+    注:实测报错位置极少恰好落在引号上(多为引号后的下一个非结构字符),该分支
+    修复能力有限 —— 修不动时返回 None,调用方走回退/重试路径,不会崩。"""
     cur = s
     for _ in range(3):
         try:
@@ -219,6 +262,12 @@ def _lenient_load(s):
                 return None
             cur = cur[:e.pos] + '“' + cur[e.pos + 1:]
     return None
+
+
+def md_bold_to_html(s):
+    """模型常把强调写成 Markdown 加粗 **x**(Anki 不渲染 Markdown,星号会裸露)。
+    输出前统一转成 <b>x</b>(cards 渲染时白名单放行);幂等:无 ** 时原样返回。"""
+    return re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', s, flags=re.S)
 
 
 def extract_batch(text):
@@ -241,8 +290,8 @@ def extract_batch(text):
         if not isinstance(p, dict):
             continue
         w = str(p.get('word') or '').strip()
-        a = str(p.get('ai_analysis') or '').strip()
-        mm = str(p.get('memo') or '').strip()
+        a = md_bold_to_html(str(p.get('ai_analysis') or '').strip())
+        mm = md_bold_to_html(str(p.get('memo') or '').strip())
         if w and a and mm and '�' not in a and '�' not in mm:
             out.append({'word': w, 'ai_analysis': a, 'memo': mm})
     return out
@@ -298,9 +347,7 @@ def process_chapter(ch, rows, prov, args, diff, out_dir, work_dir):
     done = set()
     if os.path.exists(out_json):
         done = {p['word'] for p in json.load(open(out_json, encoding='utf-8'))}
-    failed = set()
-    if os.path.exists(failed_json):
-        failed = {p['word'] for p in json.load(open(failed_json, encoding='utf-8'))}
+    failed = {p['word'] for p in _load_failed(failed_json)}
 
     todo = []
     for r in rows:
@@ -345,11 +392,7 @@ def process_chapter(ch, rows, prov, args, diff, out_dir, work_dir):
         log(f'[ch{ch:02d}] 写入 {len(merged_list)} 词(新生成 {len(results)})')
 
     if fails:
-        prior = []
-        if os.path.exists(failed_json):
-            prior = json.load(open(failed_json, encoding='utf-8'))
-        with open(failed_json, 'w', encoding='utf-8') as f:
-            json.dump(prior + fails, f, ensure_ascii=False, indent=1)
+        _save_failed(failed_json, [f['word'] for f in fails])
 
     log(f'[ch{ch:02d}] 生成 {len(results)} 失败 {len(fails)} 跳过 {n_skip}')
     return len(results), len(fails), n_skip

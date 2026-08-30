@@ -1,0 +1,1578 @@
+{
+ "book": "little_women",
+ "per_chapter_top": 40,
+ "note": "表达候选(AI/人挑选后写 phrases_picked JSON,apply_polish.py --phrases 合并出卡)",
+ "chapters": {
+  "1": [
+   {
+    "phrase": "in an altered tone",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 4.2,
+    "cefr_max": "toe",
+    "example": "Nobody spoke for a minute; then Meg said in an altered tone, \"You know the reason Mother proposed not having any presents this Christmas was because it is going to be a hard winter for everyone; and she thinks we ought not to spend money for pleasure, when our men are suffering so in the army."
+   },
+   {
+    "phrase": "sobbed out",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Jo wasn't ashamed of the great tear that dropped off the end of her nose, and Amy never minded the rumpling of her curls as she hid her face on her mother's shoulder and sobbed out, \"I am a selfish girl!"
+   },
+   {
+    "phrase": "firmly believed",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 2.7,
+    "cefr_max": "toe",
+    "example": "You're a regular Shakespeare!\" exclaimed Beth, who firmly believed that her sisters were gifted with wonderful genius in all things."
+   },
+   {
+    "phrase": "white hands",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Margaret, the eldest of the four, was sixteen, and very pretty, being plump and fair, with large eyes, plenty of soft brown hair, a sweet mouth, and white hands, of which she was rather vain."
+   },
+   {
+    "phrase": "blue eyes",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "A regular snow maiden, with blue eyes, and yellow hair curling on her shoulders, pale and slender, and always carrying herself like a young lady mindful of her manners."
+   },
+   {
+    "phrase": "little pilgrims",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Now, my little pilgrims, suppose you begin again, not in play, but in earnest, and see how far on you can get before Father comes home.\" \"Really, Mother?"
+   },
+   {
+    "phrase": "nobody did",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Mine is dishes and dusters, and envying girls with nice pianos, and being afraid of people.\" Beth's bundle was such a funny one that everybody wanted to laugh, but nobody did, for it would have hurt her feelings very much."
+   },
+   {
+    "phrase": "kiss me",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 0.7,
+    "cefr_max": "b1",
+    "example": "Come and kiss me, baby.\" While making these maternal inquiries Mrs. March got her wet things off, her warm slippers on, and sitting down in the easy chair, drew Amy to her lap, preparing to enjoy the happiest hour of her busy day."
+   }
+  ],
+  "2": [
+   {
+    "phrase": "walked off",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Mother says he's very nice, though he never speaks to us girls.\" \"Our cat ran away once, and he brought her back, and we talked over the fence, and were getting on capitally, all about cricket, and so on, when he saw Meg coming, and walked off."
+   },
+   {
+    "phrase": "ist gut",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 3.2,
+    "cefr_max": "toe",
+    "example": "\"Das ist gut!\" \"Die Engel-kinder!\" cried the poor things as they ate and warmed their purple hands at the comfortable blaze."
+   },
+   {
+    "phrase": "comfort behind",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.2,
+    "cefr_max": "b2",
+    "example": "And when they went away, leaving comfort behind, I think there were not in all the city four merrier people than the hungry little girls who gave away their breakfasts and contented themselves with bread and milk on Christmas morning."
+   },
+   {
+    "phrase": "strike up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.2,
+    "cefr_max": "b2",
+    "example": "Strike up, Beth!"
+   },
+   {
+    "phrase": "told you",
+    "freq_ch": 1,
+    "freq_book": 6,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "A universal shriek arose as the russet boots waved wildly from the wreck and a golden head emerged, exclaiming, \"I told you so!"
+   },
+   {
+    "phrase": "looked as",
+    "freq_ch": 1,
+    "freq_book": 4,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "It quite took their breath away, and they stared first at the table and then at their mother, who looked as if she enjoyed it immensely."
+   },
+   {
+    "phrase": "sent it",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Old Mr. Laurence sent it,\" replied Mrs. March."
+   }
+  ],
+  "3": [
+   {
+    "phrase": "slipping out",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Slipping out, she ran down and, finding a servant, asked if he could get her a carriage."
+   },
+   {
+    "phrase": "ran down",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Slipping out, she ran down and, finding a servant, asked if he could get her a carriage."
+   },
+   {
+    "phrase": "the music stopped",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "When the music stopped, they sat down on the stairs to get their breath, and Laurie was in the midst of an account of a students' festival at Heidelberg when Meg appeared in search of her sister."
+   },
+   {
+    "phrase": "settled it",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "It's all on my way, you know, and it rains, they say.\" That settled it, and telling him of Meg's mishap, Jo gratefully accepted and rushed up to bring down the rest of the party."
+   },
+   {
+    "phrase": "to look sober",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "That put Jo at her ease and she laughed too, as she said, in her heartiest way, \"We did have such a good time over your nice Christmas present.\" \"Grandpa sent it.\" \"But you put it into his head, didn't you, now?\" \"How is your cat, Miss March?\" asked the boy, trying to look sober while his black eyes shone with fun."
+   }
+  ],
+  "4": [
+   {
+    "phrase": "practiced away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "She loved music so dearly, tried so hard to learn, and practiced away so patiently at the jingling old instrument, that it did seem as if someone (not to hint Aunt March) ought to help her."
+   },
+   {
+    "phrase": "shadow behind",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.2,
+    "cefr_max": "b2",
+    "example": "She sang like a little lark about her work, never was too tired for Marmee and the girls, and day after day said hopefully to herself, \"I know I'll get my music some time, if I'm good.\" There are many Beths in the world, shy and quiet, sitting in corners till needed, and living for others so cheerfully that no one sees the sacrifices till the little cricket on the hearth stops chirping, and the sweet, sunshiny presence vanishes, leaving silence and shadow behind."
+   },
+   {
+    "phrase": "tears in her eyes",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 3.2,
+    "cefr_max": "toe",
+    "example": "\"My only comfort,\" she said to Meg, with tears in her eyes, \"is that Mother doesn't take tucks in my dresses whenever I'm naughty, as Maria Parks's mother does."
+   },
+   {
+    "phrase": "read away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "She never finds herself very soon, so the minute her cap began to bob like a top-heavy dahlia, I whipped the Vicar of Wakefield out of my pocket, and read away, with one eye on him and one on Aunt."
+   },
+   {
+    "phrase": "go back",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Go back and begin it, child.'\" \"Back I went, and made the Primroses as interesting as ever I could."
+   },
+   {
+    "phrase": "to be loved",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "She was a housewifely little creature, and helped Hannah keep home neat and comfortable for the workers, never thinking of any reward but to be loved."
+   },
+   {
+    "phrase": "everyone petted her",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Amy was in a fair way to be spoiled, for everyone petted her, and her small vanities and selfishnesses were growing nicely."
+   }
+  ],
+  "5": [
+   {
+    "phrase": "the lamps are lighted",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 4.7,
+    "cefr_max": "toe",
+    "example": "And when the lamps are lighted, it's like looking at a picture to see the fire, and you all around the table with your mother."
+   },
+   {
+    "phrase": "colored up",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "She's my girl, and a regular good one she is, too.\" \"The pretty one is Meg, and the curly-haired one is Amy, I believe?\" \"How did you find that out?\" Laurie colored up, but answered frankly, \"Why, you see I often hear you calling to one another, and when I'm alone up here, I can't help looking over at your house, you always seem to be having such good times."
+   },
+   {
+    "phrase": "dull out",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.2,
+    "cefr_max": "b2",
+    "example": "It's cold and dull out, and I advise you to stay warm and dry by the fire, as I do,\" said Meg with a shiver."
+   },
+   {
+    "phrase": "drive off",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "She saw Mr. Lawrence drive off, and then sallied out to dig her way down to the hedge, where she paused and took a survey."
+   },
+   {
+    "phrase": "come over",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "I just wish, though, instead of peeping, you'd come over and see us."
+   },
+   {
+    "phrase": "come down",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Come down and go on being neighborly.\" \"If you'd like to have me, sir.\" \"Shouldn't ask you, if I didn't.\" And Mr. Laurence offered her his arm with old-fashioned courtesy."
+   },
+   {
+    "phrase": "made a good impression",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 2.2,
+    "cefr_max": "toe",
+    "example": "But finding them free and easy, she was so herself, and made a good impression."
+   },
+   {
+    "phrase": "kind you are",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "\"How kind you are!"
+   },
+   {
+    "phrase": "much obliged",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "\"I'm a great deal better for it, and ever so much obliged."
+   },
+   {
+    "phrase": "walked on",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Come to your tea, sir, and behave like a gentleman.\" And having pulled the boy's hair by way of a caress, Mr. Laurence walked on, while Laurie went through a series of comic evolutions behind their backs, which nearly produced an explosion of laughter from Jo."
+   },
+   {
+    "phrase": "a little pause",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "\"Do you like your school?\" asked the boy, changing the subject, after a little pause, during which he stared at the fire and Jo looked about her, well pleased."
+   },
+   {
+    "phrase": "the old gentleman",
+    "freq_ch": 3,
+    "freq_book": 8,
+    "score": 1.1,
+    "cefr_max": "b1",
+    "example": "Yet it seemed a lonely, lifeless sort of house, for no children frolicked on the lawn, no motherly face ever smiled at the windows, and few people went in and out, except the old gentleman and his grandson."
+   }
+  ],
+  "6": [
+   {
+    "phrase": "humble servant",
+    "freq_ch": 2,
+    "freq_book": 2,
+    "score": 2.4,
+    "cefr_max": "c1",
+    "example": "\"'Your humble servant, James Laurence'."
+   },
+   {
+    "phrase": "look about",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Quite by accident, of course, some pretty, easy music lay on the piano, and with trembling fingers and frequent stops to listen and look about, Beth at last touched the great instrument, and straightway forgot her fear, herself, and everything else but the unspeakable delight which the music gave her, for it was like the voice of a beloved friend."
+   },
+   {
+    "phrase": "kissed her",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "The old gentleman softly stroked the hair off her forehead, and, stooping down, he kissed her, saying, in a tone few people ever heard . . ."
+   },
+   {
+    "phrase": "away he went",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Good day, madam.\" And away he went, in a great hurry."
+   },
+   {
+    "phrase": "as it was",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "It had evidently been newly tuned and put in apple-pie order, but, perfect as it was, I think the real charm lay in the happiest of all happy faces which leaned over it, as Beth lovingly touched the beautiful black and white keys and pressed the bright pedals."
+   },
+   {
+    "phrase": "kissed him",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "\" But she didn't finish, for he looked so friendly that she forgot her speech and, only remembering that he had lost the little girl he loved, she put both arms round his neck and kissed him."
+   },
+   {
+    "phrase": "old gentleman",
+    "freq_ch": 2,
+    "freq_book": 3,
+    "score": 0.9,
+    "cefr_max": "b1",
+    "example": "I like to pay my debts, so I know you will allow 'the old gentleman' to send you something which once belonged to the little grand daughter he lost."
+   }
+  ],
+  "7": [
+   {
+    "phrase": "went to",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Scarlet with shame and anger, Amy went to and fro six dreadful times, and as each doomed couple, looking oh, so plump and juicy, fell from her reluctant hands, a shout from the street completed the anguish of the girls, for it told them that their feast was being exulted over by the little Irish children, who were their sworn foes."
+   }
+  ],
+  "8": [
+   {
+    "phrase": "worked over",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "My little book I was so fond of, and worked over, and meant to finish before Father got home?"
+   },
+   {
+    "phrase": "shouted back",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "As Laurie turned the bend, he shouted back . . ."
+   },
+   {
+    "phrase": "flown about",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "During the bustle Jo had scarcely spoken but flown about, looking pale and wild, with her things half off, her dress torn, and her hands cut and bruised by ice and rails and refractory buckles."
+   },
+   {
+    "phrase": "went away",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "I used to see Father sometimes put his finger on his lips, and look at you with a very kind but sober face, and you always folded your lips tight and went away."
+   },
+   {
+    "phrase": "looked grave",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 3.2,
+    "cefr_max": "toe",
+    "example": "Mrs. March looked grave and grieved, and Amy felt that no one would love her till she had asked pardon for the act which she now regretted more than any of them."
+   },
+   {
+    "phrase": "go down",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "For a minute Jo stood still with a strange feeling in her heart, then she resolved to go on, but something held and turned her round, just in time to see Amy throw up her hands and go down, with a sudden crash of rotten ice, the splash of water, and a cry that made Jo's heart stand still with fear."
+   },
+   {
+    "phrase": "know where it is",
+    "freq_ch": 2,
+    "freq_book": 2,
+    "score": 1.9,
+    "cefr_max": "toe",
+    "example": "I haven't got it, don't know where it is now, and don't care.\" \"You know something about it, and you'd better tell at once, or I'll make you.\" And Jo gave her a slight shake."
+   },
+   {
+    "phrase": "looked surprised",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Meg, Beth, and Amy were sitting together, late in the afternoon, when Jo burst into the room, looking excited and demanding breathlessly, \"Has anyone taken my book?\" Meg and Beth said, \"No.\" at once, and looked surprised."
+   },
+   {
+    "phrase": "got it",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "\"Amy, you've got it!\" \"No, I haven't.\" \"You know where it is, then!\" \"No, I don't.\" \"That's a fib!\" cried Jo, taking her by the shoulders, and looking fierce enough to frighten a much braver child than Amy."
+   },
+   {
+    "phrase": "took possession of her",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "She had cherished her anger till it grew strong and took possession of her, as evil thoughts and feelings always do unless cast out at once."
+   },
+   {
+    "phrase": "never knew",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Quick, quick!\" How she did it, she never knew, but for the next few minutes she worked as if possessed, blindly obeying Laurie, who was quite self-possessed, and lying flat, held Amy up by his arm and hockey stick till Jo dragged a rail from the fence, and together they got the child out, more frightened than hurt."
+   },
+   {
+    "phrase": "forgive me",
+    "freq_ch": 1,
+    "freq_book": 6,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "\"Please forgive me, Jo."
+   },
+   {
+    "phrase": "near the shore",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "\"Keep near the shore."
+   }
+  ],
+  "9": [
+   {
+    "phrase": "made her plans",
+    "freq_ch": 2,
+    "freq_book": 2,
+    "score": 3.4,
+    "cefr_max": "toe",
+    "example": "Sallie says they are very intimate now, and the old man quite dotes on them.\" \"Mrs. M. has made her plans, I dare say, and will play her cards well, early as it is."
+   },
+   {
+    "phrase": "catch up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a2",
+    "example": "Take your silver butterfly, and catch up that long curl on the left side of her head, Clara, and don't any of you disturb the charming work of my hands,\" said Belle, as she hurried away, looking well pleased with her success."
+   },
+   {
+    "phrase": "an important air",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "There now, the trays are ready, and everything in but my ball dress, which I shall leave for Mother to pack,\" said Meg, cheering up, as she glanced from the half-filled trunk to the many times pressed and mended white tarlaton, which she called her 'ball dress' with an important air."
+   },
+   {
+    "phrase": "much gratified",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "\"The note is from Mother, and the flowers from Laurie,\" said Meg simply, yet much gratified that he had not forgotten her."
+   },
+   {
+    "phrase": "felt as",
+    "freq_ch": 1,
+    "freq_book": 4,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "As Meg went rustling after, with her long skirts trailing, her earrings tinkling, her curls waving, and her heart beating, she felt as if her fun had really begun at last, for the mirror had plainly told her that she was 'a little beauty'."
+   },
+   {
+    "phrase": "got on pretty",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "The 'queer feeling' did not pass away, but she imagined herself acting the new part of fine lady and so got on pretty well, though the tight dress gave her a side-ache, the train kept getting under her feet, and she was in constant fear lest her earrings should fly off and get lost or broken."
+   },
+   {
+    "phrase": "what is it",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "What is it, dear?\" \"Shall I go away?\" asked Jo discreetly."
+   },
+   {
+    "phrase": "dare say",
+    "freq_ch": 2,
+    "freq_book": 12,
+    "score": 1.4,
+    "cefr_max": "b2",
+    "example": "\"I was very unwise to let you go among people of whom I know so little, kind, I dare say, but worldly, ill-bred, and full of these vulgar ideas about young people."
+   },
+   {
+    "phrase": "assure you",
+    "freq_ch": 2,
+    "freq_book": 2,
+    "score": 1.4,
+    "cefr_max": "b2",
+    "example": "I'm nowhere beside you, for Belle has heaps of taste, and you're quite French, I assure you."
+   },
+   {
+    "phrase": "little beauty",
+    "freq_ch": 2,
+    "freq_book": 2,
+    "score": 0.9,
+    "cefr_max": "b1",
+    "example": "Meg couldn't refuse the offer so kindly made, for a desire to see if she would be 'a little beauty' after touching up caused her to accept and forget all her former uncomfortable feelings toward the Moffats."
+   },
+   {
+    "phrase": "glad of",
+    "freq_ch": 1,
+    "freq_book": 7,
+    "score": 0.7,
+    "cefr_max": "b1",
+    "example": "\"And such lovely weather, I'm so glad of that,\" added Beth, tidily sorting neck and hair ribbons in her best box, lent for the great occasion."
+   }
+  ],
+  "10": [
+   {
+    "phrase": "bounce about",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "c1",
+    "example": "\"Contrary-minded say, 'No'.\" Meg and Amy were contrary-minded, and Mr. Winkle rose to say with great elegance, \"We don't wish any boys, they only joke and bounce about."
+   },
+   {
+    "phrase": "bless you",
+    "freq_ch": 1,
+    "freq_book": 5,
+    "score": 1.7,
+    "cefr_max": "c1",
+    "example": "Bless you!"
+   },
+   {
+    "phrase": "time by the fetlock",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Now, as there's nothing like 'taking time by the fetlock', as Winkle characteristically observes, allow me to present the new member.\" And, to the dismay of the rest of the club, Jo threw open the door of the closet, and displayed Laurie sitting on a rag bag, flushed and twinkling with suppressed laughter."
+   },
+   {
+    "phrase": "beg pardon",
+    "freq_ch": 1,
+    "freq_book": 5,
+    "score": 1.7,
+    "cefr_max": "b2",
+    "example": "But the new member was equal to the occasion, and rising, with a grateful salutation to the Chair, said in the most engaging manner, \"Mr. President and ladies—I beg pardon, gentlemen—allow me to introduce myself as Sam Weller, the very humble servant of the club.\" \"Good!"
+   },
+   {
+    "phrase": "in a tone",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "Unmask and receive my blessing.\" But neither bent the knee, for the young bridegroom replied in a tone that startled all listeners as the mask fell, disclosing the noble face of Ferdinand Devereux, the artist lover, and leaning on the breast where now flashed the star of an English earl was the lovely Viola, radiant with joy and beauty."
+   }
+  ],
+  "11": [
+   {
+    "phrase": "went out",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Mrs. March went out, after peeping here and there to see how matters went, also saying a word of comfort to Beth, who sat making a winding sheet, while the dear departed lay in state in the domino box."
+   },
+   {
+    "phrase": "told her she was",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 3.2,
+    "cefr_max": "toe",
+    "example": "But something in the air affected her, and more than once her tranquility was much disturbed, so much so that on one occasion she actually shook poor dear Joanna and told her she was 'a fright'."
+   },
+   {
+    "phrase": "little souls",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "\"Poor little souls, they will have a hard time, I'm afraid, but they won't suffer, and it will do them good,\" she said, producing the more palatable viands with which she had provided herself, and disposing of the bad breakfast, so that their feelings might not be hurt, a motherly little deception for which they were grateful."
+   },
+   {
+    "phrase": "fell to work",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "c1",
+    "example": "Putting on a big apron, she fell to work and got the dishes piled up ready for washing, when she discovered that the fire was out."
+   },
+   {
+    "phrase": "the door flew open",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Meg was entertaining Sallie Gardiner in the parlor, when the door flew open and a floury, crocky, flushed, and disheveled figure appeared, demanding tartly . . ."
+   },
+   {
+    "phrase": "spite of poverty",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "b2",
+    "example": "Then youth will be delightful, old age will bring few regrets, and life become a beautiful success, in spite of poverty.\" \"We'll remember, Mother!\" and they did."
+   }
+  ],
+  "12": [
+   {
+    "phrase": "tramp about",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "c1",
+    "example": "I shall row and tramp about, so I don't want any starch to think of."
+   },
+   {
+    "phrase": "halfway down",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "c1",
+    "example": "\"Instantly, Sir What's-his-name recovered himself, pitched the tyrant out of the window, and turned to join the lady, victorious, but with a bump on his brow, found the door locked, tore up the curtains, made a rope ladder, got halfway down when the ladder broke, and he went headfirst into the moat, sixty feet below."
+   },
+   {
+    "phrase": "looked up",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Mr. Brooke looked up and said quickly, \"Young ladies in America love independence as much as their ancestors did, and are admired and respected for supporting themselves.\" \"Oh, yes, of course it's very nice and proper in them to do so."
+   },
+   {
+    "phrase": "turns up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Out in our garden is an apple tree that has a nice low branch, so Jo put the saddle on it, fixed some reins on the part that turns up, and we bounce away on Ellen Tree whenever we like.\" \"How funny!\" laughed Grace."
+   },
+   {
+    "phrase": "pulled up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "At sunset the tent was struck, hampers packed, wickets pulled up, boats loaded, and the whole party floated down the river, singing at the tops of their voices."
+   },
+   {
+    "phrase": "one saw",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "I will keep on trying, and not get tired, since I have you to help me.\" Laying her head on her arms, Jo wet her little romance with a few happy tears, for she had thought that no one saw and appreciated her efforts to be good, and this assurance was doubly precious, doubly encouraging, because unexpected and from the person whose commendation she most valued."
+   },
+   {
+    "phrase": "a good fellow",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "Don't bother about rations, I'll see to that and everything else, only do come, there's a good fellow!"
+   },
+   {
+    "phrase": "saw him",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "He did cheat, I saw him."
+   },
+   {
+    "phrase": "the young gentleman",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 0.7,
+    "cefr_max": "b1",
+    "example": "Now, Miss Jo, I'll settle you, and get in first,\" cried the young gentleman, swinging his mallet for another blow."
+   },
+   {
+    "phrase": "cheerful again",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 0.7,
+    "cefr_max": "b1",
+    "example": "\"Thank you, that sounds pleasant,\" began Mr. Brooke, looking cheerful again, but before he could finish his speech, Ned, mounted on the old horse, came lumbering up to display his equestrian skill before the young ladies, and there was no more quiet that day."
+   }
+  ],
+  "13": [
+   {
+    "phrase": "skipped back",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "He stood so still that a squirrel, busy with its harvesting, ran down a pine close beside him, saw him suddenly and skipped back, scolding so shrilly that Beth looked up, espied the wistful face behind the birches, and beckoned with a reassuring smile."
+   },
+   {
+    "phrase": "find out",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Laurie lay luxuriously swinging to and fro in his hammock one warm September afternoon, wondering what his neighbors were about, but too lazy to go and find out."
+   },
+   {
+    "phrase": "go away",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "We should have asked you before, only we thought you wouldn't care for such a girl's game as this.\" \"I always like your games, but if Meg doesn't want me, I'll go away.\" \"I've no objection, if you do something."
+   },
+   {
+    "phrase": "tell away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Tell away, Jo, and don't be afraid.\" \"The idea of being afraid of you!"
+   },
+   {
+    "phrase": "one came",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Taking the shortest way to the boathouse, he waited for them to appear, but no one came, and he went up the hill to take an observation."
+   },
+   {
+    "phrase": "alarmed at the",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "It was only to show that I cared how you get on, and what is said here is said in confidence, you know,\" cried Meg, much alarmed at the thought of what might follow from her careless speech."
+   },
+   {
+    "phrase": "old fellow",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "And how he provides now for an old woman who nursed his mother, and never tells anyone, but is just as generous and patient and good as he can be.\" \"So he is, dear old fellow!\" said Laurie heartily, as Meg paused, looking flushed and earnest with her story."
+   }
+  ],
+  "14": [
+   {
+    "phrase": "lark away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "I'm not a fashionable party and don't mean to be, but I do like harmless larks now and then, don't you?\" \"Yes, nobody minds them, so lark away, but don't get wild, will you?"
+   },
+   {
+    "phrase": "ran away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "He had plenty of money, but didn't know how to spend it, and got tipsy and gambled, and ran away, and forged his father's name, I believe, and was altogether horrid.\" \"You think I'm likely to do the same?"
+   },
+   {
+    "phrase": "darted away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "No one was in sight, the smooth road sloped invitingly before her, and finding the temptation irresistible, Jo darted away, soon leaving hat and comb behind her and scattering hairpins as she ran."
+   },
+   {
+    "phrase": "talking about",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Laurie and she were always making signs to one another, and talking about 'Spread Eagles' till the girls declared they had both lost their wits."
+   },
+   {
+    "phrase": "done my best",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "\"There, I've done my best!"
+   },
+   {
+    "phrase": "composed herself",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Once there, she composed herself, hailed a passing omnibus, and rolled away to town, looking very merry and mysterious."
+   },
+   {
+    "phrase": "very trying",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "\"It's very trying, but we never can make her commy la fo,\" added Amy, who sat making some new frills for herself, with her curls tied up in a very becoming way, two agreeable things that made her feel unusually elegant and ladylike."
+   },
+   {
+    "phrase": "wrote it",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "\"Who wrote it?\" asked Beth, who had caught a glimpse of Jo's face."
+   },
+   {
+    "phrase": "glad of it",
+    "freq_ch": 1,
+    "freq_book": 4,
+    "score": 0.7,
+    "cefr_max": "b1",
+    "example": "\"I'm afraid I do.\" \"I'm glad of it!\" muttered Jo, tying on her hat with a jerk."
+   },
+   {
+    "phrase": "a long breath",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 0.7,
+    "cefr_max": "b1",
+    "example": "With a loud \"Hem!\" and a long breath, Jo began to read very fast."
+   }
+  ],
+  "15": [
+   {
+    "phrase": "spoke earnestly",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 3.2,
+    "cefr_max": "toe",
+    "example": "Thank you very, very much!\" Meg spoke earnestly, and forgot herself entirely till something in the brown eyes looking down at her made her remember the cooling tea, and lead the way into the parlor, saying she would call her mother."
+   },
+   {
+    "phrase": "always does",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "\"I hate to borrow as much as Mother does, and I knew Aunt March would croak, she always does, if you ask for a ninepence."
+   }
+  ],
+  "16": [
+   {
+    "phrase": "looking back",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "As she rolled away, the sun came out, and looking back, she saw it shining on the group at the gate like a good omen."
+   }
+  ],
+  "17": [
+   {
+    "phrase": "disrespectful old bird",
+    "freq_ch": 2,
+    "freq_book": 2,
+    "score": 1.9,
+    "cefr_max": "toe",
+    "example": "\"Hold your tongue, you disrespectful old bird!"
+   },
+   {
+    "phrase": "red eyes",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Half an hour after, Jo went to 'Mother's closet' for something, and there found little Beth sitting on the medicine chest, looking very grave, with red eyes and a camphor bottle in her hand."
+   },
+   {
+    "phrase": "all of a sudden",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 0.7,
+    "cefr_max": "b1",
+    "example": "It seemed asleep, but all of a sudden if gave a little cry and trembled, and then lay very still."
+   }
+  ],
+  "18": [
+   {
+    "phrase": "crying out",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Jo grew quite white, flew out of her chair, and the moment he stopped speaking she electrified him by throwing her arms round his neck, and crying out, with a joyful cry, \"Oh, Laurie!"
+   },
+   {
+    "phrase": "worn out",
+    "freq_ch": 2,
+    "freq_book": 2,
+    "score": 2.9,
+    "cefr_max": "b1",
+    "example": "\"Poor girl, you're worn out."
+   }
+  ],
+  "19": [
+   {
+    "phrase": "parade up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.2,
+    "cefr_max": "b2",
+    "example": "In this room there was a wardrobe full of old-fashioned costumes with which Esther allowed her to play, and it was her favorite amusement to array herself in the faded brocades, and parade up and down before the long mirror, making stately curtsies, and sweeping her train about with a rustle which delighted her ears."
+   },
+   {
+    "phrase": "get along",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a2",
+    "example": "Get along, you fright!"
+   }
+  ],
+  "20": [
+   {
+    "phrase": "such nonsense",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "c1",
+    "example": "I don't know anything about love and such nonsense!\" cried Jo, with a funny mixture of interest and contempt."
+   }
+  ],
+  "21": [
+   {
+    "phrase": "sealed up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "\"Here's a note to you, Meg, all sealed up."
+   },
+   {
+    "phrase": "looking up",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "\"I received the first letter from Laurie, who didn't look as if he knew anything about it,\" began Meg, without looking up."
+   },
+   {
+    "phrase": "looked relieved",
+    "freq_ch": 1,
+    "freq_book": 4,
+    "score": 2.7,
+    "cefr_max": "toe",
+    "example": "I often think I should like to, especially since my hair was cut, so if you ever miss us, you may advertise for two boys and look among the ships bound for India.\" She laughed as she spoke, and Mr. Laurence looked relieved, evidently taking the whole as a joke."
+   },
+   {
+    "phrase": "felt injured",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 2.2,
+    "cefr_max": "toe",
+    "example": "Laurie looked at her once or twice, but as she showed no sign of relenting, he felt injured, and turned his back on her till the others were done with him, when he made her a low bow and walked off without a word."
+   },
+   {
+    "phrase": "get up",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Get up, and don't be a goose, Jo,\" was the cavalier reply to her petition."
+   },
+   {
+    "phrase": "make up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Then I bolted, for fear I should forget myself.\" \"It wasn't nice, but he's sorry, I know, so go down and make up."
+   },
+   {
+    "phrase": "sit down",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Sit down and think of your own sins, don't go making me add to mine."
+   },
+   {
+    "phrase": "run away",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "I love the boy, but he tries my patience past bearing, and I know how it will end, if we go on so.\" \"I'll tell you, he'll run away.\" Jo was sorry for that speech the minute it was made."
+   }
+  ],
+  "22": [
+   {
+    "phrase": "full of happiness",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 0.7,
+    "cefr_max": "b1",
+    "example": "\"I'm so full of happiness, that if Father was only here, I couldn't hold one drop more,\" said Beth, quite sighing with contentment as Jo carried her off to the study to rest after the excitement, and to refresh herself with some of the delicious grapes the 'Jungfrau' had sent her."
+   }
+  ],
+  "23": [],
+  "24": [
+   {
+    "phrase": "threw back his head",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "If it was cheap ugliness, I'd say nothing, but it costs as much as the other, and I don't get any satisfaction out of it.\" Laurie threw back his head, and laughed so heartily at this attack, that the felt hat fell off, and Jo walked on it, which insult only afforded him an opportunity for expatiating on the advantages of a rough-and-ready costume, as he folded up the maltreated hat, and stuffed it into his pocket."
+   },
+   {
+    "phrase": "mercy on us",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "c1",
+    "example": "Mercy on us, what are the children thinking of?\" and Jo looked as much scandalized as if Amy and little Parker were not yet in their teens."
+   },
+   {
+    "phrase": "satisfied her",
+    "freq_ch": 1,
+    "freq_book": 3,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "I had a young friend who set up housekeeping with six sheets, but she had finger bowls for company and that satisfied her,\" said Mrs. March, patting the damask tablecloths, with a truly feminine appreciation of their fineness."
+   }
+  ],
+  "25": [
+   {
+    "phrase": "strolled about",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "After lunch, people strolled about, by twos and threes, through the house and garden, enjoying the sunshine without and within."
+   },
+   {
+    "phrase": "with a sob",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "c1",
+    "example": "During the next fifteen minutes she looked more like a rose than ever, for everyone availed themselves of their privileges to the fullest extent, from Mr. Laurence to old Hannah, who, adorned with a headdress fearfully and wonderfully made, fell upon her in the hall, crying with a sob and a chuckle, \"Bless you, deary, a hundred times!"
+   }
+  ],
+  "26": [
+   {
+    "phrase": "curiosity about",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "c1",
+    "example": "The lobster was instantly surrounded by a halo of pleasing reminiscences, and curiosity about 'the charming young ladies' diverted his mind from the comical mishap."
+   }
+  ],
+  "27": [
+   {
+    "phrase": "worked out",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "\"Don't spoil your book, my girl, for there is more in it than you know, and the idea is well worked out."
+   }
+  ],
+  "28": [
+   {
+    "phrase": "got up",
+    "freq_ch": 2,
+    "freq_book": 2,
+    "score": 3.9,
+    "cefr_max": "toe",
+    "example": "She put down her work and got up, thinking, \"I will be the first to say, 'Forgive me'\", but he did not seem to hear her."
+   },
+   {
+    "phrase": "stooping down",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "I'll do my part, and have nothing to reproach myself with,\" and stooping down, she softly kissed her husband on the forehead."
+   },
+   {
+    "phrase": "potter about",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "All were busy at home, John absent till night, and nothing to do but sew, or read, or potter about."
+   },
+   {
+    "phrase": "driven away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "In an evil moment the shopman held up the lovely, shimmering folds, and said, \"A bargain, I assure, you, ma'am.\" She answered, \"I'll take it,\" and it was cut off and paid for, and Sallie had exulted, and she had laughed as if it were a thing of no consequence, and driven away, feeling as if she had stolen something, and the police were after her."
+   },
+   {
+    "phrase": "hurrycanes round",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "We didn't want no hurrycanes round."
+   },
+   {
+    "phrase": "marched up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "I'm going to laugh, and I shall drop 'em.\" Jo rescued his babies, and marched up and down, with one on each arm, as if already initiated into the mysteries of babytending, while Laurie laughed till the tears ran down his cheeks."
+   },
+   {
+    "phrase": "aimlessly about",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Now then, young Brooke, pitch into a man of your own size, will you?\" cried Laurie, delighted with a poke in the face from a tiny fist, flapping aimlessly about."
+   },
+   {
+    "phrase": "flame up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.2,
+    "cefr_max": "b2",
+    "example": "\"It wasn't fair to tell a man to bring folks home any time, with perfect freedom, and when he took you at your word, to flame up and blame him, and leave him in the lurch, to be laughed at or pitied."
+   },
+   {
+    "phrase": "pull through",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a2",
+    "example": "\"It's a scrape, I acknowledge, but if you will lend a hand, we'll pull through and have a good time yet."
+   }
+  ],
+  "29": [
+   {
+    "phrase": "sat apart",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 4.2,
+    "cefr_max": "toe",
+    "example": "Some do not, and that is trying,\" observed Aunt March, looking over her spectacles at Jo, who sat apart, rocking herself, with a somewhat morose expression."
+   },
+   {
+    "phrase": "fell back",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "c1",
+    "example": "Turn slowly round, and let me get a careful view.\" Jo revolved, and Amy gave a touch here and there, then fell back, with her head on one side, observing graciously, \"Yes, you'll do."
+   },
+   {
+    "phrase": "sailed away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "You'll never look finished if you are not careful about the little details, for they make up the pleasing whole.\" Jo sighed, and proceeded to burst the buttons off her glove, in doing up her cuff, but at last both were ready, and sailed away, looking as 'pretty as picters', Hannah said, as she hung out of the upper window to watch them."
+   },
+   {
+    "phrase": "stoop down",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "c1",
+    "example": "Stoop down, and let me take the crumbs off of your bonnet.\" \"What a good girl you are, Amy!\" said Jo, with a repentant glance from her own damaged costume to that of her sister, which was fresh and spotless still."
+   }
+  ],
+  "30": [
+   {
+    "phrase": "try away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Try away, deary, you'll get your reward some day, and no one will be more delighted than I shall.\" A week later Amy did get her reward, and poor Jo found it hard to be delighted."
+   },
+   {
+    "phrase": "the time came",
+    "freq_ch": 1,
+    "freq_book": 4,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "I'm sorry, but I know you are too sincerely interested in the cause to mind a little personal disappointment, and you shall have another table if you like.\" Mrs. Chester fancied beforehand that it would be easy to deliver this little speech, but when the time came, she found it rather difficult to utter it naturally, with Amy's unsuspicious eyes looking straight at her full of surprise and trouble."
+   }
+  ],
+  "31": [
+   {
+    "phrase": "look up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Our rooms are on the Rue de Rivoli, and sitting on the balcony, we look up and down the long, brilliant street."
+   }
+  ],
+  "32": [
+   {
+    "phrase": "slipped away",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Fearing to betray herself, she slipped away, murmuring something about needing more paper."
+   },
+   {
+    "phrase": "gave out",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Then he avoided the tender subject altogether, wrote philosophical notes to Jo, turned studious, and gave out that he was going to 'dig', intending to graduate in a blaze of glory."
+   },
+   {
+    "phrase": "upon my word",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 0.7,
+    "cefr_max": "b1",
+    "example": "Upon my word, when I see one of those harum-scarum girls, I always want to say with our friend Cock Robin . . ."
+   }
+  ],
+  "33": [
+   {
+    "phrase": "blundered out",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "I am too stupid to learn,\" I blundered out, as red as a peony."
+   },
+   {
+    "phrase": "pegged away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "I forgot my bashfulness, and pegged away (no other word will express it) with all my might, tumbling over long words, pronouncing according to inspiration of the minute, and doing my very best."
+   },
+   {
+    "phrase": "looks as",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "I don't think I shall care to have much to do with any of them, except one sweetfaced maiden lady, who looks as if she had something in her."
+   }
+  ],
+  "34": [
+   {
+    "phrase": "worked up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "\"You think it would do with these alterations, then?\" \"Yes, it's a new plot, and pretty well worked up—language good, and so on,\" was Mr. Dashwood's affable reply."
+   }
+  ],
+  "35": [
+   {
+    "phrase": "turned round",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "I don't believe you've got any heart.\" \"I wish I hadn't.\" There was a little quiver in Jo's voice, and thinking it a good omen, Laurie turned round, bringing all his persuasive powers to bear as he said, in the wheedlesome tone that had never been so dangerously wheedlesome before, \"Don't disappoint us, dear!"
+   },
+   {
+    "phrase": "broke down",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "I think it's dreadful.\" Being sure that no one could do it so well as herself, she went straight to Mr. Laurence, told the hard story bravely through, and then broke down, crying so dismally over her own insensibility that the kind old gentleman, though sorely disappointed, did not utter a reproach."
+   },
+   {
+    "phrase": "started as",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "Presently Jo said very soberly, as she sat down on the step of the stile, \"Laurie, I want to tell you something.\" He started as if he had been shot, threw up his head, and cried out in a fierce tone, \"Don't tell me that, Jo, I can't bear it now!\" \"Tell what?\" she asked, wondering at his violence."
+   },
+   {
+    "phrase": "fond of you",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "\"You, you are, you're a great deal too good for me, and I'm so grateful to you, and so proud and fond of you, I don't know why I can't love you as you want me to."
+   }
+  ],
+  "36": [
+   {
+    "phrase": "sustain her",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "c1",
+    "example": "She was the weaker then, and Beth tried to comfort and sustain her, with her arms about her and the soothing words she whispered in her ear."
+   }
+  ],
+  "37": [
+   {
+    "phrase": "vaguely about",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "A Polish count, aged eighteen, devoted himself to the ladies, who pronounced him, 'a fascinating dear', and a German Serene Something, having come to supper alone, roamed vaguely about, seeking what he might devour."
+   },
+   {
+    "phrase": "what he meant",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "toe",
+    "example": "\"As 'this sort of thing' is rather a vague expression, would you kindly explain?\" returned Amy, knowing perfectly well what he meant, but wickedly leaving him to describe what is indescribable."
+   },
+   {
+    "phrase": "used to say",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 0.7,
+    "cefr_max": "b1",
+    "example": "\"It's not the fashion, but it's becoming, and I can't afford to make a fright of myself,\" she used to say, when advised to frizzle, puff, or braid, as the latest style commanded."
+   }
+  ],
+  "38": [
+   {
+    "phrase": "beg your pardon",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.7,
+    "cefr_max": "b2",
+    "example": "My very best go-to-concert-and-theater bonnet.\" \"I beg your pardon, it was so small, I naturally mistook it for one of the flyaway things you sometimes wear."
+   }
+  ],
+  "39": [
+   {
+    "phrase": "lower down",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.2,
+    "cefr_max": "b2",
+    "example": "\"Try lower down, and pick those that have no thorns,\" said Amy, gathering three of the tiny cream-colored ones that starred the wall behind her."
+   },
+   {
+    "phrase": "knew perfectly",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 2.2,
+    "cefr_max": "toe",
+    "example": "\"No, you didn't, you knew perfectly well I never cared for anyone but Jo,\" Laurie said that in his old, impetuous tone, and turned his face away as he spoke."
+   },
+   {
+    "phrase": "despise you",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "Thank you, ladies.\" \"Do you want to know what I honestly think of you?\" \"Pining to be told.\" \"Well, I despise you.\" If she had even said 'I hate you' in a petulant or coquettish tone, he would have laughed and rather liked it, but the grave, almost sad, accent in her voice made him open his eyes, and ask quickly . . ."
+   }
+  ],
+  "40": [],
+  "41": [
+   {
+    "phrase": "to pace up",
+    "freq_ch": 1,
+    "freq_book": 2,
+    "score": 1.2,
+    "cefr_max": "b2",
+    "example": "I'm going to take care of you, so don't cry any more, but come and walk about with me, the wind is too chilly for you to sit still,\" he said, in the half-caressing, half-commanding way that Amy liked, as he tied on her hat, drew her arm through his, and began to pace up and down the sunny walk under the new-leaved chestnuts."
+   }
+  ],
+  "42": [
+   {
+    "phrase": "thrown away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Brooms and dishcloths never could be as distasteful as they once had been, for Beth had presided over both, and something of her housewifely spirit seemed to linger around the little mop and the old brush, never thrown away."
+   },
+   {
+    "phrase": "slip away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.2,
+    "cefr_max": "b2",
+    "example": "An hour afterward her mother peeped in and there she was, scratching away, with her black pinafore on, and an absorbed expression, which caused Mrs. March to smile and slip away, well pleased with the success of her suggestion."
+   },
+   {
+    "phrase": "come back",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Come back!\" she did not stretch out her yearning arms in vain."
+   }
+  ],
+  "43": [
+   {
+    "phrase": "flew up",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Then she knew him, and flew up, crying joyfully . . ."
+   },
+   {
+    "phrase": "exulted over",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Where's my dear old Jo?\" In trooped the whole family, and everyone was hugged and kissed all over again, and after several vain attempts, the three wanderers were set down to be looked at and exulted over."
+   },
+   {
+    "phrase": "warbled away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "But she would have consented if he had proposed to sing a whole opera, and warbled away, blissfully regardless of time and tune."
+   },
+   {
+    "phrase": "course you did",
+    "freq_ch": 2,
+    "freq_book": 2,
+    "score": 1.9,
+    "cefr_max": "toe",
+    "example": "So I just settled the difficulty by saying, 'Let's be married, and then we can do as we like'.\" \"Of course you did."
+   }
+  ],
+  "44": [
+   {
+    "phrase": "come away",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "Come away, Impertinence, and don't shock my family by calling me names before their faces,\" answered Amy, resolving that there should be a home with a good wife in it before she set up a salon as a queen of society."
+   }
+  ],
+  "45": [],
+  "46": [
+   {
+    "phrase": "looking down",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "The fact that a somewhat dilapidated blue one remained stationary above the unprotected bonnet attracted her attention, and looking up, she saw Mr. Bhaer looking down."
+   },
+   {
+    "phrase": "look behind",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 2.2,
+    "cefr_max": "a1",
+    "example": "She looked up at the lowering sky, down at the crimson bow already flecked with black, forward along the muddy street, then one long, lingering look behind, at a certain grimy warehouse, with 'Hoffmann, Swartz, & Co.' over the door, and said to herself, with a sternly reproachful air . . ."
+   },
+   {
+    "phrase": "worn by time",
+    "freq_ch": 2,
+    "freq_book": 2,
+    "score": 0.9,
+    "cefr_max": "b1",
+    "example": "Four little chests all in a row, Dim with dust, and worn by time, Four women, taught by weal and woe To love and labor in their prime."
+   }
+  ],
+  "47": [
+   {
+    "phrase": "tumbled down",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Everybody laughed and sang, climbed up and tumbled down."
+   },
+   {
+    "phrase": "rushed about",
+    "freq_ch": 1,
+    "freq_book": 1,
+    "score": 3.7,
+    "cefr_max": "toe",
+    "example": "Jo was in her element that day, and rushed about, with her gown pinned up, and her hat anywhere but on her head, and her baby tucked under her arm, ready for any lively adventure which might turn up."
+   }
+  ]
+ }
+}

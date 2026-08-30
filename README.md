@@ -112,13 +112,13 @@ uv run python scripts/run.py --book little_women --audio
 
 1. 打开 Anki 桌面版 → 菜单 **File(文件)→ Import(导入)**
 2. 选择 `resources/anki/anki_template.apkg` 导入
-3. 验证:菜单 **Tools → Manage Note Types**,应出现 **EnWords**(8 字段与 TSV 8 列一一对应)
+3. 验证:菜单 **Tools → Manage Note Types**,应出现 **EnWords**(10 字段与 TSV 10 列一一对应)
 4. 牌组栏出现 `EnglishBooksWords::LittleWomen`,自带 1 张示例卡(decidedly,可留作预览,也可删)
 
 **第二步:导入每章卡片(每读一章做一次)**
 
 1. File → Import → 选 `data/output/little_women/anki/chapter_XX_anki.tsv`
-2. **笔记模板选 `EnWords`** ⚠️ 不要用默认的 Basic(会丢例句译文、来源两列,排版也乱)
+2. **笔记模板选 `EnWords`** ⚠️ 不要用默认的 Basic(会丢例句译文、来源、AI解析等列,排版也乱)
    - 区分:EnWords 能看到"音标 / 中文释义 / 来源"字段,Basic 只有 Front / Back
 3. **勾选「允许在字段中使用 HTML」**——例句中的生词高亮(`<b class="hl">`)依赖它
 4. **牌组**:选或新建 `EnglishBooksWords::LittleWomen::ChXX`(每章一个子牌组,方便按章复习)

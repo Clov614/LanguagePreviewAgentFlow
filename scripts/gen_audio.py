@@ -32,13 +32,17 @@ RETRIES = 3
 
 
 def load_rows(book: str, chapter: int | None):
-    """与 cards.py 同源:raw CSV(utf-8-sig),只取已润色的行。"""
+    """与 cards.py 同源:单词 raw + 表达 raw(chapter_XX_phrase_raw.csv,仅例证句音频),
+    utf-8-sig,只取已润色的行。"""
     raw_dir = BASE / "data" / "output" / book / "raw"
-    files = sorted(raw_dir.glob("chapter_*_raw.csv"))
+    word_files = sorted(f for f in raw_dir.glob("chapter_*_raw.csv")
+                        if not f.name.endswith("_phrase_raw.csv"))
+    phrase_files = sorted(raw_dir.glob("chapter_*_phrase_raw.csv"))
     if chapter is not None:
-        files = [f for f in files if f.name.startswith(f"chapter_{chapter:02d}_")]
+        word_files = [f for f in word_files if f.name.startswith(f"chapter_{chapter:02d}_")]
+        phrase_files = [f for f in phrase_files if f.name.startswith(f"chapter_{chapter:02d}_")]
     rows = []
-    for f in files:
+    for f in word_files + phrase_files:
         ch = int(f.stem.split("_")[1])
         with open(f, encoding="utf-8-sig", newline="") as fh:
             for r in csv.DictReader(fh):
@@ -131,14 +135,15 @@ def main():
         print("[error] 没有可用的 raw 行(先跑 pipeline + apply_polish?)", flush=True)
         sys.exit(1)
 
-    # 单词音频跨章去重;例句音频按(章, 词)
+    # 单词音频跨章去重;例句音频按(章, 词)。
+    # 表达卡(pos=phrase)无词级音频,cards.py 同约定:发音只依赖例证句音频。
     word_jobs, seen_words = [], set()
     sent_jobs = []
     for ch, r in rows:
         word = (r.get("word") or "").strip()
         if not word:
             continue
-        if word not in seen_words:
+        if r.get("pos") != "phrase" and word not in seen_words:
             seen_words.add(word)
             word_jobs.append((word, audio_dir / word_audio_name(word)))
         sent = (r.get("sent") or "").strip()

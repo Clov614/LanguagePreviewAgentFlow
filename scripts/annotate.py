@@ -17,11 +17,16 @@ except ImportError:
 
 
 def build_marks(rows):
-    """整章所有目标词合成一个词边界正则(含屈折形态,见 wordforms),单遍匹配不重叠"""
+    """整章所有目标词合成一个词边界正则(含屈折形态,见 wordforms),单遍匹配不重叠;
+    空词表返回 None(此时正文不做高亮,防空正则全文乱标 —— 历史 bug)"""
+    if not rows:
+        return None
     return token_regex([r['word'] for r in rows])
 
 
 def highlight(body, pat):
+    if pat is None:
+        return body
     return pat.sub(lambda m: f'**{m.group()}**', body)
 
 
@@ -36,8 +41,10 @@ def main():
     os.makedirs(out_dir, exist_ok=True)
 
     chapters = split_chapters(open(md_path, encoding='utf-8').read())
-    files = sorted(glob.glob(os.path.join(
-        BASE, 'data', 'output', args.book, 'raw', 'chapter_*_raw.csv')))
+    # 单词 raw 才参与标注(表达卡不进标注版);排除 _phrase_raw.csv 防撞名重复处理
+    files = sorted(f for f in glob.glob(os.path.join(
+        BASE, 'data', 'output', args.book, 'raw', 'chapter_*_raw.csv'))
+        if not f.endswith('_phrase_raw.csv'))
     if args.chapter:
         files = [f for f in files if f.endswith(f'chapter_{args.chapter:02d}_raw.csv')]
 
@@ -50,6 +57,8 @@ def main():
             rows = [r for r in csv.DictReader(f) if r.get('cn_mean')]
         body = clean_text(ch_meta['body']).replace('<AB>', '.')
         pats = build_marks(rows)
+        if pats is None:
+            print(f'[WARN] ch{ch}: 本章无已润色词,标注版不做高亮,仅出词表', flush=True)
         text = f"# {ch_meta['title']}\n\n" + highlight(body, pats)
         internal = []
         ref = []

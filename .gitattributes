@@ -1,0 +1,11 @@
+# 固定文本数据/脚本行尾为 LF(core.autocrlf=true 时 git 会在 checkout 时把
+# LF 翻成 CRLF,再 checkout/stash 就把 TSV/CSV 数据文件行尾翻转,产生幻影 diff;
+# eol=lf 强制仓库与工作区都保持 LF,TSV 无 BOM 不变式不受影响)。
+* -text
+*.py   text eol=lf
+*.md   text eol=lf
+*.txt  text eol=lf
+*.json text eol=lf
+*.tsv  text eol=lf
+*.csv  text eol=lf
+*.yml  text eol=lf

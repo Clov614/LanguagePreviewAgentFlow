@@ -43,13 +43,13 @@ def main():
     out.append('## 三、使用说明\n')
     out.append('### 1. 装模板(只做一次)')
     out.append('Anki 桌面版 → File → Import → 选择 `resources/anki/anki_template.apkg`,'
-               '装好后在"管理笔记类型"里确认出现 **EnWords** 模板(8 字段)。')
+               '装好后在"管理笔记类型"里确认出现 **EnWords** 模板(10 字段)。')
     out.append('### 2. 导每章卡片')
     out.append('File → Import → 选择 `anki/chapter_XX_anki.tsv` → **笔记模板必须选 EnWords**'
-               '(不要用默认的 Basic,否则例句译文/来源两列会被丢掉、排版错乱)→ '
+               '(不要用默认的 Basic,否则例句译文/来源/AI解析等列会被丢掉、排版错乱)→ '
                '牌组选本章子牌组 → 其余默认,导入。')
     out.append('> 跨章重复词是正常的:导入时"现有笔记"选 **更新现有笔记**,按"单词"匹配,只更新旧卡不新建卡。')
-    out.append('- **卡片字段**: 单词 | 音标 | 词性 | 中文释义 | CEFR | 原文例句 | 例句译文 | 来源')
+    out.append('- **卡片字段**: 单词 | 音标 | 词性 | 中文释义 | CEFR | 原文例句 | 例句译文 | 来源 | AI解析 | 词义概述')
     out.append('- **学习节奏**: 每天 1 章 15 分钟刷卡 → 读对应章节(参考标注版)→ 认识后在总库标记 known')
     out.append('- **总库去重**: 将来读第二本书时,已掌握词不会重复推荐')
     with open(os.path.join(BASE, 'data', 'output', book, 'recommend_report.md'),

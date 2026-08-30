@@ -1,12 +1,14 @@
-"""一次性数据迁移(可重复执行,幂等):回填 P0 遗留的总库字段
-背景:旧版 pipeline 写 raw CSV 时没有 chapter/date 列,cards.py 又把
-      src['chapter'] 写进总库 —— 导致 Little Women 704 行 chapters /
-      first_seen / recommended_date / sources 全为空。
-本次迁移:从 data/output/<book>/raw/chapter_XX_raw.csv 反推每个词的章节,
-     回填 chapters / sources / first_seen / recommended_date(迁移日)。
+"""仅限 P0 遗留一次性迁移,禁止重跑:
+    旧版 pipeline 写 raw CSV 时没有 chapter/date 列,cards.py 又把
+    src['chapter'] 写进总库 —— 导致 Little Women 704 行 chapters /
+    first_seen / recommended_date / sources 全为空。
+    本脚本从 data/output/<book>/raw/chapter_XX_raw.csv 反推每个词的章节,
+    回填 chapters / sources / first_seen / recommended_date(迁移日)。
+⚠️ 它以"当前一本书的 raw"重建 freq_book/sources —— 在跨书幂等累积已上线的今天
+   重跑会摧毁其他书的来源/频次累积,main() 入口已检测并拒绝执行。
 用法:  .venv/Scripts/python.exe scripts/migrate_wordlist.py [--book little_women]
 """
-import argparse, csv, datetime, os, sys
+import argparse, csv, datetime, os, re, sys
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +40,16 @@ def main():
         return
     with open(WORDLIST, encoding='utf-8', newline='') as f:
         rows = list(csv.DictReader(f))
+    # 防重跑守护:总库 sources 含多本书时,以单本书 raw 重建会摧毁跨书累积
+    books = set()
+    for r in rows:
+        for s in (r.get('sources') or '').split(';'):
+            m = re.match(r'^([^|;]+)\|ch\d', s)
+            if m:
+                books.add(m.group(1))
+    if len(books) > 1:
+        sys.exit(f'总库 sources 含多本书 {sorted(books)}:本脚本仅限 P0 遗留一次性迁移,'
+                 f'禁止重跑(会摧毁跨书来源/频次累积),拒绝执行')
     day = datetime.date.today().isoformat()
     n_fixed = 0
     for r in rows:
@@ -62,7 +74,7 @@ def main():
         if not r.get('card_exported'):
             r['card_exported'] = '1'
     with open(WORDLIST, 'w', encoding='utf-8', newline='') as f:
-        w = csv.DictWriter(f, fieldnames=rows[0].keys())
+        w = csv.DictWriter(f, fieldnames=rows[0].keys(), lineterminator='\n')
         w.writeheader()
         w.writerows(rows)
     print(f'DONE: 回填 chapters/sources {n_fixed} 行,补齐 first_seen/recommended_date', flush=True)

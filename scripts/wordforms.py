@@ -152,9 +152,30 @@ def word_forms(word):
 
 
 def token_regex(words):
-    """把多个目标词的全部形态合成一个词边界正则,单遍匹配、天然不重叠。"""
+    """把多个目标词的全部形态合成一个词边界正则,单遍匹配、天然不重叠。
+    空词表返回 None(调用方应跳过高亮 —— 空正则 \b(?:)\b 会匹配每个词边界、
+    把全文每个单词都包上标签,是历史 bug)。"""
     forms = set()
     for w in words:
         forms |= word_forms(w)
+    if not forms:
+        return None
     alts = sorted(forms, key=len, reverse=True)
     return re.compile(r'\b(?:' + '|'.join(re.escape(f) for f in alts) + r')\b', re.I)
+
+
+def phrase_regex(phrase):
+    """多词短语正则(Phase 2 表达卡片):逐词展开屈折形态,词间空白相连,
+    首尾词边界绑定 —— 例句里"短语整体"高亮成 <b class="hl">,而非各词分别命中。
+    与 token_regex 同风格:单遍匹配、天然不重叠;大小写不敏感。
+    注意:展开是针对**表面形**(候选即为例句原词形),词形表只覆盖规则的
+    词级屈折与内置不规则动词 —— 不保证跨词换形(如 made→making)命中,
+    例证句取自原句时表面形即可命中。空短语返回 None。"""
+    words = phrase.strip().split()
+    if not words:
+        return None
+    parts = []
+    for w in words:
+        alts = sorted(word_forms(w), key=len, reverse=True)
+        parts.append('(?:' + '|'.join(re.escape(f) for f in alts) + ')')
+    return re.compile(r'\b' + r'[ \t]+'.join(parts) + r'\b', re.I)

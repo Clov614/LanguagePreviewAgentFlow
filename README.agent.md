@@ -16,6 +16,7 @@ data/books/<book>.epub           用户放入的原著
 data/books/_md/<book>.md         转换缓存(pipeline 的输入)
 data/output/<book>/
   raw/chapter_XX_raw.csv         候选词全量数据(UTF-8 带 BOM,Excel 可开)
+  raw/chapter_XX_phrase_raw.csv  表达卡数据(apply --phrases 产物,同表头;可选)
   anki/chapter_XX_anki.tsv       导入卡(UTF-8 无 BOM,10 列,每章 18 词)
   anki/audio/                    发音 mp3 缓存(可再生成,**不入 git**)
   annotated/chapter_XX.md        生词高亮标注版(读书用)
@@ -96,8 +97,60 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
   (≤3 次)后记入 `ai_explain_<book>_failed.json`(`--verbose` 强制重试)
 - 产物 `work/ai_explain_<book>_ch<NN>.json`(**可手改**,改完重跑 apply 即生效)/
   `ai_explain_<book>_failed.json`;断点:已生成词自动跳过
+- **Markdown 加粗转换**:模型输出里的 `**x**`(Anki 不渲染 Markdown,星号裸露)由
+  ai_explain/apply_polish 统一转 `<b>x</b>`,cards.py 转义后仅白名单还原该标签为真加粗,
+  其余 HTML 一律转义(防注入);手改 JSON 时直接写 `<b>` 或 `**` 均可
+- **解析排版约定**(prompt 督导 + cards.py 渲染收敛双保险):ai_analysis 段首固定
+  `1. 逐项解析 / 2. 整句解读 / 3. 文化点`;逐项解析内成分条目行首 `N. ` 编号,**条目内拆词
+  讲解另起一行、行首 `- `**,被讲解词统一标注身份——词名后括号 `(目标词)` 或 `(超纲词)`,
+  普通词不标;cards.py 渲染把条目收敛为 `• `、词级收敛为 `– `、换行 → `<br>`
+  (模型输出不规范也可兜底,手改 JSON 按此格式最省心)
 - 接入管线:`uv run python scripts/ai_explain.py --book <b> --workers 4 --batch-size 6` →
   `uv run python scripts/apply_polish.py --book <b> --explain <产物 json>` → `cards.py`(10 列出卡)
+
+## 表达收录(Phase 2,ai_pick_phrases.py 可选旁路)
+
+把"值得整块背的 2-4 词表达"(take off / in an altered tone / made her plans)也做成卡片,
+与每章单词卡同 TSV、**排最前**(先刷表达再刷单词)。
+
+**链路**:`pipeline --phrases`(候选)→ `ai_pick_phrases.py`(AI 精选+释义)→
+`apply_polish.py --phrases`(合并成表达 raw)→ `cards.py`(同章 TSV 表达排前)
+
+- **候选生成**:`uv run python scripts/pipeline.py --book <b> --phrases`(只写
+  `work/phrase_cands_<b>.json`,不动 raw,可反复跑)。语块切分:感叹/应答词、说话动词、
+  从句连词当边界;块长 2-4;**全书出现 ≥2 次**(PLAN 12.2.1:无重复即无搭配价值);
+  代词/be 动词/介词开头 2 词的残片、专名、撇号/连字符组合滤掉;跨章去重(同一表达只在
+  最早出现的章节推荐);打分排序(动词短语 +2 · C1/toe +1.5 · B2 +1 · B1 +0.5),top40。
+  入池量不足 40 是常态(little_women 平均每章约 4 条),候选这头宁缺毋滥即可
+- **AI 精选**:`uv run python scripts/ai_pick_phrases.py --book <b> [--chapter N] [--pick-min 1 --pick-max 4]`
+  - provider/并发/断点/失败机制与 ai_explain 同(`--dry-run` / `--workers` / 已产物章跳过 /
+    `phrases_picked_<b>_failed.json`;**记入 failed 也可能是因为 AI 判定该章候选无值得收藏的**
+     (不是网络失败,`--verbose` 可强试);**数量纪律:每章硬上限 `--pick-max`(默认 4)——
+    每章单词卡 18 张,表达卡必须明显更少才突出重点**(用户 2026-08-30 拍板:放宽不意味着
+    不限制,章与章之间也要均衡);`--pick-min` 默认 1(可 0=允许一章全不挑)防模型空手而归;
+    候选不足的章自然少挑(宁缺毋滥)
+  - 产物 `work/phrases_picked_<b>_ch<NN>.json`(**可手改**,改完重跑 apply 即生效):
+    `[{phrase, cn_mean, cn_sent, ai_analysis, memo}]`;模型输出不在候选清单里的短语一律丢弃
+  - AI 承诺:cn_mean 中文释义、cn_sent 例证句完整译文、ai_analysis 2-4 句"为什么值得背+场合"、
+    memo 画面感钩子;引号铁律与 markdown 加粗转换同 ai_explain
+- **合并出卡**:`uv run python scripts/apply_polish.py --book <b> --phrases 'work/phrases_picked_*.json'`
+  → 生成/重写 `raw/chapter_XX_phrase_raw.csv`(与单词 raw 同 20 列表头;word=表达短语,
+  pos=`phrase`,**音标留空**,CEFR=pipeline 算的**块内最高级**,例证句/频次从候选补)→
+  `uv run python scripts/cards.py --book <b>`(表达卡排同章 TSV 最前)
+  统一入口: `uv run python scripts/run.py --book <b> --phrases`(只出候选)/ 
+  `--phrases --phrase-picked 'work/phrases_picked_*.json'`(候选→合并→cards→annotate→report→validate)
+- **表达卡渲染约定**:多词短语**无词级音频**;例句整短语高亮 `<b class="hl">`(按候选
+  表面形逐词展开规则屈折匹配,见 wordforms.phrase_regex —— 例证句即原句,表面形即可命中,
+  不做跨词换形如 made→making);不标超纲词 hard;句级音频照常查缓存
+  (未预生成则不带 [sound:],不报错);标注版 annotated 不含表达(按词高亮,短语不参与)
+- **发音**:gen_audio.py 与 cards.py 同口径——表达行只生成**例证句音频**(s_ch<NN>_<短语>.mp3,
+  按 tts_paths.sent_audio_name 命名,可跨章复用缓存),不生成词级音频;未预生成则卡片不带
+  [sound:],不报错
+- **总库**:表达与单词同规则并入 `master_wordlist.csv`(word 列含空格=表达),跨书去重
+  (同表达不重复推荐;用户认识后照常记入 known_words.txt);词级频次累积口径与单词卡一致
+- **注意**:apply --phrases 与 apply --polish/--explain 互不干扰(处理对象不同文件);
+  候选文件过期(重跑 --phrases 换了口径)时,不在候选里的 picked 条目会被 apply 跳过并提示,
+  cards 不崩
 
 ## 常见任务速查
 
@@ -110,10 +163,16 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
 | 换发音人 | `uv run python scripts/gen_audio.py --book <书名> --voice en-GB-RyanNeural --force` → 重跑 cards |
 | 标记已掌握 | 向 `vocabulary/known_words.txt` 追加小写单词(每行一个) |
 | 全局健康检查 | `uv run python scripts/validate.py --book <书名> --verbose`(全绿 exit 0) |
+| 清理孤儿词 | `uv run python scripts/validate.py --book <书名> --prune-orphans --yes`(先打印清单,legacy 历史词保留;不加 --yes 交互确认) |
 
 ## 当前台账(2026-08)
 
-- 已完成书:**little_women** 47 章 / 846 卡 / 总库 854 词 / 发音已全部生成(1693 mp3 已入 collection.media)
+- 已完成书:**little_women** 47 章 / 846 单词卡 + **94 表达卡**(42 章,每章 1-4 条;
+  ch7/ch31 候选无价值未出、ch23/40/45 无候选)/ 总库 956 词 / 发音已全部生成
+  (1786 mp3 已入 collection.media;曾被淘汰表达的例证句音频已清理,与 TSV 引用零孤儿)
+- Phase 2 表达收录链路已落地:候选提取(平均 3.9 条/章,全书 ≥2 次 + 动词短语单次豁免)→
+  AI 精选(可选旁路)→ apply 合并 → cards 出卡(表达排前)→ gen_audio 例证句音频 →
+  validate 全绿(exit 0)
 - 输出路径均已按 raw/ + anki/ + audio/ 新结构;文档以 `README.md`(人)与本文档(agent)为准
 
 ## 坑

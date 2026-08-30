@@ -1,0 +1,23 @@
+[
+  {
+    "phrase": "got up",
+    "cn_mean": "起身，站起来；起床",
+    "cn_sent": "她放下手中的活计站起身来，心想：“我要第一个说‘原谅我’”，但他似乎没有听见她的话。",
+    "ai_analysis": "get up 是最高频的动词短语之一：站起来（from a chair）与起床（from bed）两意皆通（书里此处是前者）。口语、书面通吃，可与 rise（较正式）互换。注意它与 get up to sth（干出/搞出某事，略带贬义如 get up to mischief）的区别。",
+    "memo": "椅子“吱呀”一声，人站起来——心里那句“原谅我”还没说出口。"
+  },
+  {
+    "phrase": "stooping down",
+    "cn_mean": "俯身，弯腰(俯向)",
+    "cn_sent": "“我要尽我的本分，让自己没什么可自责的，”说着她俯下身，轻轻在丈夫额头上吻了一下。",
+    "ai_analysis": "stoop down 指“俯身、弯腰向下”，比 bend down 多了“垂下/俯就”的意味，常用于描写温柔的动作（俯身亲吻、俯身拾物）。小说里常配 softly、gently 写亲密场面。引申义 stoop to sth（堕落到做某事）是另一常见用法。",
+    "memo": "灯光下，她像柳枝一样弯下腰，额头轻轻碰到他的额头。"
+  },
+  {
+    "phrase": "pull through",
+    "cn_mean": "渡过难关；挺过来(病后康复)",
+    "cn_sent": "“我承认这次是闯了祸，可只要你们肯搭把手，我们就能渡过难关，照样玩个痛快。”",
+    "ai_analysis": "pull through 是习语，本义“拉过去”，引申为在疾病、困境中“挺过来、渡过难关”，主语可以是人（pull through the crisis）也可以是事（the company pulled through）。口语常用，带一点“大家使劲一起拽过去”的画面感。",
+    "memo": "绳子两端的人一起使劲，把深陷泥里的人一点点拽了出来。"
+  }
+]

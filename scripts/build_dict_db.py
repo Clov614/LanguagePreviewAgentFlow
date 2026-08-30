@@ -20,6 +20,8 @@ if os.path.exists(OUT):
     os.remove(OUT)
 
 print('reading idx/dict ...', flush=True)
+# ECDICT .dict 为数百 MB 二进制,此处全量读入内存一次性建库(一次性脚本,
+# 建库时需 1GB+ 空闲内存;完成后 ecdict.db 为压缩 sqlite,运行期按需查询不吃内存)
 data = open(DICT, 'rb').read()
 idx = open(IDX, 'rb').read()
 
@@ -29,7 +31,6 @@ con.execute('PRAGMA synchronous=OFF')
 con.execute('CREATE TABLE dict (word TEXT PRIMARY KEY, phonetic TEXT, translation TEXT, tags TEXT, bnc INTEGER, frq INTEGER)')
 
 re_ph = re.compile(r'^\*\[([^\]]+)\]')
-re_tagline = re.compile(r'^\(([^()]*)$')   # 行以 ( 开头(尾行标签)
 re_nums = re.compile(r'(\d+)/(\d+)')
 
 pos, n = 0, 0
