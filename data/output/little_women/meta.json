@@ -1,7 +1,7 @@
 {
  "book": "little_women",
  "chapters": 47,
- "total_tokens_lower": 171182,
+ "total_tokens_lower": 171180,
  "selected_lemma_total": 846,
  "selected_occurrences": {
   "decidedly": 1,

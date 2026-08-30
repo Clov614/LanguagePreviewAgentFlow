@@ -29,3 +29,5 @@ data/output/*/work/proper_ai_*.json
 data/output/_backup_*/
 # ---- 手工打包的产物压缩包 ----
 data/output.zip
+# ---- 总库裁剪期备份(本地留存) ----
+vocabulary/master_wordlist.backup*.csv

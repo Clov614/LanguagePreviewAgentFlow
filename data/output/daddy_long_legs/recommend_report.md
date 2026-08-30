@@ -1,4 +1,4 @@
-# 《Little Women》全书生词推荐报告
+# 《Daddy Long Legs》全书生词推荐报告
 
 生词总库: **1051 词**(B2: 396, C1: 556, 其他: 99)
 
@@ -49,7 +49,7 @@
 
 ## 二、按章学习路径(建议顺序:先刷卡片,再读对应章节)
 
-刷卡顺序 = 章节顺序。每章卡片见 `data/output/little_women/anki/chapter_XX_anki.tsv`,读前刷该章 15 分钟,读完在 `annotated/` 高亮版中识别。
+刷卡顺序 = 章节顺序。每章卡片见 `data/output/daddy_long_legs/anki/chapter_XX_anki.tsv`,读前刷该章 15 分钟,读完在 `annotated/` 高亮版中识别。
 
 ## 三、使用说明
 
