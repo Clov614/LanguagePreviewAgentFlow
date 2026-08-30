@@ -14,3 +14,6 @@
 5. 不主动提交 git。
 6. 统一入口:`uv run python scripts/run.py --book <书名> [--audio] [--stage ...]`,单脚本可独立直调。
 7. 脚本默认零模型调用;`ai_explain.py` 是**可选旁路**(provider/key 见 README.agent.md),缺 key 管线照跑。
+8. 书内专名按书外置 `data/books/proper_names/<book>.txt`(pipeline/hard_words/validate 共用);
+   缺文件=不排除专名。新书 EPUB 先经 `epub_to_md.py` 转换、`scan_proper.py` 扫描确认专名表,
+   再跑 pipeline(2026-08-31 起,不再改 pipeline.py 里的人物表)。

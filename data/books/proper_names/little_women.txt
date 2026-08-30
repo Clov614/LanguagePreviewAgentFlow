@@ -1,0 +1,17 @@
+# little_women 书内专名(pipeline/hard_words/validate 共用;一行一个小写 lemma,# 后为注释)
+# 来源:2026-08-31 前硬编码于 pipeline.py NOVEL_PROPER 的人物表,机制化后迁移至此
+meg      # 姐姐 Meg
+jo       # 主角 Jo(亦覆盖感叹词 jo 的误判场景)
+joe
+beth     # 妹妹 Beth
+amy      # 妹妹 Amy
+marmee   # 母亲昵称
+laurie   # 邻居 Laurie
+hannah   # 女仆
+march    # 姓氏(兼普通词 march,此书按人名排除)
+trotty
+daisy    # 黛西(兼普通词 daisy)
+demi
+bhaer    # 教授 Bhaer
+brooke   # Brooks/Brooke 先生(兼普通词 brook 屈折)
+marches  # 一家人统称

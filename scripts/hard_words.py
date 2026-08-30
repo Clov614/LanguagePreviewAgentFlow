@@ -40,11 +40,15 @@ def _lemmatize(low):
     lem = simplemma.lemmatize(low, lang=LANG)
     return _IRR_BY_FORM.get(low, lem)
 
-# 书内专名表(人名/地名,与 pipeline 的 NOVEL_PROPER 同源)
-PROPER_NAMES = {
-    'meg', 'jo', 'joe', 'beth', 'amy', 'marmee', 'laurie', 'hannah', 'march',
-    'trotty', 'daisy', 'demi', 'bhaer', 'brooke', 'marches',
-}
+
+def lemma_of(w):
+    """英文词/短语 → 首词 lemma(小写)。公开助手:供 ai_explain 组装时判定词身份。"""
+    m = WORD_RE.search(w or '')
+    return _lemmatize(m.group().lower()) if m else ''
+
+# 书内专名:按书外置(见 scripts/proper_names.py),调用方设 diff.proper 后生效
+# (cards.py / ai_explain.py 各自 load(book) 挂到 Difficulty 实例上)
+PROPER_NAMES = frozenset()
 
 STOPWORDS = {
     'oh', 'ah', 'eh', 'ha', 'huh', 'hmm', 'hallo', 'hullo', 'hey', 'ahem',
@@ -143,6 +147,7 @@ def hard_words_in(sent, target, target_cefr, diff, max_n=2):
     if tlev not in LEVEL_RANK:
         return []
     tlem = _lemmatize(target.lower())
+    proper = getattr(diff, 'proper', PROPER_NAMES)
     toks = WORD_RE.findall(sent)
     out, seen = [], set()
     for i, raw in enumerate(toks):
@@ -154,7 +159,7 @@ def hard_words_in(sent, target, target_cefr, diff, max_n=2):
             continue
         if lem == tlem:                     # 目标词自身(含屈折)不标
             continue
-        if lem in PROPER_NAMES:             # 书内专名不标
+        if lem in proper:                   # 书内专名不标
             continue
         if i > 0 and raw[0].isupper():      # 句中大写疑似专名,不标
             continue

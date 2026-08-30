@@ -11,6 +11,10 @@ import argparse, csv, os, sys
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(BASE, 'scripts'))
+import proper_names
+from pipeline import load_oxford
+
 WORDLIST = os.path.join(BASE, 'vocabulary', 'master_wordlist.csv')
 KNOWN = os.path.join(BASE, 'vocabulary', 'known_words.txt')
 BOM = b'\xef\xbb\xbf'
@@ -91,6 +95,32 @@ def main():
                 print(f'        - 缺润色: {w}', flush=True)
             for w in no_sent:
                 print(f'        - 缺例句: {w}', flush=True)
+
+    # --- 1.5 书内专名兜底(scripts/proper_names.py):入选词撞专名表 = 管线没按表排除,
+    #     属缺口要重跑 pipeline;疑似专名漏网(启发式)只警告,确认后人工补表 ---
+    md_path = os.path.join(BASE, 'data', 'books', '_md', f'{args.book}.md')
+    if raw_words_ch and os.path.exists(md_path):
+        book_proper = proper_names.load(args.book)
+        picked = {w.lower() for ws in raw_words_ch.values() for w in ws}
+        in_table = sorted(picked & book_proper)
+        if in_table:
+            problems.append(f'{len(in_table)} 个入选词在专名表内(重跑 pipeline): '
+                            + ', '.join(in_table[:8]) + (' ...' if len(in_table) > 8 else ''))
+        leak = []
+        if picked - book_proper:
+            try:
+                sus = {s['word'] for s in proper_names.suspects(
+                    open(md_path, encoding='utf-8').read(),
+                    load_oxford(), exclude=book_proper)}
+                leak = sorted(picked & sus)
+            except Exception as e:
+                print(f'[WARN]  专名疑似扫描跳过: {e}', flush=True)
+        print(f'[proper]{args.book}: 专名表 {len(book_proper)} 词 | '
+              f'入选撞表 {len(in_table)} | 疑似漏网 {len(leak)}', flush=True)
+        if leak:
+            print(f'[WARN]  疑似专名入选(非阻塞;确认后加入 proper_names/{args.book}.txt '
+                  f'再重跑 pipeline): {", ".join(leak[:8])}'
+                  + (' ...' if len(leak) > 8 else ''), flush=True)
 
     # --- 2. anki TSV 检查:按章号并集(单词 raw ∪ 表达 raw)驱动,不会漏纯表达章 ---
     for ch in sorted(set(raw_words_ch) | phrase_chs):

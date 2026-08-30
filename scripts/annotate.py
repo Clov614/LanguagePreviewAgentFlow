@@ -37,6 +37,8 @@ def main():
     args = ap.parse_args()
 
     md_path = os.path.join(BASE, 'data', 'books', '_md', f'{args.book}.md')
+    if not os.path.exists(md_path):
+        sys.exit(f'[STOP] 找不到管线输入 {md_path} —— 先跑 scripts/epub_to_md.py(EPUB 转换)')
     out_dir = os.path.join(BASE, 'data', 'output', args.book, 'annotated')
     os.makedirs(out_dir, exist_ok=True)
 

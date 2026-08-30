@@ -13,7 +13,10 @@
 
 ```
 data/books/<book>.epub           用户放入的原著
-data/books/_md/<book>.md         转换缓存(pipeline 的输入)
+data/books/_md/<book>.md         管线输入(epub_to_md.py 由 EPUB 转换,合成 **Chapter N** 标记;
+                                 <book>_raw.md 为 markitdown 原始输出缓存,不入 git)
+data/books/proper_names/<book>.txt  书内专名表(pipeline/hard_words/validate 共用,
+                                 scan_proper.py 扫描建议 + 人工确认;缺文件=不排除专名)
 data/output/<book>/
   raw/chapter_XX_raw.csv         候选词全量数据(UTF-8 带 BOM,Excel 可开)
   raw/chapter_XX_phrase_raw.csv  表达卡数据(apply --phrases 产物,同表头;可选)
@@ -33,7 +36,12 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
 ## 运行约定(全部在仓库根目录)
 
 - **统一入口(推荐)**: `uv run python scripts/run.py --book <书名>`
-  - 阶段顺序:`pipeline → apply → [audio] → cards → annotate → report → validate`
+  - 阶段顺序:`[前置: epub_to_md 转换 + scan_proper 专名扫描,仅新书一次] →
+    pipeline → apply → [audio] → cards → annotate → report → validate`
+  - 新书前置两步:`uv run --with markitdown python scripts/epub_to_md.py --epub "data/books/X.epub" --book x`
+    (markitdown 转换 + 合成章节标记;本机已装 markitdown CLI 时可不带 --with)→
+    `uv run python scripts/scan_proper.py --book x --write`(零模型扫描疑似专名,
+    确认 proper_names/x.txt 后再跑 run.py)
   - 常用:`--polish <json>`(apply 输入)、`--ai-en <json>`、`--audio`(cards 前生成发音)、
     `--from-chapter N`(pipeline 断点续跑)、`--chapter N`(apply/audio/cards/annotate 单章)、
     `--voice <短名> --force-audio`(换发音人,默认 en-GB-SoniaNeural)、`--stage <阶段>`、`--verbose`
@@ -79,7 +87,7 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
 
 ## AI 解析模块(ai_explain.py,可选旁路)
 
-- 对 raw CSV 中已润色词批量生成 `ai_analysis`(四段式整句解析:逐项列表 → 整句解读 → 文化点)
+- 对 raw CSV 中已润色词批量生成 `ai_analysis`(三段式整句解析:逐项列表 → 整句解读 → 文化点)
   与 `memo`(画面感词义钩子);**缺 key/不想用时管线照跑不出解析,不阻塞**
 - 三接入点(`--provider`):`claude-cli`(**默认**,本机 Claude Code `claude -p` headless,零配置零 key)/
   `anthropic`(`ANTHROPIC_API_KEY`)/ `openai`(任意 OpenAI 兼容端点,`OPENAI_BASE_URL`+`OPENAI_API_KEY`)
@@ -100,11 +108,16 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
 - **Markdown 加粗转换**:模型输出里的 `**x**`(Anki 不渲染 Markdown,星号裸露)由
   ai_explain/apply_polish 统一转 `<b>x</b>`,cards.py 转义后仅白名单还原该标签为真加粗,
   其余 HTML 一律转义(防注入);手改 JSON 时直接写 `<b>` 或 `**` 均可
-- **解析排版约定**(prompt 督导 + cards.py 渲染收敛双保险):ai_analysis 段首固定
-  `1. 逐项解析 / 2. 整句解读 / 3. 文化点`;逐项解析内成分条目行首 `N. ` 编号,**条目内拆词
-  讲解另起一行、行首 `- `**,被讲解词统一标注身份——词名后括号 `(目标词)` 或 `(超纲词)`,
-  普通词不标;cards.py 渲染把条目收敛为 `• `、词级收敛为 `– `、换行 → `<br>`
-  (模型输出不规范也可兜底,手改 JSON 按此格式最省心)
+- **解析排版约定**(prompt 硬约束 + cards.py 渲染强收敛双保险):ai_analysis 段首行固定
+  `1. 逐项解析 / 2. 整句解读 / 3. 文化点`(逐字、独立成行);逐项解析条目行首
+  `N. **成分**:讲解`,**条目内拆词讲解另起一行、行首 `- `**,被讲解词统一标注身份——
+  词名后括号 `(目标词)` 或 `(超纲词)`,普通词不标。cards.py 渲染时把模型的各种自由发挥
+  全部收敛为统一版式(2026-08-31 起历史格式也兜住):段首行容忍 `1、/一、/#/【】/**` 修饰、
+  行内 `# 段名#` 拼接自动拆段、段首行缺失自动补、段名按固定顺序重编号;条目
+  `N./N.M/①/(1)/圆点` → `• `(区内有编号条目时圆点行即词级 `– `);行首成分自动加粗、
+  `——` 分隔归一为 `:`;身份标记上色(`(目标词)` 红 / `(超纲词)` 绿,需重导 2026-08-31
+  后的模板 apkg);换行 → `<br>`。纯文本(memo/表达卡讲解)直通不加工。
+  手改 JSON 按上述格式写最省心,写歪了渲染也会兜住
 - 接入管线:`uv run python scripts/ai_explain.py --book <b> --workers 4 --batch-size 6` →
   `uv run python scripts/apply_polish.py --book <b> --explain <产物 json>` → `cards.py`(10 列出卡)
 
@@ -152,10 +165,32 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
   候选文件过期(重跑 --phrases 换了口径)时,不在候选里的 picked 条目会被 apply 跳过并提示,
   cards 不崩
 
+## 书内专名机制(proper_names.py / scan_proper.py / ai_pick_proper.py,2026-08-31 起)
+
+人名地名不该做成生词卡。排除机制按书外置,**不再改 pipeline.py 代码**:
+
+- **数据**:`data/books/proper_names/<book>.txt`,一行一个小写 lemma,`#` 注释;
+  缺文件 = 该书不排除任何专名。三个消费方:pipeline(选词+语块过滤)、
+  hard_words(超纲词标注豁免,经 `diff.proper`)、validate(兜底对账)。
+- **扫描(零模型)**:`uv run python scripts/scan_proper.py --book <书名> [--write]`
+  —— 统计"几乎总以大写形出现"的非词表词(cap 占比 ≥0.5 等,能抓到常作句首主语、
+  is_proper 启发式漏掉的人名如 Jerusha),`--write` 把新疑似以**注释行**并入专名表,
+  人工确认后去注释生效;重复跑幂等(解析式去重,绝不改已生效行)。
+- **AI 裁决(可选旁路,借鉴 tools/wenyi 术语抽取)**:
+  `uv run python scripts/ai_pick_proper.py --book <书名> [--apply]`
+  —— 对扫描出的疑似词批量 LLM 判定(proper/type/reason/aliases),默认写注释建议,
+  `--apply` 直接写生效行;aliases 变体恒为注释建议。provider/断点/failed.json 机制
+  与 ai_explain 相同(裁决缓存 `work/proper_ai_<书名>.json`,重跑恢复被误删的建议行)。
+- **兜底**:`validate.py` 发现入选词撞专名表 → FAIL(提示重跑 pipeline);
+  疑似专名漏网 → 警告不阻塞,确认后补表再重跑。
+- 新书流程:epub_to_md 转换 → **scan_proper 扫描确认** → pipeline。
+
 ## 常见任务速查
 
 | 任务 | 命令 |
 |---|---|
+| 新书转换(EPUB→MD) | `uv run --with markitdown python scripts/epub_to_md.py --epub "data/books/<书>.epub" --book <书名>` |
+| 新书专名扫描 | `uv run python scripts/scan_proper.py --book <书名> --write`(确认后去注释;或 `ai_pick_proper.py` AI 裁决) |
 | 新书全流程(已润色) | `uv run python scripts/run.py --book <书名> --polish <json> --audio` |
 | 批量生成 AI 例句解析 | `uv run python scripts/ai_explain.py --book <书名> --workers 4 --batch-size 6` → `uv run python scripts/apply_polish.py --book <书名> --explain work/ai_explain_<书名>_ch01.json` → `uv run python scripts/cards.py --book <书名>` |
 | 补全书发音(已出卡的书) | `uv run python scripts/gen_audio.py --book <书名>` → `uv run python scripts/cards.py --book <书名>` |

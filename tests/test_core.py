@@ -7,6 +7,7 @@
 import html
 import json
 import os
+import re
 import sys
 import tempfile
 import unittest
@@ -79,26 +80,34 @@ class TestHardWords(unittest.TestCase):
 # ---------------- ai_explain:容错 JSON / md 加粗 / 失败记录并发 ----------------
 
 class TestAiExplain(unittest.TestCase):
-    def test_extract_batch_ok(self):
-        from ai_explain import extract_batch
-        text = '{"results": [{"word": "a", "ai_analysis": "好", "memo": "钩"}]}'
-        out = extract_batch(text)
+    def test_parse_batch_ok(self):
+        from ai_explain import parse_batch
+        text = ('{"results": [{"word": "a", "items": [{"seg": "seg", "note": "n"}],'
+                ' "reading": "r", "culture": "c", "memo": "钩"}]}')
+        out = parse_batch(text)
         self.assertEqual(len(out), 1)
         self.assertEqual(out[0]['word'], 'a')
+        self.assertEqual(out[0]['culture'], 'c')
 
-    def test_extract_batch_wraps_markdown(self):
-        from ai_explain import extract_batch
-        text = '{"results": [{"word": "a", "ai_analysis": "**重点**词", "memo": "m"}]}'
-        out = extract_batch(text)
-        self.assertEqual(out[0]['ai_analysis'], '<b>重点</b>词')
+    def test_parse_batch_md_bold_and_newline(self):
+        # 字段内 md 加粗转 <b>、防御性单行化(模型被禁止换行)
+        from ai_explain import parse_batch
+        text = ('{"results": [{"word": "a", "items": [{"seg": "s", "note": "**重点**词"}],'
+                ' "reading": "r1\\nr2", "memo": "m"}]}')
+        out = parse_batch(text)
+        self.assertEqual(out[0]['items'][0]['note'], '<b>重点</b>词')
+        self.assertEqual(out[0]['reading'], 'r1 r2')
 
-    def test_extract_batch_rejects_filler(self):
-        from ai_explain import extract_batch
-        # 缺字段 / 含替换符残片的坏项被剔除
-        text = ('{"results": [{"word": "a", "ai_analysis": "x", "memo": "y"},'
-                ' {"word": "b", "ai_analysis": "�", "memo": "z"},'
-                ' {"word": "c", "ai_analysis": "x"}]}')
-        out = extract_batch(text)
+    def test_parse_batch_rejects_bad_items(self):
+        from ai_explain import parse_batch
+        # 缺 note / 含替换符残片 / items 非列表 / 旧自由文本格式的坏项被剔除
+        text = ('{"results": ['
+                ' {"word": "a", "items": [{"seg": "s", "note": "n"}], "reading": "r", "memo": "m"},'
+                ' {"word": "b", "items": [{"seg": "s"}], "reading": "r", "memo": "m"},'
+                ' {"word": "c", "items": [{"seg": "s", "note": "�"}], "reading": "r", "memo": "m"},'
+                ' {"word": "d", "items": "items", "reading": "r", "memo": "m"},'
+                ' {"word": "e", "ai_analysis": "1. 逐项解析…", "memo": "m"}]}')
+        out = parse_batch(text)
         self.assertEqual([p['word'] for p in out], ['a'])
 
     def test_lenient_load(self):
@@ -161,6 +170,65 @@ class TestApplyPolish(unittest.TestCase):
         self.assertEqual(md_bold('plain'), 'plain')
 
 
+# ---------------- ai_explain:结构化 schema 解析 + 确定性拼装 ----------------
+
+class TestAiExplainSchema(unittest.TestCase):
+    STRUCT = ('{"results": [{"word": "delight", '
+              '"items": ['
+              '{"seg": "Beth ate no more", "note": "谓语部分,写下她停下进食。", '
+              ' "words": [{"w": "ate", "note": "eat 的过去式。"},'
+              '           {"w": "crept away", "note": "悄悄溜走。"}]},'
+              '{"seg": "the delight to come", "note": "名词短语作宾语。"}], '
+              '"reading": "整句刻画了贝丝的神态。", '
+              '"culture": "出自《小妇人》。", '
+              '"memo": "心里捂着一颗快化掉的糖。"}]}')
+
+    def test_parse_batch_valid(self):
+        from ai_explain import parse_batch
+        out = parse_batch('前缀废话 ' + self.STRUCT + ' ```')
+        self.assertEqual(len(out), 1)
+        p = out[0]
+        self.assertEqual(p['word'], 'delight')
+        self.assertEqual(p['items'][0]['seg'], 'Beth ate no more')
+        self.assertEqual(p['items'][0]['words'][1]['w'], 'crept away')
+        self.assertEqual(p['reading'], '整句刻画了贝丝的神态。')
+        self.assertEqual(p['memo'], '心里捂着一颗快化掉的糖。')
+
+    def test_parse_batch_rejects_old_free_text(self):
+        # 模型回退旧格式(自由文本 ai_analysis、无 items)→ 判不合格,触发重试
+        from ai_explain import parse_batch
+        old = ('{"results": [{"word": "x", "ai_analysis": "1. 逐项解析\\n…", '
+               '"memo": "钩子"}]}')
+        self.assertEqual(parse_batch(old), [])
+        self.assertEqual(parse_batch(''), [])
+        self.assertEqual(parse_batch('不是 JSON'), [])
+
+    def test_parse_batch_rejects_missing_fields(self):
+        from ai_explain import parse_batch
+        bad = ('{"results": [{"word": "x", "items": [{"seg": "", "note": "n"}], '
+               '"reading": "r", "memo": "m"},'
+               '{"word": "y", "items": [], "reading": "r", "memo": "m"}]}')
+        self.assertEqual(parse_batch(bad), [])   # seg 空 / items 空均不合格
+
+    def test_compose_analysis_layout(self):
+        from ai_explain import parse_batch, compose_analysis
+        p = parse_batch(self.STRUCT)[0]
+
+        def tag_fn(w):   # 注入身份判定,单测不依赖词典资源
+            return '目标词' if w == 'ate' else '超纲词'
+
+        out = compose_analysis(p['items'], p['reading'], p['culture'], tag_fn)
+        self.assertTrue(out.startswith('1. 逐项解析\n'))
+        self.assertIn('• <b>Beth ate no more</b>:谓语部分,写下她停下进食。', out)
+        self.assertIn('– <b>ate</b>(目标词):eat 的过去式。', out)
+        self.assertIn('– <b>crept away</b>(超纲词):悄悄溜走。', out)
+        self.assertIn('\n2. 整句解读\n整句刻画了贝丝的神态。', out)
+        self.assertIn('\n3. 文化点\n出自《小妇人》。', out)
+        # culture 为空 → 整段省略
+        out2 = compose_analysis(p['items'], p['reading'], '', tag_fn)
+        self.assertNotIn('文化点', out2)
+
+
 # ---------------- cards:TSV 消毒 / 高亮 / AI 解析排版 / sources 幂等 ----------------
 
 class TestCards(unittest.TestCase):
@@ -202,6 +270,126 @@ class TestCards(unittest.TestCase):
         out = ai_cell_html('<script>x</script> <b>b</b>')
         self.assertNotIn('<script>', out)
         self.assertIn('<b>b</b>', out)
+
+    def test_ai_cell_html_circled_numbers(self):
+        # 2026-08-31 回归:decidedly 卡实测格式——①②③ 圆圈号条目 → 统一收敛为 • 条目
+        from cards import ai_cell_html
+        v = ('1. 逐项解析\n① “I shall get”: 主句主干\n② “;”: 分号\n'
+             '2. 整句解读\n整句读来一本正经\n')
+        out = ai_cell_html(v)
+        self.assertNotIn('①', out)
+        self.assertIn('• <b>“I shall get”</b>:主句主干', out)      # 行首成分自动加粗
+        self.assertIn('<br><br>• ', out)                            # 条目独立成段
+        self.assertIn('<br><br><b>2. 整句解读</b>', out)            # 段首行前插空行
+
+    def test_ai_cell_html_inline_section_markers(self):
+        # 2026-08-31 回归:comfort 卡实测格式——无段首行,段落用 “# 整句解读#” 拼进行内,
+        # 条目分隔用 “——” → 三段重建 + 分隔符归一为冒号
+        from cards import ai_cell_html
+        v = ('1. **Tell them** —— tell 是祈使句动词\n'
+             '2. **at all times** —— 固定短语。'
+             '# 整句解读# 整句开头是祈使句。# 文化点# 本句出自《小妇人》。\n')
+        out = ai_cell_html(v)
+        self.assertNotIn('#', out.replace('&#x27;', ''))            # 行内段标记拆除
+        self.assertIn('<b>1. 逐项解析</b>', out)                    # 悬空条目自动补段首行
+        self.assertIn('• <b>Tell them</b>:tell 是祈使句动词', out)  # —— 归一为冒号
+        self.assertIn('<b>2. 整句解读</b>', out)
+        self.assertIn('<b>3. 文化点</b>', out)
+
+    def test_ai_cell_html_two_level_numbering(self):
+        # 2026-08-31 回归:delight 卡实测格式——1.1 两级编号条目 → • 条目(与 1. 同权)
+        from cards import ai_cell_html
+        v = '1. 逐项解析:\n1.1 **Beth**:人名\n1.2 **but**:转折连词\n\n2. 整句解读:\nok\n'
+        out = ai_cell_html(v)
+        self.assertNotIn('1.1', out)
+        self.assertIn('• <b>Beth</b>:人名', out)
+        self.assertIn('• <b>but</b>:转折连词', out)
+
+    def test_ai_cell_html_word_tag_colors(self):
+        # 身份标记圈点上色:(目标词)=例句高亮红,(超纲词)=超纲绿;词级行词名自动加粗
+        from cards import ai_cell_html
+        v = '1. 逐项解析\n1. crept away(超纲词):悄悄溜走\n- rosy(超纲词):玫瑰色的\n'
+        out = ai_cell_html(v)
+        self.assertIn('<b class="hard">(超纲词)</b>', out)
+        self.assertIn('– <b>rosy</b><b class="hard">(超纲词)</b>:玫瑰色的', out)
+        v2 = '1. 逐项解析\n1. delight(目标词):本卡的词\n'
+        self.assertIn('<b class="hl">(目标词)</b>', ai_cell_html(v2))
+
+    def test_ai_cell_html_bullets_only_section(self):
+        # 逐项解析全区只有圆点行时,圆点就是条目(而非词级拆解),收敛为 •
+        from cards import ai_cell_html
+        v = '1. 逐项解析\n- Beth 人名\n- but 转折连词\n2. 整句解读\nok\n'
+        out = ai_cell_html(v)
+        self.assertIn('• Beth 人名', out)
+        self.assertIn('• but 转折连词', out)
+        self.assertNotIn('– ', out)
+
+    def test_ai_cell_html_literal_newline_escape(self):
+        # 2026-08-31 回归:hush 卡实测——模型把换行双转义成字面 \n,整个结构解析失效
+        from cards import ai_cell_html
+        v = '引子。\\n\\n1. 逐项解析\\n\\n① A hush:一阵寂静\\n② fell over:降临\\n\\n2. 整句解读\\n整句有画面。'
+        out = ai_cell_html(v)
+        self.assertIn('<b>1. 逐项解析</b>', out)
+        self.assertIn('<b>2. 整句解读</b>', out)
+        self.assertIn('• <b>A hush</b>:一阵寂静', out)
+
+    def test_ai_cell_html_quoted_section_marks(self):
+        # 2026-08-31 回归:refuge/defend 卡实测——段首行被「」包住(「逐项解析」)
+        from cards import ai_cell_html
+        v = '「逐项解析」\n1. The little arbour:主语部分\n2. was:系动词\n\n「整句解读」\n读来轻松惬意\n\n「文化点」\n19 世纪花园场景\n'
+        out = ai_cell_html(v)
+        self.assertIn('<b>1. 逐项解析</b>', out)
+        self.assertIn('<b>2. 整句解读</b>', out)
+        self.assertIn('<b>3. 文化点</b>', out)
+
+    def test_ai_cell_html_section_annotation_and_alias(self):
+        # 2026-08-31 回归:splendid/anxiety 卡实测——段名带 (注释) 后缀、【N. 别名段名】,
+        # 别名段名(例句逐词解析)按规范段名重编号
+        from cards import ai_cell_html
+        v = '1. 逐项解析（把例句拆成零件逐一讲解）\n1. Mother:专有名词\n\n2. 整句解读（讲透）\n骨架清爽\n'
+        out = ai_cell_html(v)
+        self.assertIn('<b>1. 逐项解析</b>', out)
+        self.assertNotIn('逐项解析（', out)
+        self.assertIn('<b>2. 整句解读</b>', out)
+        v2 = '【1. 目标词详解】\n词义先讲透。\n\n【2. 例句逐词解析】\n1. Language:主语\n\n【3. 整句解读】\n夸张句式\n\n【4. 文化点】\n背景补充\n'
+        out2 = ai_cell_html(v2)
+        self.assertEqual(re.findall(r'<b>\d\. (?:逐项解析|整句解读|文化点)</b>', out2),
+                         ['<b>1. 逐项解析</b>', '<b>2. 整句解读</b>', '<b>3. 文化点</b>'])
+
+    def test_ai_cell_html_unlabeled_trailing_paragraph(self):
+        # 2026-08-31 回归:cheek/forehead 卡实测——条目后跟着漏写段首行的整句解读长段 → 自动补
+        from cards import ai_cell_html
+        v = '1. Jo:人名,女主角\n2. read also:并列动作\n\n整句骨架是先动作再神态,画面非常亲昵自然,读起来前段紧凑。'
+        out = ai_cell_html(v)
+        self.assertIn('<b>1. 逐项解析</b>', out)
+        self.assertIn('<b>2. 整句解读</b>', out)
+        self.assertLess(out.index('• <b>read also</b>'), out.index('<b>2. 整句解读</b>'))
+        # 短尾行/无空行隔开的不补(保守,宁可漏)
+        v2 = '1. a:成分一\n2. b:成分二\n尾随小注。'
+        self.assertNotIn('<b>2. 整句解读</b>', ai_cell_html(v2))
+
+    def test_ai_cell_html_single_line_analysis(self):
+        # 2026-08-31 回归:ch47 实测——三段挤成一行,条目用分号连排 → 切段 + 拆条目
+        from cards import ai_cell_html
+        v = ('1. 逐项解析：Grasshoppers 蚱蜢（超纲词）；skipped 蹦跳（skip 的过去式）；'
+             'briskly 轻快地；crickets 蟋蟀（目标词 cricket 的复数）；chirped 啾啾叫。'
+             '2. 整句解读：全句是一幅静中有动的秋日写景,一动一静互相衬托。'
+             '3. 文化点：蟋蟀是田园宁静的象征。')
+        out = ai_cell_html(v)
+        self.assertEqual(re.findall(r'<b>\d\. (?:逐项解析|整句解读|文化点)</b>', out),
+                         ['<b>1. 逐项解析</b>', '<b>2. 整句解读</b>', '<b>3. 文化点</b>'])
+        self.assertIn('• Grasshoppers 蚱蜢<b class="hard">(超纲词)</b>', out)
+        self.assertIn('• crickets 蟋蟀（目标词 cricket 的复数）', out)
+        self.assertNotIn('；', out)   # 分号连排已拆开
+
+    def test_ai_cell_html_circled_paragraphs_in_culture(self):
+        # 2026-08-31 回归:agreeable/envy 卡实测——文化点里 ①②③ 枚举段 → 圆点列表
+        from cards import ai_cell_html
+        v = '1. 逐项解析\n1. a:成分\n2. 整句解读\n段落。\n3. 文化点\n① 本句出自《小妇人》,背景是十九世纪的美国。\n② 桑丘出自《堂吉诃德》。\n'
+        out = ai_cell_html(v)
+        self.assertNotIn('①', out)
+        self.assertIn('• 本句出自《小妇人》,背景是十九世纪的美国。', out)
+        self.assertIn('• 桑丘出自《堂吉诃德》。', out)
 
     def test_src_key_idempotent(self):
         from cards import _src_key
@@ -295,6 +483,106 @@ class TestPipelinePhrases(unittest.TestCase):
         out = self.pipeline.extract_phrases(sents, self.oxford, self.db,
                                             {'take off': 5}, top=10, seen=seen)
         self.assertNotIn('take off', [c['phrase'] for c in out])
+
+
+# ---------------- proper_names:按书专名表(2026-08-31 机制化) ----------------
+
+class TestProperNames(unittest.TestCase):
+    def test_load_parses_comments_blanks_case(self):
+        import shutil
+        import proper_names
+        old_dir = proper_names.PROPER_DIR
+        proper_names.PROPER_DIR = tempfile.mkdtemp()
+        try:
+            with open(os.path.join(proper_names.PROPER_DIR, 'ut_book.txt'),
+                      'w', encoding='utf-8') as f:
+                f.write('# 头注释\njudy  # 人名\n\n Jerusha \n')
+            proper_names._cache.pop('ut_book', None)
+            self.assertEqual(proper_names.load('ut_book'),
+                             frozenset({'judy', 'jerusha'}))
+            self.assertEqual(proper_names.load('ut_book_absent'), frozenset())
+        finally:
+            shutil.rmtree(proper_names.PROPER_DIR, ignore_errors=True)
+            proper_names.PROPER_DIR = old_dir
+            proper_names._cache.pop('ut_book', None)
+
+    def test_suspects_flags_always_capped_names(self):
+        import proper_names
+        md = ('# T\n\n**Chapter 1 Test**\n\n'
+              + 'Jerusha walked to the store. The store was closed. ' * 5)
+        sus = {s['word'] for s in proper_names.suspects(
+            md, {'store': ('noun', 'a2')})}
+        self.assertIn('jerusha', sus)       # 常作句首主语的人名(cap 占比 100%)
+        self.assertNotIn('store', sus)      # 词表内不判
+        self.assertNotIn('walk', sus)       # 小写普通词不判
+
+
+class TestHardWordsProperThread(unittest.TestCase):
+    def test_diff_proper_excludes_names(self):
+        from hard_words import hard_words_in
+
+        class FakeDiff:
+            proper = {'jervie'}
+            def level_of(self, w):
+                return {'mansion': 'c1', 'pony': 'c1'}.get(w, 'a1')
+            def bnc_of(self, w):
+                return 9000
+
+        d = FakeDiff()
+        hard = hard_words_in('Jervie kept his mansion and a pony.', 'kept', 'b2', d)
+        self.assertEqual(hard, ['mansion', 'pony'])   # 句首大写人名靠 diff.proper 拦下
+
+
+class TestAiPickProper(unittest.TestCase):
+    def test_parse_items_filters_to_wanted(self):
+        from ai_pick_proper import parse_items
+        raw = ('说明 {"items":[{"word":"judy","proper":true,"type":"人物"},'
+               '{"word":"embarrass","proper":false},{"word":"alien","proper":true}]} 尾注')
+        got = parse_items(raw, {'judy', 'embarrass'})
+        self.assertEqual(set(got), {'judy', 'embarrass'})   # 越权词丢弃
+        self.assertTrue(got['judy']['proper'])
+
+    def test_parse_items_survives_garbage(self):
+        from ai_pick_proper import parse_items
+        self.assertEqual(parse_items('', {'x'}), {})
+        self.assertEqual(parse_items('模型拒答没有 JSON', {'x'}), {})
+
+    def test_build_user_prompt_keeps_sentences(self):
+        from ai_pick_proper import build_user_prompt
+        batch = [{'word': 'judy', 'freq': 79, 'cap': 79,
+                  'contexts': ['Judy is here today.', 'Judy sings badly.']}]
+        p = build_user_prompt(batch)
+        self.assertIn('judy', p)
+        self.assertIn('Judy is here today.', p)      # 整句上下文(曾误切片成单字符)
+
+
+class TestEpubToMd(unittest.TestCase):
+    MD = ('# BOOK\n\n## \\* \\* \\*\n\n## JEAN WEBSTER\n\n# Contents\n\n## \\*\n\n'
+          '*[A](x.html)*\n\n# Blue Wednesday\n\nIt was a perfect day.\n\n'
+          '# The Letters\n\n### 24th September\n\nDear Sir,\n\nHere I am!\n\n'
+          '### 1st October\n\nCold today.\n')
+
+    def test_parse_units_drops_decor_keeps_levels(self):
+        from epub_to_md import parse_units
+        tops = parse_units(self.MD)
+        self.assertEqual([u['title'] for u in tops],
+                         ['BOOK', 'Contents', 'Blue Wednesday', 'The Letters'])
+        self.assertEqual(tops[0]['subs'][0]['title'], 'JEAN WEBSTER')  # `## \* \* \*` 装饰被丢
+        self.assertEqual(tops[1]['subs'], [])                          # Contents 下无碎节
+        self.assertEqual(tops[3]['subs'][0]['title'], '24th September')
+        self.assertEqual(tops[3]['subs'][1]['paras'], ['Cold today.'])
+
+    def test_build_chapters_groups_by_budget(self):
+        from epub_to_md import build_chapters
+        tops = [{'level': 1, 'title': 'Letters', 'paras': [], 'subs': [
+            {'level': 3, 'title': 'L1', 'paras': ['one two'], 'subs': []},
+            {'level': 3, 'title': 'L2', 'paras': ['three four'], 'subs': []},
+            {'level': 3, 'title': 'L3', 'paras': ['five six'], 'subs': []},
+        ]}]
+        chs = build_chapters(tops, target=3, maxt=5)
+        # L2 并入 L1(2+3=5 未超 maxt),L3 时累计词数 ≥ target 封章
+        self.assertEqual([c['title'] for c in chs], ['L1', 'L3'])
+        self.assertIn('L2', ' '.join(chs[0]['paras']))
 
 
 if __name__ == '__main__':

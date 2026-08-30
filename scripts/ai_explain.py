@@ -1,5 +1,9 @@
 """AI 例句解析生成模块(可选旁路,不入默认管线):
-对 raw CSV 中已润色的词批量生成 ai_analysis(四段式整句解析)+ memo(画面感词义钩子)。
+对 raw CSV 中已润色的词批量生成 ai_analysis(三段式整句解析)+ memo(画面感词义钩子)。
+生成端为结构化 schema:模型只产出 JSON 字段(items/reading/culture/memo),
+排版文本由 compose_analysis 本地确定性拼装,词身份(目标词/超纲词)由本地 lemma 规则
+判定 —— 格式在源头即唯一,不依赖模型遵守排版约定;cards.py 的渲染归一器仅作为
+手改 JSON / 历史数据的兜底。产物结构不变:[{word, ai_analysis, memo}]。
 
 接入点(--provider):
   claude-cli : 本机 Claude Code `claude -p` headless 模式,零配置零 key(走已有登录)【默认】
@@ -53,7 +57,8 @@ from threading import Lock
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-from hard_words import Difficulty, hard_words_in
+from hard_words import Difficulty, hard_words_in, lemma_of
+import proper_names
 
 MAX_RETRY = 3               # 每个词/每批最多尝试次数
 DEFAULT_OPENAI_MODEL = 'gpt-4o-mini'
@@ -63,39 +68,38 @@ DEFAULT_WORKERS = 4         # 并发章数
 TIMEOUT = 300               # 单次请求超时(秒):批量长输出需要更宽裕
 
 # 批量版 PROMPT。占位符 __ITEMS__ 由运行时替换(词信息块),不用 .format 以免大括号冲突。
+# 模型只产出结构化 JSON(成分/讲解/整句/文化点),排版由 compose_analysis 本地确定性拼装,
+# 格式在源头即唯一;模型不再自由发挥任何版面(历史实测的 ①②③ / #段标 / 缺段首行 /
+# 「段名」 / 段名带注释 / 单行连排 / 字面 \n 等十来种排版漂移全部根治)。
+# 词身份标注(目标词/超纲词)同样由本地规则判定(hard_words.lemma_of),不依赖模型自觉。
 BATCH_PROMPT = """你是英语学习卡的"例句解析"助手,为生词卡片批量生成解析。请严格只输出一个 JSON 对象,不要任何多余文字、不要包代码块。
 
 输出结构:
 {
   "results": [
-    {"word": "目标词原文", "ai_analysis": "四段式解析,详见要求", "memo": "一句画面感记忆钩子"},
-    {"word": "目标词原文", "ai_analysis": "…", "memo": "…"}
+    {
+      "word": "目标词原文",
+      "items": [
+        {"seg": "例句成分(英文原文)", "note": "该成分的中文讲解",
+         "words": [{"w": "成分内值得单独讲的英文词/短语", "note": "该词的中文讲解"}]}
+      ],
+      "reading": "整句解读,一个连贯的中文段落",
+      "culture": "文化/时代背景,一个连贯的中文段落;没有可写内容就填空字符串",
+      "memo": "一句画面感记忆钩子"
+    }
   ]
 }
 
-一次必须返回 results 数组里【全部】请求的词,一个都不能少,词序与输入一致。
-
-【ai_analysis 要求】(全部中文,不吝啬字数,讲透为止。换行用 \\n):
-固定三段,段首编号 "1. 逐项解析" / "2. 整句解读" / "3. 文化点",段间空行。
-
-1. 逐项解析:把例句拆成成分逐条解释。每个成分条目独占一行,行首 "N. " 编号(N 从 1 起连续递增)。
-   条目内需要再逐个讲解词/短语时,每个词另起一行、行首用 "- " 列表符(短横+空格);
-   严禁把多个词挤在条目的同一行里(不用分号/逗号拼接),更禁止 "1.1" "1.2" 这类两级编号。
-   被讲解的词必须标注身份,格式统一为「词名(身份):解析」,身份只有两种:
-   - 本卡要学的目标词 → (目标词)
-   - 例句中比目标词更难的超纲词 → (超纲词)
-   其余普通词/短语不标身份,直接写解析。
-   示例(条目 3 内拆出 3 个词,各占一行):
-   3. a rosy, smooth-haired, bright-eyed girl of thirteen——表语的核心名词短语:
-   - rosy(超纲词):形容词,玫瑰色的、红润的,注意它由 rose 派生而来。
-   - smooth-haired:复合形容词,由 smooth + hair + -ed 构成,意思是"头发顺滑的"。
-   - of thirteen:表示年龄,相当于 thirteen years old,"十三岁的"。
-   (该成分若整块讲解即可、无须拆词,则不出现 "- " 行。)
-2. 整句解读:一个连贯段落(不编号、不拆行),把各成分串起来,讲整句怎么理解、语气语感、
-   为什么中文译文这么翻。
-3. 文化点:酌情补充文化/语用/时代背景(如 19 世纪小说背景),没有就省略这一节。
-
-【引号铁律】:文本中任何引号一律用中文引号 "" 或「」,严禁英文双引号 " (它会被当成 JSON 定界符,导致整段解析报废)。
+【硬性规则】
+- results 必须包含下方列出的【每一个】词,顺序与输入一致,一个都不能少。
+- items 把例句从左到右拆成成分,每个成分一个对象:seg 原样摘录英文成分(保留原文大小写与标点),
+  note 用中文讲清它的语法身份(主语/谓语/状语/从句等)和含义,以及为什么中文译文这么处理。
+- words 只放值得单独讲的词:目标词、超纲词、重要搭配,每个一条;w 原样摘录英文,
+  note 讲词性、词形变化(如不规则动词三态)、本义与引申义;普通词不要凑数。
+  无须拆词讲解的成分省略 words 字段。
+- seg/w 内不得夹中文;所有文本字段一律单行,不得出现换行;
+  任何引号用中文引号 "" 或「」,严禁英文双引号 " (它会被当成 JSON 定界符,导致整段解析报废)。
+- 全部中文,不吝啬字数,讲透为止。
 
 【memo 要求】:对目标词的一句"画面感"记忆钩子(imagine)——一个能在脑海中看到/感觉到的小画面或联想,一句话,留白不展开,绝不写成词典释义。
 
@@ -176,7 +180,7 @@ class ClaudeCli(Provider):
         """prompt 走 stdin 而非命令行参数:Windows 下 claude.CMD(批处理包装)
         传递换行/超长参数会被破坏(曾致 3 次全部失败);stdin 字节直通无损。
         stdout 仍 bytes 模式读取,依次尝试 utf-8 / gbk 解码,兜底 replace(由
-        extract_batch 的 U+FFFD 校验拦截,触发重试)。"""
+        parse_batch 的 U+FFFD 校验拦截,触发重试)。"""
         try:
             p = subprocess.run([self.cli, '-p'], input=prompt.encode('utf-8'),
                                capture_output=True, timeout=TIMEOUT)
@@ -265,15 +269,65 @@ def _lenient_load(s):
 
 
 def md_bold_to_html(s):
-    """模型常把强调写成 Markdown 加粗 **x**(Anki 不渲染 Markdown,星号会裸露)。
-    输出前统一转成 <b>x</b>(cards 渲染时白名单放行);幂等:无 ** 时原样返回。"""
+    """模型偶尔把强调写成 Markdown 加粗 **x**(Anki 不渲染 Markdown,星号会裸露)。
+    组装前统一转成 <b>x</b>;幂等:无 ** 时原样返回。"""
     return re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', s, flags=re.S)
 
 
-def extract_batch(text):
+def _clean(s):
+    """字段消毒:单行化(模型被禁止换行,防御性兜底)、去首尾空白、md 加粗转 <b>。"""
+    s = str(s or '').replace('\r\n', ' ').replace('\n', ' ').replace('\r', ' ')
+    s = s.replace('\\n', ' ').strip()
+    return md_bold_to_html(s)
+
+
+def make_tag_fn(word, sent, cefr, diff):
+    """构造词身份判定函数(本地规则,不依赖模型):
+    lemma 命中目标词 → 「目标词」;命中例句超纲词(hard_words_in 判定)→ 「超纲词」;
+    其余 → 不标注。diff=None(单测注入)时恒不标注。"""
+    if diff is None:
+        return lambda w: ''
+    tlem = lemma_of(word)
+    hard_lemmas = {lemma_of(h) for h in
+                   hard_words_in(sent or '', word, cefr or '', diff)}
+
+    def tag_of(w):
+        lems = {lemma_of(t) for t in re.findall(r"[A-Za-z]+(?:[’'-][A-Za-z]+)*", w)}
+        if tlem and tlem in lems:
+            return '目标词'
+        return '超纲词' if lems & hard_lemmas else ''
+    return tag_of
+
+
+def compose_analysis(items, reading, culture, tag_of):
+    """把模型返回的结构化字段确定性拼装成规范排版文本(源头即唯一格式,零正则矫正):
+    1. 逐项解析
+    • <b>成分</b>:讲解          ← items[].seg/note
+    – <b>词</b>(身份):讲解      ← items[].words[];身份由 tag_of 本地规则判定
+    2. 整句解读 / 3. 文化点(文化点为空则整段省略)"""
+    lines = ['1. 逐项解析']
+    for it in items:
+        lines.append(f'• <b>{_clean(it["seg"])}</b>:{_clean(it["note"])}')
+        for wd in it.get('words') or ():
+            w_txt = _clean(wd['w'])
+            tag = tag_of(wd['w'])
+            suffix = f'({tag})' if tag else ''
+            lines.append(f'– <b>{w_txt}</b>{suffix}:{_clean(wd["note"])}')
+    lines.append('2. 整句解读')
+    lines.append(_clean(reading))
+    culture = _clean(culture)
+    if culture:
+        lines.append('3. 文化点')
+        lines.append(culture)
+    return '\n'.join(lines)
+
+
+def parse_batch(text):
     """批量版解析:剥 markdown 代码块/多余文字,取第一个 { 到最后一个 } 后解析 JSON,
-    校验 results 数组;每项 {word, ai_analysis, memo} 缺一或含 U+FFFD(编码失败残留)
-    视为坏项剔除。返回 [(word, ai_analysis, memo), …](可为空列表,调用方回退重试)。"""
+    按结构化 schema 严格校验,返回合法的结构化条目
+    [{word, items:[{seg, note, words:[{w, note}]}], reading, culture, memo}, …]。
+    任何字段缺失/类型不符(含模型回退成自由文本 ai_analysis 的旧格式)→ 该词剔除,
+    由调用方走重试;可为空列表。"""
     if not text:
         return []
     m = re.search(r'\{.*\}', text, re.S)
@@ -290,11 +344,39 @@ def extract_batch(text):
         if not isinstance(p, dict):
             continue
         w = str(p.get('word') or '').strip()
-        a = md_bold_to_html(str(p.get('ai_analysis') or '').strip())
-        mm = md_bold_to_html(str(p.get('memo') or '').strip())
-        if w and a and mm and '�' not in a and '�' not in mm:
-            out.append({'word': w, 'ai_analysis': a, 'memo': mm})
+        memo = _clean(p.get('memo'))
+        items, ok = [], isinstance(p.get('items'), list) and bool(p['items']) \
+            and not _clean(p.get('ai_analysis'))   # 旧自由文本格式 = 不合格,触发重试
+        for it in (p.get('items') or []):
+            if not isinstance(it, dict) or not _clean(it.get('seg')) \
+                    or not _clean(it.get('note')):
+                ok = False
+                break
+            words = []
+            for wd in (it.get('words') or []):
+                if isinstance(wd, dict) and _clean(wd.get('w')) and _clean(wd.get('note')):
+                    words.append({'w': _clean(wd.get('w')), 'note': _clean(wd.get('note'))})
+            if any('�' in x for x in [it.get('seg'), it.get('note')] +
+                   [x for wd in words for x in wd.values()]):
+                ok = False
+                break
+            items.append({'seg': _clean(it.get('seg')), 'note': _clean(it.get('note')),
+                          'words': words})
+        reading = _clean(p.get('reading'))
+        if w and ok and reading and memo and '�' not in reading and '�' not in memo:
+            out.append({'word': w, 'items': items, 'reading': reading,
+                        'culture': _clean(p.get('culture')), 'memo': memo})
     return out
+
+
+def finalize_result(p, r, diff):
+    """结构化条目 → 产物行 {word, ai_analysis, memo}:ai_analysis 由 compose_analysis
+    本地拼装(格式确定性),不再接收模型排版的自由文本。"""
+    tag_of = make_tag_fn(r['word'], r.get('sent') or '', r.get('cefr') or '', diff)
+    return {'word': p['word'],
+            'ai_analysis': compose_analysis(p['items'], p['reading'],
+                                            p.get('culture') or '', tag_of),
+            'memo': p['memo']}
 
 
 def ask_batch_words(prov, rows, diff, verbose):
@@ -308,13 +390,16 @@ def ask_batch_words(prov, rows, diff, verbose):
     for attempt in range(MAX_RETRY):
         if verbose:
             log(f'  {len(rows)} 词/批 尝试 {attempt + 1}/{MAX_RETRY} ...')
-        parsed = extract_batch(prov.ask(prompt))
+        parsed = parse_batch(prov.ask(prompt))
         if parsed:
             break
 
+    by_word = {r['word']: r for r in rows}
     got, fails = {}, []
-    for p in parsed:
-        got.setdefault(p['word'], p)          # 重复词保留首个
+    for p in parsed:                          # 结构合法的词 → 本地拼装定型
+        r = by_word.get(p['word'])
+        if r:
+            got.setdefault(p['word'], finalize_result(p, r, diff))
     for r in rows:
         if r['word'] in got:
             continue
@@ -325,10 +410,9 @@ def ask_batch_words(prov, rows, diff, verbose):
         for attempt in range(MAX_RETRY):
             if verbose:
                 log(f'  {r["word"]}(回退) 尝试 {attempt + 1}/{MAX_RETRY} ...')
-            hit = extract_batch(prov.ask(single_prompt))
-            for p in hit:
+            for p in parse_batch(prov.ask(single_prompt)):
                 if p['word'] == r['word']:
-                    one = p
+                    one = finalize_result(p, r, diff)
                     break
             if one:
                 break
@@ -428,6 +512,7 @@ def main():
 
     prov = Provider.create(args.provider, args)
     diff = Difficulty()
+    diff.proper = proper_names.load(args.book)   # 书内专名不进超纲词列表(scripts/proper_names.py)
     files = sorted(f for f in os.listdir(raw_dir) if f.endswith('_raw.csv'))
     if args.chapter:
         files = [f for f in files if f.startswith(f'chapter_{args.chapter:02d}_')]

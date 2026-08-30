@@ -19,3 +19,8 @@ data/output/*/anki/audio/
 # ---- 系统杂项 ----
 Thumbs.db
 .DS_Store
+# ---- EPUB→MD 转换缓存(epub_to_md.py 的 markitdown 原始输出,可重转) ----
+data/books/_md/*_raw.md
+
+# ---- AI 裁决中间缓存(ai_pick_proper.py 断点,可重跑恢复) ----
+data/output/*/work/proper_ai_*.json

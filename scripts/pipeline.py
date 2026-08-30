@@ -10,6 +10,9 @@
 import argparse, csv, datetime, json, os, re, sqlite3, sys
 import simplemma
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import proper_names
+
 sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,11 +27,9 @@ ANCHOR_RE = re.compile(r'<a\s+[^>]*>.*?</a>|</?a[^>]*>')
 ABBR_RE = re.compile(r'\b(Mr|Mrs|Ms|Dr|St|Messrs|Prof|Rev)\.')
 ABBR_PH = '<AB>'
 
-# 小说专有名词(直接排除,不参与候选)
-NOVEL_PROPER = {
-    'meg', 'jo', 'joe', 'beth', 'amy', 'marmee', 'laurie', 'hannah', 'march',
-    'trotty', 'daisy', 'demi', 'bhaer', 'brooke', 'marches',
-}
+# 小说专有名词(直接排除,不参与候选):按书外置,main() 里从
+# data/books/proper_names/<book>.txt 载入(扫描/确认流程见 scripts/scan_proper.py)
+NOVEL_PROPER = frozenset()
 
 LEVEL_RANK = {'a1': 1, 'a2': 2, 'b1': 3, 'b2': 4, 'c1': 5}
 CEFR_VALUE = {'b1': 0.35, 'b2': 1.0, 'c1': 1.2, 'toe': 0.8}
@@ -38,6 +39,7 @@ STOPWORDS = {
     'mrs', 'mr', 'ms', 'dr', 'st', 'etc', 'thou', 'thee', 'thy', 'thine', 'ye',
     "'d", "'ll", "'re", "'ve", 'tis', "don't", "can't", "won't", "ain't",
     "it's", "that's", "i'm", "i've", "i'll", "i'd", "he's", "she's", "we're",
+    'th', 'nd', 'rd',   # 序数词后缀(书信日期标题 17th October 等被切成独立 token)
 }
 
 # ---- 表达收录(Phase 2):语块切分边界词与常用小品词 ----
@@ -357,7 +359,16 @@ def main():
                     help='每章表达候选数(配合 --phrases,默认 40)')
     args = ap.parse_args()
 
+    global NOVEL_PROPER
+    NOVEL_PROPER = proper_names.load(args.book)
+    if NOVEL_PROPER:
+        print(f'proper: {args.book} 书内专名 {len(NOVEL_PROPER)} 个'
+              f'({proper_names.path_for(args.book)})', flush=True)
+
     md_path = os.path.join(BASE, 'data', 'books', '_md', f'{args.book}.md')
+    if not os.path.exists(md_path):
+        sys.exit(f'[STOP] 找不到管线输入 {md_path} —— 新书先跑 scripts/epub_to_md.py'
+                 f'(EPUB 转换)与 scripts/scan_proper.py(专名扫描),完整流程见 README.agent.md')
     out_dir = os.path.join(BASE, 'data', 'output', args.book)
     os.makedirs(out_dir, exist_ok=True)
 

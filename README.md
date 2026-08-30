@@ -25,9 +25,12 @@
 2. **导卡**:读哪章导哪章 —— Import `data/output/little_women/anki/chapter_XX_anki.tsv`,**模板选 EnWords**(细节见「📥 Anki 导入方法」)
 3. **开刷**:正面认词(发音自动播)→ 翻面看释义 + 书中原句 → 读对应章节(配 `annotated/` 高亮版)→ 掌握了的词追加到 `vocabulary/known_words.txt`,同词永不再推
 
-想自己跑一本新书?一个命令即可(全流程细节见「🔄 管线」):
+想自己跑一本新书?三步:① `epub_to_md.py` 把 EPUB 转成管线输入(需本机 markitdown)
+→ ② `scan_proper.py` 扫描确认书内专名表 → ③ 一个命令跑全流程(细节见「🔄 管线」):
 
 ```bash
+uv run --with markitdown python scripts/epub_to_md.py --epub "data/books/<书>.epub" --book <书名>
+uv run python scripts/scan_proper.py --book <书名> --write   # 确认 data/books/proper_names/<书名>.txt
 uv run python scripts/run.py --book <书名> --polish <润色json> --audio
 ```
 
@@ -68,9 +71,10 @@ uv run python scripts/run.py --book <书名> --polish <润色json> --audio
 - **例句全部取自书中原句**(含目标词上下文),配人工润色译文 —— 与"看剧识别台词"同构
 - 无原句的词由模型补充,例句贴近文风,「来源」列标注 **"(AI 补句)"**
 - **级别**:B2/C1 为主(考研英语二基线:排除 A1–A2,B1 少量配额,用 BNC 词频过滤常见词)
-- **AI解析**:**四段式整句解析**(逐项拆解 → 整句解读 → 文化点),例句中比目标词更难的
-  **超纲词**已用橙色高亮标注(每句 ≤2);**词义概述**:一句"画面感"记忆钩子。两列可选,
-  由 `scripts/ai_explain.py` 批量生成(见"AI 例句解析"一节)
+- **AI解析**:**三段式整句解析**(逐项拆解 → 整句解读 → 文化点),排版统一:段首行加粗、
+  条目 `• `、行首成分加粗、词级拆解 `– `、`(目标词)` 红色 / `(超纲词)` 绿色标注;
+  例句中比目标词更难的**超纲词**已用绿色高亮标注(每句 ≤2);**词义概述**:一句"画面感"
+  记忆钩子。两列可选,由 `scripts/ai_explain.py` 批量生成(见"AI 例句解析"一节)
 - **发音**:可选,见下节
 
 ---
@@ -157,6 +161,10 @@ uv run python scripts/run.py --book <书名> --stage validate --verbose
 ```
 
 **流程**:EPUB
+
+→ `epub_to_md`(新书第 0 步:MarkItDown 转 Markdown + 合成章节,一次性)
+
+→ `scan_proper`(新书第 0.5 步:扫描人名地名,确认 `proper_names/<书名>.txt` 排除表)
 
 → `pipeline`(分词 / CEFR / 选词 / 例句)
 

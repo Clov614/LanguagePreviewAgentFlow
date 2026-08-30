@@ -9,7 +9,8 @@
   uv run python scripts/run.py --book little_women --phrases --phrase-picked 'work/phrases_picked_*.json'  # 表达合并出卡
   uv run python scripts/run.py --book little_women --stage validate --verbose
 
-阶段顺序: pipeline → apply(润色合并) → [audio] → cards → annotate → report → validate
+阶段顺序: [前置: epub_to_md 转换 + scan_proper 专名扫描(仅新书)]
+          pipeline → apply(润色合并) → [audio] → cards → annotate → report → validate
 说明: 任何阶段失败立即终止(非零退出码);底层仍是各单脚本,可独立直调。
 """
 import argparse
@@ -79,6 +80,17 @@ def main():
             stages.insert(stages.index("cards"), "audio")
     else:
         stages = [args.stage]
+
+    # 新书预检:管线输入 MD 由 epub_to_md.py 生成(EPUB→MD 是管线外的一次性前置步骤)
+    if "pipeline" in stages:
+        md = BASE / "data" / "books" / "_md" / f"{args.book}.md"
+        if not md.exists():
+            sys.exit(
+                f"[run.py] [FAIL] 找不到管线输入 {md} —— 新书先做前置两步:\n"
+                "  1. uv run --with markitdown python scripts/epub_to_md.py "
+                '--epub "data/books/<书>.epub" --book <书名>\n'
+                "  2. uv run python scripts/scan_proper.py --book <书名> --write   "
+                "# 扫描专名,确认 proper_names/<书名>.txt 后再回来")
 
     for stage in stages:
         sa = ["--book", args.book]

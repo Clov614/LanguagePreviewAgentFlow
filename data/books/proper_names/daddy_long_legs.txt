@@ -1,0 +1,160 @@
+# daddy_long_legs 书内专名(pipeline/hard_words/validate 共用;一行一个小写 lemma,# 后为注释)
+# 来源:2026-08-31 全流程测试中发现 jerusha 泄漏进 ch5 候选(信件叙述里常作句首主语,
+# is_proper 的非首大写占比判据抓不到),scan_proper/ai_pick_proper 按词频核实后整理
+judy       # 女主 Jerusha 的自起昵称(79 次)
+jerusha    # 女主本名(46 次)
+lippett    # 孤儿院院长 Mrs. Lippett(34 次)
+jervie     # "Master Jervie" 爱称(36 次)
+jervis     # Jervis Pendleton 本名(8 次)
+pendleton  # 富家叔叔姓氏(26 次)
+sallie     # 同窗 Sallie McBride(60 次)
+mcbride    # Sallie 姓氏(29 次)
+julia      # 富家小姐 Julia Pendleton(69 次)
+grier      # 约翰·格里尔孤儿院 John Grier Home(29 次)
+semple     # Lock Willow 农场管家 Mrs. Semple(16 次)
+fergussen  # Fergussen Hall 宿舍(4 次)
+
+# ---- 2026-08-31 scan_proper 全量疑似 298 条的人工复核裁决 ----
+# (claude-cli 端点在本机 headless 不可用,由会话 AI 按同一判据直接裁决:
+#  专名/称谓/缩略/外语残片排除;freshman、sophomore、behold、granny、hawk、
+#  gothic、puritan、conqueror 等真实学习词保留,交给 pipeline 评分定夺)
+john  # 人名(John Smith / John Grier)
+abbott  # 人名(Miss Abbott,Jerusha 姓)
+smith  # 人名("John Smith" 化名)
+jimmie  # 人名(Jimmie McBride)
+carrie  # 人名(Carrie 批改员)
+shakespeare  # 人名(作家)
+rutledge  # 人名
+pepys  # 人名(日记作者,作品语境)
+henry  # 人名
+pritchard  # 人名(农场工人)
+freddie  # 人名
+jane  # 人名(Jane Fanuzzi?)
+arnold  # 人名
+harry  # 人名
+fenton  # 人名
+montgomery  # 人名
+ophelia  # 人名(戏剧角色)
+stevenson  # 人名(作家)
+charles  # 人名
+perkins  # 人名
+alice  # 人名(爱丽丝)
+shelley  # 人名(诗人)
+louis  # 人名
+william  # 人名(亦莎士比亚语境)
+grover  # 人名
+jan  # 人名(Jane 变体)
+dowd  # 人名
+brewer  # 人名
+lizzie  # 人名
+paterson  # 人名/地名(Paterson 市)
+florence  # 人名/地名
+colin  # 人名(Colin 侄子)
+elmer  # 人名
+dillon  # 人名
+susie  # 人名
+michael  # 人名(天使长语境)
+angelo  # 人名(米开朗琪罗)
+maurice  # 人名
+maeterlinck  # 人名(作家,作品语境)
+freddy  # 人名
+christian  # 人名(《Lorna Doone》语境)
+david  # 人名(大卫)
+robert  # 人名
+george  # 人名
+eliot  # 人名(作家)
+mona  # 人名(Mona Lisa)
+lisa  # 人名(Mona Lisa)
+sherlock  # 人名(福尔摩斯)
+holmes  # 人名(福尔摩斯)
+isabel  # 人名
+susan  # 人名
+rutherford  # 人名
+adam  # 人名(亚当)
+richard  # 人名(《Richard Feverel》)
+scott  # 人名(司各特)
+gibbon  # 人名(历史学家吉本)
+harriet  # 人名
+martin  # 人名
+marcelle  # 人名
+marie  # 人名
+celia  # 人名(戏剧角色)
+rosalind  # 人名(戏剧角色)
+martha  # 人名
+johnson  # 人名
+columbus  # 人名(哥伦布)
+washington  # 人名/地名
+santa  # 人名(Santa Claus)
+claus  # 人名(Santa Claus)
+benvenuto  # 人名(Cellini 自传)
+quintus  # 人名(古罗马)
+fabius  # 人名(费边)
+maximus  # 人名(Fabius Maximus)
+livy  # 人名(李维)
+catullus  # 人名(诗人卡图卢斯)
+bronte  # 姓氏(勃朗特姐妹)
+heathcliffe  # 人名(《呼啸山庄》,实为 Heathcliff)
+copperfield  # 人名/作品(大卫·科波菲尔)
+robinson  # 人名(鲁滨逊)
+crusoe  # 人名(鲁滨逊)
+rudyard  # 人名(Rudyard Kipling)
+kipling  # 人名(吉卜林)
+sherry  # 人名(存疑;亦雪利酒,保守排除)
+benton  # 人名
+hawthorn  # 人名(存疑;亦山楂,保守排除)
+semples  # 人名复数(Semple 一家)
+mcbrides  # 人名复数(McBride 一家)
+pendletons  # 人名复数(Pendleton 一家)
+orpingtons  # 品种名(奥平顿鸡)
+york  # 地名(New York)
+texas  # 地名
+massachusetts  # 地名
+america  # 地名
+denmark  # 地名
+europe  # 地名
+canada  # 地名
+boston  # 地名
+california  # 地名
+alabama  # 地名
+virginia  # 地名
+connecticut  # 地名
+jersey  # 地名(New Jersey)
+italy  # 地名
+paris  # 地名
+princeton  # 地名/大学
+adirondacks  # 地名(山区)
+bonnyrigg  # 地名(庄园)
+cluny  # 地名(博物馆/修道院)
+casilinum  # 古地名(坎尼之战)
+trasimenus  # 古地名(湖名,汉尼拔之战)
+eden  # 专名(伊甸)
+grove  # 地名成分(The Grove;普通词义 grove 交给其他书)
+willow  # 地名成分(Lock Willow Farm)
+haworth  # 地名(霍沃思,勃朗特故居)
+cork  # 地名(科克;存疑,保守排除)
+eyre  # 作品(Jane Eyre)
+wonderland  # 作品(Alice in Wonderland 语境)
+ivanhoe  # 作品(《艾凡赫》)
+feverel  # 作品(Richard Feverel)
+bible  # 作品(圣经)
+bulletin  # 报刊(The Bulletin)
+ides  # 拉丁历法(Ides of March 书信标题)
+pax  # 拉丁语(Pax 罗马和平)
+senectute  # 拉丁书名残片(De Senectute)
+amicitia  # 拉丁书名残片(De Amicitia)
+icitia  # 拉丁书名残片(排印断词)
+numidians  # 古民族(努米底亚人)
+carthaginian  # 专指古国(迦太基的)
+tudor  # 王朝/风格专名语境
+angora  # 品种名(安哥拉猫)
+gipsy  # 坐骑名(存疑;亦吉普赛人,保守排除)
+monsieur  # 法语称谓
+esq  # 称谓缩写(Esquire)
+nee  # 法语(née 娘家姓)
+professeur  # 法语残片
+votre  # 法语残片
+voila  # 法语感叹
+daddy  # 称谓(全书信件收件人昵称 Daddy;普通词义由其他书覆盖)
+ps  # 缩略(信末 PS.)
+thanksgiving  # 节日(感恩节,必知)
+cinderella  # 童话人物(必知)

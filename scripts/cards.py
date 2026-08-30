@@ -11,6 +11,7 @@ sys.stdout.reconfigure(encoding='utf-8', errors='replace')
 from tts_paths import audio_dir_for_book, sent_audio_name, word_audio_name
 from wordforms import phrase_regex, token_regex
 from hard_words import Difficulty, mark_sentence
+import proper_names
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 VOCAB = os.path.join(BASE, 'vocabulary')
@@ -124,44 +125,175 @@ def hl_phrase(esc_sent, phrase):
     return pat.sub(lambda m: f'<b class="hl">{m.group()}</b>', esc_sent)
 
 
+# ---------------- AI 解析排版归一(渲染收敛) ----------------
+# 模型输出排版随模型/批次漂移,实测历史数据有近十种:1.1 两级编号、①②③ 圆圈号、无段首行
+# 且用 "# 整句解读#" 把段落拼进行内、「逐项解析」引号段标、段名带 (注释) 后缀、【2. 例句
+# 逐词解析】别名段名、换行双转义成字面 \n、整句解读漏写段首行等。渲染前统一收敛为固定版式:
+# 段首行 <b>N. 段名</b> / 条目 「• 」 / 词级 「– 」 / 行首成分加粗 + 半角冒号。
+
+_SECTION_TITLES = ('逐项解析', '整句解读', '文化点')
+
+# 段首行:容忍 "1. / 1、 / 一、 / # / 【】 / 「」 / **" 等修饰(序号可写在括号内,如
+# 【2. 例句逐词解析】);标题后允许 "(注释)"(如 逐项解析（把例句拆成零件逐一讲解）),
+# 其后必须紧跟冒号或行尾,否则视为正文(防误伤以段名开头的句子)
+_SECTION_RE = re.compile(
+    r'^(?:#{1,6}\s*)?[*【\[「]*\s*'
+    r'(?:(?:\d{1,2}|[一二三四五六七八九十]{1,3})\s*[.、)．]?\s*)?'
+    r'(例句逐词解析|逐词解析|逐项解析|整句解读|整句理解|整句赏析|文化点|文化背景)'
+    r'\s*[*\]】」]*\s*(?:（[^（）]{0,30}）)?\s*([:：]?)\s*(.*)$')
+
+# 段名别名 → 规范段名(模型会换着叫,意思一样)
+_TITLE_ALIAS = {'例句逐词解析': '逐项解析', '逐词解析': '逐项解析',
+                '整句理解': '整句解读', '整句赏析': '整句解读',
+                '文化背景': '文化点'}
+
+# 条目行首编号:1.1 两级 / 1. 1、 1) / ①-⑳ / (1) (1) / 圆点列表符
+_ITEM_RE = re.compile(
+    r'^\s*(?:\d{1,2}\.\d{1,2}\s+|\d{1,2}\s*[.、)．]\s+|[①-⑳]\s*'
+    r'|[(（]\d{1,2}[)）]\s*|[*•·-]\s+)')
+
+_BULLET_LEAD_RE = re.compile(r'^\s*(?:\d|[①-⑳]|[(（]\d)')
+_WORD_TAG_RE = re.compile(r'^(.{1,60}?)\s*([(（](?:目标词|超纲词)[)）])\s*(?:[:：]\s*)?(.*)$', re.S)
+
+
+def _bold_head(text):
+    """条目/词级行的行首成分统一加粗、分隔符归一为半角冒号:
+    <b>x</b> —— / <b>x</b>: / x: / x—— / x(身份) 收敛为 <b>x</b>:… 或 <b>x</b>(身份):…。
+    已有加粗且其后无分隔符、成分超长/含句读/含既有标签时一律不动:宁可漏加,不可错加。"""
+    m = re.match(r'^(<b>.*?</b>)(?:\s*(?:[—─]{1,2}|[:：])\s*)(.*)$', text, re.S)
+    if m:
+        return m.group(1) + ':' + m.group(2)
+    m = _WORD_TAG_RE.match(text)
+    if m and '<b>' not in m.group(1) and m.group(3).strip():
+        # 「词(身份):解析」前缀格式才重写;身份标记在句尾作注(无后文)时保持原样
+        return f'<b>{m.group(1)}</b>{m.group(2)}:{m.group(3)}'
+    m = re.match(r'^(.{1,60}?)\s*(?:[—─]{1,2}|[:：])\s*(.*)$', text, re.S)
+    if m and m.group(1).strip() and '<b>' not in m.group(1) \
+            and not re.search(r'[。！？!?;；]', m.group(1)):
+        return f'<b>{m.group(1).strip()}</b>:{m.group(2)}'
+    return text
+
+
+def _normalize_ai_structure(raw):
+    """把任意模型排版重排为规范结构(纯文本操作,输出里的 <b> 均为本函数/模型合法加粗):
+    1. 段首行归一:三种段名统一为顶行 <b>N. 段名</b>(N 按固定顺序 1/2/3,不依赖模型编号),
+       模型把段落用 "# 整句解读#" / 【整句解读】 拼进行内的,拆成独立段首行;
+       逐项解析段首行整体缺失但存在条目时,自动补 <b>1. 逐项解析</b>。
+    2. 条目归一:逐项解析区间内 1.1 / 1. / ① / (1) / 圆点 等行首编号统一为 「• 」;
+       区内既有编号条目又有圆点行时,圆点行是词级拆解 → 「– 」;全区只有圆点则圆点即条目。
+    3. 条目/词级行首成分加粗(_bold_head)。
+    无段无条目的纯文本(词义概述、表达卡讲解)原样通过,不做任何加工。"""
+    raw = re.sub(r'\*\*(.+?)\*\*', r'<b>\1</b>', raw, flags=re.S)   # 手改 JSON 兜底
+    raw = raw.replace('\\n', '\n')   # 个别模型把换行双转义成字面 \n,先还原为真换行
+    # 整段挤成一行的(模型偶尔把三段写成一段):按 "N. 段名:" 行内段标切行
+    # (?<![*)\d] 防误切 md 加粗残留/两级编号
+    raw = re.sub(r'\s*(?<![*)\d])(\d{1,2})\.\s*(逐项解析|整句解读|文化点)\s*[:：]\s*',
+                 r'\n\n\1. \2\n', raw)
+    for t in _SECTION_TITLES:   # 行内卡住的段标记(如 「。# 整句解读# …」)拆为独立行
+        raw = re.sub(rf'\s*#{{1,6}}\s*{t}\s*#*\s*', '\n\n' + t + '\n', raw)
+        raw = re.sub(rf'\s*【{t}】\s*', '\n\n' + t + '\n', raw)
+
+    records, cur = [], None
+    n_numbered = n_bullets = 0      # 逐项解析区内:编号条目数 / 圆点行数(决定圆点角色)
+    first_loose_item = None         # 段首行缺失时首个悬空条目的下标(补段首行用)
+    prev_blank = False              # 当前行之前是否有空行(补「整句解读」段首行的依据)
+    for line in raw.replace('\r\n', '\n').replace('\r', '\n').split('\n'):
+        s = line.strip()
+        if not s:
+            prev_blank = True
+            continue
+        m = _SECTION_RE.match(s)
+        if m and (m.group(2) or not m.group(3).strip()):
+            cur = _TITLE_ALIAS.get(m.group(1), m.group(1))
+            if cur == '逐项解析':
+                n_numbered = n_bullets = 0
+            records.append(['header', cur, False])
+            if m.group(3).strip():
+                records.append(['line', m.group(3).strip(), False])
+            prev_blank = False
+            continue
+        if cur in (None, '逐项解析'):
+            im = _ITEM_RE.match(line)
+            if im:
+                kind = 'item' if _BULLET_LEAD_RE.match(im.group(0)) else 'bullet'
+                if kind == 'item':
+                    n_numbered += 1
+                else:
+                    n_bullets += 1
+                records.append([kind, line[im.end():].strip(), False])
+                if cur is None and first_loose_item is None:
+                    first_loose_item = len(records) - 1
+                prev_blank = False
+                continue
+            if cur == '逐项解析' and s.count('；') >= 2:
+                # 单行分号连排的逐词讲解(ch47 实测):按 「；+英文词」 边界拆成条目
+                parts = [p.strip() for p in re.split(r'；(?=[A-Za-z“「\'"])', s) if p.strip()]
+                if len(parts) >= 3:
+                    records.extend(['item', p, False] for p in parts)
+                    prev_blank = False
+                    continue
+        elif cur in ('整句解读', '文化点') and re.match(r'^[①-⑳]\s', s):
+            records.append(['olist', re.sub(r'^[①-⑳]\s*', '', s), prev_blank])
+            prev_blank = False
+            continue
+        records.append(['line', s, prev_blank])
+        prev_blank = False
+
+    if first_loose_item is not None and not any(
+            k == 'header' and v == '逐项解析' for k, v, _ in records):
+        records.insert(first_loose_item, ['header', '逐项解析', False])
+    # 条目区之后跟着空行隔开的无段首行长段(模型漏写「2. 整句解读」段首行)→ 补段首行
+    if not any(k == 'header' and v == '整句解读' for k, v, _ in records):
+        item_idx = [i for i, (k, _, _) in enumerate(records) if k in ('item', 'bullet')]
+        for i in range(item_idx[-1] + 1, len(records)) if item_idx else ():
+            k, v, was_blank = records[i]
+            if k == 'line' and was_blank and len(v) >= 20:
+                records.insert(i, ['header', '整句解读', False])
+                break
+    if n_numbered == 0 and n_bullets > 0:   # 全区只有圆点:圆点本身就是条目,不是词级
+        records = [['item', v, w] if k == 'bullet' else [k, v, w] for k, v, w in records]
+    elif n_bullets > 0:
+        records = [['word', v, w] if k == 'bullet' else [k, v, w] for k, v, w in records]
+
+    out = []
+    for kind, val, _ in records:
+        if out and kind in ('header', 'item', 'olist'):   # 条目与段首行前插空行,独立成段
+            out.append('')
+        if kind == 'header':
+            out.append(f'<b>{_SECTION_TITLES.index(val) + 1}. {val}</b>')
+        elif kind == 'item':
+            out.append('• ' + _bold_head(val))
+        elif kind == 'olist':
+            out.append('• ' + val)      # 整句解读/文化点里的 ①② 枚举段 → 圆点(不加粗)
+        elif kind == 'word':
+            out.append('– ' + _bold_head(val))
+        else:
+            out.append(val)
+    return '\n'.join(out)
+
+
 def ai_cell_html(v):
-    """AI 解析 / 词义概述格:转义 + 换行→<br>。
+    """AI 解析 / 词义概述格:排版归一 + 转义 + 换行→<br>。
     TSV 单元格保持单行(不破坏 10 列),Anki 内渲染为多行段落。
 
-    排版规整(模型编号经常不一致,统一在此收敛):
-    - 区块大标题 「N. 逐项解析 / 整句解读 / 文化点」→ 加粗,形成层级;
-    - 逐项解析区间内行首编号 "N. " / "N.M"(模型可能输出 1.1 / 1.2,也可能 1. / 2.,两套都有)
-      → 条目一律改成单点列表符 「• 」,不再两级编号,标题与条目一眼可分;
-    - 逐项解析区间内行首 "- " 或 "• "(ai_explain 提示词约定的词级拆解行)→ 收敛为
-      「– 」,比条目低半级,词级与条目清楚分层;
-    - 每条目与各区块标题前自动插空行,独立成段;
-    - 转义后仅白名单还原我们自己生成的 <b>(标题加粗 / Markdown 加粗转换),
-      其余任何尖括号保持转义,防模型输出注入 HTML。"""
+    - 结构收敛见 _normalize_ai_structure(段首行/条目/词级/行首成分加粗);
+    - 每条目与各段首行前自动插空行,独立成段;
+    - 身份标记上色:(目标词) → <b class="hl">(例句高亮红),(超纲词) →
+      <b class="hard">(超纲绿,同例句超纲词配色),模板 .ai 需有对应 CSS;
+    - 转义后仅白名单还原我们自己生成的 <b>(三种形态),其余尖括号保持转义防注入。"""
     if not v:
         return ''
-    esc = html.escape(str(v))
-    # 1) 逐项解析区间内:行首编号 "N. " 或 "N.M "(条目)→ "• ";行首 "- "/"• "(词级拆解)→ "– "
-    #    必须先于标题加粗做:加粗会给标题行打上 <b> 前缀,状态机就认不出标题行了(历史 bug)
-    lines = esc.split('\n')
-    in_items = False
-    for i, line in enumerate(lines):
-        if re.match(r'\d+\.\s*(?:整句解读|文化点)', line):
-            in_items = False
-        elif re.match(r'\d+\.\s*逐项解析', line):
-            in_items = True
-        elif in_items and re.match(r'^\d+\.(?:\d+)?\s', line):
-            lines[i] = re.sub(r'^\d+\.(?:\d+)?\s', '• ', line)
-        elif in_items and re.match(r'^\s*[-•]\s', line):
-            lines[i] = re.sub(r'^\s*[-•]\s', '– ', line)
-    esc = '\n'.join(lines)
-    # 2) 区块标题加粗("1. 逐项解析"、"2. 整句解读"、"3. 文化点…")
-    esc = re.sub(r'(?m)^(\d+\.\s*(?:逐项解析|整句解读|文化点)[:：]?)', r'<b>\1</b>', esc)
-    # 3) 换行 → <br>;每条目与区块标题前插空行
+    esc = html.escape(_normalize_ai_structure(str(v)))
     esc = esc.replace('\n', '<br>')
-    esc = re.sub(r'<br>(?=• )', '<br><br>', esc)
-    esc = re.sub(r'<br>(?=<b>\d\. )', '<br><br>', esc)
-    # 4) 白名单还原真正的 <b>(仅我们自己打的标题加粗 / md 加粗转换)
-    return esc.replace('&lt;b&gt;', '<b>').replace('&lt;/b&gt;', '</b>')
+    esc = (esc.replace('&lt;b&gt;', '<b>')
+              .replace('&lt;/b&gt;', '</b>')
+              .replace('&lt;b class=&quot;hl&quot;&gt;', '<b class="hl">')
+              .replace('&lt;b class=&quot;hard&quot;&gt;', '<b class="hard">'))
+    esc = re.sub(r'[(（](目标词|超纲词)[)）]',
+                 lambda m: '<b class="%s">(%s)</b>' % (
+                     'hl' if m.group(1) == '目标词' else 'hard', m.group(1)),
+                 esc)
+    return esc
 
 def main():
     ap = argparse.ArgumentParser()
@@ -171,9 +303,13 @@ def main():
 
     out_dir = os.path.join(BASE, 'data', 'output', args.book)
     chapters_dir = os.path.join(BASE, 'data', 'books', '_md')
-    md_text = open(os.path.join(chapters_dir, f'{args.book}.md'), encoding='utf-8').read()
+    md_path = os.path.join(chapters_dir, f'{args.book}.md')
+    if not os.path.exists(md_path):
+        sys.exit(f'[STOP] 找不到管线输入 {md_path} —— 先跑 scripts/epub_to_md.py(EPUB 转换)')
+    md_text = open(md_path, encoding='utf-8').read()
 
     diff = Difficulty()   # 超纲词判定资源(oxford5000 + ECDICT),加载一次全程复用
+    diff.proper = proper_names.load(args.book)   # 书内专名不标超纲(scripts/proper_names.py)
     stack = os.path.join(out_dir, 'raw')
     anki_dir = os.path.join(out_dir, 'anki')
     os.makedirs(anki_dir, exist_ok=True)
