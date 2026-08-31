@@ -176,13 +176,13 @@ resources/anki/anki_template.apkg  EnWords 笔记模板包
   `uv run python scripts/cards.py --book <b>`(表达卡排同章 TSV 最前)
   统一入口(2026-08-31 起): `uv run python scripts/run.py --book <b> --stage phrases`(候选+AI 精选,
   只挑有润色数据的章)/ `run.py --book <b> --chapters 1-5` 一键全流程已含表达链路
-- **表达卡渲染约定**:多词短语**无词级音频**;例句整短语高亮 `<b class="hl">`(按候选
-  表面形逐词展开规则屈折匹配,见 wordforms.phrase_regex —— 例证句即原句,表面形即可命中,
-  不做跨词换形如 made→making);不标超纲词 hard;句级音频照常查缓存
-  (未预生成则不带 [sound:],不报错);标注版 annotated 不含表达(按词高亮,短语不参与)
-- **发音**:gen_audio.py 与 cards.py 同口径——表达行只生成**例证句音频**(s_ch<NN>_<短语>.mp3,
-  按 tts_paths.sent_audio_name 命名,可跨章复用缓存),不生成词级音频;未预生成则卡片不带
-  [sound:],不报错
+- **表达卡渲染约定**:多词短语**词级音频** `w_<短语>.mp3`(与单词同命名规则,整短语朗读);
+  例句整短语高亮 `<b class="hl">`(按候选表面形逐词展开规则屈折匹配,见 wordforms.phrase_regex
+  —— 例证句即原句,表面形即可命中,不做跨词换形如 made→making);不标超纲词 hard;句级音频
+  照常查缓存(未预生成则不带 [sound:],不报错);标注版 annotated 不含表达(按词高亮,短语不参与)
+- **发音**:gen_audio.py 与 cards.py 同口径——表达行生成**词级音频**(w_<短语>.mp3,整短语
+  朗读,按 tts_paths.word_audio_name 命名,可跨章复用缓存)+ **例证句音频**(s_ch<NN>_<短语>.mp3);
+  未预生成则卡片不带 [sound:],不报错
 - **总库**:表达与单词同规则并入 `master_wordlist.csv`(word 列含空格=表达),跨书去重
   (同表达不重复推荐;用户认识后照常记入 known_words.txt);词级频次累积口径与单词卡一致
 - **注意**:apply --phrases 与 apply --polish/--explain 互不干扰(处理对象不同文件);

@@ -367,13 +367,15 @@ def main():
                 sent = r['sent'] or ''
                 cefr = (r['cefr'] or '').upper()
                 if r.get('pos') == 'phrase':
-                    # 表达卡:多词短语无词级音频;例句转义后整短语高亮(不标超纲词)
+                    # 表达卡:词级音频 w_<短语>.mp3(gen_audio 同单词规则生成);例句转义后整短语高亮(不标超纲词)
                     esc_sent = html.escape(sent)
                     sent_cell = hl_phrase(esc_sent, word)
                     s_name = sent_audio_name(ch, word) if sent else None
                     if s_name and (audio_dir / s_name).exists():
                         sent_cell += f' [sound:{s_name}]'
-                    word_cell = word
+                    w_name = word_audio_name(word)
+                    word_cell = word + (f' [sound:{w_name}]'
+                                        if (audio_dir / w_name).exists() else '')
                 else:
                     w_name = word_audio_name(word)
                     s_name = sent_audio_name(ch, word) if sent else None

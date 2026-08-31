@@ -147,15 +147,14 @@ def main():
         print("[FAIL] 没有可用的 raw 行(先跑 pipeline + apply_polish?)", flush=True)
         sys.exit(1)
 
-    # 单词音频跨章去重;例句音频按(章, 词)。
-    # 表达卡(pos=phrase)无词级音频,cards.py 同约定:发音只依赖例证句音频。
+    # 单词/短语音频跨章去重(短语同规则:整短语一个词级音频 w_<短语>.mp3);例句音频按(章, 词)。
     word_jobs, seen_words = [], set()
     sent_jobs = []
     for ch, r in rows:
         word = (r.get("word") or "").strip()
         if not word:
             continue
-        if r.get("pos") != "phrase" and word not in seen_words:
+        if word not in seen_words:
             seen_words.add(word)
             word_jobs.append((word, audio_dir / word_audio_name(word)))
         sent = (r.get("sent") or "").strip()
